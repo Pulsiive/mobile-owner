@@ -2,10 +2,12 @@ import React, { useState } from 'react';
 import { Image, View, Text, TextInput, Button, StyleSheet } from 'react-native';
 import config from '../../../globals/utils/config';
 
-const Login = ({ navigation }) => {
+const ResetPassword = ({ navigation }) => {
   const [userInput, setUserInput] = useState({
     email: '',
-    password: ''
+    oldpassword: '',
+    password: '',
+    repassword: ''
   });
   const [errorMessage, setErrorMessage] = useState('');
   const [error, setError] = useState(false);
@@ -18,12 +20,17 @@ const Login = ({ navigation }) => {
 
   const submit = async () => {
     try {
+      if (userInput['password'] != userInput['repassword']) {
+        setErrorMessage('Password are not identical');
+        setError(true);
+        throw errorMessage;
+      }
       // const userObject = await axios.post(`${config.API_URL}/`, {
       //   ...userInput,
       // });
       // const jwt = userObject.data.data.user.accessToken;
       // await AsyncStorage.setItem("accessToken", jwt);
-      navigation.navigate('HomePage');
+      navigation.navigate('Login');
     } catch (e) {
       if (e.response) {
         const code = e.response.status;
@@ -40,8 +47,8 @@ const Login = ({ navigation }) => {
 
   return (
     <View>
-      <Image style={styles.tinyLogo} source={require('../../../images/logo_pulsive.png')} />
-      <Text style={styles.title}>Login</Text>
+      {/* <Image style={styles.tinyLogo} source={require('../../../images/logo_pulsive.png')} /> */}
+      <Text style={styles.title}>Reset Password</Text>
       <View style={styles.container}>
         <TextInput
           onChangeText={(text) => handleChange(text, 'email')}
@@ -50,18 +57,32 @@ const Login = ({ navigation }) => {
           autoComplete="email"
         />
         <TextInput
+          onChangeText={(text) => handleChange(text, 'oldpassword')}
+          style={styles.input}
+          placeholder="Old Password"
+          secureTextEntry={true}
+          autoComplete="password"
+        />
+        <TextInput
           onChangeText={(text) => handleChange(text, 'password')}
           style={styles.input}
           placeholder="Password"
           secureTextEntry={true}
           autoComplete="password"
         />
-        <Button title="login" accessibilityLabel="Login to your account" onPress={submit} />
+        <TextInput
+          onChangeText={(text) => handleChange(text, 'repassword')}
+          style={styles.input}
+          placeholder="re-enter same password"
+          secureTextEntry={true}
+          autoComplete="password"
+        />
+        <Button title="Update password" accessibilityLabel="Update password" onPress={submit} />
         <Button
-          title="Create an account"
-          accessibilityLabel="Click here if you don't have an account"
-          onPress={() => navigation.navigate('Register')}
-          color="grey"
+          title="Back"
+          accessibilityLabel="Back"
+          onPress={() => navigation.navigate('HomePage')}
+          color="darkblue"
         />
       </View>
     </View>
@@ -100,4 +121,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default Login;
+export default ResetPassword;

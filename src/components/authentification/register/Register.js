@@ -1,10 +1,17 @@
 import React, { useState } from 'react';
 import { TextInput, View, StyleSheet, Text, Button } from 'react-native';
+// import AsyncStorage from '@react-native-async-storage/async-storage';
+import axios from 'axios';
+import config from '../../../globals/utils/config';
 
 const Register = ({ navigation }) => {
   const [userInput, setUserInput] = useState({
     email: '',
     password: '',
+    firstName: 'default',
+    lastName: 'default',
+    dateOfBirth: '2001-07-15',
+    timeZone: 'UTC+2',
     username: ''
   });
   const [errorMessage, setErrorMessage] = useState('');
@@ -18,11 +25,12 @@ const Register = ({ navigation }) => {
 
   const submit = async () => {
     try {
-      //   const userObject = await axios.post(`${config.API_URL}/api/auth/register`, {
-      //     ...userInput
-      //   });
-      //   const jwt = userObject.data.data.user.accessToken;
-      //   await AsyncStorage.setItem('accessToken', jwt);
+      // Waiting for server to be hosted through a public IP
+      // const userObject = await axios.post(`${config.API_URL}/api/v1/auth/register`, {
+      //   userInput
+      // });
+      // const jwt = userObject.data.data.user.accessToken;
+      // await AsyncStorage.setItem('accessToken', jwt);
       navigation.navigate('HomePage');
     } catch (e) {
       if (e.response) {
