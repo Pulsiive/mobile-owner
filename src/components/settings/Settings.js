@@ -27,17 +27,17 @@ const Settings = ({ navigation }) => {
         <Button
           title="Wallet"
           accessibilityLabel="Wallet"
-          //   onPress={() => navigation.navigate('HomePage')}
+          onPress={() => navigation.navigate('Wallet')}
         />
         <Button
           title="Legal mentions"
           accessibilityLabel="Legal mentions"
-          //   onPress={() => navigation.navigate('HomePage')}
+          onPress={() => navigation.navigate('LegalMentions')}
         />
         <Button
           title="Tutorial"
           accessibilityLabel="tutorial"
-          //   onPress={() => navigation.navigate('HomePage')}
+          onPress={() => navigation.navigate('Tutorial')}
         />
         <Button
           title="Back"

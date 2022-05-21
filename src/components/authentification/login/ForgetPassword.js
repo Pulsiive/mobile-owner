@@ -25,7 +25,7 @@ const ResetPassword = ({ navigation }) => {
         setError(true);
         throw errorMessage;
       }
-      // const userObject = await axios.post(`${config.API_URL}/`, {
+      // const userObject = await axios.post(`${config.API_URL}/api/v1/password`, {
       //   ...userInput,
       // });
       // const jwt = userObject.data.data.user.accessToken;

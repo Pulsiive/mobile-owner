@@ -24,7 +24,7 @@ const Profile = ({ navigation }) => {
   const submit = async () => {
     try {
       // Waiting for server to be hosted through a public IP
-      // const userObject = await axios.post(`${config.API_URL}/api/v1/`, {
+      // const userObject = await axios.post(`${config.API_URL}/api/v1/settings/profile`, {
       //   userInput
       // });
       // const jwt = userObject.data.data.user.accessToken;
