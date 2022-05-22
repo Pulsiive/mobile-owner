@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Image, View, Text, TextInput, Button, StyleSheet } from 'react-native';
+import { Image, View, Text, TextInput, Button, StyleSheet, TouchableOpacity } from 'react-native';
 import config from '../../../globals/utils/config';
 
 const Login = ({ navigation }) => {
@@ -39,14 +39,17 @@ const Login = ({ navigation }) => {
   };
 
   return (
-    <View>
-      <Image style={styles.tinyLogo} source={require('../../../images/logo_pulsive.png')} />
+    <View style={styles.viewTemplate}>
+      <Image
+        style={styles.topLeftLeaf}
+        source={require('../../../images/login_topleft_corner.png')}
+      />
       <Text style={styles.title}>Login</Text>
       <View style={styles.container}>
         <TextInput
           onChangeText={(text) => handleChange(text, 'email')}
           style={styles.input}
-          placeholder="Email address"
+          placeholder="Email address or phone number"
           autoComplete="email"
         />
         <TextInput
@@ -56,38 +59,106 @@ const Login = ({ navigation }) => {
           secureTextEntry={true}
           autoComplete="password"
         />
-        <Button title="login" accessibilityLabel="Login to your account" onPress={submit} />
-        <Button
-          title="Create an account"
-          accessibilityLabel="Click here if you don't have an account"
+        <TouchableOpacity style={styles.loginButtonBoxWithoutBackground} onPress={submit}>
+          <Text style={styles.loginButton}>Login</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.forgetPasswordButtonBoxWithoutBackground}
+          onPress={() => navigation.navigate('ForgetPassword')}
+        >
+          <Text style={styles.forgetPasswordButton}>Forget password ?</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          style={styles.registerButtonBoxWithoutBackground}
           onPress={() => navigation.navigate('Register')}
-          color="grey"
-        />
+        >
+          <Text style={styles.registerButton}>Register</Text>
+        </TouchableOpacity>
       </View>
+      <Image
+        style={styles.bottomRightLeaf}
+        source={require('../../../images/login_bottomright_corner.png')}
+      />
     </View>
   );
 };
 
 const styles = StyleSheet.create({
+  viewTemplate: {
+    backgroundColor: '#0D0D0D',
+    width: '100%',
+    height: '100%'
+  },
+
+  topLeftLeaf: {
+    width: 200,
+    height: 200,
+    position: 'absolute',
+    top: '-16%'
+  },
+  bottomRightLeaf: {
+    width: 200,
+    height: 200,
+    position: 'absolute',
+    top: '90%',
+    right: '-5%'
+  },
+
   container: {
     padding: 50
   },
-  tinyLogo: {
-    width: 400,
-    height: 210
-  },
   title: {
     textAlign: 'center',
-    fontWeight: '900',
+    fontWeight: '400',
     fontSize: 30,
-    color: 'black',
+    color: '#F2F2F2',
     marginBottom: 0,
-    marginTop: 10
+    marginTop: '45%'
   },
   input: {
-    borderWidth: 0.2,
-    marginBottom: 20
+    marginBottom: 20,
+    backgroundColor: 'white',
+    borderRadius: 10
   },
+  // BUTTON BOX
+  loginButtonBoxWithoutBackground: {
+    backgroundColor: '#6EBF34',
+    borderRadius: 10,
+    width: '100%'
+  },
+  forgetPasswordButtonBoxWithoutBackground: {
+    width: '40%',
+    marginLeft: '30%'
+  },
+  registerButtonBoxWithoutBackground: {
+    width: '25%',
+    marginLeft: '37%',
+    marginTop: '10%'
+  },
+  // BUTTON
+  loginButton: {
+    color: 'white',
+    textAlign: 'center',
+    fontWeight: '900',
+    paddingTop: '4%',
+    paddingBottom: '4%'
+  },
+  forgetPasswordButton: {
+    fontWeight: '300',
+    textAlign: 'center',
+    marginTop: '5%',
+    color: 'grey'
+  },
+  registerButton: {
+    fontWeight: '400',
+    fontSize: 17,
+    textAlign: 'center',
+    marginTop: '15%',
+    color: 'white'
+  },
+
+  // ERROR
   errorContainer: {
     color: 'red',
     marginBottom: 30,

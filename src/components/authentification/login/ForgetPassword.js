@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Image, View, Text, TextInput, Button, StyleSheet } from 'react-native';
+import { TouchableOpacity, View, Text, TextInput, Button, StyleSheet } from 'react-native';
 import config from '../../../globals/utils/config';
 
 const ResetPassword = ({ navigation }) => {
@@ -46,8 +46,7 @@ const ResetPassword = ({ navigation }) => {
   };
 
   return (
-    <View>
-      {/* <Image style={styles.tinyLogo} source={require('../../../images/logo_pulsive.png')} /> */}
+    <View style={styles.viewTemplate}>
       <Text style={styles.title}>Reset Password</Text>
       <View style={styles.container}>
         <TextInput
@@ -77,38 +76,65 @@ const ResetPassword = ({ navigation }) => {
           secureTextEntry={true}
           autoComplete="password"
         />
-        <Button title="Update password" accessibilityLabel="Update password" onPress={submit} />
-        <Button
-          title="Back"
-          accessibilityLabel="Back"
-          onPress={() => navigation.navigate('HomePage')}
-          color="darkblue"
-        />
+        <TouchableOpacity style={styles.updateButtonBoxWithoutBackground} onPress={submit}>
+          <Text style={styles.updateButton}>Update password</Text>
+        </TouchableOpacity>
       </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
+  viewTemplate: {
+    backgroundColor: '#0D0D0D',
+    width: '100%',
+    height: '100%'
+  },
+
   container: {
     padding: 50
   },
-  tinyLogo: {
-    width: 400,
-    height: 210
-  },
   title: {
     textAlign: 'center',
-    fontWeight: '900',
+    fontWeight: '400',
     fontSize: 30,
-    color: 'black',
+    color: '#F2F2F2',
     marginBottom: 0,
-    marginTop: 10
+    marginTop: '45%'
   },
   input: {
-    borderWidth: 0.2,
-    marginBottom: 20
+    marginBottom: 20,
+    backgroundColor: 'white',
+    borderRadius: 10
   },
+
+  // BUTTON BOX
+  updateButtonBoxWithoutBackground: {
+    backgroundColor: '#6EBF34',
+    borderRadius: 10,
+    width: '100%'
+  },
+  accountButtonBoxWithoutBackground: {
+    width: '40%',
+    marginLeft: '30%',
+    marginTop: '30%'
+  },
+
+  // BUTTON
+  updateButton: {
+    color: 'white',
+    textAlign: 'center',
+    fontWeight: '900',
+    paddingTop: '4%',
+    paddingBottom: '4%'
+  },
+  accountButton: {
+    fontWeight: '500',
+    textAlign: 'center',
+    marginTop: '5%',
+    color: 'grey'
+  },
+
   errorContainer: {
     color: 'red',
     marginBottom: 30,

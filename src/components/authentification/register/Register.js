@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { TextInput, View, StyleSheet, Text, Button } from 'react-native';
+import { TextInput, View, StyleSheet, Text, Button, TouchableOpacity } from 'react-native';
 // import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
 import config from '../../../globals/utils/config';
@@ -45,65 +45,92 @@ const Register = ({ navigation }) => {
   };
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Welcome !</Text>
-      <Text style={styles.title}>Create your account</Text>
-      <TextInput
-        onChangeText={(text) => handleChange(text, 'email')}
-        style={styles.input}
-        placeholder="Email address"
-        autoComplete="email"
-      />
-      <TextInput
-        onChangeText={(text) => handleChange(text, 'username')}
-        style={styles.input}
-        placeholder="Username"
-        autoComplete="username"
-      />
-      <TextInput
-        onChangeText={(text) => handleChange(text, 'password')}
-        style={styles.input}
-        placeholder="Password"
-        secureTextEntry={true}
-        autoComplete="password"
-      />
-      <Button
-        style={styles.loginButton}
-        title="Register"
-        accessibilityLabel="Create a new account"
-        onPress={submit}
-      />
-      <View style={{ marginTop: 20 }}>
-        <Button
-          title="I have an account"
-          accessibilityLabel="Click here if you already have an account"
-          onPress={() => navigation.navigate('Login')}
-          color="grey"
+    <View style={styles.viewTemplate}>
+      <View style={styles.container}>
+        <Text style={styles.title}>Create your account</Text>
+        <TextInput
+          onChangeText={(text) => handleChange(text, 'email')}
+          style={styles.input}
+          placeholder="Email address"
+          autoComplete="email"
         />
+        <TextInput
+          onChangeText={(text) => handleChange(text, 'username')}
+          style={styles.input}
+          placeholder="Username"
+          autoComplete="username"
+        />
+        <TextInput
+          onChangeText={(text) => handleChange(text, 'password')}
+          style={styles.input}
+          placeholder="Password"
+          secureTextEntry={true}
+          autoComplete="password"
+        />
+        <TouchableOpacity style={styles.registerButtonBoxWithoutBackground} onPress={submit}>
+          <Text style={styles.registerButton}>Register</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.accountButtonBoxWithoutBackground}
+          onPress={() => navigation.navigate('Login')}
+        >
+          <Text style={styles.accountButton}>I have an account</Text>
+        </TouchableOpacity>
       </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
+  viewTemplate: {
+    backgroundColor: '#0D0D0D',
+    width: '100%',
+    height: '100%'
+  },
+
   container: {
     padding: 40
   },
   input: {
-    borderWidth: 0.2,
-    marginBottom: 20
+    marginBottom: 20,
+    backgroundColor: 'white',
+    borderRadius: 10
   },
   title: {
     textAlign: 'center',
-    fontWeight: '900',
+    fontWeight: '400',
     fontSize: 30,
-    color: 'black',
-    marginBottom: 50,
-    marginTop: 30
+    color: '#F2F2F2',
+    marginBottom: '10%',
+    marginTop: '40%'
   },
-  loginButton: {
-    borderRadius: 40
+  // BUTTON BOX
+  registerButtonBoxWithoutBackground: {
+    backgroundColor: '#6EBF34',
+    borderRadius: 10,
+    width: '100%'
   },
+  accountButtonBoxWithoutBackground: {
+    width: '40%',
+    marginLeft: '30%',
+    marginTop: '30%'
+  },
+
+  // BUTTON
+  registerButton: {
+    color: 'white',
+    textAlign: 'center',
+    fontWeight: '900',
+    paddingTop: '4%',
+    paddingBottom: '4%'
+  },
+  accountButton: {
+    fontWeight: '500',
+    textAlign: 'center',
+    marginTop: '5%',
+    color: 'grey'
+  },
+
   errorContainer: {
     color: 'red',
     marginBottom: 30,

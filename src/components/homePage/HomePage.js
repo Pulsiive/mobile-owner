@@ -6,7 +6,6 @@ const HomePage = ({ navigation }) => {
   return (
     <View>
       <Text>HomePage</Text>
-      <Button title="Reset password" onPress={() => navigation.navigate('ForgetPassword')} />
       <DisconnectComponent navigation={navigation} />
       <Button title="Settings" onPress={() => navigation.navigate('Settings')} />
     </View>

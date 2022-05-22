@@ -3,24 +3,13 @@ import { Image, View, Text, TouchableWithoutFeedback, Button, StyleSheet } from 
 import Icon from 'react-native-vector-icons/dist/AntDesign';
 import LinearGradient from 'react-native-linear-gradient';
 
-const WalletHead = ({ navigation }) => {
-  return (
-    <View style={styles.headWalletInformation}>
-      <Text style={styles.title}>My Wallet</Text>
-      {/* this amount should be loaded from api */}
-      <Text style={styles.amount}> € 210.00</Text>
-      <TouchableWithoutFeedback onPress={() => navigation.navigate('Profile')}>
-        <Icon style={styles.userProfileButton} name="user" size={30} color="white" />
-      </TouchableWithoutFeedback>
-    </View>
-  );
-};
+import WalletHead from './wallet/WalletHead';
 
 const WalletGraph = () => {
   const [filterSelected, setFilterSelected] = useState(1);
 
   return (
-    <View style={styles.walletGraphInformation}>
+    <View style={styles.walletGraphInformationView}>
       <View style={styles.walletGraphFilter}>
         <TouchableWithoutFeedback onPress={() => setFilterSelected(1)}>
           <Text style={filterSelected == 1 ? styles.selectedColor : styles.neutralColor}>
@@ -36,24 +25,36 @@ const WalletGraph = () => {
           <Text style={filterSelected == 3 ? styles.selectedColor : styles.neutralColor}>All</Text>
         </TouchableWithoutFeedback>
       </View>
+      <View style={{ width: '90%', height: '100%', marginLeft: '5%' }}>
+        <Text style={{ color: 'white', marginTop: '30%', marginLeft: '30%' }}>
+          Data not available for now
+        </Text>
+      </View>
+    </View>
+  );
+};
+
+const PulsiveCard = () => {
+  return (
+    <View>
+      <LinearGradient
+        colors={['#333333', '#525252']}
+        start={{ x: 0.0, y: 0.25 }}
+        end={{ x: 0.5, y: 1.0 }}
+        style={styles.pulsiiveCard}
+      />
+      <Image style={styles.tinyLogo} source={require('../../images/logo_pulsive.png')} />
+      {/* Maybe add a name ?  */}
     </View>
   );
 };
 
 const WalletBottomDrawer = ({ navigation }) => {
   return (
-    <View style={styles.walletTransactionDropdownInformation}>
+    <View style={styles.walletTransactionDropdownInformationView}>
+      <View style={styles.bar} />
       <Text style={styles.bottomTitle}>My account</Text>
-      <View>
-        <LinearGradient
-          colors={['#333333', '#525252']}
-          start={{ x: 0.0, y: 0.25 }}
-          end={{ x: 0.5, y: 1.0 }}
-          locations={[0, 0.5, 0.6]}
-          style={styles.pulsiiveCard}
-        />
-        <Image style={styles.tinyLogo} source={require('../../images/logo_pulsive.png')} />
-      </View>
+      <PulsiveCard />
     </View>
   );
 };
@@ -75,43 +76,11 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%'
   },
-  //HEADER
-  headWalletInformation: {
-    padding: 10,
-    marginTop: '8%',
-    width: '100%',
-    height: '10%'
-  },
-  title: {
-    textAlign: 'center',
-    // fontWeight: '900',
-    fontSize: 30,
-    color: '#F2F2F2',
-    position: 'absolute',
-    top: '10%',
-    left: '5%'
-  },
-  amount: {
-    textAlign: 'center',
-    fontWeight: '900',
-    fontSize: 30,
-    color: '#F2F2F2',
-    position: 'absolute',
-    top: '70%',
-    left: '3%'
-  },
-  userProfileButton: {
-    color: '#F2F2F2',
-    position: 'absolute',
-    top: '26%',
-    left: '90%'
-  },
 
   // MAIN CONTENT
-  walletGraphInformation: {
+  walletGraphInformationView: {
     padding: 10,
     marginTop: '18%',
-    // backgroundColor: 'white',
     width: '100%',
     height: '30%'
   },
@@ -127,11 +96,12 @@ const styles = StyleSheet.create({
     fontWeight: '900'
   },
   neutralColor: {
-    color: 'grey'
+    color: 'grey',
+    fontWeight: '300'
   },
 
   // Bottom CONTENT
-  walletTransactionDropdownInformation: {
+  walletTransactionDropdownInformationView: {
     padding: 10,
     marginTop: '18%',
     backgroundColor: '#1F1F1F',
@@ -140,9 +110,17 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 50,
     borderTopLeftRadius: 50
   },
+  bar: {
+    marginLeft: '45%',
+    height: '1%',
+    width: '10%',
+    borderColor: 'white',
+    borderWidth: 2,
+    borderRadius: 20,
+    opacity: 0.9
+  },
   bottomTitle: {
     textAlign: 'center',
-    // fontWeight: '900',
     fontSize: 30,
     color: '#F2F2F2',
     position: 'absolute',
