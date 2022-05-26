@@ -55,13 +55,13 @@ const ResetPassword = ({ navigation }) => {
           placeholder="Email address"
           autoComplete="email"
         />
-        <TextInput
+        {/* <TextInput
           onChangeText={(text) => handleChange(text, 'oldpassword')}
           style={styles.input}
           placeholder="Old Password"
           secureTextEntry={true}
           autoComplete="password"
-        />
+        /> */}
         <TextInput
           onChangeText={(text) => handleChange(text, 'password')}
           style={styles.input}
