@@ -1,10 +1,13 @@
 import React from 'react';
-import { View, Text, TouchableWithoutFeedback, StyleSheet } from 'react-native';
+import { View, Text, TouchableWithoutFeedback, Pressable, StyleSheet } from 'react-native';
 import Icon from 'react-native-vector-icons/dist/AntDesign';
 
 const WalletHead = ({ navigation }) => {
   return (
     <View style={styles.headWalletInformation}>
+      <Pressable style={styles.backButton} onPress={() => navigation.navigate('Settings')}>
+        <Text style={styles.backButtonContent}>{'<'}</Text>
+      </Pressable>
       <Text style={styles.title}>My Wallet</Text>
       {/* this amount should be loaded from api */}
       <Text style={styles.amount}> € 210.00</Text>
@@ -22,6 +25,20 @@ const styles = StyleSheet.create({
     height: '100%'
   },
   //HEADER
+  backButton: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: '80%',
+    width: '10%',
+    borderRadius: 10,
+    elevation: 3,
+    backgroundColor: '#6EBF34'
+  },
+  backButtonContent: {
+    color: 'white',
+    fontSize: 20,
+    fontWeight: '800'
+  },
   headWalletInformation: {
     padding: 10,
     marginTop: '8%',
@@ -35,7 +52,7 @@ const styles = StyleSheet.create({
     color: '#F2F2F2',
     position: 'absolute',
     top: '10%',
-    left: '5%'
+    left: '18%'
   },
   amount: {
     textAlign: 'center',
@@ -44,7 +61,7 @@ const styles = StyleSheet.create({
     color: '#F2F2F2',
     position: 'absolute',
     top: '70%',
-    left: '3%'
+    left: '16%'
   },
   userProfileButton: {
     color: '#F2F2F2',

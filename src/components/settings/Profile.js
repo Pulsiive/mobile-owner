@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Image, View, Text, TextInput, Button, StyleSheet } from 'react-native';
+import { Pressable, View, Text, TextInput, Button, StyleSheet } from 'react-native';
 
 const Profile = ({ navigation }) => {
   const [userInput, setUserInput] = useState({
@@ -39,10 +39,16 @@ const Profile = ({ navigation }) => {
   };
 
   return (
-    <View>
-      <Text style={styles.title}>Profile</Text>
+    <View style={styles.viewTemplate}>
+      {/* HEADER */}
+      <View style={styles.headInformation}>
+        <Pressable style={styles.backButton} onPress={() => navigation.navigate('Settings')}>
+          <Text style={styles.backButtonContent}>{'<'}</Text>
+        </Pressable>
+        <Text style={styles.title}>Profile</Text>
+      </View>
       <View style={styles.container}>
-        <Text>First name</Text>
+        <Text style={styles.label}>First name</Text>
         <TextInput
           style={styles.input}
           onChangeText={(text) => handleChange(text, 'firstName')}
@@ -51,7 +57,7 @@ const Profile = ({ navigation }) => {
         >
           John
         </TextInput>
-        <Text>Last name</Text>
+        <Text style={styles.label}>Last name</Text>
         <TextInput
           style={styles.input}
           onChangeText={(text) => handleChange(text, 'lastName')}
@@ -60,7 +66,7 @@ const Profile = ({ navigation }) => {
         >
           Doe
         </TextInput>
-        <Text>Email</Text>
+        <Text style={styles.label}>Email</Text>
         <TextInput
           style={styles.input}
           onChangeText={(text) => handleChange(text, 'email')}
@@ -69,7 +75,7 @@ const Profile = ({ navigation }) => {
         >
           John@Doe.fr
         </TextInput>
-        <Text>Date of birth</Text>
+        <Text style={styles.label}>Date of birth</Text>
         <TextInput
           style={styles.input}
           onChangeText={(text) => handleChange(text, 'dateOfBirth')}
@@ -78,7 +84,7 @@ const Profile = ({ navigation }) => {
         >
           07/05/01
         </TextInput>
-        <Text>Adress</Text>
+        <Text style={styles.label}>Adress</Text>
         <TextInput
           style={styles.input}
           onChangeText={(text) => handleChange(text, 'adress')}
@@ -87,7 +93,7 @@ const Profile = ({ navigation }) => {
         >
           11 baker streets
         </TextInput>
-        <Text>Timezone</Text>
+        <Text style={styles.label}>Timezone</Text>
         <TextInput
           style={styles.input}
           onChangeText={(text) => handleChange(text, 'timeZone')}
@@ -100,12 +106,7 @@ const Profile = ({ navigation }) => {
           title="Save"
           accessibilityLabel="save"
           onPress={() => navigation.navigate('Settings')}
-          color="green"
-        />
-        <Button
-          title="Back"
-          accessibilityLabel="Profile to your account"
-          onPress={() => navigation.navigate('Settings')}
+          color="#6EBF34"
         />
       </View>
     </View>
@@ -113,22 +114,56 @@ const Profile = ({ navigation }) => {
 };
 
 const styles = StyleSheet.create({
+  viewTemplate: {
+    backgroundColor: '#0D0D0D',
+    width: '100%',
+    height: '100%'
+  },
+
+  //HEADER
+  headInformation: {
+    flexDirection: 'row',
+    padding: 10,
+    marginTop: '8%',
+    width: '100%',
+    height: '10%'
+  },
+  backButton: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: '80%',
+    width: '10%',
+    borderRadius: 10,
+    elevation: 3,
+    backgroundColor: '#6EBF34'
+  },
+  backButtonContent: {
+    color: 'white',
+    fontSize: 20,
+    fontWeight: '800'
+  },
+
+  //CONTENT
   container: {
     padding: 50
   },
   title: {
     textAlign: 'center',
-    fontWeight: '900',
-    fontSize: 30,
-    color: 'black',
-    marginBottom: 0,
-    marginTop: 10
+    fontWeight: '600',
+    fontSize: 25,
+    color: 'white',
+    marginLeft: '30%'
+  },
+  label: {
+    color: 'grey'
   },
   input: {
-    borderWidth: 0.2,
+    borderWidth: 0.3,
+    borderRadius: 5,
     marginBottom: 20,
     fontWeight: 'bold',
-    color: 'black'
+    color: 'white',
+    borderColor: 'grey'
   }
 });
 
