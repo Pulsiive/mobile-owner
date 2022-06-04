@@ -25,12 +25,12 @@ const Register = ({ navigation }) => {
 
   const submit = async () => {
     try {
-      // Waiting for server to be hosted through a public IP
-      // const userObject = await axios.post(`${config.API_URL}/api/v1/auth/register`, {
-      //   userInput
-      // });
-      // const jwt = userObject.data.data.user.accessToken;
-      // await AsyncStorage.setItem('accessToken', jwt);
+      const userObject = await axios.post(`${config.API_URL}/api/v1/auth/register`, {
+        userInput
+      });
+      console.log(userObject);
+      const jwt = userObject.data.data.user.accessToken;
+      await AsyncStorage.setItem('accessToken', jwt);
       navigation.navigate('HomePage');
     } catch (e) {
       if (e.response) {
