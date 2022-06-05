@@ -132,8 +132,8 @@ const styles = StyleSheet.create({
     marginLeft: '30%'
   },
   registerButtonBoxWithoutBackground: {
-    width: '25%',
-    marginLeft: '37%',
+    width: '30%',
+    marginLeft: '35%',
     marginTop: '10%'
   },
   // BUTTON

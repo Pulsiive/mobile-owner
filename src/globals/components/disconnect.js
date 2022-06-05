@@ -1,18 +1,33 @@
 import React from 'react';
-import { Button } from 'react-native';
+import { Pressable, Text, StyleSheet } from 'react-native';
 
 /**
  *  Reusable Button component to navigate back to login
  */
 const DisconnectComponent = ({ navigation }) => {
   return (
-    <Button
-      title="Disconnect"
-      accessibilityLabel="Click here to disconnect"
-      onPress={() => navigation.navigate('Login')}
-      color="grey"
-    />
+    <Pressable style={styles.disconnect} onPress={() => navigation.navigate('Login')}>
+      <Text style={styles.disconnectContent}>Disconnect</Text>
+    </Pressable>
   );
 };
+
+const styles = StyleSheet.create({
+  disconnect: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: '10%',
+    width: '90%',
+    marginLeft: '5%',
+    marginBottom: '2%',
+    borderRadius: 10,
+    backgroundColor: 'black'
+  },
+  disconnectContent: {
+    color: 'white',
+    fontSize: 15,
+    fontWeight: '500'
+  }
+});
 
 export default DisconnectComponent;

@@ -15,8 +15,10 @@ import ForgetPassword from './src/components/authentification/login/ForgetPasswo
 import Settings from './src/components/settings/Settings.js';
 import Profile from './src/components/settings/Profile.js';
 import Wallet from './src/components/settings/Wallet.js';
+import AccountTransaction from './src/components/settings/AccountTransaction.js';
 import LegalMentions from './src/components/settings/LegalMentions.js';
 import Tutorial from './src/components/settings/Tutorial.js';
+import Messages from './src/components/messages/Message.js';
 
 const Stack = createNativeStackNavigator();
 
@@ -32,8 +34,10 @@ class App extends Component {
           <Stack.Screen name="Settings" component={Settings} />
           <Stack.Screen name="Profile" component={Profile} />
           <Stack.Screen name="Wallet" component={Wallet} />
+          <Stack.Screen name="AccountTransaction" component={AccountTransaction} />
           <Stack.Screen name="LegalMentions" component={LegalMentions} />
           <Stack.Screen name="Tutorial" component={Tutorial} />
+          <Stack.Screen name="Messages" component={Messages} />
         </Stack.Navigator>
       </NavigationContainer>
     );

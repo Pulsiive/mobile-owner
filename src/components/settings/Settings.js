@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Image, View, Text, TextInput, Button, StyleSheet } from 'react-native';
+import { Image, View, Text, Pressable, Button, StyleSheet } from 'react-native';
+import Icon from 'react-native-vector-icons/dist/FontAwesome';
 
 const Settings = ({ navigation }) => {
   //   const [userInput, setUserInput] = useState({
@@ -16,54 +17,132 @@ const Settings = ({ navigation }) => {
   //   };
 
   return (
-    <View>
-      <Text style={styles.title}>Settings</Text>
+    <View style={styles.viewTemplate}>
+      {/* HEADER */}
+      <View style={styles.headWalletInformation}>
+        <Pressable style={styles.backButton} onPress={() => navigation.navigate('HomePage')}>
+          <Text style={styles.backButtonContent}>{'<'}</Text>
+        </Pressable>
+        <View style={{ width: '80%' }}>
+          <Text style={styles.title}>John Doe</Text>
+          <View
+            style={{
+              flexDirection: 'row',
+              alignItems: 'center',
+              width: '17%',
+              borderRadius: 20,
+              marginLeft: '42%',
+              backgroundColor: 'grey'
+            }}
+          >
+            <Icon style={{ marginLeft: '8%' }} name="star" size={15} color="gold" />
+            <Text style={styles.rating}>5.00</Text>
+          </View>
+        </View>
+      </View>
+      {/* CONTENT */}
       <View style={styles.container}>
-        <Button
-          title="Profile"
-          accessibilityLabel="Profile"
-          onPress={() => navigation.navigate('Profile')}
-        />
-        <Button
-          title="Wallet"
-          accessibilityLabel="Wallet"
-          onPress={() => navigation.navigate('Wallet')}
-        />
-        <Button
-          title="Legal mentions"
-          accessibilityLabel="Legal mentions"
-          onPress={() => navigation.navigate('LegalMentions')}
-        />
-        <Button
-          title="Tutorial"
-          accessibilityLabel="tutorial"
-          onPress={() => navigation.navigate('Tutorial')}
-        />
-        <Button
-          title="Back"
-          accessibilityLabel="Profile to your account"
-          onPress={() => navigation.navigate('HomePage')}
-        />
+        <Text style={styles.sectionTitle}>My account</Text>
+        <Pressable style={styles.button} onPress={() => navigation.navigate('Profile')}>
+          <Text style={styles.buttonContent}>Profile</Text>
+        </Pressable>
+        <Pressable style={styles.button} onPress={() => navigation.navigate('Wallet')}>
+          <Text style={styles.buttonContent}>Wallet</Text>
+        </Pressable>
+        <Text style={styles.sectionTitle}>Other</Text>
+        <Pressable style={styles.button} onPress={() => navigation.navigate('LegalMentions')}>
+          <Text style={styles.buttonContent}>Legal mentions</Text>
+        </Pressable>
+        <Pressable style={styles.button} onPress={() => navigation.navigate('Tutorial')}>
+          <Text style={styles.buttonContent}>Tutorial</Text>
+        </Pressable>
+        <Pressable style={styles.disconnectBox} onPress={() => navigation.navigate('Login')}>
+          <Text style={{ color: '#DA4450' }}>Disconnect</Text>
+        </Pressable>
       </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    padding: 50
+  viewTemplate: {
+    backgroundColor: '#0D0D0D',
+    width: '100%',
+    height: '100%'
+  },
+
+  //HEADER
+  headWalletInformation: {
+    flexDirection: 'row',
+    padding: 10,
+    marginTop: '8%',
+    width: '100%',
+    height: '10%'
+  },
+  backButton: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: '80%',
+    width: '10%',
+    borderRadius: 10,
+    elevation: 3,
+    backgroundColor: '#6EBF34'
+  },
+  backButtonContent: {
+    color: 'white',
+    fontSize: 20,
+    fontWeight: '800'
   },
   title: {
     textAlign: 'center',
-    fontWeight: '900',
-    fontSize: 30,
-    color: 'black',
-    marginBottom: 0,
-    marginTop: 10
+    fontWeight: '600',
+    fontSize: 25,
+    color: 'white'
   },
-  input: {
-    borderWidth: 0.2,
-    marginBottom: 20
+  rating: {
+    textAlign: 'center',
+    fontWeight: '600',
+    fontSize: 14,
+    color: 'white'
+  },
+
+  //CONTENT
+  container: {
+    marginTop: '20%',
+    height: '90%'
+  },
+  sectionTitle: {
+    color: 'white',
+    fontWeight: '200',
+    fontSize: 18,
+    marginBottom: '3%',
+    marginLeft: '3%'
+  },
+  button: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: '6%',
+    width: '90%',
+    marginLeft: '5%',
+    marginBottom: '2%',
+    borderRadius: 10,
+    backgroundColor: '#6EBF34'
+  },
+  buttonContent: {
+    color: 'white',
+    fontSize: 15,
+    fontWeight: '500'
+  },
+  disconnectBox: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: '6%',
+    width: '90%',
+    position: 'absolute',
+    bottom: '20%',
+    left: '5%',
+    borderRadius: 10,
+    backgroundColor: '#1B2023'
   }
 });
 
