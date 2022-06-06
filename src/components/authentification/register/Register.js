@@ -6,13 +6,11 @@ import config from '../../../globals/utils/config';
 
 const Register = ({ navigation }) => {
   const [userInput, setUserInput] = useState({
-    email: '',
-    password: '',
+    email: 'default',
+    password: 'default',
     firstName: 'default',
     lastName: 'default',
-    dateOfBirth: '2001-07-15',
-    timeZone: 'UTC+2',
-    username: ''
+    dateOfBirth: '2001-07-15'
   });
   const [errorMessage, setErrorMessage] = useState('');
   const [error, setError] = useState(false);
@@ -25,9 +23,25 @@ const Register = ({ navigation }) => {
 
   const submit = async () => {
     try {
-      const userObject = await axios.post(`${config.API_URL}/api/v1/auth/register`, {
-        userInput
-      });
+      console.log(JSON.stringify(userInput));
+      const userObject = await axios.post(
+        'http://13.88.201.19:3000/api/v1/auth/register',
+        JSON.stringify(userInput),
+        {
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        }
+      );
+      // (
+      //   'http://13.88.201.19:3000/api/v1/auth/register',
+      //   userInput, {
+      //     headers: {
+      //       // Overwrite Axios's automatically set Content-Type
+      //       'Content-Type': 'application/json'
+      //     })
+      // );
+      console.log('after query');
       console.log(userObject);
       const jwt = userObject.data.data.user.accessToken;
       await AsyncStorage.setItem('accessToken', jwt);
@@ -50,14 +64,20 @@ const Register = ({ navigation }) => {
         <Text style={styles.title}>Create your account</Text>
         <TextInput
           onChangeText={(text) => handleChange(text, 'email')}
-          style={styles.input}
+          style={errorMessage == '' ? styles.input : styles.inputOnError}
           placeholder="Email address"
           autoComplete="email"
         />
         <TextInput
-          onChangeText={(text) => handleChange(text, 'username')}
+          onChangeText={(text) => handleChange(text, 'firstName')}
           style={styles.input}
-          placeholder="Username"
+          placeholder="First name"
+          autoComplete="username"
+        />
+        <TextInput
+          onChangeText={(text) => handleChange(text, 'lastName')}
+          style={styles.input}
+          placeholder="Last name"
           autoComplete="username"
         />
         <TextInput

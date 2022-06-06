@@ -6,11 +6,11 @@ import {
   Pressable,
   TouchableWithoutFeedback,
   StyleSheet,
-  StatusBar,
   SafeAreaView,
   ScrollView
 } from 'react-native';
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
+import MessagesViewInformation from './MessageInformationVariable';
 
 const MessageCard = (props) => {
   //Function to retrieve Username from API
@@ -18,31 +18,34 @@ const MessageCard = (props) => {
   //Function to retrieve Messages from API
 
   return (
-    <View style={{ flexDirection: 'row', marginTop: '3%' }}>
-      <Icon style={styles.userProfile} name="user" size={30} color="white" />
-      <View style={{ marginLeft: '10%', marginTop: '1%' }}>
-        <Text style={styles.userTransaction}>{props.name}</Text>
-        <Text style={{ color: '#686868' }}>{props.lastMessage}</Text>
+    <TouchableWithoutFeedback onPress={() => props.navigation.navigate('PrivateMessages')}>
+      <View style={{ flexDirection: 'row', marginTop: '3%', height: '8%' }}>
+        <Icon style={styles.userProfile} name="user" size={30} color="white" />
+        <View style={{ marginLeft: '10%', marginTop: '1%' }}>
+          <Text style={styles.userTransaction}>{props.name}</Text>
+          <Text style={{ color: '#686868' }}>{props.lastMessage}</Text>
+        </View>
+        <Icon style={{ position: 'absolute', right: '3%' }} name="phone" size={20} color="white" />
       </View>
-      <Text style={styles.amount}>+2.00€</Text>
-    </View>
+    </TouchableWithoutFeedback>
   );
 };
 
 const Messages = ({ navigation }) => {
   const [filterSelected, setFilterSelected] = useState(1);
-  //   const [userInput, setUserInput] = useState({
-  //     email: '',
-  //     password: ''
-  //   });
-  //   const [errorMessage, setErrorMessage] = useState('');
-  //   const [error, setError] = useState(false);
-
-  //   const handleChange = (text, field) => {
-  //     if (error) setError(false);
-  //     userInput[field] = text;
-  //     setUserInput(userInput);
-  //   };
+  const userDatabase = [
+    { name: 'John', lastMessage: 'Hi there !' },
+    { name: 'Eric', lastMessage: 'I will be there soon' },
+    { name: 'Joffrey', lastMessage: 'Is it available ?' },
+    { name: 'Esther', lastMessage: 'Hi, id like to book an apointment for tomorrow' },
+    { name: 'Robert', lastMessage: 'Hi how is it going ? Ill be there at 4' },
+    { name: 'Titouan', lastMessage: 'random message' },
+    { name: 'Pomme', lastMessage: 'hello hello' },
+    { name: 'Toto', lastMessage: 'Hi there !' },
+    { name: 'Alex', lastMessage: 'Hi there !' },
+    { name: 'Toto', lastMessage: 'Hi there !' },
+    { name: 'Toto', lastMessage: 'Hi there !' }
+  ];
 
   return (
     <View style={styles.viewTemplate}>
@@ -57,10 +60,11 @@ const Messages = ({ navigation }) => {
       <View style={styles.container}>
         <TextInput
           style={styles.input}
-          onChangeText={{}}
+          // onChangeText={{}}
           placeholder="Research"
           autoComplete="username"
         />
+        {/* FILTER */}
         <View style={styles.filter}>
           <TouchableWithoutFeedback onPress={() => setFilterSelected(1)}>
             <Text style={filterSelected == 1 ? styles.selectedColor : styles.neutralColor}>
@@ -78,32 +82,18 @@ const Messages = ({ navigation }) => {
             </Text>
           </TouchableWithoutFeedback>
         </View>
-
+        {/* VIEWLIST */}
         <View style={styles.scrollList}>
           <SafeAreaView style={styles.container}>
             <ScrollView style={styles.scrollView}>
               <View>
-                <MessageCard name={'John'} lastMessage={'Hi there !'} />
-                <MessageCard name={'Eric'} lastMessage={'Are you available soon ?'} />
-                <MessageCard
-                  name={'Joffrey'}
-                  lastMessage={'I need to book an appointment for today is it okay ?'}
-                />
-                <MessageCard name={'Esther'} lastMessage={'I will pass by in 20 minutes !'} />
-                <MessageCard name={'John'} lastMessage={'Hi there !'} />
-                <MessageCard name={'Eric'} lastMessage={'Are you available soon ?'} />
-                <MessageCard
-                  name={'Joffrey'}
-                  lastMessage={'I need to book an appointment for today is it okay ?'}
-                />
-                <MessageCard name={'Esther'} lastMessage={'I will pass by in 20 minutes !'} />
-                <MessageCard name={'John'} lastMessage={'Hi there !'} />
-                <MessageCard name={'Eric'} lastMessage={'Are you available soon ?'} />
-                <MessageCard
-                  name={'Joffrey'}
-                  lastMessage={'I need to book an appointment for today is it okay ?'}
-                />
-                <MessageCard name={'Esther'} lastMessage={'I will pass by in 20 minutes !'} />
+                {userDatabase.map((elem, i) => (
+                  <MessageCard
+                    name={elem.name}
+                    lastMessage={elem.lastMessage}
+                    navigation={navigation}
+                  />
+                ))}
               </View>
             </ScrollView>
           </SafeAreaView>
