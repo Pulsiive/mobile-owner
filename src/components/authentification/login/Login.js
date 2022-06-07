@@ -178,18 +178,6 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginTop: '15%',
     color: 'white'
-  },
-
-  // ERROR
-  errorContainer: {
-    color: 'red',
-    marginBottom: 30,
-    backgroundColor: '#ff3333',
-    borderRadius: 5
-  },
-  errorText: {
-    textAlign: 'center',
-    color: 'white'
   }
 });
 
