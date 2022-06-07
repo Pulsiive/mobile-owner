@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Image, View, Text, Pressable, Button, StyleSheet } from 'react-native';
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
+import serviceAccessToken from '../../globals/query/AccessToken';
 
 const Settings = ({ navigation }) => {
   //   const [userInput, setUserInput] = useState({
@@ -56,7 +57,13 @@ const Settings = ({ navigation }) => {
         <Pressable style={styles.button} onPress={() => navigation.navigate('Tutorial')}>
           <Text style={styles.buttonContent}>Tutorial</Text>
         </Pressable>
-        <Pressable style={styles.disconnectBox} onPress={() => navigation.navigate('Login')}>
+        <Pressable
+          style={styles.disconnectBox}
+          onPress={() => {
+            serviceAccessToken.remove();
+            navigation.navigate('Login');
+          }}
+        >
           <Text style={{ color: '#DA4450' }}>Disconnect</Text>
         </Pressable>
       </View>

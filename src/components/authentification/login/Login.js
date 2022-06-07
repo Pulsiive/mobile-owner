@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Image, View, Text, TextInput, Button, StyleSheet, TouchableOpacity } from 'react-native';
-import config from '../../../globals/utils/config';
+import api from '../../../globals/query/API';
+import serviceAccessToken from '../../../globals/query/AccessToken';
 
 const Login = ({ navigation }) => {
   const [userInput, setUserInput] = useState({
@@ -18,15 +19,19 @@ const Login = ({ navigation }) => {
 
   const submit = async () => {
     try {
-      // const userObject = await axios.post(`${config.API_URL}/`, {
-      //   ...userInput,
-      // });
-      // const jwt = userObject.data.data.user.accessToken;
-      // await AsyncStorage.setItem("accessToken", jwt);
-      navigation.navigate('HomePage');
+      if (userInput.email == '' || userInput.password == '')
+        throw { data: 'email or password has not been defined', status: '404' };
+      const res = await api.send('post', '/api/v1/auth/login', userInput, (auth = false));
+      if (res.status == 200) {
+        serviceAccessToken.set(res.data.accessToken);
+        setErrorMessage('');
+        navigation.navigate('HomePage');
+      } else {
+        throw res;
+      }
     } catch (e) {
-      if (e.response) {
-        const code = e.response.status;
+      if (e.data) {
+        const code = e.status;
         if (code === 401) setErrorMessage('Incorrect password');
         else if (code === 404) setErrorMessage('User not found');
         else setErrorMessage('Internal error');
@@ -46,15 +51,24 @@ const Login = ({ navigation }) => {
       />
       <Text style={styles.title}>Login</Text>
       <View style={styles.container}>
+        {errorMessage == undefined ? null : <Text style={{ color: 'white' }}>{errorMessage}</Text>}
         <TextInput
           onChangeText={(text) => handleChange(text, 'email')}
-          style={styles.input}
+          style={
+            errorMessage == 'User not found' || errorMessage == 'Internal error'
+              ? styles.inputOnError
+              : styles.input
+          }
           placeholder="Email address or phone number"
           autoComplete="email"
         />
         <TextInput
           onChangeText={(text) => handleChange(text, 'password')}
-          style={styles.input}
+          style={
+            errorMessage == 'Incorrect password' || errorMessage == 'Internal error'
+              ? styles.inputOnError
+              : styles.input
+          }
           placeholder="Password"
           secureTextEntry={true}
           autoComplete="password"
@@ -121,6 +135,14 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     borderRadius: 10
   },
+  inputOnError: {
+    marginBottom: 20,
+    backgroundColor: 'white',
+    borderRadius: 10,
+    borderWidth: 3,
+    borderColor: 'red'
+  },
+
   // BUTTON BOX
   loginButtonBoxWithoutBackground: {
     backgroundColor: '#6EBF34',
@@ -155,18 +177,6 @@ const styles = StyleSheet.create({
     fontSize: 17,
     textAlign: 'center',
     marginTop: '15%',
-    color: 'white'
-  },
-
-  // ERROR
-  errorContainer: {
-    color: 'red',
-    marginBottom: 30,
-    backgroundColor: '#ff3333',
-    borderRadius: 5
-  },
-  errorText: {
-    textAlign: 'center',
     color: 'white'
   }
 });

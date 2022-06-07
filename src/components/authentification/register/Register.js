@@ -1,18 +1,16 @@
 import React, { useState } from 'react';
 import { TextInput, View, StyleSheet, Text, Button, TouchableOpacity } from 'react-native';
 // import AsyncStorage from '@react-native-async-storage/async-storage';
-import axios from 'axios';
-import config from '../../../globals/utils/config';
+import api from '../../../globals/query/API';
+import serviceAccessToken from '../../../globals/query/AccessToken';
 
 const Register = ({ navigation }) => {
   const [userInput, setUserInput] = useState({
-    email: '',
-    password: '',
+    email: 'default',
+    password: 'default',
     firstName: 'default',
     lastName: 'default',
-    dateOfBirth: '2001-07-15',
-    timeZone: 'UTC+2',
-    username: ''
+    dateOfBirth: '2022-03-02T18:11:29.003Z'
   });
   const [errorMessage, setErrorMessage] = useState('');
   const [error, setError] = useState(false);
@@ -25,12 +23,16 @@ const Register = ({ navigation }) => {
 
   const submit = async () => {
     try {
-      const userObject = await axios.post(`${config.API_URL}/api/v1/auth/register`, {
-        userInput
-      });
-      console.log(userObject);
-      const jwt = userObject.data.data.user.accessToken;
-      await AsyncStorage.setItem('accessToken', jwt);
+      if (userInput.email == 'default' || userInput.password == 'default')
+        throw { data: 'email or password has not been defined', status: '405' };
+      const res = await api.send('POST', '/api/v1/auth/register', userInput, false);
+      if (res.status == 200) {
+        serviceAccessToken.set(res.data.accessToken);
+        setErrorMessage('');
+        navigation.navigate('HomePage');
+      } else {
+        throw res;
+      }
       navigation.navigate('HomePage');
     } catch (e) {
       if (e.response) {
@@ -48,21 +50,32 @@ const Register = ({ navigation }) => {
     <View style={styles.viewTemplate}>
       <View style={styles.container}>
         <Text style={styles.title}>Create your account</Text>
+        {errorMessage == undefined ? null : <Text style={{ color: 'white' }}>{errorMessage}</Text>}
         <TextInput
           onChangeText={(text) => handleChange(text, 'email')}
-          style={styles.input}
+          style={
+            errorMessage == 'User already registered' || errorMessage == 'Internal error'
+              ? styles.inputOnError
+              : styles.input
+          }
           placeholder="Email address"
           autoComplete="email"
         />
         <TextInput
-          onChangeText={(text) => handleChange(text, 'username')}
-          style={styles.input}
-          placeholder="Username"
+          onChangeText={(text) => handleChange(text, 'firstName')}
+          style={errorMessage == 'Internal error' ? styles.inputOnError : styles.input}
+          placeholder="First name"
+          autoComplete="username"
+        />
+        <TextInput
+          onChangeText={(text) => handleChange(text, 'lastName')}
+          style={errorMessage == 'Internal error' ? styles.inputOnError : styles.input}
+          placeholder="Last name"
           autoComplete="username"
         />
         <TextInput
           onChangeText={(text) => handleChange(text, 'password')}
-          style={styles.input}
+          style={errorMessage == 'Internal error' ? styles.inputOnError : styles.input}
           placeholder="Password"
           secureTextEntry={true}
           autoComplete="password"
@@ -95,6 +108,13 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     backgroundColor: 'white',
     borderRadius: 10
+  },
+  inputOnError: {
+    marginBottom: 20,
+    backgroundColor: 'white',
+    borderRadius: 10,
+    borderWidth: 3,
+    borderColor: 'red'
   },
   title: {
     textAlign: 'center',

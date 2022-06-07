@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Pressable, View, Text, TextInput, Button, StyleSheet } from 'react-native';
+import api from '../../globals/query/API';
 
 const Profile = ({ navigation }) => {
   const [userInput, setUserInput] = useState({
@@ -14,6 +15,19 @@ const Profile = ({ navigation }) => {
   });
   const [errorMessage, setErrorMessage] = useState('');
   const [error, setError] = useState(false);
+  // const [dbInfo, setDbInfo] = useState({});
+
+  // useEffect(() => {
+  //   async function fetchData() {
+  //     try {
+  //       const asyncResponse = await api.send('GET', '/api/v1/profile', null, (auth = true));
+  //       setDbInfo(asyncResponse.data);
+  //     } catch (err) {
+  //       console.error(err);
+  //     }
+  //   }
+  //   fetchData();
+  // }, [userInput]);
 
   const handleChange = (text, field) => {
     if (error) setError(false);
@@ -23,12 +37,7 @@ const Profile = ({ navigation }) => {
 
   const submit = async () => {
     try {
-      // Waiting for server to be hosted through a public IP
-      // const userObject = await axios.post(`${config.API_URL}/api/v1/settings/profile`, {
-      //   userInput
-      // });
-      // const jwt = userObject.data.data.user.accessToken;
-      // await AsyncStorage.setItem('accessToken', jwt);
+      console.log(dbInfo);
       navigation.navigate('Settings');
     } catch (e) {
       if (e.response) {
