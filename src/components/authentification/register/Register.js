@@ -80,7 +80,11 @@ const Register = ({ navigation }) => {
           secureTextEntry={true}
           autoComplete="password"
         />
-        <TouchableOpacity style={styles.registerButtonBoxWithoutBackground} onPress={submit}>
+        <TouchableOpacity
+          testID="submitButton"
+          style={styles.registerButtonBoxWithoutBackground}
+          onPress={submit}
+        >
           <Text style={styles.registerButton}>Register</Text>
         </TouchableOpacity>
         <TouchableOpacity
