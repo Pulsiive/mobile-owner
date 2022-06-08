@@ -53,6 +53,7 @@ const Login = ({ navigation }) => {
       <View style={styles.container}>
         {errorMessage == undefined ? null : <Text style={{ color: 'white' }}>{errorMessage}</Text>}
         <TextInput
+          accessibilityLabel="email"
           onChangeText={(text) => handleChange(text, 'email')}
           style={
             errorMessage == 'User not found' || errorMessage == 'Internal error'
@@ -61,8 +62,10 @@ const Login = ({ navigation }) => {
           }
           placeholder="Email address or phone number"
           autoComplete="email"
+          value={userInput.name}
         />
         <TextInput
+          accessibilityLabel="password"
           onChangeText={(text) => handleChange(text, 'password')}
           style={
             errorMessage == 'Incorrect password' || errorMessage == 'Internal error'
@@ -73,7 +76,11 @@ const Login = ({ navigation }) => {
           secureTextEntry={true}
           autoComplete="password"
         />
-        <TouchableOpacity style={styles.loginButtonBoxWithoutBackground} onPress={submit}>
+        <TouchableOpacity
+          testID="LoginButton"
+          style={styles.loginButtonBoxWithoutBackground}
+          onPress={submit}
+        >
           <Text style={styles.loginButton}>Login</Text>
         </TouchableOpacity>
         <TouchableOpacity
