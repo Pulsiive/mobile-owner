@@ -31,6 +31,7 @@ class App extends Component {
           <Stack.Screen name="Login" component={Login} />
           <Stack.Screen name="Register" component={Register} />
           <Stack.Screen name="HomePage" component={HomePage} />
+          <Stack.Screen name="Home2" component={HomeScreen2} options={{ ...TransitionPresets.ModalPresentationIOS, }} />
           <Stack.Screen name="ForgetPassword" component={ForgetPassword} />
           <Stack.Screen name="Settings" component={Settings} />
           <Stack.Screen name="Profile" component={Profile} />
