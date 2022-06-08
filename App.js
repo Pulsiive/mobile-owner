@@ -11,6 +11,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Login from './src/components/authentification/login/Login.js';
 import Register from './src/components/authentification/register/Register.js';
 import HomePage from './src/components/homePage/HomePage.js';
+import HomeScreen2 from './src/components/homePage/Home-2.js';
 import ForgetPassword from './src/components/authentification/login/ForgetPassword.js';
 import Settings from './src/components/settings/Settings.js';
 import Profile from './src/components/settings/Profile.js';
@@ -21,13 +22,15 @@ import Tutorial from './src/components/settings/Tutorial.js';
 import Messages from './src/components/messages/Message.js';
 import PrivateMessages from './src/components/messages/PrivateMessages.js';
 
+
+
 const Stack = createNativeStackNavigator();
 
 class App extends Component {
   render() {
     return (
       <NavigationContainer>
-        <Stack.Navigator screenOptions={{ headerShown: false }}>
+        <Stack.Navigator initialRouteName="HomePage" screenOptions={{ headerShown: false }}>
           <Stack.Screen name="Login" component={Login} />
           <Stack.Screen name="Register" component={Register} />
           <Stack.Screen name="HomePage" component={HomePage} />
