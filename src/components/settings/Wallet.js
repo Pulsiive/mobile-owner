@@ -35,8 +35,8 @@ const WalletGraph = () => {
         </TouchableWithoutFeedback>
       </View>
       {/* TEMPORARY  */}
-      <View style={{ width: '90%', height: '100%', marginLeft: '5%' }}>
-        <Text style={{ color: 'white', marginTop: '30%', marginLeft: '30%' }}>
+      <View style={{ width: '90%', height: '100%', marginLeft: '0%' }}>
+        <Text style={{ color: 'white', marginTop: '30%', marginLeft: '20%' }}>
           Data not available for now
         </Text>
       </View>
@@ -124,7 +124,7 @@ const styles = StyleSheet.create({
     fontSize: 30,
     color: '#F2F2F2',
     position: 'absolute',
-    top: '7%',
+    top: '3%',
     left: '5%'
   },
   tinyLogo: {

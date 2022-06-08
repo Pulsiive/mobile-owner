@@ -34,7 +34,7 @@ const Login = ({ navigation }) => {
         const code = e.status;
         if (code === 401) setErrorMessage('Incorrect password');
         else if (code === 404) setErrorMessage('User not found');
-        else setErrorMessage('Internal error');
+        else setErrorMessage(e.data);
         setError(true);
       } else {
         setErrorMessage('Internal error');
@@ -157,11 +157,11 @@ const styles = StyleSheet.create({
     width: '100%'
   },
   forgetPasswordButtonBoxWithoutBackground: {
-    width: '40%',
-    marginLeft: '30%'
+    width: '57%',
+    marginLeft: '22%'
   },
   registerButtonBoxWithoutBackground: {
-    width: '30%',
+    width: '32%',
     marginLeft: '35%',
     marginTop: '10%'
   },

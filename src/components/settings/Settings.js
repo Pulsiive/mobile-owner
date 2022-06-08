@@ -30,7 +30,7 @@ const Settings = ({ navigation }) => {
             style={{
               flexDirection: 'row',
               alignItems: 'center',
-              width: '17%',
+              width: '22%',
               borderRadius: 20,
               marginLeft: '42%',
               backgroundColor: 'grey'
