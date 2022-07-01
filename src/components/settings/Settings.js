@@ -1,21 +1,31 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Image, View, Text, Pressable, Button, StyleSheet } from 'react-native';
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
 import serviceAccessToken from '../../globals/query/AccessToken';
+import api from '../../globals/query/API';
 
 const Settings = ({ navigation }) => {
-  //   const [userInput, setUserInput] = useState({
-  //     email: '',
-  //     password: ''
-  //   });
-  //   const [errorMessage, setErrorMessage] = useState('');
-  //   const [error, setError] = useState(false);
+  const [userData, setUserData] = useState({
+    firstName: 'John',
+    lastName: 'Doe'
+  });
 
-  //   const handleChange = (text, field) => {
-  //     if (error) setError(false);
-  //     userInput[field] = text;
-  //     setUserInput(userInput);
-  //   };
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const res = await api.send('GET', '/api/v1/profile', (auth = true));
+        if (res.status == 200) {
+          setUserData({ firstName: res.data.firstName, lastName: res.data.lastName });
+        } else {
+          throw res;
+        }
+      } catch (e) {
+        const code = e.status;
+        alert('Error');
+      }
+    }
+    fetchData();
+  }, []);
 
   return (
     <View style={styles.viewTemplate}>
@@ -25,7 +35,9 @@ const Settings = ({ navigation }) => {
           <Text style={styles.backButtonContent}>{'<'}</Text>
         </Pressable>
         <View style={{ width: '80%' }}>
-          <Text style={styles.title}>John Doe</Text>
+          <Text style={styles.title}>
+            {userData.firstName} {userData.lastName}
+          </Text>
           <View
             style={{
               flexDirection: 'row',

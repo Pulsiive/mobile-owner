@@ -36,9 +36,11 @@ const Login = ({ navigation }) => {
         else if (code === 404) setErrorMessage('User not found');
         else setErrorMessage(e.data);
         setError(true);
+        alert(errorMessage);
       } else {
         setErrorMessage('Internal error');
         setError(true);
+        alert(errorMessage);
       }
     }
   };

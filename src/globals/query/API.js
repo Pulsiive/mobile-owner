@@ -14,17 +14,18 @@ class API {
       : {
           Accept: 'application/json'
         };
-
     if (auth) {
-      let accessToken = serviceAccessToken.get();
+      let accessToken = await serviceAccessToken.get();
       accessToken = accessToken ? accessToken : '';
       if (accessToken) headers.Authorization = 'Bearer ' + accessToken;
     }
-
-    if (method !== 'GET' && data && !multiform) data = JSON.stringify(data);
-    else if (multiform) data = this.createFormData(data);
-    else data = null;
-
+    if (method !== 'GET' && data && !multiform) {
+      data = JSON.stringify(data);
+    } else if (multiform) {
+      data = this.createFormData(data);
+    } else {
+      data = null;
+    }
     try {
       let response = await fetch(this.url + route, {
         headers: headers,
@@ -38,7 +39,6 @@ class API {
           status: 401
         };
       }
-
       return {
         data: await response.json(),
         status: response.status

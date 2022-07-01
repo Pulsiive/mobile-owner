@@ -21,6 +21,8 @@ import Tutorial from './src/components/settings/Tutorial.js';
 import Messages from './src/components/messages/Message.js';
 import PrivateMessages from './src/components/messages/PrivateMessages.js';
 
+import BorneMap from './src/components/borneProcess/BorneMap.js';
+
 const Stack = createNativeStackNavigator();
 
 class App extends Component {
@@ -31,6 +33,7 @@ class App extends Component {
           <Stack.Screen name="Login" component={Login} />
           <Stack.Screen name="Register" component={Register} />
           <Stack.Screen name="HomePage" component={HomePage} />
+          {/* <Stack.Screen name="HomePage" component={BorneMap} /> */}
           <Stack.Screen name="ForgetPassword" component={ForgetPassword} />
           <Stack.Screen name="Settings" component={Settings} />
           <Stack.Screen name="Profile" component={Profile} />
