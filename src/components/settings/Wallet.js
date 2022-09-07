@@ -4,7 +4,7 @@ import {
   View,
   Text,
   TouchableWithoutFeedback,
-  Button,
+  Pressable,
   StyleSheet,
   TouchableOpacity
 } from 'react-native';
@@ -63,6 +63,14 @@ const Wallet = ({ navigation }) => {
   return (
     <View style={styles.viewTemplate}>
       <WalletHead navigation={navigation} />
+      <View style={{ marginTop: '5%', flexDirection: 'row', height: '5%' }}>
+        <Pressable style={styles.button} onPress={() => navigation.navigate('Deposit')}>
+          <Text style={styles.buttonContent}>Deposit</Text>
+        </Pressable>
+        <Pressable style={styles.button} onPress={() => navigation.navigate('Withdraw')}>
+          <Text style={styles.buttonContent}>Withdraw</Text>
+        </Pressable>
+      </View>
       <WalletGraph />
       <WalletBottomDrawer navigation={navigation} />
     </View>
@@ -77,10 +85,26 @@ const styles = StyleSheet.create({
     height: '100%'
   },
 
+  button: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: '100%',
+    width: '40%',
+    marginLeft: '5%',
+    marginBottom: '2%',
+    borderRadius: 10,
+    backgroundColor: '#6EBF34'
+  },
+  buttonContent: {
+    color: 'white',
+    fontSize: 15,
+    fontWeight: '500'
+  },
+
   // MAIN CONTENT
   walletGraphInformationView: {
     padding: 10,
-    marginTop: '18%',
+    marginTop: '10%',
     width: '100%',
     height: '30%'
   },

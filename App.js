@@ -15,6 +15,9 @@ import ForgetPassword from './src/components/authentification/login/ForgetPasswo
 import Settings from './src/components/settings/Settings.js';
 import Profile from './src/components/settings/Profile.js';
 import Wallet from './src/components/settings/Wallet.js';
+import Deposit from './src/components/settings/Deposit.js';
+import AddCard from './src/components/settings/AddCard.js';
+import Withdraw from './src/components/settings/Withdraw.js';
 import AccountTransaction from './src/components/settings/AccountTransaction.js';
 import LegalMentions from './src/components/settings/LegalMentions.js';
 import Tutorial from './src/components/settings/Tutorial.js';
@@ -22,6 +25,8 @@ import Messages from './src/components/messages/Message.js';
 import PrivateMessages from './src/components/messages/PrivateMessages.js';
 
 import BorneMap from './src/components/borneProcess/BorneMap.js';
+import RegisterStation from './src/components/settings/RegisterStation.js';
+import MyStations from './src/components/settings/MyStationsList.js';
 
 const Stack = createNativeStackNavigator();
 
@@ -30,14 +35,18 @@ class App extends Component {
     return (
       <NavigationContainer>
         <Stack.Navigator screenOptions={{ headerShown: false }}>
-          <Stack.Screen name="Login" component={Login} />
-          <Stack.Screen name="Register" component={Register} />
+          {/* <Stack.Screen name="Login" component={Login} />
+          <Stack.Screen name="Register" component={Register} /> */}
           <Stack.Screen name="HomePage" component={HomePage} />
           {/* <Stack.Screen name="HomePage" component={BorneMap} /> */}
-          <Stack.Screen name="ForgetPassword" component={ForgetPassword} />
           <Stack.Screen name="Settings" component={Settings} />
           <Stack.Screen name="Profile" component={Profile} />
           <Stack.Screen name="Wallet" component={Wallet} />
+          <Stack.Screen name="Deposit" component={Deposit} />
+          <Stack.Screen name="AddCard" component={AddCard} />
+          <Stack.Screen name="Withdraw" component={Withdraw} />
+          <Stack.Screen name="RegisterStation" component={RegisterStation} />
+          <Stack.Screen name="StationList" component={MyStations} />
           <Stack.Screen name="AccountTransaction" component={AccountTransaction} />
           <Stack.Screen name="LegalMentions" component={LegalMentions} />
           <Stack.Screen name="Tutorial" component={Tutorial} />

@@ -19,9 +19,11 @@ const Login = ({ navigation }) => {
 
   const submit = async () => {
     try {
+      console.log('submit login');
       if (userInput.email == '' || userInput.password == '')
         throw { data: 'email or password has not been defined', status: '404' };
       const res = await api.send('post', '/api/v1/auth/login', userInput, (auth = false));
+      console.log(res);
       if (res.status == 200) {
         serviceAccessToken.set(res.data.accessToken);
         setErrorMessage('');

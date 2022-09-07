@@ -62,6 +62,14 @@ const Settings = ({ navigation }) => {
         <Pressable style={styles.button} onPress={() => navigation.navigate('Wallet')}>
           <Text style={styles.buttonContent}>Wallet</Text>
         </Pressable>
+        <Text style={styles.sectionTitle}>My Station</Text>
+        <Pressable style={styles.button} onPress={() => navigation.navigate('RegisterStation')}>
+          <Text style={styles.buttonContent}>Register station</Text>
+        </Pressable>
+        <Pressable style={styles.button} onPress={() => navigation.navigate('StationList')}>
+          <Text style={styles.buttonContent}>My station list</Text>
+        </Pressable>
+
         <Text style={styles.sectionTitle}>Other</Text>
         <Pressable style={styles.button} onPress={() => navigation.navigate('LegalMentions')}>
           <Text style={styles.buttonContent}>Legal mentions</Text>
