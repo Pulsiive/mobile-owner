@@ -69,6 +69,9 @@ const Settings = ({ navigation }) => {
         <Pressable style={styles.button} onPress={() => navigation.navigate('StationList')}>
           <Text style={styles.buttonContent}>My station list</Text>
         </Pressable>
+        <Pressable style={styles.button} onPress={() => navigation.navigate('Reservations')}>
+          <Text style={styles.buttonContent}>Reservations</Text>
+        </Pressable>
 
         <Text style={styles.sectionTitle}>Other</Text>
         <Pressable style={styles.button} onPress={() => navigation.navigate('LegalMentions')}>

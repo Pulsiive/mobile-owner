@@ -1,25 +1,53 @@
 import React, { Component, useState } from 'react';
-import { Image, View, Text, TextInput, Pressable, StyleSheet, Switch, Modal } from 'react-native';
+import { Image, View, Text, TextInput, Pressable, StyleSheet, Modal } from 'react-native';
 
-import Slider from '@react-native-community/slider';
+const Stations = ({ stationData, navigation }) => {
+  return (
+    <View
+      style={{
+        backgroundColor: '#494949',
+        height: '20%',
+        width: '90%',
+        marginLeft: '5%',
+        marginTop: '5%',
+        borderRadius: 5
+      }}
+    >
+      <View style={{ flexDirection: 'row', height: '100%', width: '100%' }}>
+        <Image
+          style={{ width: 100, height: 100, position: 'absolute', top: '15%', left: '2%' }}
+          source={require('../../images/charging_station.png')}
+        />
+        <View style={{ marginRight: '-10%' }}>
+          <Text style={styles.informationType}>Name</Text>
+          <Text style={styles.informationValue}>{stationData.valueName}</Text>
+          <Text style={styles.informationType}>Voltage</Text>
+          <Text style={styles.informationValue}>{stationData.voltage}</Text>
+          <Text style={styles.informationType}>Input</Text>
+          <Text style={styles.informationValue}>{stationData.inputType}</Text>
+          <Text style={styles.informationType}>Price</Text>
+          <Text style={styles.informationValue}>{stationData.price}</Text>
+        </View>
+        <Pressable style={styles.modifyButton} onPress={() => navigation.navigate('Settings')}>
+          <Text style={{ color: 'white' }}>Modify</Text>
+        </Pressable>
+      </View>
+    </View>
+  );
+};
 
 const MyStations = ({ navigation }) => {
-  const [amountSelected, setAmountSelected] = useState(0);
-  const [maxAmount, setMaxAmount] = useState(20);
-  const [iban, setIban] = useState('FRXX XXXX XXXX XXXX');
-  const [isSwitchEnabled, setIsSwitchEnabled] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
+  const [StationData, setStationData] = useState([
+    {
+      valueName: 'Station 1',
+      voltage: '5V',
+      inputType: 'IV-1',
+      price: '1€'
+    },
+    { valueName: 'Station 2', voltage: '6V', inputType: 'IV-2', price: '2€' }
+  ]);
 
-  const toggleSwitch = () => setIsSwitchEnabled((previousState) => !previousState);
-
-  const handleChange = (text) => {
-    setAmountInput(text);
-    console.log(amountInput);
-  };
-  const handleChangeCard = (data) => {
-    console.log(data);
-    setPaymentMethod(data);
-  };
   const setModal = (event) => {
     console.log(event);
     setModalVisible(true);
@@ -52,36 +80,9 @@ const MyStations = ({ navigation }) => {
           marginLeft: '10%'
         }}
       />
-      <View
-        style={{
-          backgroundColor: '#494949',
-          height: '20%',
-          width: '90%',
-          marginLeft: '5%',
-          marginTop: '5%',
-          borderRadius: 5
-        }}
-      >
-        <View style={{ flexDirection: 'row', height: '100%', width: '100%' }}>
-          <Image
-            style={{ width: 100, height: 100, position: 'absolute', top: '15%', left: '2%' }}
-            source={require('../../images/charging_station.png')}
-          />
-          <View>
-            <Text style={styles.informationType}>Name</Text>
-            <Text>nameValue</Text>
-            <Text style={styles.informationType}>Voltage</Text>
-            <Text>voltageValue</Text>
-            <Text style={styles.informationType}>Input</Text>
-            <Text>inputValue</Text>
-            <Text style={styles.informationType}>Price</Text>
-            <Text>priceValue</Text>
-          </View>
-          <Pressable style={styles.modifyButton} onPress={() => navigation.navigate('Settings')}>
-            <Text style={{ color: 'white' }}>Modify</Text>
-          </Pressable>
-        </View>
-      </View>
+      {StationData.map((StationData, index) => (
+        <Stations stationData={StationData} navigation={navigation} />
+      ))}
     </View>
   );
 };
@@ -155,7 +156,11 @@ const styles = StyleSheet.create({
   },
   informationType: {
     color: 'green',
-    marginLeft: '50%'
+    marginLeft: '47%'
+  },
+  informationValue: {
+    color: 'white',
+    marginLeft: '47%'
   }
 });
 

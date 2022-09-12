@@ -1,4 +1,4 @@
-import React, { Component, useState } from 'react';
+import React, { Component, useState, useEffect } from 'react';
 import {
   Image,
   View,
@@ -8,7 +8,8 @@ import {
   StyleSheet,
   TouchableOpacity,
   Switch,
-  Modal
+  Modal,
+  Animated
 } from 'react-native';
 
 import Sound from 'react-native-sound';
@@ -20,6 +21,7 @@ const Withdraw = ({ navigation }) => {
   const [iban, setIban] = useState('FRXX XXXX XXXX XXXX');
   const [isSwitchEnabled, setIsSwitchEnabled] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
+  const [clicked, setClicked] = useState(false);
 
   Sound.setCategory('Playback');
 
@@ -29,6 +31,31 @@ const Withdraw = ({ navigation }) => {
       return;
     }
   });
+
+  const pieceIcon = (
+    <Image source={require('../../images/piece.png')} style={{ width: 50, height: 50 }} />
+  );
+
+  const RenderPieces = (navigation) => {
+    console.log('render pieces animation');
+    console.log(clicked);
+    return clicked ? <Pieces navigation={navigation} /> : <View />;
+  };
+
+  const submit = () => {
+    if (amountSelected != 0) {
+      setClicked(true);
+      pay.play((success) => {
+        if (success) {
+          console.log('successfully finished playing');
+        } else {
+          console.log('playback failed due to audio decoding errors');
+        }
+      });
+      //Should play an animation
+    }
+    // navigation.navigate('Wallet');
+  };
 
   const toggleSwitch = () => setIsSwitchEnabled((previousState) => !previousState);
 
@@ -161,21 +188,8 @@ const Withdraw = ({ navigation }) => {
             />
           </View>
         </View>
-        <Pressable
-          onPress={() => {
-            if (amountSelected != 0) {
-              pay.play((success) => {
-                if (success) {
-                  console.log('successfully finished playing');
-                } else {
-                  console.log('playback failed due to audio decoding errors');
-                }
-              });
-              //Should play an animation
-            }
-            navigation.navigate('Wallet');
-          }}
-        >
+        {RenderPieces(navigation)}
+        <Pressable onPress={submit}>
           <View
             style={{
               width: '60%',
@@ -208,7 +222,29 @@ const Withdraw = ({ navigation }) => {
     </View>
   );
 };
-// }
+
+const Pieces = ({ navigation }) => {
+  const [piecesAnimation, setPiecesAnimation] = useState(new Animated.Value(0));
+  const pieceIcon = (
+    <Image source={require('../../images/piece.png')} style={{ width: 50, height: 50 }} />
+  );
+
+  useEffect(() => {
+    Animated.timing(piecesAnimation, {
+      toValue: -750,
+      duration: 2000,
+      useNativeDriver: true
+    }).start(() => {
+      navigation.navigate('Wallet');
+    });
+  });
+
+  const pieceUp = {
+    transform: [{ translateY: piecesAnimation }]
+  };
+
+  return <Animated.View style={[styles.bubble, pieceUp]}>{pieceIcon}</Animated.View>;
+};
 
 const styles = StyleSheet.create({
   viewTemplate: {
@@ -260,6 +296,17 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     marginBottom: '5%',
     backgroundColor: 'white'
+  },
+  bubble: {
+    width: 100,
+    height: 100,
+    borderRadius: 50,
+    // backgroundColor: '#fc5c64',
+    position: 'absolute',
+    left: 150,
+    bottom: 50,
+    justifyContent: 'center',
+    alignItems: 'center'
   }
 });
 

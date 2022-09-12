@@ -27,6 +27,7 @@ import PrivateMessages from './src/components/messages/PrivateMessages.js';
 import BorneMap from './src/components/borneProcess/BorneMap.js';
 import RegisterStation from './src/components/settings/RegisterStation.js';
 import MyStations from './src/components/settings/MyStationsList.js';
+import Reservations from './src/components/settings/Reservations.js';
 
 const Stack = createNativeStackNavigator();
 
@@ -47,6 +48,8 @@ class App extends Component {
           <Stack.Screen name="Withdraw" component={Withdraw} />
           <Stack.Screen name="RegisterStation" component={RegisterStation} />
           <Stack.Screen name="StationList" component={MyStations} />
+          <Stack.Screen name="Reservations" component={Reservations} />
+
           <Stack.Screen name="AccountTransaction" component={AccountTransaction} />
           <Stack.Screen name="LegalMentions" component={LegalMentions} />
           <Stack.Screen name="Tutorial" component={Tutorial} />

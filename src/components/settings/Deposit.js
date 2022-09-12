@@ -10,6 +10,8 @@ import {
   Modal
 } from 'react-native';
 
+import Icon from 'react-native-vector-icons/Entypo';
+
 const Deposit = ({ navigation }) => {
   const [amountInput, setAmountInput] = useState('0');
   const [paymentMethod, setPaymentMethod] = useState('Carte N26');
@@ -173,6 +175,7 @@ const Deposit = ({ navigation }) => {
                       data.name == paymentMethod ? styles.selectedCard : styles.nonSelectedCard
                     }
                   >
+                    <Icon style={{ marginLeft: '5%' }} name="credit-card" size={30} color="grey" />
                     <Text style={{ marginLeft: '5%', fontWeight: '700', fontSize: 18 }}>
                       {data.name}
                     </Text>
