@@ -36,8 +36,8 @@ class App extends Component {
     return (
       <NavigationContainer>
         <Stack.Navigator screenOptions={{ headerShown: false }}>
-          {/* <Stack.Screen name="Login" component={Login} />
-          <Stack.Screen name="Register" component={Register} /> */}
+          <Stack.Screen name="Login" component={Login} />
+          <Stack.Screen name="Register" component={Register} />
           <Stack.Screen name="HomePage" component={HomePage} />
           {/* <Stack.Screen name="HomePage" component={BorneMap} /> */}
           <Stack.Screen name="Settings" component={Settings} />

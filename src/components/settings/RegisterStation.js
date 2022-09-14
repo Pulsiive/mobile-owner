@@ -1,44 +1,84 @@
 import React, { Component, useState } from 'react';
-import { Image, View, Text, TextInput, Pressable, StyleSheet, Switch, Modal } from 'react-native';
+import {
+  Image,
+  View,
+  Text,
+  TextInput,
+  Pressable,
+  StyleSheet,
+  SafeAreaView,
+  ScrollView
+} from 'react-native';
 
 import Dropdown from 'react-native-input-select';
 import Slider from '@react-native-community/slider';
 
+import api from '../../globals/query/API';
+import serviceAccessToken from '../../globals/query/AccessToken';
+
 const RegisterStation = ({ navigation }) => {
-  const [userInput, setUserInput] = useState({
-    name: '',
-    input: '',
-    voltage: '',
-    amount: 0
+  const [userCoordinatesInput, setUserInput] = useState({
+    lat: 0,
+    long: 0,
+    address: '',
+    city: '',
+    country: '',
+    countryCode: 'FR'
   });
-  const [amountSelected, setAmountSelected] = useState(0);
-  const [maxAmount, setMaxAmount] = useState(20);
-  const [iban, setIban] = useState('FRXX XXXX XXXX XXXX');
-  const [isSwitchEnabled, setIsSwitchEnabled] = useState(false);
-  const [modalVisible, setModalVisible] = useState(false);
+  const [userPropertiesInput, setUserPropertiesInput] = useState({
+    // name: '',
+    plugTypes: [],
+    maxPower: '',
+    isGreenEnergy: true,
+    price: 0,
+    hours: {
+      day: 7,
+      openTime: '00:00',
+      closeTime: '00:00'
+    }
+  });
+
+  const [priceSelected, setpriceSelected] = useState(0);
+  const [maxprice, setMaxprice] = useState(20);
 
   const toggleSwitch = () => setIsSwitchEnabled((previousState) => !previousState);
 
   const handleChange = (text) => {
-    setAmountInput(text);
-    console.log(amountInput);
+    setpriceInput(text);
+    console.log(priceInput);
   };
-  const handleUserInputChange = (text, field) => {
-    // if (error) setError(false);
-    userInput[field] = text;
-    console.log(userInput);
-    console.log(text);
-    setUserInput(userInput);
+  const handleUserCoordinatesInputChange = (text, field) => {
+    userCoordinatesInput[field] = text;
+    setUserInput(userCoordinatesInput);
+  };
+  const handleUserPropertiesInputChange = (text, field) => {
+    userPropertiesInput[field] = text;
+    setUserPropertiesInput(userPropertiesInput);
   };
 
-  const handleChangeCard = (data) => {
-    console.log(data);
-    setPaymentMethod(data);
+  const submit = async () => {
+    try {
+      const data = {
+        station: {
+          coordinates: userCoordinatesInput,
+          properties: userPropertiesInput
+        }
+      };
+      console.log('submit request');
+      console.log(data);
+      console.log('sending request');
+      const res = await api.send('post', '/api/v1/profile/station', data, (auth = true));
+      console.log(res);
+      if (res.status == 200) {
+        navigation.navigate('Settings');
+      } else {
+        throw res;
+      }
+    } catch (e) {
+      console.log(e);
+    }
   };
-  const setModal = (event) => {
-    console.log(event);
-    setModalVisible(true);
-  };
+
   return (
     <View style={styles.viewTemplate}>
       <View style={{ width: '100%', height: '2%' }} />
@@ -92,61 +132,105 @@ const RegisterStation = ({ navigation }) => {
           </Text>
         </View>
       </View>
-      <View style={{ backgroundColor: '#3D3D3D', height: '60%', width: '90%', marginLeft: '5%' }}>
-        <Text style={styles.inputText}>Station Name:</Text>
-        <TextInput
-          accessibilityLabel="stationName"
-          onChangeText={(text) => handleUserInputChange(text, 'name')}
-          style={styles.inputField}
-          placeholder="Station name"
-          autoComplete="email"
-          // value={userInput.name}
-        />
-        <Text style={styles.inputText}>Station input:</Text>
-        <View style={{ height: '20%', width: '75%', marginLeft: '12%' }}>
-          <Dropdown
-            placeholder="Select an option..."
-            options={[
-              { name: 'IV-1', code: 'AL' },
-              { name: 'IV-2', code: 'AX' },
-              { name: 'IV-3', code: 'DZ' }
-            ]}
-            optionLabel={'name'}
-            optionValue={'code'}
-            selectedValue={userInput.input}
-            onValueChange={(text) => handleUserInputChange(text, 'input')}
-            primaryColor={'green'}
-          />
-        </View>
-        <Text style={styles.inputText}>Voltage:</Text>
-        <TextInput
-          accessibilityLabel="voltage"
-          onChangeText={(text) => handleUserInputChange(text, 'voltage')}
-          style={styles.inputField}
-          placeholder="Voltage"
-          autoComplete="email"
-          // value={userInput.voltage}
-        />
-        <Text style={styles.inputText}>Amount:</Text>
-        <Slider
-          style={{ marginLeft: '10%', width: '80%', height: 40 }}
-          value={amountSelected}
-          onValueChange={(value) => setAmountSelected(value)}
-          minimumValue={0}
-          maximumValue={maxAmount}
-          step={1}
-          minimumTrackTintColor="white"
-          maximumTrackTintColor="green"
-        />
-        <Text style={{ marginLeft: '72%', color: 'grey', fontSize: 10 }}>
-          {amountSelected}€ / 15 min
-        </Text>
+      <View style={{ backgroundColor: '#3D3D3D', height: '65%', width: '90%', marginLeft: '5%' }}>
+        <SafeAreaView style={{ flex: 1 }}>
+          <ScrollView style={{ height: '100%', width: '100%' }}>
+            {/* <Text style={styles.inputText}>Station Name:</Text>
+            <TextInput
+              accessibilityLabel="stationName"
+              onChangeText={(text) => handleUserPropertiesInputChange(text, 'name')}
+              style={styles.inputField}
+              placeholder="Station name"
+              autoComplete="email"
+            /> */}
+            <Text style={styles.inputText}>Latitude:</Text>
+            <TextInput
+              accessibilityLabel="Latitude"
+              onChangeText={(text) => handleUserCoordinatesInputChange(text, 'lat')}
+              style={styles.inputField}
+              placeholder="latitude"
+              autoComplete="email"
+            />
+            <Text style={styles.inputText}>Longitude:</Text>
+            <TextInput
+              accessibilityLabel="Longitude"
+              onChangeText={(text) => handleUserCoordinatesInputChange(text, 'long')}
+              style={styles.inputField}
+              placeholder="longitude"
+              autoComplete="email"
+            />
+            <Text style={styles.inputText}>Address:</Text>
+            <TextInput
+              accessibilityLabel="address"
+              onChangeText={(text) => handleUserCoordinatesInputChange(text, 'address')}
+              style={styles.inputField}
+              placeholder="address"
+              autoComplete="email"
+            />
+            <Text style={styles.inputText}>City:</Text>
+            <TextInput
+              accessibilityLabel="City"
+              onChangeText={(text) => handleUserCoordinatesInputChange(text, 'city')}
+              style={styles.inputField}
+              placeholder="City"
+              autoComplete="email"
+            />
+            <Text style={styles.inputText}>Country:</Text>
+            <TextInput
+              accessibilityLabel="Country"
+              onChangeText={(text) => handleUserCoordinatesInputChange(text, 'country')}
+              style={styles.inputField}
+              placeholder="Country"
+              autoComplete="email"
+            />
+            <Text style={styles.inputText}>price:</Text>
+            <Slider
+              style={{ marginLeft: '10%', width: '80%', height: 40 }}
+              value={priceSelected}
+              onValueChange={(value) => setpriceSelected(value)}
+              minimumValue={0}
+              maximumValue={maxprice}
+              step={1}
+              minimumTrackTintColor="white"
+              maximumTrackTintColor="green"
+            />
+            <Text style={{ marginLeft: '72%', color: 'grey', fontSize: 10 }}>
+              {priceSelected}€ / 15 min
+            </Text>
+            <Text style={styles.inputText}>maxPower:</Text>
+            <TextInput
+              accessibilityLabel="maxPower"
+              onChangeText={(text) => handleUserPropertiesInputChange(text, 'maxPower')}
+              style={styles.inputField}
+              placeholder="maxPower"
+              autoComplete="email"
+            />
+            <Text style={styles.inputText}>Station Plug Types:</Text>
+            <View style={{ height: '20%', width: '75%', marginLeft: '12%' }}>
+              <Dropdown
+                placeholder="Select an option..."
+                options={[
+                  { name: 'BEV', code: 'AL' },
+                  { name: 'HEV', code: 'AX' },
+                  { name: 'PHEV', code: 'DZ' }
+                ]}
+                optionLabel={'name'}
+                optionValue={'code'}
+                selectedValue={userPropertiesInput.input}
+                onValueChange={(text) => handleUserPropertiesInputChange(text, 'plugTypes')}
+                primaryColor={'green'}
+              />
+            </View>
+          </ScrollView>
+        </SafeAreaView>
       </View>
       <View>
         <View>
           <Pressable
             onPress={() => {
-              navigation.navigate('Settings');
+              handleUserPropertiesInputChange(priceSelected, 'price');
+              submit();
+              // navigation.navigate('Settings');
             }}
           >
             <View
@@ -219,6 +303,11 @@ const styles = StyleSheet.create({
     marginBottom: '5%',
     backgroundColor: 'white'
   },
+  inputText: {
+    marginLeft: '13%',
+    color: 'white',
+    fontSize: 15
+  },
   inputField: {
     marginLeft: '13%',
     marginTop: '2%',
@@ -226,11 +315,6 @@ const styles = StyleSheet.create({
     width: '74%',
     backgroundColor: 'white',
     borderRadius: 10
-  },
-  inputText: {
-    marginLeft: '13%',
-    color: 'white',
-    fontSize: 20
   }
 });
 
