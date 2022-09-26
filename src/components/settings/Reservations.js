@@ -8,12 +8,141 @@ import {
   StyleSheet,
   Modal,
   SafeAreaView,
+  TouchableHighlight,
   ScrollView
 } from 'react-native';
 
-const ReservationCard = ({ ReservationData, navigation }) => {
+import Icon from 'react-native-vector-icons/Entypo';
+
+const ModalInformation = ({ setModal, reservationData }) => {
   return (
-    <View
+    <View style={styles.modal}>
+      <View style={{ flexDirection: 'row', marginTop: '2%' }}>
+        <Text style={{ color: 'black', fontSize: 20, fontWeight: '800', marginLeft: '3%' }}>
+          Reservation informations
+        </Text>
+        <Pressable
+          onPress={() => {
+            setModal(false);
+          }}
+        >
+          <Text style={{ color: 'red', fontSize: 20, marginLeft: '43%' }}>X</Text>
+        </Pressable>
+      </View>
+
+      <View>
+        <View style={{ flexDirection: 'row', height: '20%', width: '100%', marginTop: '5%' }}>
+          <View
+            style={{
+              backgroundColor: 'grey',
+              borderRadius: 50,
+              width: 50,
+              height: 50,
+              marginLeft: '5%'
+            }}
+          />
+          <Text style={{ marginLeft: '5%', fontWeight: '400', fontSize: 18 }}>
+            {reservationData.renterUsername}
+          </Text>
+          <Icon style={{ marginLeft: '5%' }} name="mail" size={25} color="black" />
+          <Icon style={{ marginLeft: '3%' }} name="phone" size={25} color="black" />
+        </View>
+        <Text style={{ marginLeft: '5%', fontWeight: '400', fontSize: 18 }}>
+          {reservationData.renterAdress}
+        </Text>
+        <Text style={{ marginLeft: '5%', marginTop: '5%', fontWeight: '400', fontSize: 18 }}>
+          {reservationData.renterMessages}
+        </Text>
+        <View
+          style={{
+            marginLeft: '10%',
+            marginTop: '5%',
+            marginBottom: '5%',
+            height: '1%',
+            width: '80%',
+            backgroundColor: 'black'
+          }}
+        />
+        <Text style={{ marginLeft: '25%', fontWeight: '500', fontSize: 18 }}>
+          Station information
+        </Text>
+        <Text style={{ marginLeft: '2%', fontWeight: '300', fontSize: 16 }}>
+          Reservation #1, {reservationData.startHour}-{reservationData.endHour},
+          {reservationData.date}
+        </Text>
+        <Text style={{ marginLeft: '5%', marginTop: '2%', fontSize: 18 }}>
+          {reservationData.valueName}
+        </Text>
+        <Text style={{ marginLeft: '5%', marginTop: '2%', fontSize: 18 }}>
+          {reservationData.stationAdress}
+        </Text>
+        <Text style={{ marginLeft: '5%', marginTop: '2%', fontSize: 18 }}>
+          {reservationData.inputType}
+        </Text>
+        <Text style={{ marginLeft: '5%', marginTop: '2%', fontSize: 18 }}>
+          {reservationData.voltage}
+        </Text>
+      </View>
+      <View style={{ flexDirection: 'row', height: '15%' }}>
+        {/* Add a margin top when it will be finished */}
+        <View style={{ width: '50%' }}>
+          <Pressable
+            onPress={() => {
+              setModal(false);
+              console.log('Should send an accept response to backend');
+            }}
+          >
+            <View
+              style={{
+                width: '90%',
+                alignItems: 'center',
+                height: '50%',
+                marginTop: '10%',
+                marginLeft: '5%',
+                borderRadius: 15,
+                backgroundColor: '#6EBF34'
+              }}
+            >
+              <Text style={{ color: 'black', marginTop: '3%' }}>Accept</Text>
+            </View>
+          </Pressable>
+        </View>
+        <View style={{ width: '50%' }}>
+          <Pressable
+            onPress={() => {
+              setModal(false);
+              console.log('Should send a decline response to backend');
+            }}
+          >
+            <View
+              style={{
+                width: '90%',
+                alignItems: 'center',
+                height: '50%',
+                marginTop: '10%',
+                marginLeft: '5%',
+                borderRadius: 15,
+                backgroundColor: '#F66565'
+              }}
+            >
+              <Text style={{ color: 'black', marginTop: '3%' }}>Decline</Text>
+            </View>
+          </Pressable>
+        </View>
+      </View>
+    </View>
+  );
+};
+
+const ReservationCard = ({ ReservationData, navigation }) => {
+  const [modalVisible, setModalVisible] = useState(false);
+
+  const setModal = (event) => {
+    console.log(event);
+    setModalVisible(event);
+  };
+  return (
+    <TouchableHighlight
       style={{
         backgroundColor: 'white',
         height: '20%',
@@ -21,6 +150,9 @@ const ReservationCard = ({ ReservationData, navigation }) => {
         marginLeft: '5%',
         marginTop: '5%',
         borderRadius: 5
+      }}
+      onPress={() => {
+        setModal(true);
       }}
     >
       <View style={{ flexDirection: 'row', height: '100%', width: '100%' }}>
@@ -45,13 +177,22 @@ const ReservationCard = ({ ReservationData, navigation }) => {
             Reservation #431, {ReservationData.startHour} - {ReservationData.endHour}
           </Text>
         </View>
+        <Modal
+          animationType={'fade'}
+          transparent={true}
+          visible={modalVisible}
+          onRequestClose={() => {
+            console.log('Modal has been closed.');
+          }}
+        >
+          <ModalInformation setModal={setModal} reservationData={ReservationData} />
+        </Modal>
       </View>
-    </View>
+    </TouchableHighlight>
   );
 };
 
 const Reservations = ({ navigation }) => {
-  const [modalVisible, setModalVisible] = useState(false);
   const [ReservationData, setReservationData] = useState([
     {
       valueName: 'Station 1',
@@ -61,7 +202,10 @@ const Reservations = ({ navigation }) => {
       date: '16 September',
       startHour: '14h00',
       endHour: '16h00',
-      renterUsername: 'Marc Dupont'
+      stationAdress: '142 Boulevard Masséna, Paris, France',
+      renterUsername: 'Marc Dupont',
+      renterAdress: '11 rue Beethoven, Paris, France',
+      renterMessages: 'Hello, id like to rent your station for 2 hours this saturday !'
     },
     {
       valueName: 'Station 2',
@@ -71,7 +215,10 @@ const Reservations = ({ navigation }) => {
       date: '16 September',
       startHour: '10h00',
       endHour: '11h00',
-      renterUsername: 'Thibault Decourville'
+      stationAdress: '4 rue Saint-Anne, Paris, France',
+      renterUsername: 'Thibault Decourville',
+      renterAdress: '11 rue de la Paix, Paris, France',
+      renterMessages: 'Hello, id like to rent your station for 5 hours this monday !'
     },
     {
       valueName: 'Station 2',
@@ -81,7 +228,10 @@ const Reservations = ({ navigation }) => {
       date: '16 September',
       startHour: '18h00',
       endHour: '21h00',
-      renterUsername: 'Tom Holland'
+      stationAdress: '4 rue Saint-Anne, Paris, France',
+      renterUsername: 'Tom Holland',
+      renterAdress: '84 boulevard Masséna, Paris, France',
+      renterMessages: 'Hello, id like to rent your station for 3 hours this Thuesday !'
     },
     {
       valueName: 'Station 2',
@@ -91,7 +241,10 @@ const Reservations = ({ navigation }) => {
       date: '16 September',
       startHour: '08h00',
       endHour: '16h00',
-      renterUsername: 'Chris Hemsworth'
+      stationAdress: '4 rue Saint-Anne, Paris, France',
+      renterUsername: 'Chris Hemsworth',
+      renterAdress: '4 rue Pasteur, Paris, France',
+      renterMessages: 'Hello, could you call me back ?'
     },
     {
       valueName: 'Station 2',
@@ -101,14 +254,13 @@ const Reservations = ({ navigation }) => {
       date: '16 September',
       startHour: '12h00',
       endHour: '14h00',
-      renterUsername: 'Brad Pitt'
+      stationAdress: '4 rue Saint-Anne, Paris, France',
+      renterUsername: 'Brad Pitt',
+      renterAdress: 'Boulevard de la paix, Paris, France',
+      renterMessages: 'Hello, how are you'
     }
   ]);
 
-  const setModal = (event) => {
-    console.log(event);
-    setModalVisible(true);
-  };
   return (
     <View style={styles.viewTemplate}>
       <View style={{ width: '100%', height: '2%' }} />
@@ -218,13 +370,13 @@ const styles = StyleSheet.create({
   },
   modal: {
     backgroundColor: 'white',
-    height: '25%',
+    height: '70%',
     width: '80%',
     borderRadius: 10,
     borderWidth: 1,
     borderColor: '#D4D4D4',
-    marginTop: '65%',
-    marginLeft: '10%'
+    marginTop: '45%',
+    marginLeft: '16%'
   },
   selectedCard: {
     flexDirection: 'row',
