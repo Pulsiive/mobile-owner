@@ -1,7 +1,208 @@
 import React, { Component, useState } from 'react';
-import { Image, View, Text, TextInput, Pressable, StyleSheet, Modal } from 'react-native';
+import {
+  Image,
+  View,
+  Text,
+  TextInput,
+  Pressable,
+  StyleSheet,
+  Modal,
+  SafeAreaView,
+  ScrollView
+} from 'react-native';
+
+import Dropdown from 'react-native-input-select';
+import Slider from '@react-native-community/slider';
+import Icon from 'react-native-vector-icons/Entypo';
+
+const ModalInformation = ({ setModal, stationData }) => {
+  const [userCoordinatesInput, setUserInput] = useState({
+    lat: 0,
+    long: 0,
+    address: '',
+    city: '',
+    country: '',
+    countryCode: 'FR'
+  });
+  const [userPropertiesInput, setUserPropertiesInput] = useState({
+    // name: '',
+    plugTypes: [],
+    maxPower: '',
+    isGreenEnergy: true,
+    price: 0,
+    hours: {
+      day: 7,
+      openTime: '00:00',
+      closeTime: '00:00'
+    }
+  });
+  const [priceSelected, setpriceSelected] = useState(0);
+  const [maxprice, setMaxprice] = useState(20);
+
+  const handleUserCoordinatesInputChange = (text, field) => {
+    userCoordinatesInput[field] = text;
+    setUserInput(userCoordinatesInput);
+  };
+  const handleUserPropertiesInputChange = (text, field) => {
+    userPropertiesInput[field] = text;
+    setUserPropertiesInput(userPropertiesInput);
+  };
+  return (
+    <View style={styles.modal}>
+      <View style={{ flexDirection: 'row', marginTop: '2%' }}>
+        <Text style={{ color: 'white', fontSize: 20, fontWeight: '800', marginLeft: '35%' }}>
+          Station Edit
+        </Text>
+        <Pressable
+          onPress={() => {
+            setModal(false);
+          }}
+        >
+          <Text style={{ color: 'red', fontSize: 20, marginLeft: '50%' }}>X</Text>
+        </Pressable>
+      </View>
+
+      <View style={{ height: '80%', width: '100%' }}>
+        <SafeAreaView style={{ flex: 1 }}>
+          <ScrollView style={{ height: '100%', width: '100%' }}>
+            <Text style={styles.inputText}>Latitude:</Text>
+            <TextInput
+              accessibilityLabel="Latitude"
+              onChangeText={(text) => handleUserCoordinatesInputChange(text, 'lat')}
+              style={styles.inputField}
+              placeholder="latitude"
+              autoComplete="email"
+            />
+            <Text style={styles.inputText}>Longitude:</Text>
+            <TextInput
+              accessibilityLabel="Longitude"
+              onChangeText={(text) => handleUserCoordinatesInputChange(text, 'long')}
+              style={styles.inputField}
+              placeholder="longitude"
+              autoComplete="email"
+            />
+            <Text style={styles.inputText}>Address:</Text>
+            <TextInput
+              accessibilityLabel="address"
+              onChangeText={(text) => handleUserCoordinatesInputChange(text, 'address')}
+              style={styles.inputField}
+              placeholder="address"
+              autoComplete="email"
+            />
+            <Text style={styles.inputText}>City:</Text>
+            <TextInput
+              accessibilityLabel="City"
+              onChangeText={(text) => handleUserCoordinatesInputChange(text, 'city')}
+              style={styles.inputField}
+              placeholder="City"
+              autoComplete="email"
+            />
+            <Text style={styles.inputText}>Country:</Text>
+            <TextInput
+              accessibilityLabel="Country"
+              onChangeText={(text) => handleUserCoordinatesInputChange(text, 'country')}
+              style={styles.inputField}
+              placeholder="Country"
+              autoComplete="email"
+            />
+            <Text style={styles.inputText}>price:</Text>
+            <Slider
+              style={{ marginLeft: '10%', width: '80%', height: 40 }}
+              value={priceSelected}
+              onValueChange={(value) => setpriceSelected(value)}
+              minimumValue={0}
+              maximumValue={maxprice}
+              step={1}
+              minimumTrackTintColor="white"
+              maximumTrackTintColor="green"
+            />
+            <Text style={{ marginLeft: '72%', color: 'grey', fontSize: 10 }}>
+              {priceSelected}€ / 15 min
+            </Text>
+            <Text style={styles.inputText}>maxPower:</Text>
+            <TextInput
+              accessibilityLabel="maxPower"
+              onChangeText={(text) => handleUserPropertiesInputChange(text, 'maxPower')}
+              style={styles.inputField}
+              placeholder="maxPower"
+              autoComplete="email"
+            />
+            <Text style={styles.inputText}>Station Plug Types:</Text>
+            <View style={{ height: '20%', width: '75%', marginLeft: '12%' }}>
+              <Dropdown
+                placeholder="Select an option..."
+                options={[
+                  { name: 'BEV', code: 'AL' },
+                  { name: 'HEV', code: 'AX' },
+                  { name: 'PHEV', code: 'DZ' }
+                ]}
+                optionLabel={'name'}
+                optionValue={'code'}
+                selectedValue={userPropertiesInput.input}
+                onValueChange={(text) => handleUserPropertiesInputChange(text, 'plugTypes')}
+                primaryColor={'green'}
+              />
+            </View>
+          </ScrollView>
+        </SafeAreaView>
+      </View>
+      <View style={{ flexDirection: 'row', height: '15%' }}>
+        {/* Add a margin top when it will be finished */}
+        <View style={{ width: '50%' }}>
+          <Pressable
+            onPress={() => {
+              setModal(false);
+              console.log('Should send an accept response to backend');
+            }}
+          >
+            <View
+              style={{
+                width: '90%',
+                alignItems: 'center',
+                height: '50%',
+                marginTop: '10%',
+                marginLeft: '5%',
+                borderRadius: 15,
+                backgroundColor: '#6EBF34'
+              }}
+            >
+              <Text style={{ color: 'black', marginTop: '3%' }}>Save</Text>
+            </View>
+          </Pressable>
+        </View>
+        <View style={{ width: '50%' }}>
+          <Pressable
+            onPress={() => {
+              setModal(false);
+            }}
+          >
+            <View
+              style={{
+                width: '90%',
+                alignItems: 'center',
+                height: '50%',
+                marginTop: '10%',
+                marginLeft: '5%',
+                borderRadius: 15,
+                backgroundColor: '#F66565'
+              }}
+            >
+              <Text style={{ color: 'black', marginTop: '3%' }}>Cancel</Text>
+            </View>
+          </Pressable>
+        </View>
+      </View>
+    </View>
+  );
+};
 
 const Stations = ({ stationData, navigation }) => {
+  const [modalVisible, setModalVisible] = useState(false);
+
+  const setModal = (event) => {
+    console.log(event);
+    setModalVisible(event);
+  };
   return (
     <View
       style={{
@@ -28,10 +229,20 @@ const Stations = ({ stationData, navigation }) => {
           <Text style={styles.informationType}>Price</Text>
           <Text style={styles.informationValue}>{stationData.price}</Text>
         </View>
-        <Pressable style={styles.modifyButton} onPress={() => navigation.navigate('Settings')}>
+        <Pressable style={styles.modifyButton} onPress={() => setModal(true)}>
           <Text style={{ color: 'white' }}>Modify</Text>
         </Pressable>
       </View>
+      <Modal
+        animationType={'fade'}
+        transparent={true}
+        visible={modalVisible}
+        onRequestClose={() => {
+          console.log('Modal has been closed.');
+        }}
+      >
+        <ModalInformation setModal={setModal} stationData={stationData} />
+      </Modal>
     </View>
   );
 };
@@ -50,7 +261,7 @@ const MyStations = ({ navigation }) => {
 
   const setModal = (event) => {
     console.log(event);
-    setModalVisible(true);
+    setModalVisible(event);
   };
   return (
     <View style={styles.viewTemplate}>
@@ -118,14 +329,14 @@ const styles = StyleSheet.create({
     borderBottomRightRadius: 20
   },
   modal: {
-    backgroundColor: 'white',
-    height: '25%',
-    width: '80%',
+    backgroundColor: '#404040',
+    height: '83%',
+    width: '85%',
     borderRadius: 10,
     borderWidth: 1,
-    borderColor: '#D4D4D4',
-    marginTop: '65%',
-    marginLeft: '10%'
+    borderColor: 'black',
+    marginTop: '30%',
+    marginLeft: '8%'
   },
   selectedCard: {
     flexDirection: 'row',
@@ -161,6 +372,14 @@ const styles = StyleSheet.create({
   informationValue: {
     color: 'white',
     marginLeft: '47%'
+  },
+  inputField: {
+    marginLeft: '13%',
+    marginTop: '2%',
+    marginBottom: '5%',
+    width: '74%',
+    backgroundColor: 'white',
+    borderRadius: 10
   }
 });
 

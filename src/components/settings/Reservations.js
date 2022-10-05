@@ -41,9 +41,20 @@ const ModalInformation = ({ setModal, reservationData }) => {
               marginLeft: '5%'
             }}
           />
-          <Text style={{ marginLeft: '5%', fontWeight: '400', fontSize: 18 }}>
-            {reservationData.renterUsername}
-          </Text>
+          <View>
+            <Text style={{ marginLeft: '5%', fontWeight: '400', fontSize: 18 }}>
+              {reservationData.renterUsername}
+            </Text>
+            <View style={{ flexDirection: 'row' }}>
+              <Icon
+                style={{ marginTop: '2%', marginLeft: '2%' }}
+                name="star"
+                size={25}
+                color="yellow"
+              />
+              <Text style={{ fontWeight: '700', fontSize: 18 }}>5.0</Text>
+            </View>
+          </View>
           <Icon style={{ marginLeft: '5%' }} name="mail" size={25} color="black" />
           <Icon style={{ marginLeft: '3%' }} name="phone" size={25} color="black" />
         </View>
@@ -70,18 +81,50 @@ const ModalInformation = ({ setModal, reservationData }) => {
           Reservation #1, {reservationData.startHour}-{reservationData.endHour},
           {reservationData.date}
         </Text>
-        <Text style={{ marginLeft: '5%', marginTop: '2%', fontSize: 18 }}>
-          {reservationData.valueName}
-        </Text>
-        <Text style={{ marginLeft: '5%', marginTop: '2%', fontSize: 18 }}>
-          {reservationData.stationAdress}
-        </Text>
-        <Text style={{ marginLeft: '5%', marginTop: '2%', fontSize: 18 }}>
-          {reservationData.inputType}
-        </Text>
-        <Text style={{ marginLeft: '5%', marginTop: '2%', fontSize: 18 }}>
-          {reservationData.voltage}
-        </Text>
+        <View style={{ flexDirection: 'row' }}>
+          <Icon
+            style={{ marginTop: '2%', marginLeft: '2%' }}
+            name="star"
+            size={25}
+            color="yellow"
+          />
+          <Text style={{ marginLeft: '2%', marginTop: '2%', fontSize: 18 }}>
+            {reservationData.valueName}
+          </Text>
+        </View>
+        <View style={{ flexDirection: 'row' }}>
+          <Icon
+            style={{ marginTop: '2%', marginLeft: '2%' }}
+            name="star"
+            size={25}
+            color="yellow"
+          />
+          <Text style={{ marginLeft: '2%', marginTop: '2%', fontSize: 18 }}>
+            {reservationData.stationAdress}
+          </Text>
+        </View>
+        <View style={{ flexDirection: 'row' }}>
+          <Icon
+            style={{ marginTop: '2%', marginLeft: '2%' }}
+            name="star"
+            size={25}
+            color="yellow"
+          />
+          <Text style={{ marginLeft: '2%', marginTop: '2%', fontSize: 18 }}>
+            {reservationData.inputType}
+          </Text>
+        </View>
+        <View style={{ flexDirection: 'row' }}>
+          <Icon
+            style={{ marginTop: '2%', marginLeft: '2%' }}
+            name="star"
+            size={25}
+            color="yellow"
+          />
+          <Text style={{ marginLeft: '2%', marginTop: '2%', fontSize: 18 }}>
+            {reservationData.voltage}
+          </Text>
+        </View>
       </View>
       <View style={{ flexDirection: 'row', height: '15%' }}>
         {/* Add a margin top when it will be finished */}
