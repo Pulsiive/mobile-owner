@@ -42,7 +42,7 @@ const ModalInformation = ({ setModal, reservationData }) => {
             }}
           />
           <View>
-            <Text style={{ marginLeft: '5%', fontWeight: '400', fontSize: 18 }}>
+            <Text style={{ marginLeft: '5%', fontWeight: '400', fontSize: 18, color: 'black' }}>
               {reservationData.renterUsername}
             </Text>
             <View style={{ flexDirection: 'row' }}>
@@ -52,16 +52,24 @@ const ModalInformation = ({ setModal, reservationData }) => {
                 size={25}
                 color="yellow"
               />
-              <Text style={{ fontWeight: '700', fontSize: 18 }}>5.0</Text>
+              <Text style={{ fontWeight: '700', fontSize: 18, color: 'black' }}>5.0</Text>
             </View>
           </View>
           <Icon style={{ marginLeft: '5%' }} name="mail" size={25} color="black" />
           <Icon style={{ marginLeft: '3%' }} name="phone" size={25} color="black" />
         </View>
-        <Text style={{ marginLeft: '5%', fontWeight: '400', fontSize: 18 }}>
+        <Text style={{ marginLeft: '5%', fontWeight: '400', fontSize: 18, color: 'black' }}>
           {reservationData.renterAdress}
         </Text>
-        <Text style={{ marginLeft: '5%', marginTop: '5%', fontWeight: '400', fontSize: 18 }}>
+        <Text
+          style={{
+            marginLeft: '5%',
+            marginTop: '5%',
+            fontWeight: '400',
+            fontSize: 18,
+            color: 'black'
+          }}
+        >
           {reservationData.renterMessages}
         </Text>
         <View
@@ -74,10 +82,10 @@ const ModalInformation = ({ setModal, reservationData }) => {
             backgroundColor: 'black'
           }}
         />
-        <Text style={{ marginLeft: '25%', fontWeight: '500', fontSize: 18 }}>
+        <Text style={{ marginLeft: '25%', fontWeight: '500', fontSize: 18, color: 'black' }}>
           Station information
         </Text>
-        <Text style={{ marginLeft: '2%', fontWeight: '300', fontSize: 16 }}>
+        <Text style={{ marginLeft: '2%', fontWeight: '300', fontSize: 16, color: 'black' }}>
           Reservation #1, {reservationData.startHour}-{reservationData.endHour},
           {reservationData.date}
         </Text>
@@ -88,7 +96,7 @@ const ModalInformation = ({ setModal, reservationData }) => {
             size={25}
             color="yellow"
           />
-          <Text style={{ marginLeft: '2%', marginTop: '2%', fontSize: 18 }}>
+          <Text style={{ marginLeft: '2%', marginTop: '2%', fontSize: 18, color: 'black' }}>
             {reservationData.valueName}
           </Text>
         </View>
@@ -99,7 +107,7 @@ const ModalInformation = ({ setModal, reservationData }) => {
             size={25}
             color="yellow"
           />
-          <Text style={{ marginLeft: '2%', marginTop: '2%', fontSize: 18 }}>
+          <Text style={{ marginLeft: '2%', marginTop: '2%', fontSize: 18, color: 'black' }}>
             {reservationData.stationAdress}
           </Text>
         </View>
@@ -110,7 +118,7 @@ const ModalInformation = ({ setModal, reservationData }) => {
             size={25}
             color="yellow"
           />
-          <Text style={{ marginLeft: '2%', marginTop: '2%', fontSize: 18 }}>
+          <Text style={{ marginLeft: '2%', marginTop: '2%', fontSize: 18, color: 'black' }}>
             {reservationData.inputType}
           </Text>
         </View>
@@ -121,7 +129,7 @@ const ModalInformation = ({ setModal, reservationData }) => {
             size={25}
             color="yellow"
           />
-          <Text style={{ marginLeft: '2%', marginTop: '2%', fontSize: 18 }}>
+          <Text style={{ marginLeft: '2%', marginTop: '2%', fontSize: 18, color: 'black' }}>
             {reservationData.voltage}
           </Text>
         </View>

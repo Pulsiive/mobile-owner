@@ -27,7 +27,7 @@ const Login = ({ navigation }) => {
       if (res.status == 200) {
         serviceAccessToken.set(res.data.accessToken);
         setErrorMessage('');
-        navigation.navigate('HomePage');
+        navigation.navigate('Tab');
       } else {
         throw res;
       }
@@ -143,8 +143,10 @@ const styles = StyleSheet.create({
   },
   input: {
     marginBottom: 20,
-    backgroundColor: 'white',
-    borderRadius: 10
+    backgroundColor: 'black',
+    borderRadius: 10,
+    borderWidth: 1,
+    borderColor: 'white'
   },
   inputOnError: {
     marginBottom: 20,

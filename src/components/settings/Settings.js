@@ -62,6 +62,10 @@ const Settings = ({ navigation }) => {
         <Pressable style={styles.button} onPress={() => navigation.navigate('Wallet')}>
           <Text style={styles.buttonContent}>Wallet</Text>
         </Pressable>
+        <Pressable style={styles.button} onPress={() => navigation.navigate('PastReservations')}>
+          <Text style={styles.buttonContent}>Past Reservations</Text>
+        </Pressable>
+
         <Text style={styles.sectionTitle}>My Station</Text>
         <Pressable style={styles.button} onPress={() => navigation.navigate('RegisterStation')}>
           <Text style={styles.buttonContent}>Register station</Text>
@@ -138,7 +142,7 @@ const styles = StyleSheet.create({
 
   //CONTENT
   container: {
-    marginTop: '20%',
+    marginTop: '3%',
     height: '90%'
   },
   sectionTitle: {
@@ -169,7 +173,7 @@ const styles = StyleSheet.create({
     height: '6%',
     width: '90%',
     position: 'absolute',
-    bottom: '20%',
+    bottom: '17%',
     left: '5%',
     borderRadius: 10,
     backgroundColor: '#1B2023'

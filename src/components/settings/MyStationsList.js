@@ -328,6 +328,12 @@ const styles = StyleSheet.create({
     borderBottomLeftRadius: 20,
     borderBottomRightRadius: 20
   },
+  container: {
+    flex: 1
+  },
+  scrollView: {
+    marginHorizontal: 20
+  },
   modal: {
     backgroundColor: '#404040',
     height: '83%',

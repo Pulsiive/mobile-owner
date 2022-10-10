@@ -31,6 +31,7 @@ import BorneMap from './src/components/borneProcess/BorneMap.js';
 import RegisterStation from './src/components/settings/RegisterStation.js';
 import MyStations from './src/components/settings/MyStationsList.js';
 import Reservations from './src/components/settings/Reservations.js';
+import PastReservations from './src/components/settings/PastReservations.js';
 
 const Stack = createNativeStackNavigator();
 
@@ -58,12 +59,11 @@ const SettingsStack = () => {
       <Stack.Screen name="RegisterStation" component={RegisterStation} />
       <Stack.Screen name="StationList" component={MyStations} />
       <Stack.Screen name="Reservations" component={Reservations} />
+      <Stack.Screen name="PastReservations" component={PastReservations} />
 
       <Stack.Screen name="AccountTransaction" component={AccountTransaction} />
       <Stack.Screen name="LegalMentions" component={LegalMentions} />
       <Stack.Screen name="Tutorial" component={Tutorial} />
-
-      <Stack.Screen name="HomePage" component={HomePage} />
     </Stack.Navigator>
   );
 };
@@ -88,7 +88,7 @@ const AppStack = () => {
 const BottomTab = () => {
   return (
     <Tab.Navigator
-      initialRouteName="HomePage"
+      initialRouteName="Home"
       screenOptions={{
         tabBarActiveTintColor: '#00AF54',
         headerTitleAlign: 'center',
@@ -116,7 +116,7 @@ const BottomTab = () => {
       }}
     >
       <Tab.Screen
-        name="HomePage"
+        name="Home"
         component={AppStack}
         options={{
           tabBarLabel: 'Home',
@@ -126,20 +126,30 @@ const BottomTab = () => {
         }}
       />
       <Tab.Screen
-        name="Messages"
+        name="Map"
+        component={BorneMap}
+        options={{
+          tabBarLabel: 'Map',
+          tabBarIcon: ({ color, size }) => (
+            <MaterialCommunityIcons name="map" color={color} size={size} />
+          )
+        }}
+      />
+      <Tab.Screen
+        name="Message"
         component={MessageStack}
         options={{
-          tabBarLabel: 'Messages',
+          tabBarLabel: 'Message',
           tabBarIcon: ({ color, size }) => (
             <MaterialCommunityIcons name="comment-text" color={color} size={size} />
           )
         }}
       />
       <Tab.Screen
-        name="Settings"
+        name="Setting"
         component={SettingsStack}
         options={{
-          tabBarLabel: 'Settings',
+          tabBarLabel: 'Setting',
           tabBarIcon: ({ color, size }) => (
             <MaterialCommunityIcons name="cog-outline" color={color} size={size} />
           )
@@ -152,6 +162,8 @@ const BottomTab = () => {
 const RootNavigator = () => (
   <Stack.Navigator initialRouteName="App" screenOptions={{ headerShown: false }}>
     {/* Login stack ? */}
+
+    <Stack.Screen name="LoginScreen" component={LoginStack} />
     <Stack.Screen name="Tab" component={BottomTab} />
   </Stack.Navigator>
 );

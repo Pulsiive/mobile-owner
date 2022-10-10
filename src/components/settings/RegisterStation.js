@@ -26,16 +26,18 @@ const RegisterStation = ({ navigation }) => {
     countryCode: 'FR'
   });
   const [userPropertiesInput, setUserPropertiesInput] = useState({
-    // name: '',
     plugTypes: [],
     maxPower: '',
     isGreenEnergy: true,
     price: 0,
-    hours: {
-      day: 7,
-      openTime: '00:00',
-      closeTime: '00:00'
-    }
+    nbChargingPoints: 1,
+    slots: [
+      {
+        day: 1,
+        opensAt: '2001-03-02T08:00:00.003Z',
+        closesAt: '2001-03-02T17:00:00.003Z'
+      }
+    ]
   });
 
   const [priceSelected, setpriceSelected] = useState(0);
@@ -52,7 +54,8 @@ const RegisterStation = ({ navigation }) => {
     setUserInput(userCoordinatesInput);
   };
   const handleUserPropertiesInputChange = (text, field) => {
-    userPropertiesInput[field] = text;
+    if (field == 'plugTypes') userPropertiesInput[field] = [text];
+    else userPropertiesInput[field] = text;
     setUserPropertiesInput(userPropertiesInput);
   };
 
@@ -109,7 +112,7 @@ const RegisterStation = ({ navigation }) => {
       />
       <View
         style={{
-          marginTop: '10%',
+          marginTop: '5%',
           marginLeft: '5%',
           backgroundColor: 'green',
           width: '90%',
@@ -209,10 +212,11 @@ const RegisterStation = ({ navigation }) => {
             <View style={{ height: '20%', width: '75%', marginLeft: '12%' }}>
               <Dropdown
                 placeholder="Select an option..."
+                dropdownHelperTextStyle={{ color: 'grey' }}
                 options={[
-                  { name: 'BEV', code: 'AL' },
-                  { name: 'HEV', code: 'AX' },
-                  { name: 'PHEV', code: 'DZ' }
+                  { name: 'BEV', code: 1 },
+                  { name: 'HEV', code: 2 },
+                  { name: 'PHEV', code: 3 }
                 ]}
                 optionLabel={'name'}
                 optionValue={'code'}
@@ -237,7 +241,7 @@ const RegisterStation = ({ navigation }) => {
               style={{
                 width: '60%',
                 alignItems: 'center',
-                marginTop: '10%',
+                marginTop: '5%',
                 marginLeft: '20%',
                 borderRadius: 15,
                 backgroundColor: '#6EBF34'
@@ -313,7 +317,7 @@ const styles = StyleSheet.create({
     marginTop: '2%',
     marginBottom: '5%',
     width: '74%',
-    backgroundColor: 'white',
+    backgroundColor: 'grey',
     borderRadius: 10
   }
 });

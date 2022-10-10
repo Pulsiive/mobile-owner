@@ -29,11 +29,11 @@ const Register = ({ navigation }) => {
       if (res.status == 200) {
         serviceAccessToken.set(res.data.accessToken);
         setErrorMessage('');
-        navigation.navigate('HomePage');
+        navigation.navigate('Tab');
       } else {
         throw res;
       }
-      navigation.navigate('HomePage');
+      navigation.navigate('Tab');
     } catch (e) {
       if (e.response) {
         if (e.response.status === 404) setErrorMessage('User already registered');
