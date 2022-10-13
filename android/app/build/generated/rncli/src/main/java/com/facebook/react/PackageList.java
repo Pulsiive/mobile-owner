@@ -13,8 +13,12 @@ import java.util.ArrayList;
 
 // @react-native-async-storage/async-storage
 import com.reactnativecommunity.asyncstorage.AsyncStoragePackage;
+// @react-native-community/checkbox
+import com.reactnativecommunity.checkbox.ReactCheckBoxPackage;
 // @react-native-community/geolocation
 import com.reactnativecommunity.geolocation.GeolocationPackage;
+// @react-native-community/slider
+import com.reactnativecommunity.slider.ReactSliderPackage;
 // @rnmapbox/maps
 import com.mapbox.rctmgl.RCTMGLPackage;
 // react-native-geolocation-service
@@ -29,6 +33,8 @@ import com.airbnb.android.react.maps.MapsPackage;
 import com.th3rdwave.safeareacontext.SafeAreaContextPackage;
 // react-native-screens
 import com.swmansion.rnscreens.RNScreensPackage;
+// react-native-sound
+import com.zmxv.RNSound.RNSoundPackage;
 // react-native-vector-icons
 import com.oblador.vectoricons.VectorIconsPackage;
 
@@ -77,7 +83,9 @@ public class PackageList {
     return new ArrayList<>(Arrays.<ReactPackage>asList(
       new MainReactPackage(mConfig),
       new AsyncStoragePackage(),
+      new ReactCheckBoxPackage(),
       new GeolocationPackage(),
+      new ReactSliderPackage(),
       new RCTMGLPackage(),
       new RNFusedLocationPackage(),
       new ReactNativeGetLocationPackage(),
@@ -85,6 +93,7 @@ public class PackageList {
       new MapsPackage(),
       new SafeAreaContextPackage(),
       new RNScreensPackage(),
+      new RNSoundPackage(),
       new VectorIconsPackage()
     ));
   }

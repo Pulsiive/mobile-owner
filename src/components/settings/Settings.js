@@ -31,10 +31,7 @@ const Settings = ({ navigation }) => {
     <View style={styles.viewTemplate}>
       {/* HEADER */}
       <View style={styles.headWalletInformation}>
-        <Pressable style={styles.backButton} onPress={() => navigation.navigate('HomePage')}>
-          <Text style={styles.backButtonContent}>{'<'}</Text>
-        </Pressable>
-        <View style={{ width: '80%' }}>
+        <View style={{ width: '100%' }}>
           <Text style={styles.title}>
             {userData.firstName} {userData.lastName}
           </Text>

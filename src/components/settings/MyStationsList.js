@@ -384,7 +384,7 @@ const styles = StyleSheet.create({
     marginTop: '2%',
     marginBottom: '5%',
     width: '74%',
-    backgroundColor: 'white',
+    backgroundColor: 'grey',
     borderRadius: 10
   }
 });

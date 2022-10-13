@@ -89,10 +89,10 @@ const BorneMap = () => {
         }
       )
         .then(async (granted) => {
-          // console.log(granted);
+          console.log(granted);
           GetLocation.getCurrentPosition({
             enableHighAccuracy: true,
-            timeout: 15000
+            timeout: 50000
           })
             .then((location) => {
               setUserPosition([location.latitude, location.longitude]);
@@ -123,7 +123,7 @@ const BorneMap = () => {
         >
           <MapboxGL.Camera
             zoomLevel={13}
-            centerCoordinate={[userPosition[1], userPosition[0]]}
+            // centerCoordinate={[userPosition[1], userPosition[0]]}
             animationMode={'flyTo'}
             animationDuration={3}
           ></MapboxGL.Camera>
@@ -143,8 +143,24 @@ const BorneMap = () => {
         <Pressable
           style={
             nightMode
-              ? { backgroundColor: 'white', width: '11%', borderRadius: 15, borderColor: 'black' }
-              : { backgroundColor: 'black', width: '11%', borderRadius: 15, borderColor: 'white' }
+              ? {
+                  position: 'absolute',
+                  top: 5,
+                  left: 5,
+                  backgroundColor: 'grey',
+                  width: '11%',
+                  borderRadius: 15,
+                  borderColor: 'black'
+                }
+              : {
+                  position: 'absolute',
+                  top: 5,
+                  left: 5,
+                  backgroundColor: 'black',
+                  width: '11%',
+                  borderRadius: 15,
+                  borderColor: 'black'
+                }
           }
           onPress={setMode}
         >
@@ -165,7 +181,9 @@ const BorneMap = () => {
                 style={{ flexDirection: 'row', justifyContent: 'space-around', marginTop: '5%' }}
               >
                 <Icon name="lock" size={30} color="green" />
-                <Text style={{ fontSize: 20, fontWeight: '800' }}>{modalData.name}</Text>
+                <Text style={{ color: 'black', fontSize: 20, fontWeight: '800' }}>
+                  {modalData.name}
+                </Text>
                 <Pressable
                   onPress={() => {
                     setModalVisible(false);
@@ -174,30 +192,40 @@ const BorneMap = () => {
                   <Text style={{ color: 'red', fontSize: 20 }}>X</Text>
                 </Pressable>
               </View>
-              <Text style={{ marginTop: '10%', marginLeft: '5%', fontSize: 20, fontWeight: '400' }}>
+              <Text
+                style={{
+                  color: 'black',
+                  marginTop: '10%',
+                  marginLeft: '5%',
+                  fontSize: 20,
+                  fontWeight: '400'
+                }}
+              >
                 {modalData.location}
               </Text>
 
               {/* STATION PROPERTY */}
               <View style={{ flexDirection: 'row', marginTop: '15%', marginLeft: '5%' }}>
                 <Icon name="flickr-with-circle" size={30} color="grey" />
-                <Text style={{ marginLeft: '8%', marginTop: '1%' }}>T2-EF</Text>
+                <Text style={{ color: 'black', marginLeft: '8%', marginTop: '1%' }}>T2-EF</Text>
               </View>
               <View style={{ flexDirection: 'row', marginTop: '8%', marginLeft: '5%' }}>
                 <Icon name="credit" size={30} color="grey" />
-                <Text style={{ marginLeft: '8%', marginTop: '1%' }}>0.90€/15min</Text>
+                <Text style={{ color: 'black', marginLeft: '8%', marginTop: '1%' }}>
+                  0.90€/15min
+                </Text>
               </View>
               <View style={{ flexDirection: 'row', marginTop: '8%', marginLeft: '5%' }}>
                 <Icon name="battery" size={30} color="grey" />
-                <Text style={{ marginLeft: '8%', marginTop: '1%' }}>7kWh</Text>
+                <Text style={{ color: 'black', marginLeft: '8%', marginTop: '1%' }}>7kWh</Text>
               </View>
               <View style={{ flexDirection: 'row', marginTop: '8%', marginLeft: '5%' }}>
                 <Icon name="time-slot" size={30} color="grey" />
-                <Text style={{ marginLeft: '8%', marginTop: '1%' }}>7/7-24/24</Text>
+                <Text style={{ color: 'black', marginLeft: '8%', marginTop: '1%' }}>7/7-24/24</Text>
               </View>
               <View style={{ flexDirection: 'row', marginTop: '8%', marginLeft: '5%' }}>
                 <Icon name="star" size={30} color="grey" />
-                <Text style={{ marginLeft: '8%', marginTop: '1%' }}>4/5</Text>
+                <Text style={{ color: 'black', marginLeft: '8%', marginTop: '1%' }}>4/5</Text>
               </View>
             </View>
             <View>

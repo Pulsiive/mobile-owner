@@ -161,8 +161,6 @@ const BottomTab = () => {
 
 const RootNavigator = () => (
   <Stack.Navigator initialRouteName="App" screenOptions={{ headerShown: false }}>
-    {/* Login stack ? */}
-
     <Stack.Screen name="LoginScreen" component={LoginStack} />
     <Stack.Screen name="Tab" component={BottomTab} />
   </Stack.Navigator>
