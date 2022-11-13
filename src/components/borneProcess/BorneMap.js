@@ -5,17 +5,23 @@ import {
   Alert,
   Modal,
   Pressable,
-  Button,
   SafeAreaView,
   ScrollView,
   StyleSheet,
   PermissionsAndroid
 } from 'react-native';
+import Button from 'react-native-button';
+import Slider from '@react-native-community/slider';
+import RadioGroup from 'react-native-radio-buttons-group';
 
 import MapboxGL from '@rnmapbox/maps';
 import GetLocation from 'react-native-get-location';
 
 import Icon from 'react-native-vector-icons/Entypo';
+
+import api from '../../globals/query/API';
+import serviceAccessToken from '../../globals/query/AccessToken';
+var axios = require('axios');
 
 MapboxGL.setAccessToken(
   'pk.eyJ1Ijoic2h5bGsiLCJhIjoiY2w0cmhncHdwMDZydTNjcDhkbTVmZm8xZCJ9.uxYLeAuZdY5VMx4EUBaw_A'
@@ -64,6 +70,271 @@ const BorneMap = () => {
   const [modalData, setModalData] = useState({});
 
   const [nightMode, setNightMode] = useState(false);
+  // Filter DrawerOpener
+  const [filterType, setFilterType] = useState(false);
+  const [filterPrice, setFilterPrice] = useState(false);
+  const [filterRange, setFilterRange] = useState(false);
+  // Filter Input Data
+  const [filterInputType, setFilterInputType] = useState([]);
+  const [filterInputMinPrice, setFilterInputMinPrice] = useState(0);
+  const [filterInputMaxPrice, setFilterInputMaxPrice] = useState(500);
+  const [filterInputRange, setFilterInputRange] = useState(5000);
+  const [filterInputPublic, setFilterInputPublic] = useState(0);
+  const [filterPublicName, setFilterPublicName] = useState('Public');
+
+  const [filterSelect, setFilterSelect] = useState(0);
+  const radioButtonsData = [
+    {
+      id: '1', // acts as primary key, should be unique and non-empty string
+      label: '     TYPE1  ',
+      value: 'option1'
+    },
+    {
+      id: '2',
+      label: '     TYPE2  ',
+      value: 'option2'
+    },
+    {
+      id: '3',
+      label: '     TYPE3  ',
+      value: 'option2'
+    },
+    {
+      id: '4',
+      label: '    CCS       ',
+      value: 'option2'
+    },
+    {
+      id: '5',
+      label: 'CHADEMO',
+      value: 'option2'
+    },
+    {
+      id: '6',
+      label: '  GREENUP',
+      value: 'option2'
+    },
+    {
+      id: '7',
+      label: '      EF         ',
+      value: 'option2'
+    },
+    {
+      id: '8',
+      label: '     ALL         ',
+      value: 'option2'
+    }
+  ];
+
+  const submit = async () => {
+    try {
+      let data = JSON.stringify({
+        params: {
+          minPrice: filterInputMinPrice,
+          maxPrice: filterInputMaxPrice,
+          plugTypes: [1],
+          range: filterInputRange,
+          type: 0,
+          userLat: userPosition[0],
+          userLong: userPosition[1]
+        }
+      });
+      console.log(data);
+      var config = {
+        method: 'post',
+        url: 'http://10.0.2.2:3000/api/v1/stations',
+        headers: {
+          Authorization:
+            'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXlsb2FkIjp7ImlkIjoiNjlkMjk4NTUtYzVmMS00YzQyLTk0ZjktMTQ2YTE3OWQ3MWI4IiwiZmlyc3ROYW1lIjoiSm9lIiwibGFzdE5hbWUiOiJEb2UiLCJlbWFpbCI6Im93bmVyQG1haWwuY29tIiwicGFzc3dvcmQiOiIkMmEkMTAkYWY3MFFiTGJMUGc2bDRueW9IUGhXLjgwdVB1dlQ3UkcxVzN4ZHFid3A0NmxoYWV1T1k5QzYiLCJkYXRlT2ZCaXJ0aCI6IjIwMDEtMDMtMDJUMDA6MDA6MDAuMDAzWiIsImVtYWlsVmVyaWZpZWRBdCI6bnVsbCwiYmFsYW5jZSI6MH0sImlhdCI6MTY2ODI0Mjk5NX0.Oi6iY_I_3PHVOBIohKRruoztcos4gvqf0ke4YTX6z8Y',
+          'Content-Type': 'application/json'
+        },
+        data: data
+      };
+
+      const res = await axios(config);
+      console.log(JSON.stringify(res.data, null, '\t'));
+      var stationsParsed = [];
+      for (var index = 0; index < res.data.stations.length; index++) {
+        stationsParsed.push({
+          name: 'Station ' + index,
+          Type: res.data.stations[index].properties.plugTypes[0],
+          Pricing: res.data.stations[index].properties.price,
+          Voltage: res.data.stations[index].properties.maxPower,
+          rating: res.data.stations[index].rate,
+          location: [
+            res.data.stations[index].coordinates.long,
+            res.data.stations[index].coordinates.lat
+          ]
+        });
+      }
+      console.log(JSON.stringify(stationsParsed, null, '\t'));
+      setUserStation(stationsParsed);
+      if (res.status == 200) {
+        console.log('OK');
+      } else {
+        throw res;
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  const FiltersComponent = () => {
+    const clear = () => {
+      setFilterSelect(0);
+      setFilterInputType([]);
+      setFilterInputPrice([0, 500]);
+      setFilterInputRange(500);
+      setFilterInputPublic('Public');
+    };
+    const updatePublicFilterName = () => {
+      if (filterInputPublic == 0) setFilterPublicName('Public ');
+      else if (filterInputPublic == 1) setFilterPublicName('Private');
+      else setFilterPublicName('  Both  ');
+    };
+
+    const updatePublicFilter = () => {
+      if (filterInputPublic >= 2) {
+        setFilterInputPublic(0);
+        updatePublicFilterName();
+        return;
+      }
+      setFilterInputPublic(filterInputPublic + 1);
+      updatePublicFilterName();
+    };
+    return (
+      <View
+        style={{
+          flexDirection: 'row',
+          width: '79%',
+          marginLeft: '10%',
+          justifyContent: 'space-around'
+        }}
+      >
+        <Button style={styles.filter} onPress={() => setFilterSelect(1)}>
+          Type
+        </Button>
+        <Button style={styles.filter} onPress={() => setFilterSelect(2)}>
+          Price
+        </Button>
+        <Button style={styles.filter} onPress={() => setFilterSelect(3)}>
+          Range
+        </Button>
+        <Button style={styles.filter} onPress={() => updatePublicFilter()}>
+          {filterPublicName}
+        </Button>
+      </View>
+    );
+  };
+
+  const TypeInput = () => {
+    const [radioButtons, setRadioButtons] = useState(radioButtonsData);
+
+    function onPressRadioButton(radioButtonsArray) {
+      setRadioButtons(radioButtonsArray);
+      console.log(radioButtonsArray);
+    }
+
+    return (
+      <View>
+        <RadioGroup radioButtons={radioButtons} onPress={onPressRadioButton} />
+      </View>
+    );
+  };
+
+  const PriceInputSlider = () => {
+    return (
+      <View>
+        <View style={{ flexDirection: 'row' }}>
+          <Slider
+            style={{ marginLeft: '0%', width: '75%', height: 40 }}
+            value={filterInputMinPrice}
+            onValueChange={(value) => setFilterInputMinPrice(value)}
+            minimumValue={0}
+            maximumValue={filterInputMaxPrice}
+            step={1}
+            minimumTrackTintColor="green"
+            maximumTrackTintColor="black"
+          />
+          <Text style={{ marginTop: 10 }}>min :{filterInputMinPrice}eur</Text>
+        </View>
+        <View style={{ flexDirection: 'row' }}>
+          <Slider
+            style={{ marginLeft: '0%', width: '75%', height: 40 }}
+            value={filterInputMaxPrice}
+            onValueChange={(value) => setFilterInputMaxPrice(value)}
+            minimumValue={filterInputMinPrice}
+            maximumValue={50}
+            step={1}
+            minimumTrackTintColor="green"
+            maximumTrackTintColor="black"
+          />
+          <Text style={{ marginTop: 10 }}>min :{filterInputMaxPrice}eur</Text>
+        </View>
+      </View>
+    );
+  };
+  const RangeInputSlider = () => {
+    return (
+      <View style={{ flexDirection: 'row' }}>
+        <Slider
+          style={{ marginLeft: '0%', width: '80%', height: 40 }}
+          value={filterInputRange}
+          onValueChange={(value) => setFilterInputRange(value)}
+          minimumValue={0}
+          maximumValue={5000}
+          step={1000}
+          minimumTrackTintColor="green"
+          maximumTrackTintColor="black"
+        />
+        <Text style={{ marginTop: 10 }}>{filterInputRange}m</Text>
+      </View>
+    );
+  };
+
+  const FilterInputContainer = () => {
+    return (
+      <View
+        style={
+          filterSelect == 1
+            ? {
+                height: '40%',
+                width: '90%',
+                position: 'absolute',
+                borderColor: 'green',
+                borderWidth: 1,
+                borderRadius: 5,
+                top: '3%',
+                left: '5%',
+                backgroundColor: 'white',
+                flexDirection: 'row'
+              }
+            : {
+                height: '10%',
+                width: '90%',
+                position: 'absolute',
+                borderColor: 'green',
+                borderWidth: 1,
+                borderRadius: 5,
+                top: '3%',
+                left: '5%',
+                backgroundColor: 'white',
+                flexDirection: 'row'
+              }
+        }
+      >
+        {filterSelect == 1 ? <TypeInput /> : <></>}
+        {filterSelect == 2 ? <PriceInputSlider /> : <></>}
+        {filterSelect == 3 ? <RangeInputSlider /> : <></>}
+        <Pressable
+          style={{ position: 'absolute', left: '90%', top: '10%' }}
+          onPress={() => setFilterSelect(0)}
+        >
+          <Text style={{ color: 'red' }}>X</Text>
+        </Pressable>
+      </View>
+    );
+  };
 
   const setMode = () => {
     setNightMode(!nightMode);
@@ -92,7 +363,7 @@ const BorneMap = () => {
           console.log(granted);
           GetLocation.getCurrentPosition({
             enableHighAccuracy: true,
-            timeout: 50000
+            timeout: 15000
           })
             .then((location) => {
               setUserPosition([location.latitude, location.longitude]);
@@ -108,10 +379,50 @@ const BorneMap = () => {
     } catch (e) {
       console.log(e);
     }
-  });
+  }, []);
 
   return (
     <View style={styles.page}>
+      <View>
+        <Pressable
+          style={
+            nightMode
+              ? {
+                  backgroundColor: 'white',
+                  width: '11%',
+                  borderRadius: 5,
+                  borderColor: 'black',
+                  position: 'absolute',
+                  left: '1%',
+                  bottom: '1%'
+                }
+              : {
+                  backgroundColor: 'black',
+                  width: '11%',
+                  borderRadius: 5,
+                  borderColor: 'white',
+                  position: 'absolute',
+                  left: '1%',
+                  bottom: '1%'
+                }
+          }
+          onPress={setMode}
+        >
+          <Icon name="moon" size={40} color={nightMode ? 'black' : 'white'} />
+        </Pressable>
+        <FiltersComponent />
+        <Pressable
+          style={{
+            width: '89%',
+            marginLeft: '15%',
+            backgroundColor: 'lightblue',
+            alignItems: 'center'
+          }}
+          onPress={submit}
+        >
+          <Text style={{ color: 'black' }}>Search</Text>
+        </Pressable>
+      </View>
       <View style={styles.container}>
         <MapboxGL.MapView
           style={styles.map}
@@ -123,7 +434,7 @@ const BorneMap = () => {
         >
           <MapboxGL.Camera
             zoomLevel={13}
-            // centerCoordinate={[userPosition[1], userPosition[0]]}
+            centerCoordinate={[userPosition[1], userPosition[0]]}
             animationMode={'flyTo'}
             animationDuration={3}
           ></MapboxGL.Camera>
@@ -135,37 +446,11 @@ const BorneMap = () => {
               onSelected={setModal}
             >
               <View>
-                <Icon name="location-pin" size={24} color="green" />
+                <Icon name="location-pin" size={50} color="green" />
               </View>
             </MapboxGL.PointAnnotation>
           ))}
         </MapboxGL.MapView>
-        <Pressable
-          style={
-            nightMode
-              ? {
-                  position: 'absolute',
-                  top: 5,
-                  left: 5,
-                  backgroundColor: 'grey',
-                  width: '11%',
-                  borderRadius: 15,
-                  borderColor: 'black'
-                }
-              : {
-                  position: 'absolute',
-                  top: 5,
-                  left: 5,
-                  backgroundColor: 'black',
-                  width: '11%',
-                  borderRadius: 15,
-                  borderColor: 'black'
-                }
-          }
-          onPress={setMode}
-        >
-          <Icon name="moon" size={40} color={nightMode ? 'black' : 'white'} />
-        </Pressable>
         <Modal
           animationType={'fade'}
           transparent={true}
@@ -181,9 +466,7 @@ const BorneMap = () => {
                 style={{ flexDirection: 'row', justifyContent: 'space-around', marginTop: '5%' }}
               >
                 <Icon name="lock" size={30} color="green" />
-                <Text style={{ color: 'black', fontSize: 20, fontWeight: '800' }}>
-                  {modalData.name}
-                </Text>
+                <Text style={{ fontSize: 20, fontWeight: '800' }}>{modalData.name}</Text>
                 <Pressable
                   onPress={() => {
                     setModalVisible(false);
@@ -192,40 +475,30 @@ const BorneMap = () => {
                   <Text style={{ color: 'red', fontSize: 20 }}>X</Text>
                 </Pressable>
               </View>
-              <Text
-                style={{
-                  color: 'black',
-                  marginTop: '10%',
-                  marginLeft: '5%',
-                  fontSize: 20,
-                  fontWeight: '400'
-                }}
-              >
+              <Text style={{ marginTop: '10%', marginLeft: '5%', fontSize: 20, fontWeight: '400' }}>
                 {modalData.location}
               </Text>
 
               {/* STATION PROPERTY */}
               <View style={{ flexDirection: 'row', marginTop: '15%', marginLeft: '5%' }}>
                 <Icon name="flickr-with-circle" size={30} color="grey" />
-                <Text style={{ color: 'black', marginLeft: '8%', marginTop: '1%' }}>T2-EF</Text>
+                <Text style={{ marginLeft: '8%', marginTop: '1%' }}>T2-EF</Text>
               </View>
               <View style={{ flexDirection: 'row', marginTop: '8%', marginLeft: '5%' }}>
                 <Icon name="credit" size={30} color="grey" />
-                <Text style={{ color: 'black', marginLeft: '8%', marginTop: '1%' }}>
-                  0.90€/15min
-                </Text>
+                <Text style={{ marginLeft: '8%', marginTop: '1%' }}>0.90€/15min</Text>
               </View>
               <View style={{ flexDirection: 'row', marginTop: '8%', marginLeft: '5%' }}>
                 <Icon name="battery" size={30} color="grey" />
-                <Text style={{ color: 'black', marginLeft: '8%', marginTop: '1%' }}>7kWh</Text>
+                <Text style={{ marginLeft: '8%', marginTop: '1%' }}>7kWh</Text>
               </View>
               <View style={{ flexDirection: 'row', marginTop: '8%', marginLeft: '5%' }}>
                 <Icon name="time-slot" size={30} color="grey" />
-                <Text style={{ color: 'black', marginLeft: '8%', marginTop: '1%' }}>7/7-24/24</Text>
+                <Text style={{ marginLeft: '8%', marginTop: '1%' }}>7/7-24/24</Text>
               </View>
               <View style={{ flexDirection: 'row', marginTop: '8%', marginLeft: '5%' }}>
                 <Icon name="star" size={30} color="grey" />
-                <Text style={{ color: 'black', marginLeft: '8%', marginTop: '1%' }}>4/5</Text>
+                <Text style={{ marginLeft: '8%', marginTop: '1%' }}>4/5</Text>
               </View>
             </View>
             <View>
@@ -245,6 +518,7 @@ const BorneMap = () => {
           </View>
         </Modal>
       </View>
+      {filterSelect != 0 ? <FilterInputContainer /> : <></>}
     </View>
   );
 };
@@ -254,9 +528,8 @@ const styles = StyleSheet.create({
     flex: 1
   },
   container: {
-    height: '100%',
-    width: '100%',
-    flex: 1
+    height: '95%',
+    width: '100%'
   },
   markerContainer: {
     alignItems: 'center',
@@ -318,6 +591,11 @@ const styles = StyleSheet.create({
     color: 'white',
     fontWeight: '500',
     fontSize: 17
+  },
+  filter: {
+    width: '233%',
+    backgroundColor: 'green',
+    color: 'white'
   }
 });
 
