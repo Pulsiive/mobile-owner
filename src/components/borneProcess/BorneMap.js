@@ -75,12 +75,12 @@ const BorneMap = () => {
   const [filterPrice, setFilterPrice] = useState(false);
   const [filterRange, setFilterRange] = useState(false);
   // Filter Input Data
-  const [filterInputType, setFilterInputType] = useState([]);
+  const [filterInputType, setFilterInputType] = useState(0);
   const [filterInputMinPrice, setFilterInputMinPrice] = useState(0);
   const [filterInputMaxPrice, setFilterInputMaxPrice] = useState(500);
   const [filterInputRange, setFilterInputRange] = useState(5000);
   const [filterInputPublic, setFilterInputPublic] = useState(0);
-  const [filterPublicName, setFilterPublicName] = useState('Public');
+  const [filterPublicName, setFilterPublicName] = useState('Public ');
 
   const [filterSelect, setFilterSelect] = useState(0);
   const radioButtonsData = [
@@ -125,16 +125,29 @@ const BorneMap = () => {
       value: 'option2'
     }
   ];
+  const clear = () => {
+    setFilterSelect(0);
+    setFilterInputType(0);
+    setFilterInputMinPrice(0);
+    setFilterInputMaxPrice(500);
+    setFilterInputRange(1000);
+    setFilterInputPublic('Public ');
+    console.log('cleared');
+  };
 
   const submit = async () => {
     try {
+      let publicType = filterPublicName;
+      if (filterPublicName == 'Public ') publicType = 0;
+      else if (filterPublicName == 'Private') publicType = 1;
+      else publicType = 2;
       let data = JSON.stringify({
         params: {
           minPrice: filterInputMinPrice,
           maxPrice: filterInputMaxPrice,
-          plugTypes: [1],
+          plugTypes: [filterInputType],
           range: filterInputRange,
-          type: 0,
+          type: publicType == 2 ? '' : publicType,
           userLat: userPosition[0],
           userLong: userPosition[1]
         }
@@ -142,10 +155,10 @@ const BorneMap = () => {
       console.log(data);
       var config = {
         method: 'post',
-        url: 'http://10.0.2.2:3000/api/v1/stations',
+        url: 'http://127.0.0.1:3000/api/v1/stations',
         headers: {
           Authorization:
-            'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXlsb2FkIjp7ImlkIjoiNjlkMjk4NTUtYzVmMS00YzQyLTk0ZjktMTQ2YTE3OWQ3MWI4IiwiZmlyc3ROYW1lIjoiSm9lIiwibGFzdE5hbWUiOiJEb2UiLCJlbWFpbCI6Im93bmVyQG1haWwuY29tIiwicGFzc3dvcmQiOiIkMmEkMTAkYWY3MFFiTGJMUGc2bDRueW9IUGhXLjgwdVB1dlQ3UkcxVzN4ZHFid3A0NmxoYWV1T1k5QzYiLCJkYXRlT2ZCaXJ0aCI6IjIwMDEtMDMtMDJUMDA6MDA6MDAuMDAzWiIsImVtYWlsVmVyaWZpZWRBdCI6bnVsbCwiYmFsYW5jZSI6MH0sImlhdCI6MTY2ODI0Mjk5NX0.Oi6iY_I_3PHVOBIohKRruoztcos4gvqf0ke4YTX6z8Y',
+            'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXlsb2FkIjp7ImlkIjoiMzgxMWUyMzYtMjZiMS00OGExLWEyOWItOGM2ZmEwMTQxYjkyIiwiZmlyc3ROYW1lIjoiSm9lIiwibGFzdE5hbWUiOiJEb2UiLCJlbWFpbCI6Im93bmVyQG1haWwuY29tIiwicGFzc3dvcmQiOiIkMmEkMTAkQnBHQ1JRVGF4RmxTSlZnWUcyS1ZUZXhsTk9jV3Izd1lCYy52MTBML1RWTHBVaTdQVVU5T1ciLCJkYXRlT2ZCaXJ0aCI6IjIwMDEtMDMtMDJUMDA6MDA6MDAuMDAzWiIsImVtYWlsVmVyaWZpZWRBdCI6bnVsbCwiYmFsYW5jZSI6MH0sImlhdCI6MTY2ODM0NTczNH0.fM2RVjD93y_lC47uBd1OQo7RrGhhBNcjMs02zkBn2hM',
           'Content-Type': 'application/json'
         },
         data: data
@@ -154,7 +167,10 @@ const BorneMap = () => {
       const res = await axios(config);
       console.log(JSON.stringify(res.data, null, '\t'));
       var stationsParsed = [];
+      console.log(res.data.stations.length);
       for (var index = 0; index < res.data.stations.length; index++) {
+        console.log('pushing data');
+        if (publicType == 0 && !res.data.stations[index].properties.isPublic) continue;
         stationsParsed.push({
           name: 'Station ' + index,
           Type: res.data.stations[index].properties.plugTypes[0],
@@ -169,6 +185,8 @@ const BorneMap = () => {
       }
       console.log(JSON.stringify(stationsParsed, null, '\t'));
       setUserStation(stationsParsed);
+      console.log('User station:');
+      console.log(userStation);
       if (res.status == 200) {
         console.log('OK');
       } else {
@@ -180,13 +198,6 @@ const BorneMap = () => {
   };
 
   const FiltersComponent = () => {
-    const clear = () => {
-      setFilterSelect(0);
-      setFilterInputType([]);
-      setFilterInputPrice([0, 500]);
-      setFilterInputRange(500);
-      setFilterInputPublic('Public');
-    };
     const updatePublicFilterName = () => {
       if (filterInputPublic == 0) setFilterPublicName('Public ');
       else if (filterInputPublic == 1) setFilterPublicName('Private');
@@ -232,7 +243,13 @@ const BorneMap = () => {
 
     function onPressRadioButton(radioButtonsArray) {
       setRadioButtons(radioButtonsArray);
-      console.log(radioButtonsArray);
+      for (let i = 0; i < radioButtonsArray.length; i++) {
+        console.log(radioButtonsArray[i]);
+        if (radioButtonsArray[i].selected) {
+          setFilterInputType(i);
+          break;
+        }
+      }
     }
 
     return (
@@ -264,7 +281,7 @@ const BorneMap = () => {
             value={filterInputMaxPrice}
             onValueChange={(value) => setFilterInputMaxPrice(value)}
             minimumValue={filterInputMinPrice}
-            maximumValue={50}
+            maximumValue={500}
             step={1}
             minimumTrackTintColor="green"
             maximumTrackTintColor="black"
@@ -411,17 +428,29 @@ const BorneMap = () => {
           <Icon name="moon" size={40} color={nightMode ? 'black' : 'white'} />
         </Pressable>
         <FiltersComponent />
-        <Pressable
-          style={{
-            width: '89%',
-            marginLeft: '15%',
-            backgroundColor: 'lightblue',
-            alignItems: 'center'
-          }}
-          onPress={submit}
-        >
-          <Text style={{ color: 'black' }}>Search</Text>
-        </Pressable>
+        <View style={{ flexDirection: 'row' }}>
+          <Pressable
+            style={{
+              width: '25%',
+              marginLeft: '14.5%',
+              backgroundColor: 'grey',
+              alignItems: 'center'
+            }}
+            onPress={clear}
+          >
+            <Text style={{ color: 'black' }}>Clear</Text>
+          </Pressable>
+          <Pressable
+            style={{
+              width: '60%',
+              backgroundColor: 'lightblue',
+              alignItems: 'center'
+            }}
+            onPress={submit}
+          >
+            <Text style={{ color: 'black' }}>Search</Text>
+          </Pressable>
+        </View>
       </View>
       <View style={styles.container}>
         <MapboxGL.MapView

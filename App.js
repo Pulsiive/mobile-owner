@@ -33,6 +33,9 @@ import MyStations from './src/components/settings/MyStationsList.js';
 import Reservations from './src/components/settings/Reservations.js';
 import PastReservations from './src/components/settings/PastReservations.js';
 
+import Planning from './src/components/homePage/Planning.js';
+import AddSlot from './src/components/homePage/AddStationSlot.js';
+
 const Stack = createNativeStackNavigator();
 
 const Tab = createBottomTabNavigator();
@@ -81,6 +84,8 @@ const AppStack = () => {
   return (
     <Stack.Navigator initialRouteName="HomePage" screenOptions={{ headerShown: false }}>
       <Stack.Screen name="HomePage" component={HomePage} />
+      <Stack.Screen name="Planning" component={Planning} />
+      <Stack.Screen name="AddSlot" component={AddSlot} />
     </Stack.Navigator>
   );
 };
