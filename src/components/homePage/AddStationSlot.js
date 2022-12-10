@@ -42,14 +42,14 @@ function AddSlot({ navigation }) {
 
   return (
     <View style={{ flex: 1, backgroundColor: 'black' }}>
-      <View>
+      <View style={{ backgroundColor: '#308C27', height: '10%' }}>
         <Text
           style={{
             color: 'white',
             fontWeight: '900',
-            fontSize: 20,
-            marginLeft: '9%',
-            marginTop: '9%'
+            fontSize: 22,
+            marginLeft: '5%',
+            marginTop: '5%'
           }}
         >
           Ajoutez votre créneau de réservation.
@@ -66,7 +66,7 @@ function AddSlot({ navigation }) {
             marginTop: '5%'
           }}
         >
-          Selectionnez votre borne privée.
+          1. Selectionnez votre borne privée.
         </Text>
         <View style={{ width: '55%', marginLeft: '22%', marginTop: '5%' }}>
           <SelectDropdown
@@ -94,7 +94,7 @@ function AddSlot({ navigation }) {
             marginTop: '9%'
           }}
         >
-          Selectionnez une date et une heure de créneau.
+          2. Selectionnez une date et une heure de créneau.
         </Text>
         <View style={{ width: '50%', marginLeft: '22%', marginTop: '5%' }}>
           <Button title="Choisissez une date" onPress={() => setOpen(true)} />
@@ -153,7 +153,7 @@ function AddSlot({ navigation }) {
       >
         <View
           style={{
-            backgroundColor: '#7FCB2B',
+            backgroundColor: '#308C27',
             height: '21%',
             width: '50%',
             alignItems: 'center',

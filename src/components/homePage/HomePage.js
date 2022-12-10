@@ -8,6 +8,14 @@ import api from '../../globals/query/API';
 import MapboxGL from '@rnmapbox/maps';
 import GetLocation from 'react-native-get-location';
 
+import PlanningPNG from './Asset/Planning.png';
+import Profil from './Asset/Profil.png';
+import StationList from './Asset/StationList.png';
+import AddStation from './Asset/AddStation.png';
+import Wallet from './Asset/Wallet.png';
+import Messages from './Asset/Messages.png';
+import PastReservation from './Asset/PastReservation.png';
+
 MapboxGL.setAccessToken(
   'pk.eyJ1Ijoic2h5bGsiLCJhIjoiY2w0cmhncHdwMDZydTNjcDhkbTVmZm8xZCJ9.uxYLeAuZdY5VMx4EUBaw_A'
 );
@@ -47,7 +55,7 @@ const ProfileHeaderComponent = () => {
           <Text style={{ color: 'white', fontSize: 16, fontWeight: '700' }}>120$</Text>
         </View>
         <View style={{ flexDirection: 'row', position: 'absolute', right: '5%', top: '30%' }}>
-          <Icon name="star" size={30} color="white" />
+          <Icon name="star" size={30} color="yellow" />
           <Text style={{ color: 'white', fontSize: 16, fontWeight: '700' }}>4.32</Text>
         </View>
       </View>
@@ -76,9 +84,20 @@ const PlanningSectionComponent = ({ navigation }) => {
             height: '70%',
             marginLeft: '5%',
             marginTop: '2%',
+            borderRadius: 15,
             backgroundColor: 'green'
           }}
-        ></View>
+        >
+          <Image
+            source={PlanningPNG}
+            style={{
+              borderRadius: 15,
+              height: '100%',
+              width: '100%',
+              resizeMode: 'cover'
+            }}
+          />
+        </View>
       </Pressable>
     </View>
   );
@@ -140,41 +159,50 @@ const MapSectionComponent = () => {
   );
 };
 
-const OtherSectionComponent = () => {
+const OtherSectionComponent = ({ navigation }) => {
   return (
     <View style={styles.otherSection}>
       <View style={{ flexDirection: 'row', height: '45%', Width: '100%', marginTop: '2.5%' }}>
-        <View
-          style={{ height: '100%', width: '25%', marginLeft: '6.5%', backgroundColor: 'green' }}
-        >
-          <Text>1</Text>
+        <View style={styles.AccesRapideOtherSection}>
+          <Pressable style={{ borderRadius: 10 }} onPress={() => navigation.navigate('Profile')}>
+            <Image source={Profil} style={styles.AccesRapideImage} />
+          </Pressable>
         </View>
-        <View
-          style={{ height: '100%', width: '25%', marginLeft: '6.5%', backgroundColor: 'green' }}
-        >
-          <Text>2</Text>
+        <View style={styles.AccesRapideOtherSection}>
+          <Pressable
+            style={{ borderRadius: 10 }}
+            onPress={() => navigation.navigate('StationList')}
+          >
+            <Image source={StationList} style={styles.AccesRapideImage} />
+          </Pressable>
         </View>
-        <View
-          style={{ height: '100%', width: '25%', marginLeft: '6.5%', backgroundColor: 'green' }}
-        >
-          <Text>3</Text>
+        <View style={styles.AccesRapideOtherSection}>
+          <Pressable
+            style={{ borderRadius: 10 }}
+            onPress={() => navigation.navigate('RegisterStation')}
+          >
+            <Image source={AddStation} style={styles.AccesRapideImage} />
+          </Pressable>
         </View>
       </View>
       <View style={{ flexDirection: 'row', height: '45%', Width: '100%', marginTop: '2.5%' }}>
-        <View
-          style={{ height: '100%', width: '25%', marginLeft: '6.5%', backgroundColor: 'green' }}
-        >
-          <Text>4</Text>
+        <View style={styles.AccesRapideOtherSection}>
+          <Pressable style={{ borderRadius: 10 }} onPress={() => navigation.navigate('Wallet')}>
+            <Image source={Wallet} style={styles.AccesRapideImage} />
+          </Pressable>
         </View>
-        <View
-          style={{ height: '100%', width: '25%', marginLeft: '6.5%', backgroundColor: 'green' }}
-        >
-          <Text>5</Text>
+        <View style={styles.AccesRapideOtherSection}>
+          <Pressable style={{ borderRadius: 10 }} onPress={() => navigation.navigate('Messages')}>
+            <Image source={Messages} style={styles.AccesRapideImage} />
+          </Pressable>
         </View>
-        <View
-          style={{ height: '100%', width: '25%', marginLeft: '6.5%', backgroundColor: 'green' }}
-        >
-          <Text>6</Text>
+        <View style={styles.AccesRapideOtherSection}>
+          <Pressable
+            style={{ borderRadius: 10 }}
+            onPress={() => navigation.navigate('PastReservations')}
+          >
+            <Image source={PastReservation} style={styles.AccesRapideImage} />
+          </Pressable>
         </View>
       </View>
     </View>
@@ -183,11 +211,11 @@ const OtherSectionComponent = () => {
 
 const HomePage = ({ navigation }) => {
   return (
-    <View style={{ height: '100%', width: '100%', backgroundColor: 'white' }}>
+    <View style={{ height: '100%', width: '100%', backgroundColor: 'black' }}>
       <ProfileHeaderComponent />
       <PlanningSectionComponent navigation={navigation} />
       <MapSectionComponent />
-      <OtherSectionComponent />
+      <OtherSectionComponent navigation={navigation} />
     </View>
   );
 };
@@ -198,7 +226,7 @@ const styles = StyleSheet.create({
     width: '90%',
     marginTop: '5%',
     marginLeft: '5%',
-    backgroundColor: '#0D0D0D',
+    backgroundColor: '#1F1F1F',
     borderRadius: 10
   },
   userProfile: {
@@ -210,21 +238,38 @@ const styles = StyleSheet.create({
     height: '20%',
     width: '100%',
     marginTop: '5%',
-    backgroundColor: '#0D0D0D'
+    backgroundColor: '#1F1F1F',
+    borderRadius: 10
   },
 
   mapSection: {
     height: '30%',
     width: '100%',
     marginTop: '2%',
-    backgroundColor: '#0D0D0D'
+    backgroundColor: '#1F1F1F',
+    borderRadius: 10
   },
 
   otherSection: {
     height: '27%',
     width: '100%',
     marginTop: '2%',
-    backgroundColor: '#0D0D0D'
+    backgroundColor: '#1F1F1F',
+    borderRadius: 10
+  },
+
+  AccesRapideOtherSection: {
+    height: '100%',
+    width: '25%',
+    marginLeft: '6.5%',
+    backgroundColor: 'green',
+    borderRadius: 10
+  },
+  AccesRapideImage: {
+    borderRadius: 15,
+    height: '100%',
+    width: '100%',
+    resizeMode: 'cover'
   }
 });
 
