@@ -1,4 +1,3 @@
-import { isSameDay } from 'date-fns';
 import React, { useEffect, useState } from 'react';
 import { View, Image, StyleSheet, TouchableHighlight, Text, SafeAreaView } from 'react-native';
 
@@ -12,49 +11,7 @@ import api from '../../globals/query/API';
 
 function Planning({ navigation }) {
   const [date, setDate] = useState(new Date());
-  //   const [slot, setSlot] = useState([]);
 
-  //   useEffect(() => {
-  //     // async function fetchData() {
-  //     //   try {
-  //     //     console.log('Fetching owner private stations ID');
-  //     //     const res = await api.send('GET', '/api/v1/profile/stations/', (auth = true));
-  //     //     if (res.status == 200) {
-  //     //     } else {
-  //     //       throw res;
-  //     //     }
-  //     //   } catch (e) {
-  //     //     const code = e.status;
-  //     //     alert('Error');
-  //     //   }
-  //     // }
-  //     async function fetchSlot() {
-  //       try {
-  //         console.log('Fetching owner slot reservation to display');
-  //         const slotParsed = [];
-  //         const res = await api.send('GET', '/api/v1/slot', (auth = true));
-  //         if (res.status == 200) {
-  //           for (var index = 0; index < res.data.length; index++) {
-  //             slotParsed.push({
-  //               id: res.data[index].id,
-  //               stationId: res.data[index].stationPropertiesId,
-  //               day: res.data[index].day,
-  //               opensAt: res.data[index].opensAt.split('T')[1].split('.')[0],
-  //               closeAt: res.data[index].closesAt.split('T')[1].split('.')[0]
-  //             });
-  //           }
-  //           setSlot(slotParsed);
-  //         } else {
-  //           throw res;
-  //         }
-  //       } catch (e) {
-  //         const code = e.status;
-  //         alert('Error');
-  //       }
-  //     }
-  //     // fetchData();
-  //     fetchSlot();
-  //   }, []);
   return (
     <View style={{ flex: 1, backgroundColor: 'black' }}>
       <View style={styles.group}>
@@ -89,14 +46,6 @@ function Planning({ navigation }) {
         </TouchableHighlight>
       </View>
       <DateSlider date={date} onChange={(newDate) => setDate(newDate)} />
-      <View>
-        <Text style={{ color: 'white', fontWeight: '700', left: 4 + '%', marginTop: 8 + '%' }}>
-          Vos dernières locations
-        </Text>
-      </View>
-      <View style={styles.safe}>
-        <FetchInfo date={date} />
-      </View>
     </View>
   );
 }

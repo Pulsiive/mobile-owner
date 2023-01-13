@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { View, StyleSheet, Text, TouchableOpacity } from 'react-native';
+import { View, StyleSheet, Text, TouchableHighlight } from 'react-native';
 import { addDays, getDate, startOfWeek, format, isSameDay } from 'date-fns';
-// import { TouchableOpacity } from 'react-native-gesture-handler';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 import { fr } from 'date-fns/locale';
+import MyCalendar from './MyCalendar';
+import FetchInfo from './FetchInfo';
 
 type Props = {
   date: Date;
@@ -10,35 +12,81 @@ type Props = {
 };
 
 const DateSlider: React.FC<Props> = ({ date, onChange }) => {
+  const [date1, setDate] = useState(new Date());
   const [week, setWeek] = useState<WeekDay[]>([]);
+  const [open, setOpen] = useState(false);
   useEffect(() => {
-    const weekDays = getWeekDays(date);
+    var weekDays = getWeekDays(date);
     setWeek(weekDays);
   }, [date]);
+  useEffect(() => {
+    //    console.log(date1);
+    const iso = new Date(date1);
+    var weekDays = getWeekDays(iso);
+    setWeek(weekDays);
+  }, [date1]);
+
   return (
-    <View style={styles.container}>
-      {week.map((weekDay) => {
-        const textStyles = [styles.label];
-        const touchable = [styles.touchable];
-        const sameDay = isSameDay(weekDay.date, date);
-        if (sameDay) {
-          touchable.push(styles.selectedTouchable);
-          textStyles.push(styles.selectedLabel);
-        }
-        return (
-          <View style={styles.weekDayItem} key={weekDay.formatted}>
-            <TouchableOpacity onPress={() => onChange(weekDay.date)} style={touchable}>
-              <Text style={styles.label}>{weekDay.day}</Text>
-            </TouchableOpacity>
-            <Text style={styles.weekDayText}>{weekDay.formatted.slice(0, -1)}</Text>
-          </View>
-        );
-      })}
-    </View>
+    <>
+      <View style={styles.container}>
+        {week.map((weekDay) => {
+          const textStyles = [styles.label];
+          const touchable = [styles.touchable];
+          const sameDay = isSameDay(weekDay.date, date);
+          if (sameDay) {
+            touchable.push(styles.selectedTouchable);
+            textStyles.push(styles.selectedLabel);
+          }
+          return (
+            <View style={styles.weekDayItem} key={weekDay.formatted}>
+              <TouchableOpacity onPress={() => onChange(weekDay.date)} style={touchable}>
+                <Text style={styles.label}>{weekDay.day}</Text>
+              </TouchableOpacity>
+              <Text style={styles.weekDayText}>{weekDay.formatted.slice(0, -1)}</Text>
+            </View>
+          );
+        })}
+      </View>
+      <TouchableHighlight onPress={() => setOpen(!open)}>
+        <View
+          style={{
+            position: 'absolute',
+            width: 50,
+            height: 50,
+            backgroundColor: 'white',
+            top: 32 + '%',
+            left: 5 + '%'
+          }}
+        ></View>
+      </TouchableHighlight>
+      {open && (
+        <View style={{ marginTop: 10 + '%' }}>
+          <MyCalendar
+            date={{ date }}
+            onChange={(date) => setDate(date)}
+            open={(open) => setOpen(open)}
+          />
+        </View>
+      )}
+      <View style={{ top: 7 + '%' }}>
+        <View>
+          <Text style={{ color: 'white', fontWeight: '700', left: 4 + '%', marginTop: 0 + '%' }}>
+            Vos dernières locations
+          </Text>
+        </View>
+        <View style={styles.safe}>
+          <FetchInfo date={date.toISOString().split('T')[0]} />
+        </View>
+      </View>
+    </>
   );
 };
 
 const styles = StyleSheet.create({
+  safe: {
+    left: 3 + '%',
+    marginTop: 10 + '%'
+  },
   container: {
     transform: [{ scale: 0.95 }],
     flexDirection: 'row',

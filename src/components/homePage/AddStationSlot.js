@@ -13,6 +13,7 @@ import api from '../../globals/query/API';
 
 function AddSlot({ navigation }) {
   const [station, setStation] = useState([]);
+  const [selectedStation, setSelectedStation] = useState('');
   const [date, setDate] = useState(new Date());
   const [open, setOpen] = useState(false);
   const [dateArray, setDateArray] = useState('');
@@ -39,6 +40,32 @@ function AddSlot({ navigation }) {
     }
     fetchData();
   }, []);
+
+  function addMinutes(date, minutes) {
+    return new Date(date.getTime() + minutes * 60000);
+  }
+
+  const submit = async () => {
+    try {
+      console.log('Create new reservation slot');
+      let body = {
+        stationId: selectedStation,
+        opensAt: date.toISOString(),
+        closesAt: addMinutes(date, 30).toISOString()
+      };
+      console.log(body);
+      const res = await api.send('post', '/api/v1/slot', body, (auth = true));
+      console.log(res);
+      if (res.status == 200) {
+        console.log('Slot has been created.');
+        navigation.navigate('Planning');
+      } else {
+        throw res;
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
 
   return (
     <View style={{ flex: 1, backgroundColor: 'black' }}>
@@ -73,6 +100,7 @@ function AddSlot({ navigation }) {
             data={station}
             onSelect={(selectedItem, index) => {
               console.log(selectedItem, index);
+              setSelectedStation(selectedItem);
             }}
             buttonTextAfterSelection={(selectedItem, index) => {
               return selectedItem;
@@ -148,7 +176,8 @@ function AddSlot({ navigation }) {
         }}
         onPress={() => {
           console.log('Submit to backend');
-          navigation.navigate('Planning');
+          submit();
+          //          navigation.navigate('Planning');
         }}
       >
         <View
