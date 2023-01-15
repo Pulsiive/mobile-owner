@@ -20,7 +20,7 @@ const DateSlider: React.FC<Props> = ({ date, onChange }) => {
     setWeek(weekDays);
   }, [date]);
   useEffect(() => {
-    //    console.log(date1);
+    console.log(date1);
     const iso = new Date(date1);
     var weekDays = getWeekDays(iso);
     setWeek(weekDays);

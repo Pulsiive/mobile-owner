@@ -30,11 +30,12 @@ const FetchInfo: React.FC<Props> = ({ date }) => {
   const [items, setItems] = useState<{ [key: string]: Item[] }>({ data });
   const [modalVisible, setModalVisible] = useState(false);
   const [reservationDeletionInfo, setReservationDeletionInfo] = useState({});
-
+  console.log(date);
   useEffect(() => {
     function fillAgendaWithReservations(slot) {
-      items.data = {};
+      //   items.data = {};
       console.log('filling agenda');
+      console.log(slot);
       let isAlreadyInAgenda = false;
 
       for (let index = 0; index < slot.length; index++) {
@@ -63,7 +64,7 @@ const FetchInfo: React.FC<Props> = ({ date }) => {
         });
         console.log('pushed one new object');
       }
-      console.log(items.data);
+      console.log('HERE   ', items.data[date]);
     }
 
     async function fetchSlot() {
@@ -85,6 +86,7 @@ const FetchInfo: React.FC<Props> = ({ date }) => {
           }
           console.log('slotParsed: ', slotParsed);
           fillAgendaWithReservations(slotParsed);
+          console.log(items);
         } else {
           throw res;
         }
