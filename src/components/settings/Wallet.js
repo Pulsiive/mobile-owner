@@ -4,7 +4,7 @@ import {
   View,
   Text,
   TouchableWithoutFeedback,
-  Button,
+  Pressable,
   StyleSheet,
   TouchableOpacity
 } from 'react-native';
@@ -35,8 +35,8 @@ const WalletGraph = () => {
         </TouchableWithoutFeedback>
       </View>
       {/* TEMPORARY  */}
-      <View style={{ width: '90%', height: '100%', marginLeft: '5%' }}>
-        <Text style={{ color: 'white', marginTop: '30%', marginLeft: '30%' }}>
+      <View style={{ width: '90%', height: '100%', marginLeft: '0%' }}>
+        <Text style={{ color: 'white', marginTop: '30%', marginLeft: '20%' }}>
           Data not available for now
         </Text>
       </View>
@@ -63,6 +63,14 @@ const Wallet = ({ navigation }) => {
   return (
     <View style={styles.viewTemplate}>
       <WalletHead navigation={navigation} />
+      <View style={{ marginTop: '5%', flexDirection: 'row', height: '5%' }}>
+        <Pressable style={styles.button} onPress={() => navigation.navigate('Deposit')}>
+          <Text style={styles.buttonContent}>Deposit</Text>
+        </Pressable>
+        <Pressable style={styles.button} onPress={() => navigation.navigate('Withdraw')}>
+          <Text style={styles.buttonContent}>Withdraw</Text>
+        </Pressable>
+      </View>
       <WalletGraph />
       <WalletBottomDrawer navigation={navigation} />
     </View>
@@ -77,10 +85,26 @@ const styles = StyleSheet.create({
     height: '100%'
   },
 
+  button: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: '100%',
+    width: '40%',
+    marginLeft: '5%',
+    marginBottom: '2%',
+    borderRadius: 10,
+    backgroundColor: '#6EBF34'
+  },
+  buttonContent: {
+    color: 'white',
+    fontSize: 15,
+    fontWeight: '500'
+  },
+
   // MAIN CONTENT
   walletGraphInformationView: {
     padding: 10,
-    marginTop: '18%',
+    marginTop: '10%',
     width: '100%',
     height: '30%'
   },
@@ -124,7 +148,7 @@ const styles = StyleSheet.create({
     fontSize: 30,
     color: '#F2F2F2',
     position: 'absolute',
-    top: '7%',
+    top: '3%',
     left: '5%'
   },
   tinyLogo: {

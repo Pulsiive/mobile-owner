@@ -19,13 +19,15 @@ const Login = ({ navigation }) => {
 
   const submit = async () => {
     try {
+      console.log('submit login');
       if (userInput.email == '' || userInput.password == '')
         throw { data: 'email or password has not been defined', status: '404' };
       const res = await api.send('post', '/api/v1/auth/login', userInput, (auth = false));
+      console.log(res);
       if (res.status == 200) {
         serviceAccessToken.set(res.data.accessToken);
         setErrorMessage('');
-        navigation.navigate('HomePage');
+        navigation.navigate('Tab');
       } else {
         throw res;
       }
@@ -34,11 +36,13 @@ const Login = ({ navigation }) => {
         const code = e.status;
         if (code === 401) setErrorMessage('Incorrect password');
         else if (code === 404) setErrorMessage('User not found');
-        else setErrorMessage('Internal error');
+        else setErrorMessage(e.data);
         setError(true);
+        alert(errorMessage);
       } else {
-        setErrorMessage('Internal error');
+        setErrorMessage('Internal error: ', e);
         setError(true);
+        alert(errorMessage);
       }
     }
   };
@@ -140,7 +144,9 @@ const styles = StyleSheet.create({
   input: {
     marginBottom: 20,
     backgroundColor: 'white',
-    borderRadius: 10
+    borderRadius: 10,
+    borderWidth: 1,
+    borderColor: 'white'
   },
   inputOnError: {
     marginBottom: 20,
@@ -157,11 +163,11 @@ const styles = StyleSheet.create({
     width: '100%'
   },
   forgetPasswordButtonBoxWithoutBackground: {
-    width: '40%',
-    marginLeft: '30%'
+    width: '57%',
+    marginLeft: '22%'
   },
   registerButtonBoxWithoutBackground: {
-    width: '30%',
+    width: '32%',
     marginLeft: '35%',
     marginTop: '10%'
   },

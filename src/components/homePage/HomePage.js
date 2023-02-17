@@ -1,129 +1,221 @@
-import React, { useRef, useEffect } from "react";
-import {
-  View,
-  Animated,
-  Image,
-  StyleSheet,
-  TouchableHighlight,
-} from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { View, Text, Button, Image, Pressable, StyleSheet, PermissionsAndroid } from 'react-native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
+import Settings from '../settings/Settings';
+import Icon from 'react-native-vector-icons/Entypo';
+import api from '../../globals/query/API';
+import MapboxGL from '@rnmapbox/maps';
+import GetLocation from 'react-native-get-location';
 
-import Pattern1 from "../../Asset/pattern-1.png";
-import Pattern2 from "../../Asset/pattern-2.png";
-import Pattern3 from "../../Asset/pattern-3.png";
-import Logo from "../../Asset/logo.png";
-import Pulsiive from "../../Asset/Pulsiive.png";
-import Wording from "../../Asset/Wording.png";
-import Start from "../../Asset/Button.png";
+import PlanningPNG from './Asset/Planning.png';
+import Profil from './Asset/Profil.png';
+import StationList from './Asset/StationList.png';
+import AddStation from './Asset/AddStation.png';
+import Wallet from './Asset/Wallet.png';
+import Messages from './Asset/Messages.png';
+import PastReservation from './Asset/PastReservation.png';
 
-function HomePage({ navigation }) {
-  const firstOpacity = useRef(
-    new Animated.Value(0)
-  ).current;
-  const secondOpacity = useRef(
-    new Animated.Value(0)
-  ).current;
+MapboxGL.setAccessToken(
+  'pk.eyJ1Ijoic2h5bGsiLCJhIjoiY2w0cmhncHdwMDZydTNjcDhkbTVmZm8xZCJ9.uxYLeAuZdY5VMx4EUBaw_A'
+);
+MapboxGL.setConnected(true);
 
-  const thirdOpacity = useRef(
-    new Animated.Value(0)
-  ).current;
-
-  const translation = useRef(
-    new Animated.Value(-20)
-  ).current;
-
-  const opacityElem = useRef(
-    new Animated.Value(0)
-  ).current;
-
-  const firstTranslationRight = useRef(
-    new Animated.Value(-10)
-  ).current;
-
-  const firstOpacityTransition = useRef(
-    new Animated.Value(0)
-  ).current;
-
-  const secondTranslationRight = useRef(
-    new Animated.Value(-10)
-  ).current;
-
-  const secondOpacityTransition = useRef(
-    new Animated.Value(0)
-  ).current;
+const ProfileHeaderComponent = () => {
+  const [userData, setUserData] = useState({
+    firstName: 'John',
+    lastName: 'Doe'
+  });
 
   useEffect(() => {
-    Animated.stagger(500, [
-      Animated.spring(firstOpacity, {
-        toValue: 1,
-        useNativeDriver: true
-      }),
-      Animated.spring(secondOpacity, {
-        toValue: 1,
-        useNativeDriver: true
-      }),
-      Animated.spring(thirdOpacity, {
-        toValue: 1,
-        useNativeDriver: true
-      })
-    ]).start();
-
-    Animated.parallel([
-      Animated.spring(translation, {
-        toValue: 0,
-        delay: 1500,
-        useNativeDriver: true,
-      }),
-      Animated.spring(opacityElem, {
-        toValue: 1,
-        delay: 1500,
-        useNativeDriver: true,
-      }),
-    ]).start();
-
-    Animated.parallel([
-      Animated.spring(firstTranslationRight, {
-        toValue: 0,
-        delay: 1800,
-        useNativeDriver: true,
-      }),
-
-      Animated.spring(firstOpacityTransition, {
-        toValue: 1,
-        delay: 1800,
-        useNativeDriver: true,
-      }),
-
-    ]).start();
-
-    Animated.parallel([
-      Animated.spring(secondTranslationRight, {
-        toValue: 0,
-        delay: 2100,
-        useNativeDriver: true,
-      }),
-
-      Animated.spring(secondOpacityTransition, {
-        toValue: 1,
-        delay: 2100,
-        useNativeDriver: true,
-      }),
-    ]).start();
+    async function fetchData() {
+      try {
+        const res = await api.send('GET', '/api/v1/profile', (auth = true));
+        if (res.status == 200) {
+          setUserData({ firstName: res.data.firstName, lastName: res.data.lastName });
+        } else {
+          throw res;
+        }
+      } catch (e) {
+        const code = e.status;
+        alert({ code } + 'Error User Profile could not get fetch');
+      }
+    }
+    fetchData();
   }, []);
 
   return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: 'black' }}>
-      <Animated.Image style={[styles.pattern1, { opacity: firstOpacity }]} source={Pattern1} />
-      <Animated.Image style={[styles.pattern2, { opacity: secondOpacity }]} source={Pattern2} />
-      <Animated.Image style={[styles.pattern3, { opacity: thirdOpacity }]} source={Pattern3} />
-      <View style={styles.center}>
-        <Animated.Image source={Logo} style={[styles.Logo, { opacity: opacityElem, transform: [{ translateY: translation }] }]} />
-        <Animated.Image source={Pulsiive} style={[styles.Pulsiive, { opacity: opacityElem, transform: [{ translateY: translation }] }]} />
-        <Animated.Image source={Wording} style={[styles.Wording, { opacity: firstOpacityTransition, transform: [{ translateX: firstTranslationRight }] }]} />
-        <TouchableHighlight onPress={() => navigation.navigate('Home2')}>
-          <Animated.Image source={Start} style={[styles.Start, { opacity: secondOpacityTransition, transform: [{ translateX: secondTranslationRight }] }]} />
-        </TouchableHighlight>
+    <View style={styles.profileHeader}>
+      <View style={{ flexDirection: 'row' }}>
+        <Icon style={styles.userProfile} name="user" size={50} color="white" />
+        <View style={{ height: '100%', marginTop: '5%', marginLeft: '5%' }}>
+          <Text style={{ color: 'lightgrey' }}>
+            {userData.firstName} {userData.lastName}
+          </Text>
+          <Text style={{ color: 'white', fontSize: 16, fontWeight: '700' }}>120$</Text>
+        </View>
+        <View style={{ flexDirection: 'row', position: 'absolute', right: '5%', top: '30%' }}>
+          <Icon name="star" size={30} color="yellow" />
+          <Text style={{ color: 'white', fontSize: 16, fontWeight: '700' }}>4.32</Text>
+        </View>
       </View>
+    </View>
+  );
+};
+
+const PlanningSectionComponent = ({ navigation }) => {
+  return (
+    <View style={styles.planningSection}>
+      <Text
+        style={{
+          color: 'white',
+          marginLeft: '3%',
+          marginTop: '2%',
+          fontSize: 20,
+          fontWeight: '700'
+        }}
+      >
+        Planning
+      </Text>
+      <Pressable onPress={() => navigation.navigate('Planning')}>
+        <View
+          style={{
+            width: '90%',
+            height: '70%',
+            marginLeft: '5%',
+            marginTop: '2%',
+            borderRadius: 15,
+            backgroundColor: 'green'
+          }}
+        >
+          <Image
+            source={PlanningPNG}
+            style={{
+              borderRadius: 15,
+              height: '100%',
+              width: '100%',
+              resizeMode: 'cover'
+            }}
+          />
+        </View>
+      </Pressable>
+    </View>
+  );
+};
+
+const MapSectionComponent = () => {
+  const [userPosition, setUserPosition] = useState([48.856614, 2.3522219]);
+
+  useEffect(() => {
+    try {
+      PermissionsAndroid.requestMultiple(
+        [
+          PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
+          PermissionsAndroid.PERMISSIONS.ACCESS_COARSE_LOCATION
+        ],
+        {
+          title: 'Give Location Permission',
+          message: 'App needs location permission to find your position.'
+        }
+      )
+        .then(async (granted) => {
+          console.log(granted);
+          GetLocation.getCurrentPosition({
+            enableHighAccuracy: true,
+            timeout: 15000
+          })
+            .then((location) => {
+              setUserPosition([location.latitude, location.longitude]);
+            })
+            .catch((error) => {
+              const { code, message } = error;
+              console.warn(code, message);
+            });
+        })
+        .catch((err) => {
+          console.warn(err);
+        });
+    } catch (e) {
+      console.log(e);
+    }
+  }, []);
+  return (
+    <View style={styles.mapSection}>
+      <MapboxGL.MapView
+        style={{ flex: 1 }}
+        styleURL={'mapbox://styles/mapbox/dark-v9'}
+        zoomLevel={16}
+        center={userPosition}
+      >
+        <MapboxGL.Camera
+          zoomLevel={13}
+          centerCoordinate={[userPosition[1], userPosition[0]]}
+          animationMode={'flyTo'}
+          animationDuration={3}
+        ></MapboxGL.Camera>
+        <MapboxGL.UserLocation visible={true} />
+      </MapboxGL.MapView>
+    </View>
+  );
+};
+
+const OtherSectionComponent = ({ navigation }) => {
+  return (
+    <View style={styles.otherSection}>
+      <View style={{ flexDirection: 'row', height: '45%', Width: '100%', marginTop: '2.5%' }}>
+        <View style={styles.AccesRapideOtherSection}>
+          <Pressable style={{ borderRadius: 10 }} onPress={() => navigation.navigate('Profile')}>
+            <Image source={Profil} style={styles.AccesRapideImage} />
+          </Pressable>
+        </View>
+        <View style={styles.AccesRapideOtherSection}>
+          <Pressable
+            style={{ borderRadius: 10 }}
+            onPress={() => navigation.navigate('StationList')}
+          >
+            <Image source={StationList} style={styles.AccesRapideImage} />
+          </Pressable>
+        </View>
+        <View style={styles.AccesRapideOtherSection}>
+          <Pressable
+            style={{ borderRadius: 10 }}
+            onPress={() => navigation.navigate('RegisterStation')}
+          >
+            <Image source={AddStation} style={styles.AccesRapideImage} />
+          </Pressable>
+        </View>
+      </View>
+      <View style={{ flexDirection: 'row', height: '45%', Width: '100%', marginTop: '2.5%' }}>
+        <View style={styles.AccesRapideOtherSection}>
+          <Pressable style={{ borderRadius: 10 }} onPress={() => navigation.navigate('Wallet')}>
+            <Image source={Wallet} style={styles.AccesRapideImage} />
+          </Pressable>
+        </View>
+        <View style={styles.AccesRapideOtherSection}>
+          <Pressable style={{ borderRadius: 10 }} onPress={() => navigation.navigate('Messages')}>
+            <Image source={Messages} style={styles.AccesRapideImage} />
+          </Pressable>
+        </View>
+        <View style={styles.AccesRapideOtherSection}>
+          <Pressable
+            style={{ borderRadius: 10 }}
+            onPress={() => navigation.navigate('PastReservations')}
+          >
+            <Image source={PastReservation} style={styles.AccesRapideImage} />
+          </Pressable>
+        </View>
+      </View>
+    </View>
+  );
+};
+
+
+  return (
+    <View style={{ height: '100%', width: '100%', backgroundColor: 'black' }}>
+      <ProfileHeaderComponent />
+      <PlanningSectionComponent navigation={navigation} />
+      <MapSectionComponent />
+      <OtherSectionComponent navigation={navigation} />
     </View>
   );
 }
@@ -182,6 +274,59 @@ const styles = StyleSheet.create({
     height: 20,
     marginTop: 25,
     resizeMode: 'cover',
+  }
+});
+
+const styles = StyleSheet.create({
+  profileHeader: {
+    height: '10%',
+    width: '90%',
+    marginTop: '5%',
+    marginLeft: '5%',
+    backgroundColor: '#1F1F1F',
+    borderRadius: 10
+  },
+  userProfile: {
+    marginTop: '3.5%',
+    marginLeft: '3%'
+  },
+
+  planningSection: {
+    height: '20%',
+    width: '100%',
+    marginTop: '5%',
+    backgroundColor: '#1F1F1F',
+    borderRadius: 10
+  },
+
+  mapSection: {
+    height: '30%',
+    width: '100%',
+    marginTop: '2%',
+    backgroundColor: '#1F1F1F',
+    borderRadius: 10
+  },
+
+  otherSection: {
+    height: '27%',
+    width: '100%',
+    marginTop: '2%',
+    backgroundColor: '#1F1F1F',
+    borderRadius: 10
+  },
+
+  AccesRapideOtherSection: {
+    height: '100%',
+    width: '25%',
+    marginLeft: '6.5%',
+    backgroundColor: 'green',
+    borderRadius: 10
+  },
+  AccesRapideImage: {
+    borderRadius: 15,
+    height: '100%',
+    width: '100%',
+    resizeMode: 'cover'
   }
 });
 

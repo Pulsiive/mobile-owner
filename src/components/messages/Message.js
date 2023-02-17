@@ -51,9 +51,6 @@ const Messages = ({ navigation }) => {
     <View style={styles.viewTemplate}>
       {/* HEADER */}
       <View style={styles.headWalletInformation}>
-        <Pressable style={styles.backButton} onPress={() => navigation.navigate('HomePage')}>
-          <Text style={styles.backButtonContent}>{'<'}</Text>
-        </Pressable>
         <Text style={styles.title}>Messages</Text>
       </View>
       {/* CONTENT */}
@@ -137,7 +134,7 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     fontSize: 25,
     color: 'white',
-    width: '80%'
+    width: '100%'
   },
 
   //CONTENT

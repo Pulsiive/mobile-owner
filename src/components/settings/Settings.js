@@ -1,36 +1,45 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Image, View, Text, Pressable, Button, StyleSheet } from 'react-native';
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
 import serviceAccessToken from '../../globals/query/AccessToken';
+import api from '../../globals/query/API';
 
 const Settings = ({ navigation }) => {
-  //   const [userInput, setUserInput] = useState({
-  //     email: '',
-  //     password: ''
-  //   });
-  //   const [errorMessage, setErrorMessage] = useState('');
-  //   const [error, setError] = useState(false);
+  const [userData, setUserData] = useState({
+    firstName: 'John',
+    lastName: 'Doe'
+  });
 
-  //   const handleChange = (text, field) => {
-  //     if (error) setError(false);
-  //     userInput[field] = text;
-  //     setUserInput(userInput);
-  //   };
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const res = await api.send('GET', '/api/v1/profile', (auth = true));
+        if (res.status == 200) {
+          setUserData({ firstName: res.data.firstName, lastName: res.data.lastName });
+        } else {
+          throw res;
+        }
+      } catch (e) {
+        const code = e.status;
+        alert('Error');
+      }
+    }
+    fetchData();
+  }, []);
 
   return (
     <View style={styles.viewTemplate}>
       {/* HEADER */}
       <View style={styles.headWalletInformation}>
-        <Pressable style={styles.backButton} onPress={() => navigation.navigate('HomePage')}>
-          <Text style={styles.backButtonContent}>{'<'}</Text>
-        </Pressable>
-        <View style={{ width: '80%' }}>
-          <Text style={styles.title}>John Doe</Text>
+        <View style={{ width: '100%' }}>
+          <Text style={styles.title}>
+            {userData.firstName} {userData.lastName}
+          </Text>
           <View
             style={{
               flexDirection: 'row',
               alignItems: 'center',
-              width: '17%',
+              width: '22%',
               borderRadius: 20,
               marginLeft: '42%',
               backgroundColor: 'grey'
@@ -47,16 +56,37 @@ const Settings = ({ navigation }) => {
         <Pressable style={styles.button} onPress={() => navigation.navigate('Profile')}>
           <Text style={styles.buttonContent}>Profile</Text>
         </Pressable>
+        <Pressable style={styles.button} onPress={() => navigation.navigate('ChangePassword')}>
+          <Text style={styles.buttonContent}>Change Password</Text>
+        </Pressable>
         <Pressable style={styles.button} onPress={() => navigation.navigate('Wallet')}>
           <Text style={styles.buttonContent}>Wallet</Text>
         </Pressable>
-        <Text style={styles.sectionTitle}>Other</Text>
+        <Pressable style={styles.button} onPress={() => navigation.navigate('PastReservations')}>
+          <Text style={styles.buttonContent}>Past Reservations</Text>
+        </Pressable>
+        <Pressable style={styles.button} onPress={() => navigation.navigate('ContactList')}>
+          <Text style={styles.buttonContent}>Contact List</Text>
+        </Pressable>
+
+        <Text style={styles.sectionTitle}>My Station</Text>
+        <Pressable style={styles.button} onPress={() => navigation.navigate('RegisterStation')}>
+          <Text style={styles.buttonContent}>Register station</Text>
+        </Pressable>
+        <Pressable style={styles.button} onPress={() => navigation.navigate('StationList')}>
+          <Text style={styles.buttonContent}>My station list</Text>
+        </Pressable>
+        <Pressable style={styles.button} onPress={() => navigation.navigate('Reservations')}>
+          <Text style={styles.buttonContent}>Reservations</Text>
+        </Pressable>
+
+        {/* <Text style={styles.sectionTitle}>Other</Text>
         <Pressable style={styles.button} onPress={() => navigation.navigate('LegalMentions')}>
           <Text style={styles.buttonContent}>Legal mentions</Text>
-        </Pressable>
-        <Pressable style={styles.button} onPress={() => navigation.navigate('Tutorial')}>
+        </Pressable> */}
+        {/* <Pressable style={styles.button} onPress={() => navigation.navigate('Tutorial')}>
           <Text style={styles.buttonContent}>Tutorial</Text>
-        </Pressable>
+        </Pressable> */}
         <Pressable
           style={styles.disconnectBox}
           onPress={() => {
@@ -115,7 +145,7 @@ const styles = StyleSheet.create({
 
   //CONTENT
   container: {
-    marginTop: '20%',
+    marginTop: '3%',
     height: '90%'
   },
   sectionTitle: {
@@ -146,7 +176,7 @@ const styles = StyleSheet.create({
     height: '6%',
     width: '90%',
     position: 'absolute',
-    bottom: '20%',
+    bottom: '17%',
     left: '5%',
     borderRadius: 10,
     backgroundColor: '#1B2023'

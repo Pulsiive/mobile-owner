@@ -40,8 +40,10 @@ const AccountTransaction = ({ navigation }) => {
         <Text style={styles.bottomTitle}>My account</Text>
         <PulsiveCard />
       </TouchableOpacity>
-      <View style={styles.transactionScrollList}>
+      <View style={{ height: '10%', backgroundColor: '#1F1F1F' }}>
         <Text style={styles.bottomTitle}>My transactions</Text>
+      </View>
+      <View style={styles.transactionScrollList}>
         <SafeAreaView style={styles.container}>
           <ScrollView style={styles.scrollView}>
             <View>
@@ -92,7 +94,7 @@ const styles = StyleSheet.create({
     fontSize: 30,
     color: '#F2F2F2',
     position: 'absolute',
-    top: '5%',
+    top: '2%',
     left: '5%'
   },
 
@@ -104,8 +106,7 @@ const styles = StyleSheet.create({
     height: '50%'
   },
   container: {
-    flex: 1,
-    paddingTop: StatusBar.currentHeight
+    flex: 1
   },
   scrollView: {
     marginHorizontal: 20
@@ -117,7 +118,7 @@ const styles = StyleSheet.create({
   userProfile: {
     backgroundColor: 'black',
     borderRadius: 50,
-    marginTop: '3%',
+    marginTop: '5%',
     marginBottom: '2%'
   },
   userTransaction: {

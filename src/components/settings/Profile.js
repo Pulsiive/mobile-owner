@@ -5,40 +5,43 @@ import api from '../../globals/query/API';
 const Profile = ({ navigation }) => {
   const [userInput, setUserInput] = useState({
     email: '',
-    password: '',
     firstName: 'default',
     lastName: 'default',
-    dateOfBirth: '2001-07-15',
-    timeZone: 'UTC+2',
-    username: '',
-    adress: ''
+    dateOfBirth: '2001-07-15'
   });
-  const [errorMessage, setErrorMessage] = useState('');
-  const [error, setError] = useState(false);
-  // const [dbInfo, setDbInfo] = useState({});
 
-  // useEffect(() => {
-  //   async function fetchData() {
-  //     try {
-  //       const asyncResponse = await api.send('GET', '/api/v1/profile', null, (auth = true));
-  //       setDbInfo(asyncResponse.data);
-  //     } catch (err) {
-  //       console.error(err);
-  //     }
-  //   }
-  //   fetchData();
-  // }, [userInput]);
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const res = await api.send('GET', '/api/v1/profile', (auth = true));
+        if (res.status == 200) {
+          setUserInput({
+            email: res.data.email,
+            firstName: res.data.firstName,
+            lastName: res.data.lastName,
+            dateOfBirth: res.data.dateOfBirth
+          });
+        } else {
+          throw res;
+        }
+      } catch (e) {
+        const code = e.status;
+        alert('Error');
+      }
+    }
+    fetchData();
+  }, []);
 
   const handleChange = (text, field) => {
-    if (error) setError(false);
     userInput[field] = text;
     setUserInput(userInput);
   };
 
   const submit = async () => {
     try {
-      console.log(dbInfo);
-      navigation.navigate('Settings');
+      const res = await api.send('PATCH', '/api/v1/profile', userInput, (auth = true));
+      if (res.status == 200) navigation.navigate('Settings');
+      else throw res;
     } catch (e) {
       if (e.response) {
         setErrorMessage('Internal error');
@@ -64,7 +67,7 @@ const Profile = ({ navigation }) => {
           placeholder="firstName"
           autoComplete="username"
         >
-          John
+          {userInput.firstName}
         </TextInput>
         <Text style={styles.label}>Last name</Text>
         <TextInput
@@ -73,7 +76,7 @@ const Profile = ({ navigation }) => {
           placeholder="lastName"
           autoComplete="username"
         >
-          Doe
+          {userInput.lastName}
         </TextInput>
         <Text style={styles.label}>Email</Text>
         <TextInput
@@ -82,7 +85,7 @@ const Profile = ({ navigation }) => {
           placeholder="email"
           autoComplete="username"
         >
-          John@Doe.fr
+          {userInput.email}
         </TextInput>
         <Text style={styles.label}>Date of birth</Text>
         <TextInput
@@ -91,7 +94,7 @@ const Profile = ({ navigation }) => {
           placeholder="dateOfBirth"
           autoComplete="birthdate-full"
         >
-          07/05/01
+          {userInput.dateOfBirth}
         </TextInput>
         <Text style={styles.label}>Adress</Text>
         <TextInput
@@ -111,12 +114,7 @@ const Profile = ({ navigation }) => {
         >
           UTC+2
         </TextInput>
-        <Button
-          title="Save"
-          accessibilityLabel="save"
-          onPress={() => navigation.navigate('Settings')}
-          color="#6EBF34"
-        />
+        <Button title="Save" accessibilityLabel="save" onPress={submit} color="#6EBF34" />
       </View>
     </View>
   );
