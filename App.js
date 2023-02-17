@@ -14,6 +14,7 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import Login from './src/components/authentification/login/Login.js';
 import Register from './src/components/authentification/register/Register.js';
 import HomePage from './src/components/homePage/HomePage.js';
+import HomeScreen2 from './src/components/homePage/Home-2.js';
 import ForgetPassword from './src/components/authentification/login/ForgetPassword.js';
 import Settings from './src/components/settings/Settings.js';
 import Profile from './src/components/settings/Profile.js';
@@ -39,6 +40,7 @@ import AddSlot from './src/components/homePage/AddStationSlot.js';
 import ContactList from './src/components/Contacts/ContactList.js';
 import AddContact from './src/components/Contacts/AddContact.js';
 import ChangePassword from './src/components/settings/ChangePassword.js';
+
 
 const Stack = createNativeStackNavigator();
 
