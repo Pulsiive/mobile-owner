@@ -36,6 +36,10 @@ import PastReservations from './src/components/settings/PastReservations.js';
 import Planning from './src/components/homePage/Planning.js';
 import AddSlot from './src/components/homePage/AddStationSlot.js';
 
+import ContactList from './src/components/Contacts/ContactList.js';
+import AddContact from './src/components/Contacts/AddContact.js';
+import ChangePassword from './src/components/settings/ChangePassword.js';
+
 const Stack = createNativeStackNavigator();
 
 const Tab = createBottomTabNavigator();
@@ -44,6 +48,7 @@ const LoginStack = () => {
   return (
     <Stack.Navigator initialRouteName="Login" screenOptions={{ headerShown: false }}>
       <Stack.Screen name="Login" component={Login} />
+      <Stack.Screen name="ForgetPassword" component={ForgetPassword} />
       <Stack.Screen name="Register" component={Register} />
       <Stack.Screen name="HomePage" component={HomePage} />
     </Stack.Navigator>
@@ -63,6 +68,9 @@ const SettingsStack = () => {
       <Stack.Screen name="StationList" component={MyStations} />
       <Stack.Screen name="Reservations" component={Reservations} />
       <Stack.Screen name="PastReservations" component={PastReservations} />
+      <Stack.Screen name="ContactList" component={ContactList} />
+      <Stack.Screen name="AddContact" component={AddContact} />
+      <Stack.Screen name="ChangePassword" component={ChangePassword} />
 
       <Stack.Screen name="AccountTransaction" component={AccountTransaction} />
       <Stack.Screen name="LegalMentions" component={LegalMentions} />

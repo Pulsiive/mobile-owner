@@ -56,11 +56,17 @@ const Settings = ({ navigation }) => {
         <Pressable style={styles.button} onPress={() => navigation.navigate('Profile')}>
           <Text style={styles.buttonContent}>Profile</Text>
         </Pressable>
+        <Pressable style={styles.button} onPress={() => navigation.navigate('ChangePassword')}>
+          <Text style={styles.buttonContent}>Change Password</Text>
+        </Pressable>
         <Pressable style={styles.button} onPress={() => navigation.navigate('Wallet')}>
           <Text style={styles.buttonContent}>Wallet</Text>
         </Pressable>
         <Pressable style={styles.button} onPress={() => navigation.navigate('PastReservations')}>
           <Text style={styles.buttonContent}>Past Reservations</Text>
+        </Pressable>
+        <Pressable style={styles.button} onPress={() => navigation.navigate('ContactList')}>
+          <Text style={styles.buttonContent}>Contact List</Text>
         </Pressable>
 
         <Text style={styles.sectionTitle}>My Station</Text>
@@ -74,13 +80,13 @@ const Settings = ({ navigation }) => {
           <Text style={styles.buttonContent}>Reservations</Text>
         </Pressable>
 
-        <Text style={styles.sectionTitle}>Other</Text>
+        {/* <Text style={styles.sectionTitle}>Other</Text>
         <Pressable style={styles.button} onPress={() => navigation.navigate('LegalMentions')}>
           <Text style={styles.buttonContent}>Legal mentions</Text>
-        </Pressable>
-        <Pressable style={styles.button} onPress={() => navigation.navigate('Tutorial')}>
+        </Pressable> */}
+        {/* <Pressable style={styles.button} onPress={() => navigation.navigate('Tutorial')}>
           <Text style={styles.buttonContent}>Tutorial</Text>
-        </Pressable>
+        </Pressable> */}
         <Pressable
           style={styles.disconnectBox}
           onPress={() => {

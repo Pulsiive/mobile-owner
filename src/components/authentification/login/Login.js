@@ -40,7 +40,7 @@ const Login = ({ navigation }) => {
         setError(true);
         alert(errorMessage);
       } else {
-        setErrorMessage('Internal error');
+        setErrorMessage('Internal error: ', e);
         setError(true);
         alert(errorMessage);
       }
@@ -143,7 +143,7 @@ const styles = StyleSheet.create({
   },
   input: {
     marginBottom: 20,
-    backgroundColor: 'black',
+    backgroundColor: 'white',
     borderRadius: 10,
     borderWidth: 1,
     borderColor: 'white'
