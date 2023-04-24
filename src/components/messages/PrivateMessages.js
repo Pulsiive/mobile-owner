@@ -10,6 +10,7 @@ import {
   ScrollView
 } from 'react-native';
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
+import api from '../../globals/query/API';
 
 const Corechat = (props) => {
   return (
@@ -23,23 +24,96 @@ const Corechat = (props) => {
   );
 };
 
-const PrivateMessages = ({ navigation }) => {
+const PrivateMessages = ({ route, navigation }) => {
+  const userProps = route.params;
   const [userMessage, setUserMessage] = useState('');
   const [messageList, setMessageList] = useState([
-    { mine: false, message: 'Hi there !' },
-    { mine: false, message: 'Ill be here soon !' },
-    { mine: true, message: 'Ok !' }
+    { mine: false, message: 'Seems like it is empty !' },
+    { mine: false, message: 'Start a new conversation by sending the first message' },
+    { mine: true, message: 'Your first message...' }
   ]);
+  const [render, setRender] = useState(true);
 
-  const submit = () => {
-    messageList.push({ mine: true, message: userMessage });
-    setUserMessage('');
+  console.log('userProps: ', userProps);
+  const submit = async () => {
+    // messageList.push({ mine: true, message: userMessage });
+    try {
+      if (userMessage.length < 1) return;
+      const body = {
+        message: { receiverId: userProps.user.id, body: userMessage, createdAt: new Date() }
+      };
+      console.log(body);
+      const res = await api.send('POST', '/api/v1/profile/message', body, (auth = true));
+
+      console.log(res);
+      if (res.status == 200) {
+        console.log('Message has been sent.');
+        setUserMessage('');
+        setRender(true);
+      } else {
+        throw res;
+      }
+    } catch (e) {
+      console.log('Error: ', e);
+    }
   };
 
   useEffect(() => {
     console.log('re-redering');
+    async function fetchMessages() {
+      try {
+        const res = await api.send('GET', '/api/v1/profile/messages', null, true);
+        console.log('data: ', res.data);
+        // console.log('data sent: ', res.data.sentMessages);
+        console.log('length: ', res.data.sentMessages.length);
+        console.log('-------------------');
+        // console.log('data sent: ', res.data.receivedMessages);
+        console.log('length: ', res.data.receivedMessages.length);
+
+        if (res.status == 200) {
+          const tmpMsgList = [];
+          // PARSING SENT MESSAGES
+          for (let i = 0; i < res.data.sentMessages.length; i++) {
+            if (res.data.sentMessages[i].receiverId == userProps.user.id)
+              tmpMsgList.push({
+                mine: true,
+                id: res.data.sentMessages[i].id,
+                message: res.data.sentMessages[i].body,
+                createdAt: res.data.sentMessages[i].createdAt,
+                authorId: res.data.sentMessages[i].authorId
+              });
+          }
+          // PARSING RECEIVED MESSAGES
+          for (let i = 0; i < res.data.receivedMessages.length; i++) {
+            if (res.data.sentMessages[i].receiverId == userProps.user.id)
+              tmpMsgList.push({
+                mine: false,
+                id: res.data.receivedMessages[i].id,
+                message: res.data.receivedMessages[i].body,
+                createdAt: res.data.receivedMessages[i].createdAt,
+                authorId: res.data.receivedMessages[i].authorId
+              });
+          }
+
+          console.log('tmp list: ', tmpMsgList);
+          if (tmpMsgList.length > 0) {
+            tmpMsgList.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
+            console.log(tmpMsgList.map((o) => o.createdAt));
+            setMessageList(tmpMsgList);
+          }
+        } else {
+          throw res;
+        }
+        setRender(false);
+      } catch (e) {
+        const code = e.status;
+        alert('Error ', code, ': Messages could not be fetched');
+      }
+    }
+    fetchMessages();
+
     console.log(messageList);
-  });
+  }, [render]);
 
   return (
     <View style={styles.viewTemplate}>
@@ -48,7 +122,12 @@ const PrivateMessages = ({ navigation }) => {
         <Pressable style={styles.backButton} onPress={() => navigation.navigate('Messages')}>
           <Text style={styles.backButtonContent}>{'<'}</Text>
         </Pressable>
-        <Text style={styles.title}>Eric</Text>
+        <View style={{ width: '100%' }}>
+          <Text style={styles.title}>
+            {userProps.user.name} {userProps.user.lastName}
+          </Text>
+          <Text style={styles.id}>{userProps.user.id}</Text>
+        </View>
       </View>
       {/* CONTENT */}
       <View style={styles.container}>
@@ -65,16 +144,16 @@ const PrivateMessages = ({ navigation }) => {
             style={styles.input}
             onChangeText={(text) => setUserMessage(text)}
             onSubmitEditing={submit}
-            placeholder="Research"
+            placeholder="Type your message..."
           >
             {userMessage}
           </TextInput>
           <TouchableHighlight onPress={submit}>
             <Icon
-              style={{ marginLeft: '9%', marginTop: '28%' }}
+              style={{ marginLeft: '9%', marginTop: '33%' }}
               name="send"
               size={30}
-              color="white"
+              color="lightblue"
             />
           </TouchableHighlight>
         </View>
@@ -87,7 +166,7 @@ const styles = StyleSheet.create({
   viewTemplate: {
     backgroundColor: '#0D0D0D',
     width: '100%',
-    height: '100%'
+    height: '95%'
   },
 
   //HEADER
@@ -119,6 +198,13 @@ const styles = StyleSheet.create({
     color: 'white',
     width: '80%'
   },
+  id: {
+    textAlign: 'center',
+    fontWeight: '200',
+    fontSize: 13,
+    color: 'grey',
+    width: '80%'
+  },
 
   //CONTENT
   selectedColor: {
@@ -136,7 +222,7 @@ const styles = StyleSheet.create({
 
   scrollList: {
     width: '100%',
-    height: '90%'
+    height: '85%'
   },
   container: {
     flex: 1
@@ -173,7 +259,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     width: '85%',
     marginTop: '3%',
-    marginLeft: '0%',
+    marginLeft: '3%',
     marginBottom: '2%'
   }
 });

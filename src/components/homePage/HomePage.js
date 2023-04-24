@@ -209,7 +209,7 @@ const OtherSectionComponent = ({ navigation }) => {
   );
 };
 
-
+const HomePage = ({ navigation }) => {
   return (
     <View style={{ height: '100%', width: '100%', backgroundColor: 'black' }}>
       <ProfileHeaderComponent />
@@ -218,64 +218,7 @@ const OtherSectionComponent = ({ navigation }) => {
       <OtherSectionComponent navigation={navigation} />
     </View>
   );
-}
-
-const styles = StyleSheet.create({
-  pattern1: {
-    width: 100,
-    height: 100,
-    resizeMode: 'cover',
-    position: 'absolute',
-    left: 8.2 + '%',
-    top: 8.3 + '%',
-  },
-  pattern2: {
-    width: 100,
-    height: 100,
-    resizeMode: 'cover',
-    position: 'absolute',
-    left: 87 + '%',
-    top: 31 + '%',
-  },
-  pattern3: {
-    width: 100,
-    height: 100,
-    resizeMode: 'cover',
-    position: 'absolute',
-    left: 37 + '%',
-    top: 94 + '%',
-  },
-  center: {
-    width: 318,
-    minHeight: 267,
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'flex-start',
-  },
-  Logo: {
-    width: 52,
-    height: 52,
-    resizeMode: 'cover',
-  },
-  Pulsiive: {
-    width: 117,
-    height: 38,
-    resizeMode: 'cover',
-    marginTop: 24,
-  },
-  Wording: {
-    width: 318,
-    height: 83,
-    marginTop: 25,
-    resizeMode: 'cover',
-  },
-  Start: {
-    width: 125,
-    height: 20,
-    marginTop: 25,
-    resizeMode: 'cover',
-  }
-});
+};
 
 const styles = StyleSheet.create({
   profileHeader: {
@@ -331,4 +274,3 @@ const styles = StyleSheet.create({
 });
 
 export default HomePage;
-
