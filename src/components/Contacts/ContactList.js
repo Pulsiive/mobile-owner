@@ -20,6 +20,27 @@ const ContactCard = (props) => {
   const [errorMessage, setErrorMessage] = useState('');
   const [error, setError] = useState(false);
 
+  const submitDeleteContact = async () => {
+    try {
+      const body = { id: props.id };
+      const res = await api.send(
+        'DELETE',
+        '/api/v1/profile/contact/' + props.id,
+        body,
+        (auth = true)
+      );
+      console.log(res);
+      if (res.status == 200) {
+        console.log('Contact has been changed.');
+        setModalVisible(false);
+      } else {
+        throw res;
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
   const submit = async () => {
     try {
       //Error checker
@@ -167,7 +188,14 @@ const ContactCard = (props) => {
             </TextInput>
 
             <View style={styles.modalDeleteButton}>
-              <Text style={{ color: 'black', marginTop: '3%' }}>Delete Contact</Text>
+              <Pressable
+                onPress={() => {
+                  submitDeleteContact();
+                  console.log('Deleted.');
+                }}
+              >
+                <Text style={{ color: 'black', marginTop: '3%' }}>Delete Contact</Text>
+              </Pressable>
             </View>
             <View style={styles.modalModifyButton}>
               <Pressable
@@ -189,30 +217,33 @@ const ContactCard = (props) => {
 const ContactList = ({ navigation }) => {
   const [filterSelected, setFilterSelected] = useState(1);
   const [userDatabase, setUserDatabase] = useState([
-    { name: 'John', lastMessage: 'Hi there !' },
-    { name: 'Eric', lastMessage: 'I will be there soon' },
-    { name: 'Joffrey', lastMessage: 'Is it available ?' },
+    { name: 'No', lastMessage: 'Hi there !' },
+    { name: 'User', lastMessage: 'I will be there soon' },
+    { name: 'Found', lastMessage: 'Is it available ?' },
     { name: 'Esther', lastMessage: 'Hi, id like to book an apointment for tomorrow' },
     { name: 'Robert', lastMessage: 'Hi how is it going ? Ill be there at 4' },
     { name: 'Titouan', lastMessage: 'random message' },
     { name: 'Pomme', lastMessage: 'hello hello' },
     { name: 'Toto', lastMessage: 'Hi there !' },
-    { name: 'Alex', lastMessage: 'Hi there !' },
-    { name: 'Toto', lastMessage: 'Hi there !' },
-    { name: 'Toto', lastMessage: 'Hi there !' }
+    { name: 'Alex', lastMessage: 'Hi there !' }
   ]);
 
   useEffect(() => {
     async function fetchContacts() {
       try {
         const res = await api.send('GET', '/api/v1/profile/contacts', null, true);
+        console.log('data: ', res.data);
+        console.log('length: ', res.data.length);
+
         if (res.status == 200) {
-          console.log(res.data[0].contacts);
           const tmpContactList = [];
-          for (let i = 0; i < res.data[0].contacts.length; i++) {
+          for (let i = 0; i < res.data.length; i++) {
+            console.log(i);
+            console.log(res.data[i]);
             tmpContactList.push({
-              id: res.data[0].contacts[i].id,
-              name: res.data[0].contacts[i].contactName
+              id: res.data[i].user.id,
+              name: res.data[i].user.firstName,
+              lastName: res.data[i].user.lastName
             });
           }
           console.log('tmp list: ', tmpContactList);
@@ -223,7 +254,7 @@ const ContactList = ({ navigation }) => {
         }
       } catch (e) {
         const code = e.status;
-        alert('Error');
+        alert('Error: Contact could not be fetched');
       }
     }
     fetchContacts();

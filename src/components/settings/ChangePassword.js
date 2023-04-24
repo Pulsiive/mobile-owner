@@ -18,14 +18,14 @@ const ChangePassword = ({ navigation }) => {
   const submit = async () => {
     try {
       //Error checker
-      console.log(cardInput.newPassword);
-      if (newPassword != newPasswordConfirm) {
+      console.log('New password:', cardInput.newPassword);
+      if (cardInput.newPassword != cardInput.newPasswordConfirm) {
         setError(true);
         setErrorMessage('Invalid Password: New password is not the same.');
         alert(errorMessage);
         return;
       }
-      if (newPassword == oldPassword) {
+      if (cardInput.newPassword == cardInput.oldPassword) {
         setError(true);
         setErrorMessage(
           'Invalid Password: New password should not be the same as the current one.'
@@ -35,12 +35,16 @@ const ChangePassword = ({ navigation }) => {
       }
       setError(false);
       setErrorMessage('');
+      console.log('after error checking');
+      const profile = await api.send('GET', '/api/v1/profile', (auth = true));
+      console.log(profile.data);
       const body = {
-        email: '',
+        email: profile.data.email,
         password: cardInput.newPassword,
         password_confirmation: cardInput.newPasswordConfirm
       };
-      const res = await api.send('POST', '/api/v1/auth/resetPassword', body, (auth = true));
+      console.log(body);
+      const res = await api.send('POST', '/api/v1/auth/modifyPassword', body, (auth = true));
       console.log(res);
       if (res.status == 200) {
         console.log('Password has been changed.');
@@ -68,7 +72,7 @@ const ChangePassword = ({ navigation }) => {
             marginLeft: '3%'
           }}
         >
-          Reset Password
+          Change Password
         </Text>
       </View>
       {/* MIDDLE BAR */}

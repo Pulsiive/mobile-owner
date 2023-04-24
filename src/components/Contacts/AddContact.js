@@ -34,12 +34,33 @@ const AddContact = ({ navigation }) => {
       }
       setError(false);
       setErrorMessage('');
+      const resContactName = await api.send(
+        'GET',
+        '/api/v1/users/find?searchBy=first_name&key=' + cardInput.user,
+        (auth = true)
+      );
+      if (resContactName.data.status != 200) {
+        setError(true);
+        setErrorMessage(
+          'The contact name does not exist within the database. Please try with another contact name.'
+        );
+      }
+      console.log(resContactName.data.users[0].firstName);
+      console.log(resContactName.data.users[0].lastName);
+      console.log(resContactName.data.users[0].id);
+      console.log('sending to: ', '/api/v1/profile/contact/' + resContactName.data.users[0].id);
+
       const body = { contactName: cardInput.user };
-      const res = await api.send('POST', '/api/v1/profile/contact', body, (auth = true));
+      const res = await api.send(
+        'POST',
+        '/api/v1/profile/contact/' + resContactName.data.users[0].id,
+        body,
+        (auth = true)
+      );
       console.log(res);
       if (res.status == 200) {
         console.log('Contact has been added.');
-        navigation.navigate('Planning');
+        navigation.navigate('ContactList');
       } else {
         throw res;
       }

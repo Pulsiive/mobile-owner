@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   TextInput,
   View,
@@ -11,15 +11,20 @@ import {
 } from 'react-native';
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
 import MessagesViewInformation from './MessageInformationVariable';
+import api from '../../globals/query/API';
+import { set } from 'date-fns';
+import SearchComponent from '../../globals/components/header/SearchFilter';
 
 const MessageCard = (props) => {
-  //Function to retrieve Username from API
-  //Function to retrieve Date from API
-  //Function to retrieve Messages from API
-
   return (
-    <TouchableWithoutFeedback onPress={() => props.navigation.navigate('PrivateMessages')}>
-      <View style={{ flexDirection: 'row', marginTop: '3%', height: '8%' }}>
+    <TouchableWithoutFeedback
+      onPress={() =>
+        props.navigation.navigate('PrivateMessages', {
+          user: { id: props.id, name: props.name, lastName: props.lastName }
+        })
+      }
+    >
+      <View style={{ flexDirection: 'row', height: '10000%' }}>
         <Icon style={styles.userProfile} name="user" size={30} color="white" />
         <View style={{ marginLeft: '10%', marginTop: '1%' }}>
           <Text style={styles.userTransaction}>{props.name}</Text>
@@ -33,7 +38,7 @@ const MessageCard = (props) => {
 
 const Messages = ({ navigation }) => {
   const [filterSelected, setFilterSelected] = useState(1);
-  const userDatabase = [
+  const [userDatabase, setUserDatabase] = useState([
     { name: 'John', lastMessage: 'Hi there !' },
     { name: 'Eric', lastMessage: 'I will be there soon' },
     { name: 'Joffrey', lastMessage: 'Is it available ?' },
@@ -45,7 +50,49 @@ const Messages = ({ navigation }) => {
     { name: 'Alex', lastMessage: 'Hi there !' },
     { name: 'Toto', lastMessage: 'Hi there !' },
     { name: 'Toto', lastMessage: 'Hi there !' }
-  ];
+  ]);
+  const [searchFilterValue, setSearchFilterValue] = useState('');
+
+  const [filteredList, setFilteredList] = useState([]);
+
+  useEffect(() => {
+    async function fetchContacts() {
+      try {
+        const res = await api.send('GET', '/api/v1/profile/contacts', null, true);
+        console.log('data: ', res.data);
+        console.log('length: ', res.data.length);
+
+        if (res.status == 200) {
+          const tmpContactList = [];
+          for (let i = 0; i < res.data.length; i++) {
+            console.log(i);
+            console.log(res.data[i]);
+            tmpContactList.push({
+              id: res.data[i].user.id,
+              name: res.data[i].user.firstName,
+              lastName: res.data[i].user.lastName,
+              lastMessage: 'xxxxxxxxxxxxxxxxxxxx'
+            });
+          }
+          console.log('tmp list: ', tmpContactList);
+          setUserDatabase(tmpContactList);
+          //          setUserData({ firstName: res.data.firstName, lastName: res.data.lastName });
+        } else {
+          throw res;
+        }
+      } catch (e) {
+        const code = e.status;
+        alert('Error: Contact could not be fetched');
+      }
+    }
+    fetchContacts();
+  }, []);
+
+  useEffect(() => {
+    console.log("Searching for:'", searchFilterValue, "'");
+    console.log('Found: ', SearchComponent(userDatabase, searchFilterValue));
+    setFilteredList(SearchComponent(userDatabase, searchFilterValue));
+  }, [searchFilterValue]);
 
   return (
     <View style={styles.viewTemplate}>
@@ -57,7 +104,7 @@ const Messages = ({ navigation }) => {
       <View style={styles.container}>
         <TextInput
           style={styles.input}
-          // onChangeText={{}}
+          onChangeText={(text) => setSearchFilterValue(text)}
           placeholder="Research"
           autoComplete="username"
         />
@@ -84,12 +131,16 @@ const Messages = ({ navigation }) => {
           <SafeAreaView style={styles.container}>
             <ScrollView style={styles.scrollView}>
               <View>
-                {userDatabase.map((elem, i) => (
-                  <MessageCard
-                    name={elem.name}
-                    lastMessage={elem.lastMessage}
-                    navigation={navigation}
-                  />
+                {filteredList.map((elem, i) => (
+                  <View style={{ height: '13%' }}>
+                    <MessageCard
+                      name={elem.name}
+                      lastName={elem.lastName}
+                      id={elem.id}
+                      lastMessage={elem.lastMessage}
+                      navigation={navigation}
+                    />
+                  </View>
                 ))}
               </View>
             </ScrollView>
