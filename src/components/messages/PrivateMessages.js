@@ -28,7 +28,7 @@ const Corechat = (props) => {
       if (res.status == 200) {
         console.log('Message has been deleted.');
         setDeleteConfirm({ value: false, message: {} });
-        setRender(true);
+        props.update(true);
       } else {
         throw res;
       }
@@ -177,7 +177,7 @@ const PrivateMessages = ({ route, navigation }) => {
         <View style={styles.scrollList}>
           <SafeAreaView style={styles.container}>
             <ScrollView style={styles.scrollView}>
-              <Corechat messageList={messageList} />
+              <Corechat messageList={messageList} update={setRender} />
             </ScrollView>
           </SafeAreaView>
         </View>
