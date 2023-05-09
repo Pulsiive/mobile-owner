@@ -39,11 +39,14 @@ const AddContact = ({ navigation }) => {
         '/api/v1/users/find?searchBy=first_name&key=' + cardInput.user,
         (auth = true)
       );
-      if (resContactName.data.status != 200) {
+      if (resContactName.data.status != 200 || resContactName.data.users.length == 0) {
         setError(true);
         setErrorMessage(
           'The contact name does not exist within the database. Please try with another contact name.'
         );
+        alert(errorMessage);
+        setError(false);
+        return;
       }
       console.log(resContactName.data.users[0].firstName);
       console.log(resContactName.data.users[0].lastName);
@@ -67,6 +70,7 @@ const AddContact = ({ navigation }) => {
       navigation.navigate('ContactList');
     } catch (e) {
       console.log(e);
+      alert(e.data.message, errorMessage);
     }
   };
 

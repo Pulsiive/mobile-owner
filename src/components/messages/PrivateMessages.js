@@ -9,16 +9,58 @@ import {
   SafeAreaView,
   ScrollView
 } from 'react-native';
-import Icon from 'react-native-vector-icons/dist/FontAwesome';
+import Icon from 'react-native-vector-icons/dist/AntDesign';
 import api from '../../globals/query/API';
 
 const Corechat = (props) => {
+  const [deleteConfirm, setDeleteConfirm] = useState({ value: false, message: {} });
+  const deleteMessageRequest = async () => {
+    try {
+      console.log('Deleting msg :', '/api/v1/profile/message/' + deleteConfirm.message.id);
+      const body = { id: props.id };
+      const res = await api.send(
+        'DELETE',
+        '/api/v1/profile/message/' + deleteConfirm.message.id,
+        body,
+        (auth = true)
+      );
+      console.log(res);
+      if (res.status == 200) {
+        console.log('Message has been deleted.');
+        setDeleteConfirm({ value: false, message: {} });
+        props.update(true);
+      } else {
+        throw res;
+      }
+    } catch (e) {
+      console.log('Error: ', e);
+    }
+  };
+
   return (
     <View>
       {props.messageList.map((elem) => (
-        <Text style={elem.mine ? styles.myMessageCard : styles.otherMessageCard}>
-          {elem.message}
-        </Text>
+        <View>
+          {deleteConfirm.value &&
+          deleteConfirm.message.id == elem.id &&
+          deleteConfirm.message.mine == true ? (
+            <Pressable onPress={() => deleteMessageRequest()}>
+              <Icon
+                style={{ marginTop: '2%', marginLeft: '0%' }}
+                name="delete"
+                size={25}
+                color="red"
+              />
+            </Pressable>
+          ) : null}
+          <Pressable
+            onPress={() => setDeleteConfirm({ value: !deleteConfirm.value, message: elem })}
+          >
+            <Text style={elem.mine ? styles.myMessageCard : styles.otherMessageCard}>
+              {elem.message}
+            </Text>
+          </Pressable>
+        </View>
       ))}
     </View>
   );
@@ -135,7 +177,7 @@ const PrivateMessages = ({ route, navigation }) => {
         <View style={styles.scrollList}>
           <SafeAreaView style={styles.container}>
             <ScrollView style={styles.scrollView}>
-              <Corechat messageList={messageList} />
+              <Corechat messageList={messageList} update={setRender} />
             </ScrollView>
           </SafeAreaView>
         </View>
