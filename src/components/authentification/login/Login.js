@@ -1,7 +1,18 @@
 import React, { useState } from 'react';
-import { Image, View, Text, TextInput, Button, StyleSheet, TouchableOpacity } from 'react-native';
+import {
+  Image,
+  View,
+  Text,
+  TextInput,
+  Button,
+  StyleSheet,
+  TouchableOpacity,
+  ActivityIndicator
+} from 'react-native';
 import api from '../../../globals/query/API';
 import serviceAccessToken from '../../../globals/query/AccessToken';
+
+import Logo2 from './../../../Asset/logo-2.png';
 
 const Login = ({ navigation }) => {
   const [userInput, setUserInput] = useState({
@@ -22,27 +33,26 @@ const Login = ({ navigation }) => {
       console.log('submit login');
       if (userInput.email == '' || userInput.password == '')
         throw { data: 'email or password has not been defined', status: '404' };
-      const res = await api.send('post', '/api/v1/auth/login', userInput, (auth = false));
+      const res = await api.send('POST', '/api/v1/auth/login', userInput, (auth = false));
       console.log(res);
       if (res.status == 200) {
         serviceAccessToken.set(res.data.accessToken);
         setErrorMessage('');
+        <ActivityIndicator />;
         navigation.navigate('Tab');
       } else {
         throw res;
       }
     } catch (e) {
       if (e.data) {
+        setErrorMessage(e.data.message);
         const code = e.status;
         if (code === 401) setErrorMessage('Incorrect password');
         else if (code === 404) setErrorMessage('User not found');
-        else setErrorMessage(e.data);
         setError(true);
-        alert(errorMessage);
       } else {
         setErrorMessage('Internal error: ', e);
         setError(true);
-        alert(errorMessage);
       }
     }
   };
@@ -50,10 +60,10 @@ const Login = ({ navigation }) => {
   return (
     <View style={styles.viewTemplate}>
       <Image
-        style={styles.topLeftLeaf}
-        source={require('../../../images/login_topleft_corner.png')}
-      />
-      <Text style={styles.title}>Login</Text>
+        source={Logo2}
+        style={{ left: '45%', top: '12%', position: 'absolute', width: 50, height: 50 }}
+      ></Image>
+      <Text style={styles.title}>Se connecter</Text>
       <View style={styles.container}>
         {errorMessage == undefined ? null : <Text style={{ color: 'white' }}>{errorMessage}</Text>}
         <TextInput
@@ -64,7 +74,8 @@ const Login = ({ navigation }) => {
               ? styles.inputOnError
               : styles.input
           }
-          placeholder="Email address or phone number"
+          placeholder="Email"
+          placeholderTextColor="grey"
           autoComplete="email"
           value={userInput.name}
         />
@@ -76,7 +87,8 @@ const Login = ({ navigation }) => {
               ? styles.inputOnError
               : styles.input
           }
-          placeholder="Password"
+          placeholder="Mot de passe"
+          placeholderTextColor="grey"
           secureTextEntry={true}
           autoComplete="password"
         />
@@ -85,26 +97,22 @@ const Login = ({ navigation }) => {
           style={styles.loginButtonBoxWithoutBackground}
           onPress={submit}
         >
-          <Text style={styles.loginButton}>Login</Text>
+          <Text style={styles.loginButton}>Se connecter</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.forgetPasswordButtonBoxWithoutBackground}
-          onPress={() => navigation.navigate('ForgetPassword')}
+          onPress={() => navigation.navigate('RequestResetPassword')}
         >
-          <Text style={styles.forgetPasswordButton}>Forget password ?</Text>
+          <Text style={styles.forgetPasswordButton}>Mot de passe oublié</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
           style={styles.registerButtonBoxWithoutBackground}
           onPress={() => navigation.navigate('Register')}
         >
-          <Text style={styles.registerButton}>Register</Text>
+          <Text style={styles.loginButton}>S'inscrire</Text>
         </TouchableOpacity>
       </View>
-      <Image
-        style={styles.bottomRightLeaf}
-        source={require('../../../images/login_bottomright_corner.png')}
-      />
     </View>
   );
 };
@@ -145,14 +153,23 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     backgroundColor: 'white',
     borderRadius: 10,
+    height: 40,
+    margin: 12,
+    left: -12,
+    width: 100 + '%',
     borderWidth: 1,
-    borderColor: 'white'
+    padding: 10
   },
   inputOnError: {
     marginBottom: 20,
     backgroundColor: 'white',
     borderRadius: 10,
-    borderWidth: 3,
+    height: 40,
+    margin: 12,
+    left: -12,
+    width: 100 + '%',
+    borderWidth: 1,
+    padding: 10,
     borderColor: 'red'
   },
 
@@ -175,7 +192,6 @@ const styles = StyleSheet.create({
   loginButton: {
     color: 'white',
     textAlign: 'center',
-    fontWeight: '900',
     paddingTop: '4%',
     paddingBottom: '4%'
   },

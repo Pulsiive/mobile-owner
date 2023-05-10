@@ -1,17 +1,15 @@
-import React, { useState } from 'react';
-import { TouchableOpacity, View, Text, TextInput, Button, StyleSheet } from 'react-native';
-import config from '../../../globals/utils/config';
+import React, { useEffect, useState } from 'react';
+import { TouchableOpacity, View, Text, TextInput, Button, StyleSheet, Linking } from 'react-native';
+import api from '../../../globals/query/API';
 
-const ResetPassword = ({ navigation }) => {
+const RequestResetPassword = ({ navigation }) => {
   const [userInput, setUserInput] = useState({
-    email: '',
-    oldpassword: '',
-    password: '',
-    repassword: ''
+    email: ''
   });
+
   const [errorMessage, setErrorMessage] = useState('');
   const [error, setError] = useState(false);
-
+  const [Mailsent, setMailsent] = useState(false);
   const handleChange = (text, field) => {
     if (error) setError(false);
     userInput[field] = text;
@@ -20,17 +18,23 @@ const ResetPassword = ({ navigation }) => {
 
   const submit = async () => {
     try {
-      if (userInput['password'] != userInput['repassword']) {
-        setErrorMessage('Password are not identical');
+      if (userInput['email'] == '') {
+        setErrorMessage('put an email please !');
         setError(true);
         throw errorMessage;
       }
-      // const userObject = await axios.post(`${config.API_URL}/api/v1/password`, {
-      //   ...userInput,
-      // });
-      // const jwt = userObject.data.data.user.accessToken;
-      // await AsyncStorage.setItem("accessToken", jwt);
-      navigation.navigate('Login');
+      const res = await api.send(
+        'post',
+        '/api/v1/auth/requestPasswordReset',
+        userInput,
+        (auth = false)
+      );
+      console.log(userInput);
+      console.log(res.status);
+      if (res.status == 200) {
+        setMailsent(true);
+        navigation.navigate('MDP2', userInput);
+      }
     } catch (e) {
       if (e.response) {
         const code = e.response.status;
@@ -49,12 +53,16 @@ const ResetPassword = ({ navigation }) => {
     <View style={styles.viewTemplate}>
       <Text style={styles.title}>Reset Password</Text>
       <View style={styles.container}>
-        <TextInput
-          onChangeText={(text) => handleChange(text, 'email')}
-          style={styles.input}
-          placeholder="Email address"
-          autoComplete="email"
-        />
+        {!Mailsent && (
+          <TextInput
+            onChangeText={(text) => handleChange(text, 'email')}
+            style={styles.input}
+            placeholder="Email address"
+            placeholderTextColor="grey"
+            color="grey"
+            autoComplete="email"
+          />
+        )}
         {/* <TextInput
           onChangeText={(text) => handleChange(text, 'oldpassword')}
           style={styles.input}
@@ -62,22 +70,27 @@ const ResetPassword = ({ navigation }) => {
           secureTextEntry={true}
           autoComplete="password"
         /> */}
-        <TextInput
-          onChangeText={(text) => handleChange(text, 'password')}
-          style={styles.input}
-          placeholder="Password"
-          secureTextEntry={true}
-          autoComplete="password"
-        />
-        <TextInput
-          onChangeText={(text) => handleChange(text, 'repassword')}
-          style={styles.input}
-          placeholder="re-enter same password"
-          secureTextEntry={true}
-          autoComplete="password"
-        />
+        {Mailsent && (
+          <>
+            <TextInput
+              onChangeText={(text) => handleChange(text, 'password')}
+              style={styles.input}
+              placeholder="Password"
+              secureTextEntry={true}
+              autoComplete="password"
+            />
+            <TextInput
+              onChangeText={(text) => handleChange(text, 'repassword')}
+              style={styles.input}
+              placeholder="re-enter same password"
+              secureTextEntry={true}
+              autoComplete="password"
+            />
+          </>
+        )}
+
         <TouchableOpacity style={styles.updateButtonBoxWithoutBackground} onPress={submit}>
-          <Text style={styles.updateButton}>Update password</Text>
+          <Text style={styles.updateButton}>Reset password</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -102,10 +115,29 @@ const styles = StyleSheet.create({
     marginBottom: 0,
     marginTop: '45%'
   },
+
+  inputOnError: {
+    marginBottom: 20,
+    backgroundColor: 'white',
+    borderRadius: 10,
+    height: 40,
+    margin: 12,
+    left: -12,
+    width: 100 + '%',
+    borderWidth: 1,
+    padding: 10,
+    borderColor: 'red'
+  },
   input: {
     marginBottom: 20,
     backgroundColor: 'white',
-    borderRadius: 10
+    borderRadius: 10,
+    height: 40,
+    margin: 12,
+    left: -12,
+    width: 100 + '%',
+    borderWidth: 1,
+    padding: 10
   },
 
   // BUTTON BOX
@@ -124,7 +156,6 @@ const styles = StyleSheet.create({
   updateButton: {
     color: 'white',
     textAlign: 'center',
-    fontWeight: '900',
     paddingTop: '4%',
     paddingBottom: '4%'
   },
@@ -147,4 +178,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default ResetPassword;
+export default RequestResetPassword;

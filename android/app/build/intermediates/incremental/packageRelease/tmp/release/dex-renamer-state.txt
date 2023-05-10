@@ -1,7 +1,7 @@
-#Mon Oct 10 11:33:08 CEST 2022
-base.1=/home/christophe/eip/mobile-owner/android/app/build/intermediates/dex/release/mergeDexRelease/classes2.dex
+#Sun Jan 15 16:56:36 CET 2023
+base.1=/Users/christophesourinthone/Owner/mobile-owner/android/app/build/intermediates/dex/release/mergeDexRelease/classes2.dex
 path.1=classes2.dex
-base.0=/home/christophe/eip/mobile-owner/android/app/build/intermediates/dex/release/mergeDexRelease/classes.dex
+base.0=/Users/christophesourinthone/Owner/mobile-owner/android/app/build/intermediates/dex/release/mergeDexRelease/classes.dex
 renamed.1=classes2.dex
 renamed.0=classes.dex
 path.0=classes.dex
