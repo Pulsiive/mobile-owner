@@ -14,7 +14,7 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import Login from './src/components/authentification/login/Login.js';
 import Register from './src/components/authentification/register/Register.js';
 import HomePage from './src/components/homePage/HomePage.js';
-import HomeScreen2 from './src/components/homePage/Home-2.js';
+import HomeScreen2 from './src/components/authentification/Home-2.js';
 import ForgetPassword from './src/components/authentification/login/ForgetPassword.js';
 import Settings from './src/components/settings/Settings.js';
 import Profile from './src/components/settings/Profile.js';
@@ -27,6 +27,7 @@ import LegalMentions from './src/components/settings/LegalMentions.js';
 import Tutorial from './src/components/settings/Tutorial.js';
 import Messages from './src/components/messages/Message.js';
 import PrivateMessages from './src/components/messages/PrivateMessages.js';
+import RequestResetPassword from './src/components/authentification/login/ForgetPassword.js';
 
 import BorneMap from './src/components/borneProcess/BorneMap.js';
 import RegisterStation from './src/components/settings/RegisterStation.js';
@@ -41,15 +42,16 @@ import ContactList from './src/components/Contacts/ContactList.js';
 import AddContact from './src/components/Contacts/AddContact.js';
 import ChangePassword from './src/components/settings/ChangePassword.js';
 
-
 const Stack = createNativeStackNavigator();
 
 const Tab = createBottomTabNavigator();
 
 const LoginStack = () => {
   return (
-    <Stack.Navigator initialRouteName="Login" screenOptions={{ headerShown: false }}>
+    <Stack.Navigator initialRouteName="HomeScreen2" screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="HomeScreen2" component={HomeScreen2} />
       <Stack.Screen name="Login" component={Login} />
+      <Stack.Screen name="RequestResetPassword" component={RequestResetPassword} />
       <Stack.Screen name="ForgetPassword" component={ForgetPassword} />
       <Stack.Screen name="Register" component={Register} />
       <Stack.Screen name="HomePage" component={HomePage} />

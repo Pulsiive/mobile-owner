@@ -27,8 +27,9 @@
     <string msgid="8875138169939072951" name="abc_shareactionprovider_share_with">"Delen met"</string>
     <string msgid="9055268688411532828" name="abc_shareactionprovider_share_with_application">"Delen met <ns1:g id="APPLICATION_NAME">%s</ns1:g>"</string>
     <string msgid="1656852541809559762" name="abc_toolbar_collapse_description">"Samenvouwen"</string>
+    <string name="ampm_description">Selecteer AM/PM</string>
     <string msgid="2523291102206661146" name="common_google_play_services_enable_button">Aanzetten</string>
-    <string msgid="227660514972886228" name="common_google_play_services_enable_text">%1$s werkt niet, tenzij je Google Play-services inschakelt.</string>
+    <string msgid="227660514972886228" name="common_google_play_services_enable_text">%1$s werkt niet, tenzij je Google Play-services aanzet.</string>
     <string msgid="5122002158466380389" name="common_google_play_services_enable_title">Google Play-services aanzetten</string>
     <string msgid="7153882981874058840" name="common_google_play_services_install_button">Installeren</string>
     <string name="common_google_play_services_install_text">%1$s kan niet worden uitgevoerd zonder Google Play-services, die je nog niet op je apparaat hebt.</string>
@@ -45,6 +46,14 @@
     <string name="common_open_on_phone">Openen op telefoon</string>
     <string name="common_signin_button_text">Inloggen</string>
     <string name="common_signin_button_text_long">Inloggen met Google</string>
+    <string msgid="3260749812566568062" name="copy_toast_msg">"Link naar klembord gekopieerd"</string>
+    <string name="date_description">Selecteer datum</string>
+    <string name="day_description">Selecteer dag</string>
+    <string msgid="4566929209979330987" name="fallback_menu_item_copy_link">"Link kopiëren"</string>
+    <string msgid="3413186855122069269" name="fallback_menu_item_open_in_browser">"Openen in browser"</string>
+    <string msgid="7145444925855055364" name="fallback_menu_item_share_link">"Link delen"</string>
+    <string name="hour_description">Selecteer uur</string>
+    <string name="hour_tag">Uur :</string>
     <string name="mapbox_attributionTelemetryMessage">U helpt OpenStreetMap en Mapbox maps te verbeteren door het  bijdragen van anonieme gebruikersgegevens. </string>
     <string name="mapbox_attributionTelemetryNegative">Intrekken</string>
     <string name="mapbox_attributionTelemetryNeutral">Meer informatie</string>
@@ -56,6 +65,12 @@
     <string name="mapbox_mapActionDescription">Toont een map gemaakt met Mapbox. Scroll door het slepen met twee vingers. Zoom door vingers te nijpen.</string>
     <string name="mapbox_myLocationViewContentDescription">Locatie Element. Dit toont jouw locatie op de map.</string>
     <string name="mapbox_offline_error_region_definition_invalid">Aangeleverde OfflineRegionDefinition past niet in de wereld omtrek: %s</string>
+    <string name="minutes_description">Selecteer minuten</string>
+    <string name="minutes_tag">Minuten </string>
+    <string name="month_description">Selecteer maand</string>
+    <string name="overlay">Date Picker Overlay</string>
     <string msgid="6264217191555673260" name="search_menu_title">"Zoeken"</string>
     <string msgid="6277540029070332960" name="status_bar_notification_info_overflow">"999+"</string>
+    <string name="time_tag">Tijd is</string>
+    <string name="year_description">Selecteer jaar</string>
 </resources>

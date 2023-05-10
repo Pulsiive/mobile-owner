@@ -1,12 +1,12 @@
 <lint-module
     format="1"
-    dir="/home/christophe/eip/mobile-owner/android/app"
+    dir="/Users/christophesourinthone/Owner/mobile-owner/android/app"
     name=":app"
     type="APP"
     maven="MobileOwner:app:"
     gradle="7.0.4"
     buildFolder="build"
-    bootClassPath="/home/christophe/Android/Sdk/platforms/android-31/android.jar:/home/christophe/Android/Sdk/build-tools/30.0.2/core-lambda-stubs.jar"
+    bootClassPath="/Users/christophesourinthone/Library/Android/sdk/platforms/android-31/android.jar:/Users/christophesourinthone/Library/Android/sdk/build-tools/30.0.2/core-lambda-stubs.jar"
     javaSourceLevel="1.8"
     compileTarget="android-31"
     neverShrinking="true">

@@ -1,12 +1,15 @@
 <dependencies>
   <compile
-      roots="/home/christophe/eip/mobile-owner/android@@:react-native-community_geolocation::release,/home/christophe/eip/mobile-owner/android@@:react-native-community_slider::release,com.facebook.react:react-native:0.68.0@aar,androidx.swiperefreshlayout:swiperefreshlayout:1.0.0@aar,org.webkit:android-jsc:r250230@aar,/home/christophe/eip/mobile-owner/android@@:react-native-async-storage_async-storage::release,/home/christophe/eip/mobile-owner/android@@:react-native-community_checkbox::release,/home/christophe/eip/mobile-owner/android@@:rnmapbox_maps::release,/home/christophe/eip/mobile-owner/android@@:react-native-geolocation-service::release,/home/christophe/eip/mobile-owner/android@@:react-native-get-location::release,/home/christophe/eip/mobile-owner/android@@:react-native-linear-gradient::release,/home/christophe/eip/mobile-owner/android@@:react-native-maps::release,/home/christophe/eip/mobile-owner/android@@:react-native-safe-area-context::release,/home/christophe/eip/mobile-owner/android@@:react-native-screens::release,/home/christophe/eip/mobile-owner/android@@:react-native-sound::release,/home/christophe/eip/mobile-owner/android@@:react-native-vector-icons::release,com.facebook.infer.annotation:infer-annotation:0.18.0@jar,com.google.code.findbugs:jsr305:3.0.2@jar,org.jetbrains.kotlin:kotlin-annotations-jvm:1.3.72@jar,com.facebook.yoga:proguard-annotations:1.19.0@jar,javax.inject:javax.inject:1@jar,androidx.appcompat:appcompat:1.1.0@aar,androidx.fragment:fragment:1.2.1@aar,androidx.appcompat:appcompat-resources:1.1.0@aar,androidx.drawerlayout:drawerlayout:1.0.0@aar,androidx.viewpager:viewpager:1.0.0@aar,androidx.loader:loader:1.0.0@aar,androidx.activity:activity:1.1.0@aar,androidx.vectordrawable:vectordrawable-animated:1.1.0@aar,androidx.vectordrawable:vectordrawable:1.1.0@aar,androidx.customview:customview:1.0.0@aar,androidx.core:core:1.6.0@aar,androidx.interpolator:interpolator:1.0.0@aar,androidx.cursoradapter:cursoradapter:1.0.0@aar,androidx.versionedparcelable:versionedparcelable:1.1.1@aar,androidx.collection:collection:1.1.0@jar,androidx.lifecycle:lifecycle-runtime:2.2.0@aar,androidx.lifecycle:lifecycle-viewmodel-savedstate:2.2.0@aar,androidx.lifecycle:lifecycle-viewmodel:2.2.0@aar,androidx.lifecycle:lifecycle-livedata:2.1.0@aar,androidx.lifecycle:lifecycle-livedata-core:2.2.0@aar,androidx.savedstate:savedstate:1.0.0@aar,androidx.lifecycle:lifecycle-common:2.2.0@jar,androidx.arch.core:core-runtime:2.1.0@aar,androidx.arch.core:core-common:2.1.0@jar,androidx.annotation:annotation:1.2.0@jar,androidx.annotation:annotation-experimental:1.1.0@aar,androidx.autofill:autofill:1.1.0@aar,com.facebook.fresco:fresco:2.5.0@aar,com.facebook.fresco:fbcore:2.5.0@aar,com.facebook.soloader:soloader:0.10.3@aar,com.facebook.soloader:annotation:0.10.3@jar,com.facebook.soloader:nativeloader:0.10.3@jar,com.facebook.fresco:ui-common:2.5.0@aar,com.facebook.fresco:drawee:2.5.0@aar,com.facebook.fresco:imagepipeline:2.5.0@aar,com.facebook.fresco:imagepipeline-base:2.5.0@aar,com.facebook.fresco:imagepipeline-native:2.5.0@aar,com.facebook.fresco:memory-type-ashmem:2.5.0@aar,com.facebook.fresco:memory-type-native:2.5.0@aar,com.facebook.fresco:memory-type-java:2.5.0@aar,com.facebook.fresco:nativeimagefilters:2.5.0@aar,com.facebook.fresco:nativeimagetranscoder:2.5.0@aar,com.facebook.fresco:imagepipeline-okhttp3:2.5.0@aar,com.squareup.okhttp3:okhttp-urlconnection:4.9.2@jar,com.squareup.okhttp3:okhttp:4.9.2@jar,com.squareup.okio:okio:2.9.0@jar,org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.4.10@jar,org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.4.10@jar,org.jetbrains.kotlin:kotlin-stdlib:1.6.10@jar,org.jetbrains:annotations:16.0.1@jar,org.jetbrains.kotlin:kotlin-stdlib-common:1.6.10@jar,com.facebook.fbjni:fbjni-java-only:0.2.2@jar">
+      roots="/Users/christophesourinthone/Owner/mobile-owner/android@@:react-native-community_geolocation::release,/Users/christophesourinthone/Owner/mobile-owner/android@@:react-native-community_slider::release,/Users/christophesourinthone/Owner/mobile-owner/android@@:react-native-picker_picker::release,com.facebook.react:react-native:0.68.0@aar,androidx.swiperefreshlayout:swiperefreshlayout:1.0.0@aar,org.webkit:android-jsc:r250230@aar,/Users/christophesourinthone/Owner/mobile-owner/android@@:react-native-async-storage_async-storage::release,/Users/christophesourinthone/Owner/mobile-owner/android@@:react-native-community_checkbox::release,/Users/christophesourinthone/Owner/mobile-owner/android@@:react-native-community_datetimepicker::release,/Users/christophesourinthone/Owner/mobile-owner/android@@:rnmapbox_maps::release,/Users/christophesourinthone/Owner/mobile-owner/android@@:react-native-date-picker::release,/Users/christophesourinthone/Owner/mobile-owner/android@@:react-native-geolocation-service::release,/Users/christophesourinthone/Owner/mobile-owner/android@@:react-native-gesture-handler::release,/Users/christophesourinthone/Owner/mobile-owner/android@@:react-native-get-location::release,/Users/christophesourinthone/Owner/mobile-owner/android@@:react-native-linear-gradient::release,/Users/christophesourinthone/Owner/mobile-owner/android@@:react-native-maps::release,/Users/christophesourinthone/Owner/mobile-owner/android@@:react-native-safe-area-context::release,/Users/christophesourinthone/Owner/mobile-owner/android@@:react-native-screens::release,/Users/christophesourinthone/Owner/mobile-owner/android@@:react-native-sound::release,/Users/christophesourinthone/Owner/mobile-owner/android@@:react-native-vector-icons::release,com.facebook.infer.annotation:infer-annotation:0.18.0@jar,com.google.code.findbugs:jsr305:3.0.2@jar,org.jetbrains.kotlin:kotlin-annotations-jvm:1.3.72@jar,com.facebook.yoga:proguard-annotations:1.19.0@jar,javax.inject:javax.inject:1@jar,androidx.appcompat:appcompat:1.2.0@aar,androidx.fragment:fragment:1.2.1@aar,androidx.appcompat:appcompat-resources:1.2.0@aar,androidx.drawerlayout:drawerlayout:1.0.0@aar,androidx.viewpager:viewpager:1.0.0@aar,androidx.loader:loader:1.0.0@aar,androidx.activity:activity:1.1.0@aar,androidx.vectordrawable:vectordrawable-animated:1.1.0@aar,androidx.vectordrawable:vectordrawable:1.1.0@aar,androidx.customview:customview:1.0.0@aar,androidx.core:core:1.6.0@aar,androidx.interpolator:interpolator:1.0.0@aar,androidx.cursoradapter:cursoradapter:1.0.0@aar,androidx.lifecycle:lifecycle-runtime:2.2.0@aar,androidx.versionedparcelable:versionedparcelable:1.1.1@aar,androidx.collection:collection:1.1.0@jar,androidx.lifecycle:lifecycle-viewmodel-savedstate:2.2.0@aar,androidx.lifecycle:lifecycle-viewmodel:2.2.0@aar,androidx.lifecycle:lifecycle-livedata:2.1.0@aar,androidx.lifecycle:lifecycle-livedata-core:2.2.0@aar,androidx.savedstate:savedstate:1.0.0@aar,androidx.lifecycle:lifecycle-common:2.2.0@jar,androidx.arch.core:core-runtime:2.1.0@aar,androidx.arch.core:core-common:2.1.0@jar,androidx.annotation:annotation:1.2.0@jar,androidx.annotation:annotation-experimental:1.1.0@aar,androidx.autofill:autofill:1.1.0@aar,com.facebook.fresco:fresco:2.5.0@aar,com.facebook.fresco:fbcore:2.5.0@aar,com.facebook.soloader:soloader:0.10.3@aar,com.facebook.soloader:annotation:0.10.3@jar,com.facebook.soloader:nativeloader:0.10.3@jar,com.facebook.fresco:ui-common:2.5.0@aar,com.facebook.fresco:drawee:2.5.0@aar,com.facebook.fresco:imagepipeline:2.5.0@aar,com.facebook.fresco:imagepipeline-base:2.5.0@aar,com.facebook.fresco:imagepipeline-native:2.5.0@aar,com.facebook.fresco:memory-type-ashmem:2.5.0@aar,com.facebook.fresco:memory-type-native:2.5.0@aar,com.facebook.fresco:memory-type-java:2.5.0@aar,com.facebook.fresco:nativeimagefilters:2.5.0@aar,com.facebook.fresco:nativeimagetranscoder:2.5.0@aar,com.facebook.fresco:imagepipeline-okhttp3:2.5.0@aar,com.squareup.okhttp3:okhttp-urlconnection:4.9.2@jar,com.squareup.okhttp3:okhttp:4.9.2@jar,com.squareup.okio:okio:2.9.0@jar,org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.6.21@jar,org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.6.21@jar,org.jetbrains.kotlin:kotlin-stdlib:1.6.21@jar,org.jetbrains.kotlin:kotlin-stdlib-common:1.6.21@jar,org.jetbrains:annotations:16.0.1@jar,com.facebook.fbjni:fbjni-java-only:0.2.2@jar">
     <dependency
-        name="/home/christophe/eip/mobile-owner/android@@:react-native-community_geolocation::release"
+        name="/Users/christophesourinthone/Owner/mobile-owner/android@@:react-native-community_geolocation::release"
         simpleName="MobileOwner:react-native-community_geolocation"/>
     <dependency
-        name="/home/christophe/eip/mobile-owner/android@@:react-native-community_slider::release"
+        name="/Users/christophesourinthone/Owner/mobile-owner/android@@:react-native-community_slider::release"
         simpleName="MobileOwner:react-native-community_slider"/>
+    <dependency
+        name="/Users/christophesourinthone/Owner/mobile-owner/android@@:react-native-picker_picker::release"
+        simpleName="MobileOwner:react-native-picker_picker"/>
     <dependency
         name="com.facebook.react:react-native:0.68.0@aar"/>
     <dependency
@@ -14,37 +17,46 @@
     <dependency
         name="org.webkit:android-jsc:r250230@aar"/>
     <dependency
-        name="/home/christophe/eip/mobile-owner/android@@:react-native-async-storage_async-storage::release"
+        name="/Users/christophesourinthone/Owner/mobile-owner/android@@:react-native-async-storage_async-storage::release"
         simpleName="MobileOwner:react-native-async-storage_async-storage"/>
     <dependency
-        name="/home/christophe/eip/mobile-owner/android@@:react-native-community_checkbox::release"
+        name="/Users/christophesourinthone/Owner/mobile-owner/android@@:react-native-community_checkbox::release"
         simpleName="MobileOwner:react-native-community_checkbox"/>
     <dependency
-        name="/home/christophe/eip/mobile-owner/android@@:rnmapbox_maps::release"
+        name="/Users/christophesourinthone/Owner/mobile-owner/android@@:react-native-community_datetimepicker::release"
+        simpleName="MobileOwner:react-native-community_datetimepicker"/>
+    <dependency
+        name="/Users/christophesourinthone/Owner/mobile-owner/android@@:rnmapbox_maps::release"
         simpleName="MobileOwner:rnmapbox_maps"/>
     <dependency
-        name="/home/christophe/eip/mobile-owner/android@@:react-native-geolocation-service::release"
+        name="/Users/christophesourinthone/Owner/mobile-owner/android@@:react-native-date-picker::release"
+        simpleName="MobileOwner:react-native-date-picker"/>
+    <dependency
+        name="/Users/christophesourinthone/Owner/mobile-owner/android@@:react-native-geolocation-service::release"
         simpleName="MobileOwner:react-native-geolocation-service"/>
     <dependency
-        name="/home/christophe/eip/mobile-owner/android@@:react-native-get-location::release"
+        name="/Users/christophesourinthone/Owner/mobile-owner/android@@:react-native-gesture-handler::release"
+        simpleName="MobileOwner:react-native-gesture-handler"/>
+    <dependency
+        name="/Users/christophesourinthone/Owner/mobile-owner/android@@:react-native-get-location::release"
         simpleName="MobileOwner:react-native-get-location"/>
     <dependency
-        name="/home/christophe/eip/mobile-owner/android@@:react-native-linear-gradient::release"
+        name="/Users/christophesourinthone/Owner/mobile-owner/android@@:react-native-linear-gradient::release"
         simpleName="MobileOwner:react-native-linear-gradient"/>
     <dependency
-        name="/home/christophe/eip/mobile-owner/android@@:react-native-maps::release"
+        name="/Users/christophesourinthone/Owner/mobile-owner/android@@:react-native-maps::release"
         simpleName="MobileOwner:react-native-maps"/>
     <dependency
-        name="/home/christophe/eip/mobile-owner/android@@:react-native-safe-area-context::release"
+        name="/Users/christophesourinthone/Owner/mobile-owner/android@@:react-native-safe-area-context::release"
         simpleName="MobileOwner:react-native-safe-area-context"/>
     <dependency
-        name="/home/christophe/eip/mobile-owner/android@@:react-native-screens::release"
+        name="/Users/christophesourinthone/Owner/mobile-owner/android@@:react-native-screens::release"
         simpleName="MobileOwner:react-native-screens"/>
     <dependency
-        name="/home/christophe/eip/mobile-owner/android@@:react-native-sound::release"
+        name="/Users/christophesourinthone/Owner/mobile-owner/android@@:react-native-sound::release"
         simpleName="MobileOwner:react-native-sound"/>
     <dependency
-        name="/home/christophe/eip/mobile-owner/android@@:react-native-vector-icons::release"
+        name="/Users/christophesourinthone/Owner/mobile-owner/android@@:react-native-vector-icons::release"
         simpleName="MobileOwner:react-native-vector-icons"/>
     <dependency
         name="com.facebook.infer.annotation:infer-annotation:0.18.0@jar"/>
@@ -57,11 +69,11 @@
     <dependency
         name="javax.inject:javax.inject:1@jar"/>
     <dependency
-        name="androidx.appcompat:appcompat:1.1.0@aar"/>
+        name="androidx.appcompat:appcompat:1.2.0@aar"/>
     <dependency
         name="androidx.fragment:fragment:1.2.1@aar"/>
     <dependency
-        name="androidx.appcompat:appcompat-resources:1.1.0@aar"/>
+        name="androidx.appcompat:appcompat-resources:1.2.0@aar"/>
     <dependency
         name="androidx.drawerlayout:drawerlayout:1.0.0@aar"/>
     <dependency
@@ -83,11 +95,11 @@
     <dependency
         name="androidx.cursoradapter:cursoradapter:1.0.0@aar"/>
     <dependency
+        name="androidx.lifecycle:lifecycle-runtime:2.2.0@aar"/>
+    <dependency
         name="androidx.versionedparcelable:versionedparcelable:1.1.1@aar"/>
     <dependency
         name="androidx.collection:collection:1.1.0@jar"/>
-    <dependency
-        name="androidx.lifecycle:lifecycle-runtime:2.2.0@aar"/>
     <dependency
         name="androidx.lifecycle:lifecycle-viewmodel-savedstate:2.2.0@aar"/>
     <dependency
@@ -149,52 +161,67 @@
     <dependency
         name="com.squareup.okio:okio:2.9.0@jar"/>
     <dependency
-        name="org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.4.10@jar"/>
+        name="org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.6.21@jar"/>
     <dependency
-        name="org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.4.10@jar"/>
+        name="org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.6.21@jar"/>
     <dependency
-        name="org.jetbrains.kotlin:kotlin-stdlib:1.6.10@jar"/>
+        name="org.jetbrains.kotlin:kotlin-stdlib:1.6.21@jar"/>
+    <dependency
+        name="org.jetbrains.kotlin:kotlin-stdlib-common:1.6.21@jar"/>
     <dependency
         name="org.jetbrains:annotations:16.0.1@jar"/>
-    <dependency
-        name="org.jetbrains.kotlin:kotlin-stdlib-common:1.6.10@jar"/>
     <dependency
         name="com.facebook.fbjni:fbjni-java-only:0.2.2@jar"/>
   </compile>
   <package
-      roots="/home/christophe/eip/mobile-owner/android@@:react-native-async-storage_async-storage::release,/home/christophe/eip/mobile-owner/android@@:react-native-community_checkbox::release,/home/christophe/eip/mobile-owner/android@@:react-native-community_geolocation::release,/home/christophe/eip/mobile-owner/android@@:react-native-community_slider::release,/home/christophe/eip/mobile-owner/android@@:rnmapbox_maps::release,/home/christophe/eip/mobile-owner/android@@:react-native-geolocation-service::release,/home/christophe/eip/mobile-owner/android@@:react-native-get-location::release,/home/christophe/eip/mobile-owner/android@@:react-native-maps::release,/home/christophe/eip/mobile-owner/android@@:react-native-safe-area-context::release,/home/christophe/eip/mobile-owner/android@@:react-native-screens::release,/home/christophe/eip/mobile-owner/android@@:react-native-vector-icons::release,com.facebook.react:react-native:0.68.0@aar,androidx.swiperefreshlayout:swiperefreshlayout:1.0.0@aar,org.webkit:android-jsc:r250230@aar,/home/christophe/eip/mobile-owner/android@@:react-native-linear-gradient::release,/home/christophe/eip/mobile-owner/android@@:react-native-sound::release,com.facebook.fresco:fresco:2.5.0@aar,com.facebook.fresco:imagepipeline-okhttp3:2.5.0@aar,com.facebook.fresco:drawee:2.5.0@aar,com.facebook.fresco:nativeimagefilters:2.5.0@aar,com.facebook.fresco:memory-type-native:2.5.0@aar,com.facebook.fresco:memory-type-java:2.5.0@aar,com.facebook.fresco:imagepipeline-native:2.5.0@aar,com.facebook.fresco:memory-type-ashmem:2.5.0@aar,com.facebook.fresco:imagepipeline:2.5.0@aar,com.facebook.fresco:nativeimagetranscoder:2.5.0@aar,com.facebook.fresco:imagepipeline-base:2.5.0@aar,com.facebook.infer.annotation:infer-annotation:0.18.0@jar,com.facebook.yoga:proguard-annotations:1.19.0@jar,javax.inject:javax.inject:1@jar,com.mapbox.mapboxsdk:mapbox-android-plugin-annotation-v9:0.8.0@aar,com.mapbox.mapboxsdk:mapbox-android-plugin-localization-v9:0.14.0@aar,com.mapbox.mapboxsdk:mapbox-android-plugin-markerview-v9:0.4.0@aar,com.google.android.material:material:1.1.0@aar,androidx.appcompat:appcompat:1.1.0@aar,androidx.autofill:autofill:1.1.0@aar,com.facebook.fresco:middleware:2.5.0@aar,com.facebook.fresco:ui-common:2.5.0@aar,com.facebook.fresco:soloader:2.5.0@aar,com.facebook.soloader:soloader:0.10.3@aar,com.google.code.findbugs:jsr305:3.0.2@jar,com.squareup.okhttp3:okhttp-urlconnection:4.9.2@jar,com.mapbox.mapboxsdk:mapbox-android-sdk:9.7.1@aar,com.mapbox.mapboxsdk:mapbox-android-telemetry-okhttp3:8.1.0@aar,com.mapbox.mapboxsdk:mapbox-sdk-services:5.8.0@jar,com.mapbox.mapboxsdk:mapbox-sdk-core:5.8.0@jar,com.squareup.retrofit2:converter-gson:2.7.2@jar,com.squareup.retrofit2:retrofit:2.7.2@jar,com.squareup.okhttp3:logging-interceptor:3.12.7@jar,com.squareup.okhttp3:okhttp:4.9.2@jar,com.squareup.okio:okio:2.9.0@jar,com.facebook.fbjni:fbjni-java-only:0.2.2@jar,androidx.appcompat:appcompat-resources:1.1.0@aar,androidx.vectordrawable:vectordrawable-animated:1.1.0@aar,androidx.interpolator:interpolator:1.0.0@aar,com.mapbox.mapboxsdk:mapbox-android-gestures:0.7.0@aar,com.google.android.gms:play-services-location:19.0.1@aar,com.google.android.gms:play-services-maps:18.0.2@aar,com.google.android.gms:play-services-base:18.0.1@aar,com.google.android.gms:play-services-places-placereport:17.0.0@aar,com.google.android.gms:play-services-tasks:18.0.1@aar,com.google.android.gms:play-services-basement:18.0.0@aar,androidx.viewpager2:viewpager2:1.0.0@aar,androidx.fragment:fragment:1.2.1@aar,androidx.coordinatorlayout:coordinatorlayout:1.1.0@aar,androidx.core:core-ktx:1.5.0@aar,com.mapbox.mapboxsdk:mapbox-android-accounts:0.7.0@aar,com.mapbox.mapboxsdk:mapbox-sdk-directions-refresh-models:5.8.0@jar,com.mapbox.mapboxsdk:mapbox-sdk-directions-models:5.8.0@jar,androidx.work:work-runtime:2.7.1@aar,androidx.drawerlayout:drawerlayout:1.0.0@aar,androidx.viewpager:viewpager:1.0.0@aar,androidx.legacy:legacy-support-core-utils:1.0.0@aar,androidx.loader:loader:1.0.0@aar,androidx.activity:activity:1.1.0@aar,androidx.recyclerview:recyclerview:1.1.0@aar,androidx.customview:customview:1.0.0@aar,androidx.vectordrawable:vectordrawable:1.1.0@aar,androidx.transition:transition:1.2.0@aar,androidx.core:core:1.6.0@aar,androidx.startup:startup-runtime:1.0.0@aar,androidx.room:room-runtime:2.2.5@aar,androidx.sqlite:sqlite-framework:2.1.0@aar,androidx.sqlite:sqlite:2.1.0@aar,androidx.cursoradapter:cursoradapter:1.0.0@aar,androidx.versionedparcelable:versionedparcelable:1.1.1@aar,androidx.collection:collection:1.1.0@jar,androidx.lifecycle:lifecycle-viewmodel-savedstate:2.2.0@aar,androidx.lifecycle:lifecycle-viewmodel:2.2.0@aar,androidx.cardview:cardview:1.0.0@aar,androidx.lifecycle:lifecycle-livedata:2.1.0@aar,androidx.lifecycle:lifecycle-livedata-core:2.2.0@aar,androidx.arch.core:core-runtime:2.1.0@aar,androidx.lifecycle:lifecycle-service:2.1.0@aar,androidx.lifecycle:lifecycle-runtime:2.2.0@aar,androidx.savedstate:savedstate:1.0.0@aar,androidx.arch.core:core-common:2.1.0@jar,androidx.tracing:tracing:1.0.0@aar,androidx.room:room-common:2.2.5@jar,androidx.lifecycle:lifecycle-common:2.2.0@jar,androidx.documentfile:documentfile:1.0.0@aar,androidx.localbroadcastmanager:localbroadcastmanager:1.0.0@aar,androidx.print:print:1.0.0@aar,androidx.annotation:annotation:1.2.0@jar,com.mapbox.mapboxsdk:mapbox-sdk-turf:5.8.0@jar,com.google.maps.android:android-maps-utils:0.5@aar,org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.4.10@jar,org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.4.10@jar,org.jetbrains.kotlin:kotlin-stdlib:1.6.10@jar,org.jetbrains.kotlin:kotlin-annotations-jvm:1.3.72@jar,com.facebook.soloader:nativeloader:0.10.3@jar,com.facebook.fresco:fbcore:2.5.0@aar,com.facebook.soloader:annotation:0.10.3@jar,org.jetbrains.kotlin:kotlin-stdlib-common:1.6.10@jar,com.mapbox.mapboxsdk:mapbox-android-core:5.0.0@aar,com.mapbox.mapboxsdk:mapbox-sdk-geojson:5.8.0@jar,com.mapbox.mapboxsdk:mapbox-android-sdk-gl-core:5.3.1@aar,com.jakewharton.timber:timber:4.7.1@aar,androidx.annotation:annotation-experimental:1.1.0@aar,com.google.guava:listenablefuture:1.0@jar,org.jetbrains:annotations:16.0.1@jar,com.parse.bolts:bolts-tasks:1.4.0@jar,com.google.code.gson:gson:2.8.6@jar">
+      roots="/Users/christophesourinthone/Owner/mobile-owner/android@@:react-native-async-storage_async-storage::release,/Users/christophesourinthone/Owner/mobile-owner/android@@:react-native-community_checkbox::release,/Users/christophesourinthone/Owner/mobile-owner/android@@:react-native-community_datetimepicker::release,/Users/christophesourinthone/Owner/mobile-owner/android@@:react-native-community_geolocation::release,/Users/christophesourinthone/Owner/mobile-owner/android@@:react-native-community_slider::release,/Users/christophesourinthone/Owner/mobile-owner/android@@:react-native-picker_picker::release,/Users/christophesourinthone/Owner/mobile-owner/android@@:rnmapbox_maps::release,/Users/christophesourinthone/Owner/mobile-owner/android@@:react-native-date-picker::release,/Users/christophesourinthone/Owner/mobile-owner/android@@:react-native-geolocation-service::release,/Users/christophesourinthone/Owner/mobile-owner/android@@:react-native-gesture-handler::release,/Users/christophesourinthone/Owner/mobile-owner/android@@:react-native-get-location::release,/Users/christophesourinthone/Owner/mobile-owner/android@@:react-native-linear-gradient::release,/Users/christophesourinthone/Owner/mobile-owner/android@@:react-native-maps::release,/Users/christophesourinthone/Owner/mobile-owner/android@@:react-native-safe-area-context::release,/Users/christophesourinthone/Owner/mobile-owner/android@@:react-native-screens::release,/Users/christophesourinthone/Owner/mobile-owner/android@@:react-native-vector-icons::release,com.facebook.react:react-native:0.68.0@aar,androidx.swiperefreshlayout:swiperefreshlayout:1.0.0@aar,org.webkit:android-jsc:r250230@aar,/Users/christophesourinthone/Owner/mobile-owner/android@@:react-native-sound::release,com.facebook.fresco:fresco:2.5.0@aar,com.facebook.fresco:imagepipeline-okhttp3:2.5.0@aar,com.facebook.fresco:drawee:2.5.0@aar,com.facebook.fresco:nativeimagefilters:2.5.0@aar,com.facebook.fresco:memory-type-native:2.5.0@aar,com.facebook.fresco:memory-type-java:2.5.0@aar,com.facebook.fresco:imagepipeline-native:2.5.0@aar,com.facebook.fresco:memory-type-ashmem:2.5.0@aar,com.facebook.fresco:imagepipeline:2.5.0@aar,com.facebook.fresco:nativeimagetranscoder:2.5.0@aar,com.facebook.fresco:imagepipeline-base:2.5.0@aar,com.facebook.infer.annotation:infer-annotation:0.18.0@jar,com.facebook.yoga:proguard-annotations:1.19.0@jar,javax.inject:javax.inject:1@jar,com.mapbox.mapboxsdk:mapbox-android-plugin-annotation-v9:0.8.0@aar,com.mapbox.mapboxsdk:mapbox-android-plugin-localization-v9:0.14.0@aar,com.mapbox.mapboxsdk:mapbox-android-plugin-markerview-v9:0.4.0@aar,com.google.android.material:material:1.1.0@aar,androidx.appcompat:appcompat:1.2.0@aar,androidx.autofill:autofill:1.1.0@aar,com.facebook.fresco:middleware:2.5.0@aar,com.facebook.fresco:ui-common:2.5.0@aar,com.facebook.fresco:soloader:2.5.0@aar,com.facebook.soloader:soloader:0.10.3@aar,com.google.code.findbugs:jsr305:3.0.2@jar,com.squareup.okhttp3:okhttp-urlconnection:4.9.2@jar,com.mapbox.mapboxsdk:mapbox-android-sdk:9.7.1@aar,com.mapbox.mapboxsdk:mapbox-android-telemetry-okhttp3:8.1.0@aar,com.mapbox.mapboxsdk:mapbox-sdk-services:5.8.0@jar,com.mapbox.mapboxsdk:mapbox-sdk-core:5.8.0@jar,com.squareup.retrofit2:converter-gson:2.7.2@jar,com.squareup.retrofit2:retrofit:2.7.2@jar,com.squareup.okhttp3:logging-interceptor:3.12.7@jar,com.squareup.okhttp3:okhttp:4.9.2@jar,com.squareup.okio:okio:2.9.0@jar,com.facebook.fbjni:fbjni-java-only:0.2.2@jar,androidx.appcompat:appcompat-resources:1.2.0@aar,androidx.vectordrawable:vectordrawable-animated:1.1.0@aar,androidx.interpolator:interpolator:1.0.0@aar,com.mapbox.mapboxsdk:mapbox-android-gestures:0.7.0@aar,androidx.core:core-ktx:1.6.0@aar,com.google.android.gms:play-services-location:20.0.0@aar,com.google.android.gms:play-services-maps:18.0.2@aar,com.google.android.gms:play-services-base:18.1.0@aar,com.google.android.gms:play-services-tasks:18.0.2@aar,com.google.android.gms:play-services-basement:18.1.0@aar,androidx.viewpager2:viewpager2:1.0.0@aar,androidx.fragment:fragment:1.2.1@aar,androidx.coordinatorlayout:coordinatorlayout:1.1.0@aar,com.mapbox.mapboxsdk:mapbox-android-accounts:0.7.0@aar,com.mapbox.mapboxsdk:mapbox-sdk-directions-refresh-models:5.8.0@jar,com.mapbox.mapboxsdk:mapbox-sdk-directions-models:5.8.0@jar,androidx.cursoradapter:cursoradapter:1.0.0@aar,androidx.drawerlayout:drawerlayout:1.0.0@aar,androidx.work:work-runtime:2.7.1@aar,androidx.viewpager:viewpager:1.0.0@aar,androidx.legacy:legacy-support-core-utils:1.0.0@aar,androidx.loader:loader:1.0.0@aar,androidx.activity:activity:1.1.0@aar,androidx.recyclerview:recyclerview:1.1.0@aar,androidx.customview:customview:1.0.0@aar,androidx.vectordrawable:vectordrawable:1.1.0@aar,androidx.transition:transition:1.2.0@aar,androidx.core:core:1.6.0@aar,androidx.startup:startup-runtime:1.0.0@aar,androidx.room:room-runtime:2.2.5@aar,androidx.sqlite:sqlite-framework:2.1.0@aar,androidx.sqlite:sqlite:2.1.0@aar,androidx.versionedparcelable:versionedparcelable:1.1.1@aar,androidx.collection:collection:1.1.0@jar,androidx.lifecycle:lifecycle-viewmodel-savedstate:2.2.0@aar,androidx.lifecycle:lifecycle-viewmodel:2.2.0@aar,androidx.cardview:cardview:1.0.0@aar,androidx.lifecycle:lifecycle-livedata:2.1.0@aar,androidx.lifecycle:lifecycle-livedata-core:2.2.0@aar,androidx.arch.core:core-runtime:2.1.0@aar,androidx.lifecycle:lifecycle-service:2.1.0@aar,androidx.lifecycle:lifecycle-runtime:2.2.0@aar,androidx.savedstate:savedstate:1.0.0@aar,androidx.arch.core:core-common:2.1.0@jar,androidx.tracing:tracing:1.0.0@aar,androidx.room:room-common:2.2.5@jar,androidx.lifecycle:lifecycle-common:2.2.0@jar,androidx.documentfile:documentfile:1.0.0@aar,androidx.localbroadcastmanager:localbroadcastmanager:1.0.0@aar,androidx.print:print:1.0.0@aar,androidx.annotation:annotation:1.2.0@jar,com.mapbox.mapboxsdk:mapbox-sdk-turf:5.8.0@jar,com.github.henninghall:numberpickerview:v1.1.5@aar,org.apache.commons:commons-lang3:3.8@jar,net.time4j:time4j-android:4.8-2021a@aar,org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.6.21@jar,org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.6.21@jar,org.jetbrains.kotlin:kotlin-stdlib:1.6.21@jar,com.google.maps.android:android-maps-utils:0.5@aar,org.jetbrains.kotlin:kotlin-annotations-jvm:1.3.72@jar,com.facebook.soloader:nativeloader:0.10.3@jar,com.facebook.fresco:fbcore:2.5.0@aar,com.facebook.soloader:annotation:0.10.3@jar,org.jetbrains.kotlin:kotlin-stdlib-common:1.6.21@jar,com.mapbox.mapboxsdk:mapbox-android-core:5.0.0@aar,com.mapbox.mapboxsdk:mapbox-sdk-geojson:5.8.0@jar,com.mapbox.mapboxsdk:mapbox-android-sdk-gl-core:5.3.1@aar,com.jakewharton.timber:timber:4.7.1@aar,org.jetbrains:annotations:16.0.1@jar,androidx.annotation:annotation-experimental:1.1.0@aar,com.google.guava:listenablefuture:1.0@jar,com.parse.bolts:bolts-tasks:1.4.0@jar,com.google.code.gson:gson:2.8.6@jar">
     <dependency
-        name="/home/christophe/eip/mobile-owner/android@@:react-native-async-storage_async-storage::release"
+        name="/Users/christophesourinthone/Owner/mobile-owner/android@@:react-native-async-storage_async-storage::release"
         simpleName="MobileOwner:react-native-async-storage_async-storage"/>
     <dependency
-        name="/home/christophe/eip/mobile-owner/android@@:react-native-community_checkbox::release"
+        name="/Users/christophesourinthone/Owner/mobile-owner/android@@:react-native-community_checkbox::release"
         simpleName="MobileOwner:react-native-community_checkbox"/>
     <dependency
-        name="/home/christophe/eip/mobile-owner/android@@:react-native-community_geolocation::release"
+        name="/Users/christophesourinthone/Owner/mobile-owner/android@@:react-native-community_datetimepicker::release"
+        simpleName="MobileOwner:react-native-community_datetimepicker"/>
+    <dependency
+        name="/Users/christophesourinthone/Owner/mobile-owner/android@@:react-native-community_geolocation::release"
         simpleName="MobileOwner:react-native-community_geolocation"/>
     <dependency
-        name="/home/christophe/eip/mobile-owner/android@@:react-native-community_slider::release"
+        name="/Users/christophesourinthone/Owner/mobile-owner/android@@:react-native-community_slider::release"
         simpleName="MobileOwner:react-native-community_slider"/>
     <dependency
-        name="/home/christophe/eip/mobile-owner/android@@:rnmapbox_maps::release"
+        name="/Users/christophesourinthone/Owner/mobile-owner/android@@:react-native-picker_picker::release"
+        simpleName="MobileOwner:react-native-picker_picker"/>
+    <dependency
+        name="/Users/christophesourinthone/Owner/mobile-owner/android@@:rnmapbox_maps::release"
         simpleName="MobileOwner:rnmapbox_maps"/>
     <dependency
-        name="/home/christophe/eip/mobile-owner/android@@:react-native-geolocation-service::release"
+        name="/Users/christophesourinthone/Owner/mobile-owner/android@@:react-native-date-picker::release"
+        simpleName="MobileOwner:react-native-date-picker"/>
+    <dependency
+        name="/Users/christophesourinthone/Owner/mobile-owner/android@@:react-native-geolocation-service::release"
         simpleName="MobileOwner:react-native-geolocation-service"/>
     <dependency
-        name="/home/christophe/eip/mobile-owner/android@@:react-native-get-location::release"
+        name="/Users/christophesourinthone/Owner/mobile-owner/android@@:react-native-gesture-handler::release"
+        simpleName="MobileOwner:react-native-gesture-handler"/>
+    <dependency
+        name="/Users/christophesourinthone/Owner/mobile-owner/android@@:react-native-get-location::release"
         simpleName="MobileOwner:react-native-get-location"/>
     <dependency
-        name="/home/christophe/eip/mobile-owner/android@@:react-native-maps::release"
+        name="/Users/christophesourinthone/Owner/mobile-owner/android@@:react-native-linear-gradient::release"
+        simpleName="MobileOwner:react-native-linear-gradient"/>
+    <dependency
+        name="/Users/christophesourinthone/Owner/mobile-owner/android@@:react-native-maps::release"
         simpleName="MobileOwner:react-native-maps"/>
     <dependency
-        name="/home/christophe/eip/mobile-owner/android@@:react-native-safe-area-context::release"
+        name="/Users/christophesourinthone/Owner/mobile-owner/android@@:react-native-safe-area-context::release"
         simpleName="MobileOwner:react-native-safe-area-context"/>
     <dependency
-        name="/home/christophe/eip/mobile-owner/android@@:react-native-screens::release"
+        name="/Users/christophesourinthone/Owner/mobile-owner/android@@:react-native-screens::release"
         simpleName="MobileOwner:react-native-screens"/>
     <dependency
-        name="/home/christophe/eip/mobile-owner/android@@:react-native-vector-icons::release"
+        name="/Users/christophesourinthone/Owner/mobile-owner/android@@:react-native-vector-icons::release"
         simpleName="MobileOwner:react-native-vector-icons"/>
     <dependency
         name="com.facebook.react:react-native:0.68.0@aar"/>
@@ -203,10 +230,7 @@
     <dependency
         name="org.webkit:android-jsc:r250230@aar"/>
     <dependency
-        name="/home/christophe/eip/mobile-owner/android@@:react-native-linear-gradient::release"
-        simpleName="MobileOwner:react-native-linear-gradient"/>
-    <dependency
-        name="/home/christophe/eip/mobile-owner/android@@:react-native-sound::release"
+        name="/Users/christophesourinthone/Owner/mobile-owner/android@@:react-native-sound::release"
         simpleName="MobileOwner:react-native-sound"/>
     <dependency
         name="com.facebook.fresco:fresco:2.5.0@aar"/>
@@ -245,7 +269,7 @@
     <dependency
         name="com.google.android.material:material:1.1.0@aar"/>
     <dependency
-        name="androidx.appcompat:appcompat:1.1.0@aar"/>
+        name="androidx.appcompat:appcompat:1.2.0@aar"/>
     <dependency
         name="androidx.autofill:autofill:1.1.0@aar"/>
     <dependency
@@ -281,7 +305,7 @@
     <dependency
         name="com.facebook.fbjni:fbjni-java-only:0.2.2@jar"/>
     <dependency
-        name="androidx.appcompat:appcompat-resources:1.1.0@aar"/>
+        name="androidx.appcompat:appcompat-resources:1.2.0@aar"/>
     <dependency
         name="androidx.vectordrawable:vectordrawable-animated:1.1.0@aar"/>
     <dependency
@@ -289,17 +313,17 @@
     <dependency
         name="com.mapbox.mapboxsdk:mapbox-android-gestures:0.7.0@aar"/>
     <dependency
-        name="com.google.android.gms:play-services-location:19.0.1@aar"/>
+        name="androidx.core:core-ktx:1.6.0@aar"/>
+    <dependency
+        name="com.google.android.gms:play-services-location:20.0.0@aar"/>
     <dependency
         name="com.google.android.gms:play-services-maps:18.0.2@aar"/>
     <dependency
-        name="com.google.android.gms:play-services-base:18.0.1@aar"/>
+        name="com.google.android.gms:play-services-base:18.1.0@aar"/>
     <dependency
-        name="com.google.android.gms:play-services-places-placereport:17.0.0@aar"/>
+        name="com.google.android.gms:play-services-tasks:18.0.2@aar"/>
     <dependency
-        name="com.google.android.gms:play-services-tasks:18.0.1@aar"/>
-    <dependency
-        name="com.google.android.gms:play-services-basement:18.0.0@aar"/>
+        name="com.google.android.gms:play-services-basement:18.1.0@aar"/>
     <dependency
         name="androidx.viewpager2:viewpager2:1.0.0@aar"/>
     <dependency
@@ -307,17 +331,17 @@
     <dependency
         name="androidx.coordinatorlayout:coordinatorlayout:1.1.0@aar"/>
     <dependency
-        name="androidx.core:core-ktx:1.5.0@aar"/>
-    <dependency
         name="com.mapbox.mapboxsdk:mapbox-android-accounts:0.7.0@aar"/>
     <dependency
         name="com.mapbox.mapboxsdk:mapbox-sdk-directions-refresh-models:5.8.0@jar"/>
     <dependency
         name="com.mapbox.mapboxsdk:mapbox-sdk-directions-models:5.8.0@jar"/>
     <dependency
-        name="androidx.work:work-runtime:2.7.1@aar"/>
+        name="androidx.cursoradapter:cursoradapter:1.0.0@aar"/>
     <dependency
         name="androidx.drawerlayout:drawerlayout:1.0.0@aar"/>
+    <dependency
+        name="androidx.work:work-runtime:2.7.1@aar"/>
     <dependency
         name="androidx.viewpager:viewpager:1.0.0@aar"/>
     <dependency
@@ -344,8 +368,6 @@
         name="androidx.sqlite:sqlite-framework:2.1.0@aar"/>
     <dependency
         name="androidx.sqlite:sqlite:2.1.0@aar"/>
-    <dependency
-        name="androidx.cursoradapter:cursoradapter:1.0.0@aar"/>
     <dependency
         name="androidx.versionedparcelable:versionedparcelable:1.1.1@aar"/>
     <dependency
@@ -387,13 +409,19 @@
     <dependency
         name="com.mapbox.mapboxsdk:mapbox-sdk-turf:5.8.0@jar"/>
     <dependency
+        name="com.github.henninghall:numberpickerview:v1.1.5@aar"/>
+    <dependency
+        name="org.apache.commons:commons-lang3:3.8@jar"/>
+    <dependency
+        name="net.time4j:time4j-android:4.8-2021a@aar"/>
+    <dependency
+        name="org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.6.21@jar"/>
+    <dependency
+        name="org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.6.21@jar"/>
+    <dependency
+        name="org.jetbrains.kotlin:kotlin-stdlib:1.6.21@jar"/>
+    <dependency
         name="com.google.maps.android:android-maps-utils:0.5@aar"/>
-    <dependency
-        name="org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.4.10@jar"/>
-    <dependency
-        name="org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.4.10@jar"/>
-    <dependency
-        name="org.jetbrains.kotlin:kotlin-stdlib:1.6.10@jar"/>
     <dependency
         name="org.jetbrains.kotlin:kotlin-annotations-jvm:1.3.72@jar"/>
     <dependency
@@ -403,7 +431,7 @@
     <dependency
         name="com.facebook.soloader:annotation:0.10.3@jar"/>
     <dependency
-        name="org.jetbrains.kotlin:kotlin-stdlib-common:1.6.10@jar"/>
+        name="org.jetbrains.kotlin:kotlin-stdlib-common:1.6.21@jar"/>
     <dependency
         name="com.mapbox.mapboxsdk:mapbox-android-core:5.0.0@aar"/>
     <dependency
@@ -413,11 +441,11 @@
     <dependency
         name="com.jakewharton.timber:timber:4.7.1@aar"/>
     <dependency
+        name="org.jetbrains:annotations:16.0.1@jar"/>
+    <dependency
         name="androidx.annotation:annotation-experimental:1.1.0@aar"/>
     <dependency
         name="com.google.guava:listenablefuture:1.0@jar"/>
-    <dependency
-        name="org.jetbrains:annotations:16.0.1@jar"/>
     <dependency
         name="com.parse.bolts:bolts-tasks:1.4.0@jar"/>
     <dependency

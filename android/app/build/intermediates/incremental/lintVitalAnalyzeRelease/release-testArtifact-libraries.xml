@@ -1,9 +1,9 @@
 <libraries>
   <library
-      name="/home/christophe/eip/mobile-owner/android@@:react-native-community_geolocation::release"
-      jars="/home/christophe/eip/mobile-owner/node_modules/@react-native-community/geolocation/android/build/.transforms/6a1bc3458c7564e77e9a363434d19505/transformed/out/jars/classes.jar"
+      name="/Users/christophesourinthone/Owner/mobile-owner/android@@:react-native-community_geolocation::release"
+      jars="/Users/christophesourinthone/Owner/mobile-owner/node_modules/@react-native-community/geolocation/android/build/.transforms/1a01fbd80bc0c5e07de62ec7974fc20c/transformed/out/jars/classes.jar"
       resolved="MobileOwner:react-native-community_geolocation:unspecified"
-      folder="/home/christophe/eip/mobile-owner/node_modules/@react-native-community/geolocation/android/build/.transforms/6a1bc3458c7564e77e9a363434d19505/transformed/out"
+      folder="/Users/christophesourinthone/Owner/mobile-owner/node_modules/@react-native-community/geolocation/android/build/.transforms/1a01fbd80bc0c5e07de62ec7974fc20c/transformed/out"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -13,10 +13,23 @@
       externalAnnotations="annotations.zip"
       proguardRules="proguard.txt"/>
   <library
-      name="/home/christophe/eip/mobile-owner/android@@:react-native-community_slider::release"
-      jars="/home/christophe/eip/mobile-owner/node_modules/@react-native-community/slider/android/build/.transforms/504954708adfd346b0fa718e74b3d44b/transformed/out/jars/classes.jar"
+      name="/Users/christophesourinthone/Owner/mobile-owner/android@@:react-native-community_slider::release"
+      jars="/Users/christophesourinthone/Owner/mobile-owner/node_modules/@react-native-community/slider/android/build/.transforms/5e528c1449c2523d91bd580fafe3b4d9/transformed/out/jars/classes.jar"
       resolved="MobileOwner:react-native-community_slider:unspecified"
-      folder="/home/christophe/eip/mobile-owner/node_modules/@react-native-community/slider/android/build/.transforms/504954708adfd346b0fa718e74b3d44b/transformed/out"
+      folder="/Users/christophesourinthone/Owner/mobile-owner/node_modules/@react-native-community/slider/android/build/.transforms/5e528c1449c2523d91bd580fafe3b4d9/transformed/out"
+      manifest="AndroidManifest.xml"
+      resFolder="res"
+      assetsFolder="assets"
+      lintJar="lint.jar"
+      publicResources="public.txt"
+      symbolFile="R.txt"
+      externalAnnotations="annotations.zip"
+      proguardRules="proguard.txt"/>
+  <library
+      name="/Users/christophesourinthone/Owner/mobile-owner/android@@:react-native-picker_picker::release"
+      jars="/Users/christophesourinthone/Owner/mobile-owner/node_modules/@react-native-picker/picker/android/build/.transforms/e3d0928ebcef2a36d886b1be7e9ad943/transformed/out/jars/classes.jar"
+      resolved="MobileOwner:react-native-picker_picker:unspecified"
+      folder="/Users/christophesourinthone/Owner/mobile-owner/node_modules/@react-native-picker/picker/android/build/.transforms/e3d0928ebcef2a36d886b1be7e9ad943/transformed/out"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -27,9 +40,9 @@
       proguardRules="proguard.txt"/>
   <library
       name="com.facebook.react:react-native:0.68.0@aar"
-      jars="/home/christophe/.gradle/caches/transforms-3/c8cd7762549206b8f00b1019bb506472/transformed/jetified-react-native-0.68.0/jars/classes.jar"
+      jars="/Users/christophesourinthone/.gradle/caches/transforms-3/c8cd7762549206b8f00b1019bb506472/transformed/jetified-react-native-0.68.0/jars/classes.jar"
       resolved="com.facebook.react:react-native:0.68.0"
-      folder="/home/christophe/.gradle/caches/transforms-3/c8cd7762549206b8f00b1019bb506472/transformed/jetified-react-native-0.68.0"
+      folder="/Users/christophesourinthone/.gradle/caches/transforms-3/c8cd7762549206b8f00b1019bb506472/transformed/jetified-react-native-0.68.0"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -40,9 +53,9 @@
       proguardRules="proguard.txt"/>
   <library
       name="androidx.swiperefreshlayout:swiperefreshlayout:1.0.0@aar"
-      jars="/home/christophe/.gradle/caches/transforms-3/97f6a5c9d90c1faa13d8cdb00d843ac4/transformed/swiperefreshlayout-1.0.0/jars/classes.jar"
+      jars="/Users/christophesourinthone/.gradle/caches/transforms-3/97f6a5c9d90c1faa13d8cdb00d843ac4/transformed/swiperefreshlayout-1.0.0/jars/classes.jar"
       resolved="androidx.swiperefreshlayout:swiperefreshlayout:1.0.0"
-      folder="/home/christophe/.gradle/caches/transforms-3/97f6a5c9d90c1faa13d8cdb00d843ac4/transformed/swiperefreshlayout-1.0.0"
+      folder="/Users/christophesourinthone/.gradle/caches/transforms-3/97f6a5c9d90c1faa13d8cdb00d843ac4/transformed/swiperefreshlayout-1.0.0"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -53,9 +66,9 @@
       proguardRules="proguard.txt"/>
   <library
       name="org.webkit:android-jsc:r250230@aar"
-      jars="/home/christophe/.gradle/caches/transforms-3/d2e0d0ccafba88cafbae14c7a7657c4e/transformed/jetified-android-jsc-r250230/jars/classes.jar"
+      jars="/Users/christophesourinthone/.gradle/caches/transforms-3/d2e0d0ccafba88cafbae14c7a7657c4e/transformed/jetified-android-jsc-r250230/jars/classes.jar"
       resolved="org.webkit:android-jsc:r250230"
-      folder="/home/christophe/.gradle/caches/transforms-3/d2e0d0ccafba88cafbae14c7a7657c4e/transformed/jetified-android-jsc-r250230"
+      folder="/Users/christophesourinthone/.gradle/caches/transforms-3/d2e0d0ccafba88cafbae14c7a7657c4e/transformed/jetified-android-jsc-r250230"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -65,10 +78,10 @@
       externalAnnotations="annotations.zip"
       proguardRules="proguard.txt"/>
   <library
-      name="/home/christophe/eip/mobile-owner/android@@:react-native-async-storage_async-storage::release"
-      jars="/home/christophe/eip/mobile-owner/node_modules/@react-native-async-storage/async-storage/android/build/.transforms/d2e15ad29b5a9cc82c3b0da3326e212b/transformed/out/jars/classes.jar"
+      name="/Users/christophesourinthone/Owner/mobile-owner/android@@:react-native-async-storage_async-storage::release"
+      jars="/Users/christophesourinthone/Owner/mobile-owner/node_modules/@react-native-async-storage/async-storage/android/build/.transforms/31a32fb76cd37c2aeec99853be0055c5/transformed/out/jars/classes.jar"
       resolved="MobileOwner:react-native-async-storage_async-storage:unspecified"
-      folder="/home/christophe/eip/mobile-owner/node_modules/@react-native-async-storage/async-storage/android/build/.transforms/d2e15ad29b5a9cc82c3b0da3326e212b/transformed/out"
+      folder="/Users/christophesourinthone/Owner/mobile-owner/node_modules/@react-native-async-storage/async-storage/android/build/.transforms/31a32fb76cd37c2aeec99853be0055c5/transformed/out"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -78,10 +91,10 @@
       externalAnnotations="annotations.zip"
       proguardRules="proguard.txt"/>
   <library
-      name="/home/christophe/eip/mobile-owner/android@@:react-native-community_checkbox::release"
-      jars="/home/christophe/eip/mobile-owner/node_modules/@react-native-community/checkbox/android/build/.transforms/17af05ec654b96cf7824cc68edc78f62/transformed/out/jars/classes.jar"
+      name="/Users/christophesourinthone/Owner/mobile-owner/android@@:react-native-community_checkbox::release"
+      jars="/Users/christophesourinthone/Owner/mobile-owner/node_modules/@react-native-community/checkbox/android/build/.transforms/1aac9795f4d8212ebf2836b2ed2ec3e4/transformed/out/jars/classes.jar"
       resolved="MobileOwner:react-native-community_checkbox:unspecified"
-      folder="/home/christophe/eip/mobile-owner/node_modules/@react-native-community/checkbox/android/build/.transforms/17af05ec654b96cf7824cc68edc78f62/transformed/out"
+      folder="/Users/christophesourinthone/Owner/mobile-owner/node_modules/@react-native-community/checkbox/android/build/.transforms/1aac9795f4d8212ebf2836b2ed2ec3e4/transformed/out"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -91,10 +104,23 @@
       externalAnnotations="annotations.zip"
       proguardRules="proguard.txt"/>
   <library
-      name="/home/christophe/eip/mobile-owner/android@@:rnmapbox_maps::release"
-      jars="/home/christophe/eip/mobile-owner/node_modules/@rnmapbox/maps/android/rctmgl/build/.transforms/b051fc01683223e83a2f61e6d228afd3/transformed/out/jars/classes.jar"
+      name="/Users/christophesourinthone/Owner/mobile-owner/android@@:react-native-community_datetimepicker::release"
+      jars="/Users/christophesourinthone/Owner/mobile-owner/node_modules/@react-native-community/datetimepicker/android/build/.transforms/8c034737432b5d38f94c19f60af14030/transformed/out/jars/classes.jar"
+      resolved="MobileOwner:react-native-community_datetimepicker:unspecified"
+      folder="/Users/christophesourinthone/Owner/mobile-owner/node_modules/@react-native-community/datetimepicker/android/build/.transforms/8c034737432b5d38f94c19f60af14030/transformed/out"
+      manifest="AndroidManifest.xml"
+      resFolder="res"
+      assetsFolder="assets"
+      lintJar="lint.jar"
+      publicResources="public.txt"
+      symbolFile="R.txt"
+      externalAnnotations="annotations.zip"
+      proguardRules="proguard.txt"/>
+  <library
+      name="/Users/christophesourinthone/Owner/mobile-owner/android@@:rnmapbox_maps::release"
+      jars="/Users/christophesourinthone/Owner/mobile-owner/node_modules/@rnmapbox/maps/android/rctmgl/build/.transforms/a26d3cee4a6158a2b2ffe6290b250f4a/transformed/out/jars/classes.jar"
       resolved="MobileOwner:rnmapbox_maps:unspecified"
-      folder="/home/christophe/eip/mobile-owner/node_modules/@rnmapbox/maps/android/rctmgl/build/.transforms/b051fc01683223e83a2f61e6d228afd3/transformed/out"
+      folder="/Users/christophesourinthone/Owner/mobile-owner/node_modules/@rnmapbox/maps/android/rctmgl/build/.transforms/a26d3cee4a6158a2b2ffe6290b250f4a/transformed/out"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -104,10 +130,23 @@
       externalAnnotations="annotations.zip"
       proguardRules="proguard.txt"/>
   <library
-      name="/home/christophe/eip/mobile-owner/android@@:react-native-geolocation-service::release"
-      jars="/home/christophe/eip/mobile-owner/node_modules/react-native-geolocation-service/android/build/.transforms/2a25f75f20c5e36628b0c822fec4349a/transformed/out/jars/classes.jar"
+      name="/Users/christophesourinthone/Owner/mobile-owner/android@@:react-native-date-picker::release"
+      jars="/Users/christophesourinthone/Owner/mobile-owner/node_modules/react-native-date-picker/android/build/.transforms/3c9f240dc4eac7cdbbbb008c13c85b66/transformed/out/jars/classes.jar"
+      resolved="MobileOwner:react-native-date-picker:unspecified"
+      folder="/Users/christophesourinthone/Owner/mobile-owner/node_modules/react-native-date-picker/android/build/.transforms/3c9f240dc4eac7cdbbbb008c13c85b66/transformed/out"
+      manifest="AndroidManifest.xml"
+      resFolder="res"
+      assetsFolder="assets"
+      lintJar="lint.jar"
+      publicResources="public.txt"
+      symbolFile="R.txt"
+      externalAnnotations="annotations.zip"
+      proguardRules="proguard.txt"/>
+  <library
+      name="/Users/christophesourinthone/Owner/mobile-owner/android@@:react-native-geolocation-service::release"
+      jars="/Users/christophesourinthone/Owner/mobile-owner/node_modules/react-native-geolocation-service/android/build/.transforms/dadf967a119327cd0572aac6baba92f1/transformed/out/jars/classes.jar"
       resolved="MobileOwner:react-native-geolocation-service:unspecified"
-      folder="/home/christophe/eip/mobile-owner/node_modules/react-native-geolocation-service/android/build/.transforms/2a25f75f20c5e36628b0c822fec4349a/transformed/out"
+      folder="/Users/christophesourinthone/Owner/mobile-owner/node_modules/react-native-geolocation-service/android/build/.transforms/dadf967a119327cd0572aac6baba92f1/transformed/out"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -117,10 +156,23 @@
       externalAnnotations="annotations.zip"
       proguardRules="proguard.txt"/>
   <library
-      name="/home/christophe/eip/mobile-owner/android@@:react-native-get-location::release"
-      jars="/home/christophe/eip/mobile-owner/node_modules/react-native-get-location/android/build/.transforms/6ad9d3e30d3b87b97cdcd26540c87643/transformed/out/jars/classes.jar"
+      name="/Users/christophesourinthone/Owner/mobile-owner/android@@:react-native-gesture-handler::release"
+      jars="/Users/christophesourinthone/Owner/mobile-owner/node_modules/react-native-gesture-handler/android/build/.transforms/f26e59138da96dad7b791395f9f703af/transformed/out/jars/classes.jar"
+      resolved="MobileOwner:react-native-gesture-handler:unspecified"
+      folder="/Users/christophesourinthone/Owner/mobile-owner/node_modules/react-native-gesture-handler/android/build/.transforms/f26e59138da96dad7b791395f9f703af/transformed/out"
+      manifest="AndroidManifest.xml"
+      resFolder="res"
+      assetsFolder="assets"
+      lintJar="lint.jar"
+      publicResources="public.txt"
+      symbolFile="R.txt"
+      externalAnnotations="annotations.zip"
+      proguardRules="proguard.txt"/>
+  <library
+      name="/Users/christophesourinthone/Owner/mobile-owner/android@@:react-native-get-location::release"
+      jars="/Users/christophesourinthone/Owner/mobile-owner/node_modules/react-native-get-location/android/build/.transforms/b59367cd65fa2118bde9fa531a50b220/transformed/out/jars/classes.jar"
       resolved="MobileOwner:react-native-get-location:unspecified"
-      folder="/home/christophe/eip/mobile-owner/node_modules/react-native-get-location/android/build/.transforms/6ad9d3e30d3b87b97cdcd26540c87643/transformed/out"
+      folder="/Users/christophesourinthone/Owner/mobile-owner/node_modules/react-native-get-location/android/build/.transforms/b59367cd65fa2118bde9fa531a50b220/transformed/out"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -130,10 +182,10 @@
       externalAnnotations="annotations.zip"
       proguardRules="proguard.txt"/>
   <library
-      name="/home/christophe/eip/mobile-owner/android@@:react-native-linear-gradient::release"
-      jars="/home/christophe/eip/mobile-owner/node_modules/react-native-linear-gradient/android/build/.transforms/86483f2e3d7dbc915b2c0c619fb1f1e2/transformed/out/jars/classes.jar"
+      name="/Users/christophesourinthone/Owner/mobile-owner/android@@:react-native-linear-gradient::release"
+      jars="/Users/christophesourinthone/Owner/mobile-owner/node_modules/react-native-linear-gradient/android/build/.transforms/86155b5a55adbe4da9d5e1d1d1cca399/transformed/out/jars/classes.jar"
       resolved="MobileOwner:react-native-linear-gradient:unspecified"
-      folder="/home/christophe/eip/mobile-owner/node_modules/react-native-linear-gradient/android/build/.transforms/86483f2e3d7dbc915b2c0c619fb1f1e2/transformed/out"
+      folder="/Users/christophesourinthone/Owner/mobile-owner/node_modules/react-native-linear-gradient/android/build/.transforms/86155b5a55adbe4da9d5e1d1d1cca399/transformed/out"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -143,10 +195,10 @@
       externalAnnotations="annotations.zip"
       proguardRules="proguard.txt"/>
   <library
-      name="/home/christophe/eip/mobile-owner/android@@:react-native-maps::release"
-      jars="/home/christophe/eip/mobile-owner/node_modules/react-native-maps/android/build/.transforms/cdc2342562bc862da91dcfff68d61abe/transformed/out/jars/classes.jar"
+      name="/Users/christophesourinthone/Owner/mobile-owner/android@@:react-native-maps::release"
+      jars="/Users/christophesourinthone/Owner/mobile-owner/node_modules/react-native-maps/android/build/.transforms/9248fc0e94db9992c8d66b86756af911/transformed/out/jars/classes.jar"
       resolved="MobileOwner:react-native-maps:unspecified"
-      folder="/home/christophe/eip/mobile-owner/node_modules/react-native-maps/android/build/.transforms/cdc2342562bc862da91dcfff68d61abe/transformed/out"
+      folder="/Users/christophesourinthone/Owner/mobile-owner/node_modules/react-native-maps/android/build/.transforms/9248fc0e94db9992c8d66b86756af911/transformed/out"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -156,10 +208,10 @@
       externalAnnotations="annotations.zip"
       proguardRules="proguard.txt"/>
   <library
-      name="/home/christophe/eip/mobile-owner/android@@:react-native-safe-area-context::release"
-      jars="/home/christophe/eip/mobile-owner/node_modules/react-native-safe-area-context/android/build/.transforms/b6c982de0c0b21216e779850a7859d16/transformed/out/jars/classes.jar"
+      name="/Users/christophesourinthone/Owner/mobile-owner/android@@:react-native-safe-area-context::release"
+      jars="/Users/christophesourinthone/Owner/mobile-owner/node_modules/react-native-safe-area-context/android/build/.transforms/476f201f2446d847759d9f4cc1b6c81f/transformed/out/jars/classes.jar"
       resolved="MobileOwner:react-native-safe-area-context:unspecified"
-      folder="/home/christophe/eip/mobile-owner/node_modules/react-native-safe-area-context/android/build/.transforms/b6c982de0c0b21216e779850a7859d16/transformed/out"
+      folder="/Users/christophesourinthone/Owner/mobile-owner/node_modules/react-native-safe-area-context/android/build/.transforms/476f201f2446d847759d9f4cc1b6c81f/transformed/out"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -169,10 +221,10 @@
       externalAnnotations="annotations.zip"
       proguardRules="proguard.txt"/>
   <library
-      name="/home/christophe/eip/mobile-owner/android@@:react-native-screens::release"
-      jars="/home/christophe/eip/mobile-owner/node_modules/react-native-screens/android/build/.transforms/f24ae495b5e8e2c67e674e0e665dad81/transformed/out/jars/classes.jar"
+      name="/Users/christophesourinthone/Owner/mobile-owner/android@@:react-native-screens::release"
+      jars="/Users/christophesourinthone/Owner/mobile-owner/node_modules/react-native-screens/android/build/.transforms/8ac9fec206791dbde71caf4aaf9ebddd/transformed/out/jars/classes.jar"
       resolved="MobileOwner:react-native-screens:unspecified"
-      folder="/home/christophe/eip/mobile-owner/node_modules/react-native-screens/android/build/.transforms/f24ae495b5e8e2c67e674e0e665dad81/transformed/out"
+      folder="/Users/christophesourinthone/Owner/mobile-owner/node_modules/react-native-screens/android/build/.transforms/8ac9fec206791dbde71caf4aaf9ebddd/transformed/out"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -182,10 +234,10 @@
       externalAnnotations="annotations.zip"
       proguardRules="proguard.txt"/>
   <library
-      name="/home/christophe/eip/mobile-owner/android@@:react-native-sound::release"
-      jars="/home/christophe/eip/mobile-owner/node_modules/react-native-sound/android/build/.transforms/9c98e9d35bdd6c003d1180c84ddf81d7/transformed/out/jars/classes.jar"
+      name="/Users/christophesourinthone/Owner/mobile-owner/android@@:react-native-sound::release"
+      jars="/Users/christophesourinthone/Owner/mobile-owner/node_modules/react-native-sound/android/build/.transforms/15d1323d17a8bac393b539b83732dbf5/transformed/out/jars/classes.jar"
       resolved="MobileOwner:react-native-sound:unspecified"
-      folder="/home/christophe/eip/mobile-owner/node_modules/react-native-sound/android/build/.transforms/9c98e9d35bdd6c003d1180c84ddf81d7/transformed/out"
+      folder="/Users/christophesourinthone/Owner/mobile-owner/node_modules/react-native-sound/android/build/.transforms/15d1323d17a8bac393b539b83732dbf5/transformed/out"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -195,10 +247,10 @@
       externalAnnotations="annotations.zip"
       proguardRules="proguard.txt"/>
   <library
-      name="/home/christophe/eip/mobile-owner/android@@:react-native-vector-icons::release"
-      jars="/home/christophe/eip/mobile-owner/node_modules/react-native-vector-icons/android/build/.transforms/a85d1fac1b2d310c57121a4060e863a9/transformed/out/jars/classes.jar"
+      name="/Users/christophesourinthone/Owner/mobile-owner/android@@:react-native-vector-icons::release"
+      jars="/Users/christophesourinthone/Owner/mobile-owner/node_modules/react-native-vector-icons/android/build/.transforms/5b3ee6e2aeeb32d9e910e4ba8a0af117/transformed/out/jars/classes.jar"
       resolved="MobileOwner:react-native-vector-icons:unspecified"
-      folder="/home/christophe/eip/mobile-owner/node_modules/react-native-vector-icons/android/build/.transforms/a85d1fac1b2d310c57121a4060e863a9/transformed/out"
+      folder="/Users/christophesourinthone/Owner/mobile-owner/node_modules/react-native-vector-icons/android/build/.transforms/5b3ee6e2aeeb32d9e910e4ba8a0af117/transformed/out"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -209,29 +261,29 @@
       proguardRules="proguard.txt"/>
   <library
       name="com.facebook.infer.annotation:infer-annotation:0.18.0@jar"
-      jars="/home/christophe/.gradle/caches/modules-2/files-2.1/com.facebook.infer.annotation/infer-annotation/0.18.0/27539793fe93ed7d92b6376281c16cda8278ab2f/infer-annotation-0.18.0.jar"
+      jars="/Users/christophesourinthone/.gradle/caches/modules-2/files-2.1/com.facebook.infer.annotation/infer-annotation/0.18.0/27539793fe93ed7d92b6376281c16cda8278ab2f/infer-annotation-0.18.0.jar"
       resolved="com.facebook.infer.annotation:infer-annotation:0.18.0"/>
   <library
       name="com.google.code.findbugs:jsr305:3.0.2@jar"
-      jars="/home/christophe/.gradle/caches/modules-2/files-2.1/com.google.code.findbugs/jsr305/3.0.2/25ea2e8b0c338a877313bd4672d3fe056ea78f0d/jsr305-3.0.2.jar"
+      jars="/Users/christophesourinthone/.gradle/caches/modules-2/files-2.1/com.google.code.findbugs/jsr305/3.0.2/25ea2e8b0c338a877313bd4672d3fe056ea78f0d/jsr305-3.0.2.jar"
       resolved="com.google.code.findbugs:jsr305:3.0.2"/>
   <library
       name="org.jetbrains.kotlin:kotlin-annotations-jvm:1.3.72@jar"
-      jars="/home/christophe/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-annotations-jvm/1.3.72/7dba6c57de526588d8080317bda0c14cd88c8055/kotlin-annotations-jvm-1.3.72.jar"
+      jars="/Users/christophesourinthone/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-annotations-jvm/1.3.72/7dba6c57de526588d8080317bda0c14cd88c8055/kotlin-annotations-jvm-1.3.72.jar"
       resolved="org.jetbrains.kotlin:kotlin-annotations-jvm:1.3.72"/>
   <library
       name="com.facebook.yoga:proguard-annotations:1.19.0@jar"
-      jars="/home/christophe/.gradle/caches/modules-2/files-2.1/com.facebook.yoga/proguard-annotations/1.19.0/fcbbb39052e6490eaaf6a6959c49c3a4fbe87c63/proguard-annotations-1.19.0.jar"
+      jars="/Users/christophesourinthone/.gradle/caches/modules-2/files-2.1/com.facebook.yoga/proguard-annotations/1.19.0/fcbbb39052e6490eaaf6a6959c49c3a4fbe87c63/proguard-annotations-1.19.0.jar"
       resolved="com.facebook.yoga:proguard-annotations:1.19.0"/>
   <library
       name="javax.inject:javax.inject:1@jar"
-      jars="/home/christophe/.gradle/caches/modules-2/files-2.1/javax.inject/javax.inject/1/6975da39a7040257bd51d21a231b76c915872d38/javax.inject-1.jar"
+      jars="/Users/christophesourinthone/.gradle/caches/modules-2/files-2.1/javax.inject/javax.inject/1/6975da39a7040257bd51d21a231b76c915872d38/javax.inject-1.jar"
       resolved="javax.inject:javax.inject:1"/>
   <library
-      name="androidx.appcompat:appcompat:1.1.0@aar"
-      jars="/home/christophe/.gradle/caches/transforms-3/339d23ff58919bb9119ad7df378c1286/transformed/appcompat-1.1.0/jars/classes.jar"
-      resolved="androidx.appcompat:appcompat:1.1.0"
-      folder="/home/christophe/.gradle/caches/transforms-3/339d23ff58919bb9119ad7df378c1286/transformed/appcompat-1.1.0"
+      name="androidx.appcompat:appcompat:1.2.0@aar"
+      jars="/Users/christophesourinthone/.gradle/caches/transforms-3/84a6d96d63581da8538094b36983be35/transformed/appcompat-1.2.0/jars/classes.jar"
+      resolved="androidx.appcompat:appcompat:1.2.0"
+      folder="/Users/christophesourinthone/.gradle/caches/transforms-3/84a6d96d63581da8538094b36983be35/transformed/appcompat-1.2.0"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -242,9 +294,9 @@
       proguardRules="proguard.txt"/>
   <library
       name="androidx.fragment:fragment:1.2.1@aar"
-      jars="/home/christophe/.gradle/caches/transforms-3/79538317d2980738ac2c120071138632/transformed/fragment-1.2.1/jars/classes.jar"
+      jars="/Users/christophesourinthone/.gradle/caches/transforms-3/79538317d2980738ac2c120071138632/transformed/fragment-1.2.1/jars/classes.jar"
       resolved="androidx.fragment:fragment:1.2.1"
-      folder="/home/christophe/.gradle/caches/transforms-3/79538317d2980738ac2c120071138632/transformed/fragment-1.2.1"
+      folder="/Users/christophesourinthone/.gradle/caches/transforms-3/79538317d2980738ac2c120071138632/transformed/fragment-1.2.1"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -254,10 +306,10 @@
       externalAnnotations="annotations.zip"
       proguardRules="proguard.txt"/>
   <library
-      name="androidx.appcompat:appcompat-resources:1.1.0@aar"
-      jars="/home/christophe/.gradle/caches/transforms-3/4e69e8a4a09523539cf3b91b506f5834/transformed/jetified-appcompat-resources-1.1.0/jars/classes.jar"
-      resolved="androidx.appcompat:appcompat-resources:1.1.0"
-      folder="/home/christophe/.gradle/caches/transforms-3/4e69e8a4a09523539cf3b91b506f5834/transformed/jetified-appcompat-resources-1.1.0"
+      name="androidx.appcompat:appcompat-resources:1.2.0@aar"
+      jars="/Users/christophesourinthone/.gradle/caches/transforms-3/87739e805907411692b7572fa8f92e21/transformed/jetified-appcompat-resources-1.2.0/jars/classes.jar"
+      resolved="androidx.appcompat:appcompat-resources:1.2.0"
+      folder="/Users/christophesourinthone/.gradle/caches/transforms-3/87739e805907411692b7572fa8f92e21/transformed/jetified-appcompat-resources-1.2.0"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -268,9 +320,9 @@
       proguardRules="proguard.txt"/>
   <library
       name="androidx.drawerlayout:drawerlayout:1.0.0@aar"
-      jars="/home/christophe/.gradle/caches/transforms-3/845c78a9c4ff06e3d2a51954454a97df/transformed/drawerlayout-1.0.0/jars/classes.jar"
+      jars="/Users/christophesourinthone/.gradle/caches/transforms-3/845c78a9c4ff06e3d2a51954454a97df/transformed/drawerlayout-1.0.0/jars/classes.jar"
       resolved="androidx.drawerlayout:drawerlayout:1.0.0"
-      folder="/home/christophe/.gradle/caches/transforms-3/845c78a9c4ff06e3d2a51954454a97df/transformed/drawerlayout-1.0.0"
+      folder="/Users/christophesourinthone/.gradle/caches/transforms-3/845c78a9c4ff06e3d2a51954454a97df/transformed/drawerlayout-1.0.0"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -281,9 +333,9 @@
       proguardRules="proguard.txt"/>
   <library
       name="androidx.viewpager:viewpager:1.0.0@aar"
-      jars="/home/christophe/.gradle/caches/transforms-3/c9ca26893a3ed419b0edc7f0349d47ee/transformed/viewpager-1.0.0/jars/classes.jar"
+      jars="/Users/christophesourinthone/.gradle/caches/transforms-3/c9ca26893a3ed419b0edc7f0349d47ee/transformed/viewpager-1.0.0/jars/classes.jar"
       resolved="androidx.viewpager:viewpager:1.0.0"
-      folder="/home/christophe/.gradle/caches/transforms-3/c9ca26893a3ed419b0edc7f0349d47ee/transformed/viewpager-1.0.0"
+      folder="/Users/christophesourinthone/.gradle/caches/transforms-3/c9ca26893a3ed419b0edc7f0349d47ee/transformed/viewpager-1.0.0"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -294,9 +346,9 @@
       proguardRules="proguard.txt"/>
   <library
       name="androidx.loader:loader:1.0.0@aar"
-      jars="/home/christophe/.gradle/caches/transforms-3/254db618e140a2a6da0f006f0af5a499/transformed/loader-1.0.0/jars/classes.jar"
+      jars="/Users/christophesourinthone/.gradle/caches/transforms-3/254db618e140a2a6da0f006f0af5a499/transformed/loader-1.0.0/jars/classes.jar"
       resolved="androidx.loader:loader:1.0.0"
-      folder="/home/christophe/.gradle/caches/transforms-3/254db618e140a2a6da0f006f0af5a499/transformed/loader-1.0.0"
+      folder="/Users/christophesourinthone/.gradle/caches/transforms-3/254db618e140a2a6da0f006f0af5a499/transformed/loader-1.0.0"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -307,9 +359,9 @@
       proguardRules="proguard.txt"/>
   <library
       name="androidx.activity:activity:1.1.0@aar"
-      jars="/home/christophe/.gradle/caches/transforms-3/9e7e02da9defb47b49a5d619417d2d2e/transformed/jetified-activity-1.1.0/jars/classes.jar"
+      jars="/Users/christophesourinthone/.gradle/caches/transforms-3/9e7e02da9defb47b49a5d619417d2d2e/transformed/jetified-activity-1.1.0/jars/classes.jar"
       resolved="androidx.activity:activity:1.1.0"
-      folder="/home/christophe/.gradle/caches/transforms-3/9e7e02da9defb47b49a5d619417d2d2e/transformed/jetified-activity-1.1.0"
+      folder="/Users/christophesourinthone/.gradle/caches/transforms-3/9e7e02da9defb47b49a5d619417d2d2e/transformed/jetified-activity-1.1.0"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -320,9 +372,9 @@
       proguardRules="proguard.txt"/>
   <library
       name="androidx.vectordrawable:vectordrawable-animated:1.1.0@aar"
-      jars="/home/christophe/.gradle/caches/transforms-3/1f8935bbcaaabc8c30cccbbddc7e5adb/transformed/vectordrawable-animated-1.1.0/jars/classes.jar"
+      jars="/Users/christophesourinthone/.gradle/caches/transforms-3/1f8935bbcaaabc8c30cccbbddc7e5adb/transformed/vectordrawable-animated-1.1.0/jars/classes.jar"
       resolved="androidx.vectordrawable:vectordrawable-animated:1.1.0"
-      folder="/home/christophe/.gradle/caches/transforms-3/1f8935bbcaaabc8c30cccbbddc7e5adb/transformed/vectordrawable-animated-1.1.0"
+      folder="/Users/christophesourinthone/.gradle/caches/transforms-3/1f8935bbcaaabc8c30cccbbddc7e5adb/transformed/vectordrawable-animated-1.1.0"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -333,9 +385,9 @@
       proguardRules="proguard.txt"/>
   <library
       name="androidx.vectordrawable:vectordrawable:1.1.0@aar"
-      jars="/home/christophe/.gradle/caches/transforms-3/76b8b230409df56056c149c4e65f36f2/transformed/vectordrawable-1.1.0/jars/classes.jar"
+      jars="/Users/christophesourinthone/.gradle/caches/transforms-3/76b8b230409df56056c149c4e65f36f2/transformed/vectordrawable-1.1.0/jars/classes.jar"
       resolved="androidx.vectordrawable:vectordrawable:1.1.0"
-      folder="/home/christophe/.gradle/caches/transforms-3/76b8b230409df56056c149c4e65f36f2/transformed/vectordrawable-1.1.0"
+      folder="/Users/christophesourinthone/.gradle/caches/transforms-3/76b8b230409df56056c149c4e65f36f2/transformed/vectordrawable-1.1.0"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -346,9 +398,9 @@
       proguardRules="proguard.txt"/>
   <library
       name="androidx.customview:customview:1.0.0@aar"
-      jars="/home/christophe/.gradle/caches/transforms-3/003c26d62001004b4df788864171c4b6/transformed/customview-1.0.0/jars/classes.jar"
+      jars="/Users/christophesourinthone/.gradle/caches/transforms-3/003c26d62001004b4df788864171c4b6/transformed/customview-1.0.0/jars/classes.jar"
       resolved="androidx.customview:customview:1.0.0"
-      folder="/home/christophe/.gradle/caches/transforms-3/003c26d62001004b4df788864171c4b6/transformed/customview-1.0.0"
+      folder="/Users/christophesourinthone/.gradle/caches/transforms-3/003c26d62001004b4df788864171c4b6/transformed/customview-1.0.0"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -359,9 +411,9 @@
       proguardRules="proguard.txt"/>
   <library
       name="androidx.core:core:1.6.0@aar"
-      jars="/home/christophe/.gradle/caches/transforms-3/f8cfdef18edf0f0dc80f7630fe54d7fb/transformed/core-1.6.0/jars/classes.jar"
+      jars="/Users/christophesourinthone/.gradle/caches/transforms-3/f8cfdef18edf0f0dc80f7630fe54d7fb/transformed/core-1.6.0/jars/classes.jar"
       resolved="androidx.core:core:1.6.0"
-      folder="/home/christophe/.gradle/caches/transforms-3/f8cfdef18edf0f0dc80f7630fe54d7fb/transformed/core-1.6.0"
+      folder="/Users/christophesourinthone/.gradle/caches/transforms-3/f8cfdef18edf0f0dc80f7630fe54d7fb/transformed/core-1.6.0"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -372,9 +424,9 @@
       proguardRules="proguard.txt"/>
   <library
       name="androidx.interpolator:interpolator:1.0.0@aar"
-      jars="/home/christophe/.gradle/caches/transforms-3/88126428f289927c9bf92655f6a0e32f/transformed/interpolator-1.0.0/jars/classes.jar"
+      jars="/Users/christophesourinthone/.gradle/caches/transforms-3/88126428f289927c9bf92655f6a0e32f/transformed/interpolator-1.0.0/jars/classes.jar"
       resolved="androidx.interpolator:interpolator:1.0.0"
-      folder="/home/christophe/.gradle/caches/transforms-3/88126428f289927c9bf92655f6a0e32f/transformed/interpolator-1.0.0"
+      folder="/Users/christophesourinthone/.gradle/caches/transforms-3/88126428f289927c9bf92655f6a0e32f/transformed/interpolator-1.0.0"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -385,9 +437,22 @@
       proguardRules="proguard.txt"/>
   <library
       name="androidx.cursoradapter:cursoradapter:1.0.0@aar"
-      jars="/home/christophe/.gradle/caches/transforms-3/a917f301f26a9611701f5acef397a608/transformed/cursoradapter-1.0.0/jars/classes.jar"
+      jars="/Users/christophesourinthone/.gradle/caches/transforms-3/a917f301f26a9611701f5acef397a608/transformed/cursoradapter-1.0.0/jars/classes.jar"
       resolved="androidx.cursoradapter:cursoradapter:1.0.0"
-      folder="/home/christophe/.gradle/caches/transforms-3/a917f301f26a9611701f5acef397a608/transformed/cursoradapter-1.0.0"
+      folder="/Users/christophesourinthone/.gradle/caches/transforms-3/a917f301f26a9611701f5acef397a608/transformed/cursoradapter-1.0.0"
+      manifest="AndroidManifest.xml"
+      resFolder="res"
+      assetsFolder="assets"
+      lintJar="lint.jar"
+      publicResources="public.txt"
+      symbolFile="R.txt"
+      externalAnnotations="annotations.zip"
+      proguardRules="proguard.txt"/>
+  <library
+      name="androidx.lifecycle:lifecycle-runtime:2.2.0@aar"
+      jars="/Users/christophesourinthone/.gradle/caches/transforms-3/749d578ddd0b971223bdd7ae94a801fd/transformed/lifecycle-runtime-2.2.0/jars/classes.jar"
+      resolved="androidx.lifecycle:lifecycle-runtime:2.2.0"
+      folder="/Users/christophesourinthone/.gradle/caches/transforms-3/749d578ddd0b971223bdd7ae94a801fd/transformed/lifecycle-runtime-2.2.0"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -398,9 +463,9 @@
       proguardRules="proguard.txt"/>
   <library
       name="androidx.versionedparcelable:versionedparcelable:1.1.1@aar"
-      jars="/home/christophe/.gradle/caches/transforms-3/079702d99a2bcdea4d99716868988e76/transformed/versionedparcelable-1.1.1/jars/classes.jar"
+      jars="/Users/christophesourinthone/.gradle/caches/transforms-3/079702d99a2bcdea4d99716868988e76/transformed/versionedparcelable-1.1.1/jars/classes.jar"
       resolved="androidx.versionedparcelable:versionedparcelable:1.1.1"
-      folder="/home/christophe/.gradle/caches/transforms-3/079702d99a2bcdea4d99716868988e76/transformed/versionedparcelable-1.1.1"
+      folder="/Users/christophesourinthone/.gradle/caches/transforms-3/079702d99a2bcdea4d99716868988e76/transformed/versionedparcelable-1.1.1"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -411,26 +476,13 @@
       proguardRules="proguard.txt"/>
   <library
       name="androidx.collection:collection:1.1.0@jar"
-      jars="/home/christophe/.gradle/caches/modules-2/files-2.1/androidx.collection/collection/1.1.0/1f27220b47669781457de0d600849a5de0e89909/collection-1.1.0.jar"
+      jars="/Users/christophesourinthone/.gradle/caches/modules-2/files-2.1/androidx.collection/collection/1.1.0/1f27220b47669781457de0d600849a5de0e89909/collection-1.1.0.jar"
       resolved="androidx.collection:collection:1.1.0"/>
   <library
-      name="androidx.lifecycle:lifecycle-runtime:2.2.0@aar"
-      jars="/home/christophe/.gradle/caches/transforms-3/749d578ddd0b971223bdd7ae94a801fd/transformed/lifecycle-runtime-2.2.0/jars/classes.jar"
-      resolved="androidx.lifecycle:lifecycle-runtime:2.2.0"
-      folder="/home/christophe/.gradle/caches/transforms-3/749d578ddd0b971223bdd7ae94a801fd/transformed/lifecycle-runtime-2.2.0"
-      manifest="AndroidManifest.xml"
-      resFolder="res"
-      assetsFolder="assets"
-      lintJar="lint.jar"
-      publicResources="public.txt"
-      symbolFile="R.txt"
-      externalAnnotations="annotations.zip"
-      proguardRules="proguard.txt"/>
-  <library
       name="androidx.lifecycle:lifecycle-viewmodel-savedstate:2.2.0@aar"
-      jars="/home/christophe/.gradle/caches/transforms-3/7f74c6ec593ab1eff7b9e5619eee557c/transformed/jetified-lifecycle-viewmodel-savedstate-2.2.0/jars/classes.jar"
+      jars="/Users/christophesourinthone/.gradle/caches/transforms-3/7f74c6ec593ab1eff7b9e5619eee557c/transformed/jetified-lifecycle-viewmodel-savedstate-2.2.0/jars/classes.jar"
       resolved="androidx.lifecycle:lifecycle-viewmodel-savedstate:2.2.0"
-      folder="/home/christophe/.gradle/caches/transforms-3/7f74c6ec593ab1eff7b9e5619eee557c/transformed/jetified-lifecycle-viewmodel-savedstate-2.2.0"
+      folder="/Users/christophesourinthone/.gradle/caches/transforms-3/7f74c6ec593ab1eff7b9e5619eee557c/transformed/jetified-lifecycle-viewmodel-savedstate-2.2.0"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -441,9 +493,9 @@
       proguardRules="proguard.txt"/>
   <library
       name="androidx.lifecycle:lifecycle-viewmodel:2.2.0@aar"
-      jars="/home/christophe/.gradle/caches/transforms-3/9cca7f19bf57b747063c483a2c405532/transformed/lifecycle-viewmodel-2.2.0/jars/classes.jar"
+      jars="/Users/christophesourinthone/.gradle/caches/transforms-3/9cca7f19bf57b747063c483a2c405532/transformed/lifecycle-viewmodel-2.2.0/jars/classes.jar"
       resolved="androidx.lifecycle:lifecycle-viewmodel:2.2.0"
-      folder="/home/christophe/.gradle/caches/transforms-3/9cca7f19bf57b747063c483a2c405532/transformed/lifecycle-viewmodel-2.2.0"
+      folder="/Users/christophesourinthone/.gradle/caches/transforms-3/9cca7f19bf57b747063c483a2c405532/transformed/lifecycle-viewmodel-2.2.0"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -454,9 +506,9 @@
       proguardRules="proguard.txt"/>
   <library
       name="androidx.lifecycle:lifecycle-livedata:2.1.0@aar"
-      jars="/home/christophe/.gradle/caches/transforms-3/85388a04ee874cb3c2f53bad31bd6230/transformed/lifecycle-livedata-2.1.0/jars/classes.jar"
+      jars="/Users/christophesourinthone/.gradle/caches/transforms-3/85388a04ee874cb3c2f53bad31bd6230/transformed/lifecycle-livedata-2.1.0/jars/classes.jar"
       resolved="androidx.lifecycle:lifecycle-livedata:2.1.0"
-      folder="/home/christophe/.gradle/caches/transforms-3/85388a04ee874cb3c2f53bad31bd6230/transformed/lifecycle-livedata-2.1.0"
+      folder="/Users/christophesourinthone/.gradle/caches/transforms-3/85388a04ee874cb3c2f53bad31bd6230/transformed/lifecycle-livedata-2.1.0"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -467,9 +519,9 @@
       proguardRules="proguard.txt"/>
   <library
       name="androidx.lifecycle:lifecycle-livedata-core:2.2.0@aar"
-      jars="/home/christophe/.gradle/caches/transforms-3/af85703f810d8f1a41e9ca6cee7e8f7d/transformed/lifecycle-livedata-core-2.2.0/jars/classes.jar"
+      jars="/Users/christophesourinthone/.gradle/caches/transforms-3/af85703f810d8f1a41e9ca6cee7e8f7d/transformed/lifecycle-livedata-core-2.2.0/jars/classes.jar"
       resolved="androidx.lifecycle:lifecycle-livedata-core:2.2.0"
-      folder="/home/christophe/.gradle/caches/transforms-3/af85703f810d8f1a41e9ca6cee7e8f7d/transformed/lifecycle-livedata-core-2.2.0"
+      folder="/Users/christophesourinthone/.gradle/caches/transforms-3/af85703f810d8f1a41e9ca6cee7e8f7d/transformed/lifecycle-livedata-core-2.2.0"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -480,9 +532,9 @@
       proguardRules="proguard.txt"/>
   <library
       name="androidx.savedstate:savedstate:1.0.0@aar"
-      jars="/home/christophe/.gradle/caches/transforms-3/0715bace9b2c02aab97b1b3f6d2667c5/transformed/jetified-savedstate-1.0.0/jars/classes.jar"
+      jars="/Users/christophesourinthone/.gradle/caches/transforms-3/0715bace9b2c02aab97b1b3f6d2667c5/transformed/jetified-savedstate-1.0.0/jars/classes.jar"
       resolved="androidx.savedstate:savedstate:1.0.0"
-      folder="/home/christophe/.gradle/caches/transforms-3/0715bace9b2c02aab97b1b3f6d2667c5/transformed/jetified-savedstate-1.0.0"
+      folder="/Users/christophesourinthone/.gradle/caches/transforms-3/0715bace9b2c02aab97b1b3f6d2667c5/transformed/jetified-savedstate-1.0.0"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -493,13 +545,13 @@
       proguardRules="proguard.txt"/>
   <library
       name="androidx.lifecycle:lifecycle-common:2.2.0@jar"
-      jars="/home/christophe/.gradle/caches/modules-2/files-2.1/androidx.lifecycle/lifecycle-common/2.2.0/4ef09a745007778eef83b92f8f23987a8ea59496/lifecycle-common-2.2.0.jar"
+      jars="/Users/christophesourinthone/.gradle/caches/modules-2/files-2.1/androidx.lifecycle/lifecycle-common/2.2.0/4ef09a745007778eef83b92f8f23987a8ea59496/lifecycle-common-2.2.0.jar"
       resolved="androidx.lifecycle:lifecycle-common:2.2.0"/>
   <library
       name="androidx.arch.core:core-runtime:2.1.0@aar"
-      jars="/home/christophe/.gradle/caches/transforms-3/a5b14d316e9c6dc830436434def7f7f9/transformed/core-runtime-2.1.0/jars/classes.jar"
+      jars="/Users/christophesourinthone/.gradle/caches/transforms-3/a5b14d316e9c6dc830436434def7f7f9/transformed/core-runtime-2.1.0/jars/classes.jar"
       resolved="androidx.arch.core:core-runtime:2.1.0"
-      folder="/home/christophe/.gradle/caches/transforms-3/a5b14d316e9c6dc830436434def7f7f9/transformed/core-runtime-2.1.0"
+      folder="/Users/christophesourinthone/.gradle/caches/transforms-3/a5b14d316e9c6dc830436434def7f7f9/transformed/core-runtime-2.1.0"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -510,17 +562,17 @@
       proguardRules="proguard.txt"/>
   <library
       name="androidx.arch.core:core-common:2.1.0@jar"
-      jars="/home/christophe/.gradle/caches/modules-2/files-2.1/androidx.arch.core/core-common/2.1.0/b3152fc64428c9354344bd89848ecddc09b6f07e/core-common-2.1.0.jar"
+      jars="/Users/christophesourinthone/.gradle/caches/modules-2/files-2.1/androidx.arch.core/core-common/2.1.0/b3152fc64428c9354344bd89848ecddc09b6f07e/core-common-2.1.0.jar"
       resolved="androidx.arch.core:core-common:2.1.0"/>
   <library
       name="androidx.annotation:annotation:1.2.0@jar"
-      jars="/home/christophe/.gradle/caches/modules-2/files-2.1/androidx.annotation/annotation/1.2.0/57136ff68ee784c6e19db34ed4a175338fadfde1/annotation-1.2.0.jar"
+      jars="/Users/christophesourinthone/.gradle/caches/modules-2/files-2.1/androidx.annotation/annotation/1.2.0/57136ff68ee784c6e19db34ed4a175338fadfde1/annotation-1.2.0.jar"
       resolved="androidx.annotation:annotation:1.2.0"/>
   <library
       name="androidx.annotation:annotation-experimental:1.1.0@aar"
-      jars="/home/christophe/.gradle/caches/transforms-3/002b1b09e81bab2b578f1e29e791a305/transformed/jetified-annotation-experimental-1.1.0/jars/classes.jar"
+      jars="/Users/christophesourinthone/.gradle/caches/transforms-3/002b1b09e81bab2b578f1e29e791a305/transformed/jetified-annotation-experimental-1.1.0/jars/classes.jar"
       resolved="androidx.annotation:annotation-experimental:1.1.0"
-      folder="/home/christophe/.gradle/caches/transforms-3/002b1b09e81bab2b578f1e29e791a305/transformed/jetified-annotation-experimental-1.1.0"
+      folder="/Users/christophesourinthone/.gradle/caches/transforms-3/002b1b09e81bab2b578f1e29e791a305/transformed/jetified-annotation-experimental-1.1.0"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -531,9 +583,9 @@
       proguardRules="proguard.txt"/>
   <library
       name="androidx.autofill:autofill:1.1.0@aar"
-      jars="/home/christophe/.gradle/caches/transforms-3/19591aa3277b323a684ab00676661335/transformed/jetified-autofill-1.1.0/jars/classes.jar"
+      jars="/Users/christophesourinthone/.gradle/caches/transforms-3/19591aa3277b323a684ab00676661335/transformed/jetified-autofill-1.1.0/jars/classes.jar"
       resolved="androidx.autofill:autofill:1.1.0"
-      folder="/home/christophe/.gradle/caches/transforms-3/19591aa3277b323a684ab00676661335/transformed/jetified-autofill-1.1.0"
+      folder="/Users/christophesourinthone/.gradle/caches/transforms-3/19591aa3277b323a684ab00676661335/transformed/jetified-autofill-1.1.0"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -544,9 +596,9 @@
       proguardRules="proguard.txt"/>
   <library
       name="com.facebook.fresco:fresco:2.5.0@aar"
-      jars="/home/christophe/.gradle/caches/transforms-3/2914ab40962d91265a420af396ada047/transformed/jetified-fresco-2.5.0/jars/classes.jar"
+      jars="/Users/christophesourinthone/.gradle/caches/transforms-3/2914ab40962d91265a420af396ada047/transformed/jetified-fresco-2.5.0/jars/classes.jar"
       resolved="com.facebook.fresco:fresco:2.5.0"
-      folder="/home/christophe/.gradle/caches/transforms-3/2914ab40962d91265a420af396ada047/transformed/jetified-fresco-2.5.0"
+      folder="/Users/christophesourinthone/.gradle/caches/transforms-3/2914ab40962d91265a420af396ada047/transformed/jetified-fresco-2.5.0"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -557,9 +609,9 @@
       proguardRules="proguard.txt"/>
   <library
       name="com.facebook.fresco:fbcore:2.5.0@aar"
-      jars="/home/christophe/.gradle/caches/transforms-3/664ba61110ff9f1efc7c2ba4a773b8ef/transformed/jetified-fbcore-2.5.0/jars/classes.jar"
+      jars="/Users/christophesourinthone/.gradle/caches/transforms-3/664ba61110ff9f1efc7c2ba4a773b8ef/transformed/jetified-fbcore-2.5.0/jars/classes.jar"
       resolved="com.facebook.fresco:fbcore:2.5.0"
-      folder="/home/christophe/.gradle/caches/transforms-3/664ba61110ff9f1efc7c2ba4a773b8ef/transformed/jetified-fbcore-2.5.0"
+      folder="/Users/christophesourinthone/.gradle/caches/transforms-3/664ba61110ff9f1efc7c2ba4a773b8ef/transformed/jetified-fbcore-2.5.0"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -570,9 +622,9 @@
       proguardRules="proguard.txt"/>
   <library
       name="com.facebook.soloader:soloader:0.10.3@aar"
-      jars="/home/christophe/.gradle/caches/transforms-3/2dc5a9512e0d0c042414190709d8722f/transformed/jetified-soloader-0.10.3/jars/classes.jar"
+      jars="/Users/christophesourinthone/.gradle/caches/transforms-3/2dc5a9512e0d0c042414190709d8722f/transformed/jetified-soloader-0.10.3/jars/classes.jar"
       resolved="com.facebook.soloader:soloader:0.10.3"
-      folder="/home/christophe/.gradle/caches/transforms-3/2dc5a9512e0d0c042414190709d8722f/transformed/jetified-soloader-0.10.3"
+      folder="/Users/christophesourinthone/.gradle/caches/transforms-3/2dc5a9512e0d0c042414190709d8722f/transformed/jetified-soloader-0.10.3"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -583,17 +635,17 @@
       proguardRules="proguard.txt"/>
   <library
       name="com.facebook.soloader:annotation:0.10.3@jar"
-      jars="/home/christophe/.gradle/caches/modules-2/files-2.1/com.facebook.soloader/annotation/0.10.3/dc58463712cb3e5f03d8ee5ac9743b9ced9afa77/annotation-0.10.3.jar"
+      jars="/Users/christophesourinthone/.gradle/caches/modules-2/files-2.1/com.facebook.soloader/annotation/0.10.3/dc58463712cb3e5f03d8ee5ac9743b9ced9afa77/annotation-0.10.3.jar"
       resolved="com.facebook.soloader:annotation:0.10.3"/>
   <library
       name="com.facebook.soloader:nativeloader:0.10.3@jar"
-      jars="/home/christophe/.gradle/caches/modules-2/files-2.1/com.facebook.soloader/nativeloader/0.10.3/171783d0f3f525fb9e18eb3af758c0b3aaeaed69/nativeloader-0.10.3.jar"
+      jars="/Users/christophesourinthone/.gradle/caches/modules-2/files-2.1/com.facebook.soloader/nativeloader/0.10.3/171783d0f3f525fb9e18eb3af758c0b3aaeaed69/nativeloader-0.10.3.jar"
       resolved="com.facebook.soloader:nativeloader:0.10.3"/>
   <library
       name="com.facebook.fresco:ui-common:2.5.0@aar"
-      jars="/home/christophe/.gradle/caches/transforms-3/80fc499b4e55e32662b6edb8b79fb452/transformed/jetified-ui-common-2.5.0/jars/classes.jar"
+      jars="/Users/christophesourinthone/.gradle/caches/transforms-3/80fc499b4e55e32662b6edb8b79fb452/transformed/jetified-ui-common-2.5.0/jars/classes.jar"
       resolved="com.facebook.fresco:ui-common:2.5.0"
-      folder="/home/christophe/.gradle/caches/transforms-3/80fc499b4e55e32662b6edb8b79fb452/transformed/jetified-ui-common-2.5.0"
+      folder="/Users/christophesourinthone/.gradle/caches/transforms-3/80fc499b4e55e32662b6edb8b79fb452/transformed/jetified-ui-common-2.5.0"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -604,9 +656,9 @@
       proguardRules="proguard.txt"/>
   <library
       name="com.facebook.fresco:drawee:2.5.0@aar"
-      jars="/home/christophe/.gradle/caches/transforms-3/e28461a702f5fd300273206419703cf3/transformed/jetified-drawee-2.5.0/jars/classes.jar"
+      jars="/Users/christophesourinthone/.gradle/caches/transforms-3/e28461a702f5fd300273206419703cf3/transformed/jetified-drawee-2.5.0/jars/classes.jar"
       resolved="com.facebook.fresco:drawee:2.5.0"
-      folder="/home/christophe/.gradle/caches/transforms-3/e28461a702f5fd300273206419703cf3/transformed/jetified-drawee-2.5.0"
+      folder="/Users/christophesourinthone/.gradle/caches/transforms-3/e28461a702f5fd300273206419703cf3/transformed/jetified-drawee-2.5.0"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -617,9 +669,9 @@
       proguardRules="proguard.txt"/>
   <library
       name="com.facebook.fresco:imagepipeline:2.5.0@aar"
-      jars="/home/christophe/.gradle/caches/transforms-3/022b470ef0637fe9f279a2b6d53646e2/transformed/jetified-imagepipeline-2.5.0/jars/classes.jar"
+      jars="/Users/christophesourinthone/.gradle/caches/transforms-3/022b470ef0637fe9f279a2b6d53646e2/transformed/jetified-imagepipeline-2.5.0/jars/classes.jar"
       resolved="com.facebook.fresco:imagepipeline:2.5.0"
-      folder="/home/christophe/.gradle/caches/transforms-3/022b470ef0637fe9f279a2b6d53646e2/transformed/jetified-imagepipeline-2.5.0"
+      folder="/Users/christophesourinthone/.gradle/caches/transforms-3/022b470ef0637fe9f279a2b6d53646e2/transformed/jetified-imagepipeline-2.5.0"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -630,9 +682,9 @@
       proguardRules="proguard.txt"/>
   <library
       name="com.facebook.fresco:imagepipeline-base:2.5.0@aar"
-      jars="/home/christophe/.gradle/caches/transforms-3/ecd122b8b9789eba2b9a30e02a08e32d/transformed/jetified-imagepipeline-base-2.5.0/jars/classes.jar"
+      jars="/Users/christophesourinthone/.gradle/caches/transforms-3/ecd122b8b9789eba2b9a30e02a08e32d/transformed/jetified-imagepipeline-base-2.5.0/jars/classes.jar"
       resolved="com.facebook.fresco:imagepipeline-base:2.5.0"
-      folder="/home/christophe/.gradle/caches/transforms-3/ecd122b8b9789eba2b9a30e02a08e32d/transformed/jetified-imagepipeline-base-2.5.0"
+      folder="/Users/christophesourinthone/.gradle/caches/transforms-3/ecd122b8b9789eba2b9a30e02a08e32d/transformed/jetified-imagepipeline-base-2.5.0"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -643,9 +695,9 @@
       proguardRules="proguard.txt"/>
   <library
       name="com.facebook.fresco:imagepipeline-native:2.5.0@aar"
-      jars="/home/christophe/.gradle/caches/transforms-3/a52b41b58691dd42845937374dfc991a/transformed/jetified-imagepipeline-native-2.6.0/jars/classes.jar"
+      jars="/Users/christophesourinthone/.gradle/caches/transforms-3/a52b41b58691dd42845937374dfc991a/transformed/jetified-imagepipeline-native-2.6.0/jars/classes.jar"
       resolved="com.facebook.fresco:imagepipeline-native:2.5.0"
-      folder="/home/christophe/.gradle/caches/transforms-3/a52b41b58691dd42845937374dfc991a/transformed/jetified-imagepipeline-native-2.6.0"
+      folder="/Users/christophesourinthone/.gradle/caches/transforms-3/a52b41b58691dd42845937374dfc991a/transformed/jetified-imagepipeline-native-2.6.0"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -656,9 +708,9 @@
       proguardRules="proguard.txt"/>
   <library
       name="com.facebook.fresco:memory-type-ashmem:2.5.0@aar"
-      jars="/home/christophe/.gradle/caches/transforms-3/06181d6dcaaa163f91fd22904080f4e5/transformed/jetified-memory-type-ashmem-2.5.0/jars/classes.jar"
+      jars="/Users/christophesourinthone/.gradle/caches/transforms-3/06181d6dcaaa163f91fd22904080f4e5/transformed/jetified-memory-type-ashmem-2.5.0/jars/classes.jar"
       resolved="com.facebook.fresco:memory-type-ashmem:2.5.0"
-      folder="/home/christophe/.gradle/caches/transforms-3/06181d6dcaaa163f91fd22904080f4e5/transformed/jetified-memory-type-ashmem-2.5.0"
+      folder="/Users/christophesourinthone/.gradle/caches/transforms-3/06181d6dcaaa163f91fd22904080f4e5/transformed/jetified-memory-type-ashmem-2.5.0"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -669,9 +721,9 @@
       proguardRules="proguard.txt"/>
   <library
       name="com.facebook.fresco:memory-type-native:2.5.0@aar"
-      jars="/home/christophe/.gradle/caches/transforms-3/f7f5566092278f2cd87d234cd139653c/transformed/jetified-memory-type-native-2.6.0/jars/classes.jar"
+      jars="/Users/christophesourinthone/.gradle/caches/transforms-3/f7f5566092278f2cd87d234cd139653c/transformed/jetified-memory-type-native-2.6.0/jars/classes.jar"
       resolved="com.facebook.fresco:memory-type-native:2.5.0"
-      folder="/home/christophe/.gradle/caches/transforms-3/f7f5566092278f2cd87d234cd139653c/transformed/jetified-memory-type-native-2.6.0"
+      folder="/Users/christophesourinthone/.gradle/caches/transforms-3/f7f5566092278f2cd87d234cd139653c/transformed/jetified-memory-type-native-2.6.0"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -682,9 +734,9 @@
       proguardRules="proguard.txt"/>
   <library
       name="com.facebook.fresco:memory-type-java:2.5.0@aar"
-      jars="/home/christophe/.gradle/caches/transforms-3/910c3bf53fccd19c42f02fff763bd881/transformed/jetified-memory-type-java-2.5.0/jars/classes.jar"
+      jars="/Users/christophesourinthone/.gradle/caches/transforms-3/910c3bf53fccd19c42f02fff763bd881/transformed/jetified-memory-type-java-2.5.0/jars/classes.jar"
       resolved="com.facebook.fresco:memory-type-java:2.5.0"
-      folder="/home/christophe/.gradle/caches/transforms-3/910c3bf53fccd19c42f02fff763bd881/transformed/jetified-memory-type-java-2.5.0"
+      folder="/Users/christophesourinthone/.gradle/caches/transforms-3/910c3bf53fccd19c42f02fff763bd881/transformed/jetified-memory-type-java-2.5.0"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -695,9 +747,9 @@
       proguardRules="proguard.txt"/>
   <library
       name="com.facebook.fresco:nativeimagefilters:2.5.0@aar"
-      jars="/home/christophe/.gradle/caches/transforms-3/07945741cd25932c460339263c03dfdc/transformed/jetified-nativeimagefilters-2.5.0/jars/classes.jar"
+      jars="/Users/christophesourinthone/.gradle/caches/transforms-3/07945741cd25932c460339263c03dfdc/transformed/jetified-nativeimagefilters-2.5.0/jars/classes.jar"
       resolved="com.facebook.fresco:nativeimagefilters:2.5.0"
-      folder="/home/christophe/.gradle/caches/transforms-3/07945741cd25932c460339263c03dfdc/transformed/jetified-nativeimagefilters-2.5.0"
+      folder="/Users/christophesourinthone/.gradle/caches/transforms-3/07945741cd25932c460339263c03dfdc/transformed/jetified-nativeimagefilters-2.5.0"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -708,9 +760,9 @@
       proguardRules="proguard.txt"/>
   <library
       name="com.facebook.fresco:nativeimagetranscoder:2.5.0@aar"
-      jars="/home/christophe/.gradle/caches/transforms-3/ba7274592344354c4b346f59127e25e2/transformed/jetified-nativeimagetranscoder-2.6.0/jars/classes.jar"
+      jars="/Users/christophesourinthone/.gradle/caches/transforms-3/ba7274592344354c4b346f59127e25e2/transformed/jetified-nativeimagetranscoder-2.6.0/jars/classes.jar"
       resolved="com.facebook.fresco:nativeimagetranscoder:2.5.0"
-      folder="/home/christophe/.gradle/caches/transforms-3/ba7274592344354c4b346f59127e25e2/transformed/jetified-nativeimagetranscoder-2.6.0"
+      folder="/Users/christophesourinthone/.gradle/caches/transforms-3/ba7274592344354c4b346f59127e25e2/transformed/jetified-nativeimagetranscoder-2.6.0"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -721,9 +773,9 @@
       proguardRules="proguard.txt"/>
   <library
       name="com.facebook.fresco:imagepipeline-okhttp3:2.5.0@aar"
-      jars="/home/christophe/.gradle/caches/transforms-3/e116eb85f246b11815541350cd741df7/transformed/jetified-imagepipeline-okhttp3-2.5.0/jars/classes.jar"
+      jars="/Users/christophesourinthone/.gradle/caches/transforms-3/e116eb85f246b11815541350cd741df7/transformed/jetified-imagepipeline-okhttp3-2.5.0/jars/classes.jar"
       resolved="com.facebook.fresco:imagepipeline-okhttp3:2.5.0"
-      folder="/home/christophe/.gradle/caches/transforms-3/e116eb85f246b11815541350cd741df7/transformed/jetified-imagepipeline-okhttp3-2.5.0"
+      folder="/Users/christophesourinthone/.gradle/caches/transforms-3/e116eb85f246b11815541350cd741df7/transformed/jetified-imagepipeline-okhttp3-2.5.0"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -734,45 +786,45 @@
       proguardRules="proguard.txt"/>
   <library
       name="com.squareup.okhttp3:okhttp-urlconnection:4.9.2@jar"
-      jars="/home/christophe/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp3/okhttp-urlconnection/4.9.2/3b9e64d3d56370bc7488ed8b336d17a8013cb336/okhttp-urlconnection-4.9.2.jar"
+      jars="/Users/christophesourinthone/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp3/okhttp-urlconnection/4.9.2/3b9e64d3d56370bc7488ed8b336d17a8013cb336/okhttp-urlconnection-4.9.2.jar"
       resolved="com.squareup.okhttp3:okhttp-urlconnection:4.9.2"/>
   <library
       name="com.squareup.okhttp3:okhttp:4.9.2@jar"
-      jars="/home/christophe/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp3/okhttp/4.9.2/5302714ee9320b64cf65ed865e5f65981ef9ba46/okhttp-4.9.2.jar"
+      jars="/Users/christophesourinthone/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp3/okhttp/4.9.2/5302714ee9320b64cf65ed865e5f65981ef9ba46/okhttp-4.9.2.jar"
       resolved="com.squareup.okhttp3:okhttp:4.9.2"/>
   <library
       name="com.squareup.okio:okio:2.9.0@jar"
-      jars="/home/christophe/.gradle/caches/modules-2/files-2.1/com.squareup.okio/okio/2.9.0/dcc813b08ce5933f8bdfd1dfbab4ad4bd170e7a/okio-jvm-2.9.0.jar"
+      jars="/Users/christophesourinthone/.gradle/caches/modules-2/files-2.1/com.squareup.okio/okio/2.9.0/dcc813b08ce5933f8bdfd1dfbab4ad4bd170e7a/okio-jvm-2.9.0.jar"
       resolved="com.squareup.okio:okio:2.9.0"/>
   <library
-      name="org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.4.10@jar"
-      jars="/home/christophe/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib-jdk8/1.4.10/998caa30623f73223194a8b657abd2baec4880ea/kotlin-stdlib-jdk8-1.4.10.jar"
-      resolved="org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.4.10"/>
+      name="org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.6.21@jar"
+      jars="/Users/christophesourinthone/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib-jdk8/1.6.21/eeb4d60d75e9ea9c11200d52974e522793b14fba/kotlin-stdlib-jdk8-1.6.21.jar"
+      resolved="org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.6.21"/>
   <library
-      name="org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.4.10@jar"
-      jars="/home/christophe/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib-jdk7/1.4.10/30e46450b0bb3dbf43898d2f461be4a942784780/kotlin-stdlib-jdk7-1.4.10.jar"
-      resolved="org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.4.10"/>
+      name="org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.6.21@jar"
+      jars="/Users/christophesourinthone/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib-jdk7/1.6.21/568c1b78a8e17a4f35b31f0a74e2916095ed74c2/kotlin-stdlib-jdk7-1.6.21.jar"
+      resolved="org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.6.21"/>
   <library
-      name="org.jetbrains.kotlin:kotlin-stdlib:1.6.10@jar"
-      jars="/home/christophe/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib/1.6.10/b8af3fe6f1ca88526914929add63cf5e7c5049af/kotlin-stdlib-1.6.10.jar"
-      resolved="org.jetbrains.kotlin:kotlin-stdlib:1.6.10"/>
+      name="org.jetbrains.kotlin:kotlin-stdlib:1.6.21@jar"
+      jars="/Users/christophesourinthone/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib/1.6.21/11ef67f1900634fd951bad28c53ec957fabbe5b8/kotlin-stdlib-1.6.21.jar"
+      resolved="org.jetbrains.kotlin:kotlin-stdlib:1.6.21"/>
+  <library
+      name="org.jetbrains.kotlin:kotlin-stdlib-common:1.6.21@jar"
+      jars="/Users/christophesourinthone/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib-common/1.6.21/5e5b55c26dbc80372a920aef60eb774b714559b8/kotlin-stdlib-common-1.6.21.jar"
+      resolved="org.jetbrains.kotlin:kotlin-stdlib-common:1.6.21"/>
   <library
       name="org.jetbrains:annotations:16.0.1@jar"
-      jars="/home/christophe/.gradle/caches/modules-2/files-2.1/org.jetbrains/annotations/16.0.1/c1a6655cebcac68e63e4c24d23f573035032eb2a/annotations-16.0.1.jar"
+      jars="/Users/christophesourinthone/.gradle/caches/modules-2/files-2.1/org.jetbrains/annotations/16.0.1/c1a6655cebcac68e63e4c24d23f573035032eb2a/annotations-16.0.1.jar"
       resolved="org.jetbrains:annotations:16.0.1"/>
   <library
-      name="org.jetbrains.kotlin:kotlin-stdlib-common:1.6.10@jar"
-      jars="/home/christophe/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib-common/1.6.10/c118700e3a33c8a0d9adc920e9dec0831171925/kotlin-stdlib-common-1.6.10.jar"
-      resolved="org.jetbrains.kotlin:kotlin-stdlib-common:1.6.10"/>
-  <library
       name="com.facebook.fbjni:fbjni-java-only:0.2.2@jar"
-      jars="/home/christophe/.gradle/caches/modules-2/files-2.1/com.facebook.fbjni/fbjni-java-only/0.2.2/de5152e6b7ce18dd242be23994e702309e66e7da/fbjni-java-only-0.2.2.jar"
+      jars="/Users/christophesourinthone/.gradle/caches/modules-2/files-2.1/com.facebook.fbjni/fbjni-java-only/0.2.2/de5152e6b7ce18dd242be23994e702309e66e7da/fbjni-java-only-0.2.2.jar"
       resolved="com.facebook.fbjni:fbjni-java-only:0.2.2"/>
   <library
       name="com.mapbox.mapboxsdk:mapbox-android-plugin-annotation-v9:0.8.0@aar"
-      jars="/home/christophe/.gradle/caches/transforms-3/8c9a43187b11437105605de4ca903355/transformed/jetified-mapbox-android-plugin-annotation-v9-0.8.0/jars/classes.jar"
+      jars="/Users/christophesourinthone/.gradle/caches/transforms-3/8c9a43187b11437105605de4ca903355/transformed/jetified-mapbox-android-plugin-annotation-v9-0.8.0/jars/classes.jar"
       resolved="com.mapbox.mapboxsdk:mapbox-android-plugin-annotation-v9:0.8.0"
-      folder="/home/christophe/.gradle/caches/transforms-3/8c9a43187b11437105605de4ca903355/transformed/jetified-mapbox-android-plugin-annotation-v9-0.8.0"
+      folder="/Users/christophesourinthone/.gradle/caches/transforms-3/8c9a43187b11437105605de4ca903355/transformed/jetified-mapbox-android-plugin-annotation-v9-0.8.0"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -783,9 +835,9 @@
       proguardRules="proguard.txt"/>
   <library
       name="com.mapbox.mapboxsdk:mapbox-android-plugin-localization-v9:0.14.0@aar"
-      jars="/home/christophe/.gradle/caches/transforms-3/a928e428ba4635ab9c4fdf3da1f0d94c/transformed/jetified-mapbox-android-plugin-localization-v9-0.14.0/jars/classes.jar"
+      jars="/Users/christophesourinthone/.gradle/caches/transforms-3/a928e428ba4635ab9c4fdf3da1f0d94c/transformed/jetified-mapbox-android-plugin-localization-v9-0.14.0/jars/classes.jar"
       resolved="com.mapbox.mapboxsdk:mapbox-android-plugin-localization-v9:0.14.0"
-      folder="/home/christophe/.gradle/caches/transforms-3/a928e428ba4635ab9c4fdf3da1f0d94c/transformed/jetified-mapbox-android-plugin-localization-v9-0.14.0"
+      folder="/Users/christophesourinthone/.gradle/caches/transforms-3/a928e428ba4635ab9c4fdf3da1f0d94c/transformed/jetified-mapbox-android-plugin-localization-v9-0.14.0"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -796,9 +848,9 @@
       proguardRules="proguard.txt"/>
   <library
       name="com.mapbox.mapboxsdk:mapbox-android-plugin-markerview-v9:0.4.0@aar"
-      jars="/home/christophe/.gradle/caches/transforms-3/12f4e669fc56f2735fde827a7aab3035/transformed/jetified-mapbox-android-plugin-markerview-v9-0.4.0/jars/classes.jar"
+      jars="/Users/christophesourinthone/.gradle/caches/transforms-3/12f4e669fc56f2735fde827a7aab3035/transformed/jetified-mapbox-android-plugin-markerview-v9-0.4.0/jars/classes.jar"
       resolved="com.mapbox.mapboxsdk:mapbox-android-plugin-markerview-v9:0.4.0"
-      folder="/home/christophe/.gradle/caches/transforms-3/12f4e669fc56f2735fde827a7aab3035/transformed/jetified-mapbox-android-plugin-markerview-v9-0.4.0"
+      folder="/Users/christophesourinthone/.gradle/caches/transforms-3/12f4e669fc56f2735fde827a7aab3035/transformed/jetified-mapbox-android-plugin-markerview-v9-0.4.0"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -809,9 +861,9 @@
       proguardRules="proguard.txt"/>
   <library
       name="com.google.android.material:material:1.1.0@aar"
-      jars="/home/christophe/.gradle/caches/transforms-3/f05a9184797ff091550d41ce9d0208b4/transformed/material-1.1.0/jars/classes.jar"
+      jars="/Users/christophesourinthone/.gradle/caches/transforms-3/f05a9184797ff091550d41ce9d0208b4/transformed/material-1.1.0/jars/classes.jar"
       resolved="com.google.android.material:material:1.1.0"
-      folder="/home/christophe/.gradle/caches/transforms-3/f05a9184797ff091550d41ce9d0208b4/transformed/material-1.1.0"
+      folder="/Users/christophesourinthone/.gradle/caches/transforms-3/f05a9184797ff091550d41ce9d0208b4/transformed/material-1.1.0"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -822,9 +874,9 @@
       proguardRules="proguard.txt"/>
   <library
       name="com.facebook.fresco:middleware:2.5.0@aar"
-      jars="/home/christophe/.gradle/caches/transforms-3/2bac2a8b847ff9329bec54b20e026703/transformed/jetified-middleware-2.6.0/jars/classes.jar"
+      jars="/Users/christophesourinthone/.gradle/caches/transforms-3/2bac2a8b847ff9329bec54b20e026703/transformed/jetified-middleware-2.6.0/jars/classes.jar"
       resolved="com.facebook.fresco:middleware:2.5.0"
-      folder="/home/christophe/.gradle/caches/transforms-3/2bac2a8b847ff9329bec54b20e026703/transformed/jetified-middleware-2.6.0"
+      folder="/Users/christophesourinthone/.gradle/caches/transforms-3/2bac2a8b847ff9329bec54b20e026703/transformed/jetified-middleware-2.6.0"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -835,9 +887,9 @@
       proguardRules="proguard.txt"/>
   <library
       name="com.facebook.fresco:soloader:2.5.0@aar"
-      jars="/home/christophe/.gradle/caches/transforms-3/1e3bd2b6a5ee5200315ed5c45b506cc5/transformed/jetified-soloader-2.6.0/jars/classes.jar"
+      jars="/Users/christophesourinthone/.gradle/caches/transforms-3/1e3bd2b6a5ee5200315ed5c45b506cc5/transformed/jetified-soloader-2.6.0/jars/classes.jar"
       resolved="com.facebook.fresco:soloader:2.5.0"
-      folder="/home/christophe/.gradle/caches/transforms-3/1e3bd2b6a5ee5200315ed5c45b506cc5/transformed/jetified-soloader-2.6.0"
+      folder="/Users/christophesourinthone/.gradle/caches/transforms-3/1e3bd2b6a5ee5200315ed5c45b506cc5/transformed/jetified-soloader-2.6.0"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -848,9 +900,9 @@
       proguardRules="proguard.txt"/>
   <library
       name="com.mapbox.mapboxsdk:mapbox-android-sdk:9.7.1@aar"
-      jars="/home/christophe/.gradle/caches/transforms-3/1d02f255c8be8c897aa31e146604cd65/transformed/jetified-mapbox-android-sdk-9.7.1/jars/classes.jar"
+      jars="/Users/christophesourinthone/.gradle/caches/transforms-3/1d02f255c8be8c897aa31e146604cd65/transformed/jetified-mapbox-android-sdk-9.7.1/jars/classes.jar"
       resolved="com.mapbox.mapboxsdk:mapbox-android-sdk:9.7.1"
-      folder="/home/christophe/.gradle/caches/transforms-3/1d02f255c8be8c897aa31e146604cd65/transformed/jetified-mapbox-android-sdk-9.7.1"
+      folder="/Users/christophesourinthone/.gradle/caches/transforms-3/1d02f255c8be8c897aa31e146604cd65/transformed/jetified-mapbox-android-sdk-9.7.1"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -861,9 +913,9 @@
       proguardRules="proguard.txt"/>
   <library
       name="com.mapbox.mapboxsdk:mapbox-android-telemetry-okhttp3:8.1.0@aar"
-      jars="/home/christophe/.gradle/caches/transforms-3/7ec43e1665fc068120202fc245756d38/transformed/jetified-mapbox-android-telemetry-okhttp3-8.1.0/jars/classes.jar"
+      jars="/Users/christophesourinthone/.gradle/caches/transforms-3/7ec43e1665fc068120202fc245756d38/transformed/jetified-mapbox-android-telemetry-okhttp3-8.1.0/jars/classes.jar"
       resolved="com.mapbox.mapboxsdk:mapbox-android-telemetry-okhttp3:8.1.0"
-      folder="/home/christophe/.gradle/caches/transforms-3/7ec43e1665fc068120202fc245756d38/transformed/jetified-mapbox-android-telemetry-okhttp3-8.1.0"
+      folder="/Users/christophesourinthone/.gradle/caches/transforms-3/7ec43e1665fc068120202fc245756d38/transformed/jetified-mapbox-android-telemetry-okhttp3-8.1.0"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -874,29 +926,29 @@
       proguardRules="proguard.txt"/>
   <library
       name="com.mapbox.mapboxsdk:mapbox-sdk-services:5.8.0@jar"
-      jars="/home/christophe/.gradle/caches/modules-2/files-2.1/com.mapbox.mapboxsdk/mapbox-sdk-services/5.8.0/d1583c0d486dd5b6a06890a8cb8ff8bcc23e228f/mapbox-sdk-services-5.8.0.jar"
+      jars="/Users/christophesourinthone/.gradle/caches/modules-2/files-2.1/com.mapbox.mapboxsdk/mapbox-sdk-services/5.8.0/d1583c0d486dd5b6a06890a8cb8ff8bcc23e228f/mapbox-sdk-services-5.8.0.jar"
       resolved="com.mapbox.mapboxsdk:mapbox-sdk-services:5.8.0"/>
   <library
       name="com.mapbox.mapboxsdk:mapbox-sdk-core:5.8.0@jar"
-      jars="/home/christophe/.gradle/caches/modules-2/files-2.1/com.mapbox.mapboxsdk/mapbox-sdk-core/5.8.0/d1b3d9a7a3858431ef6b317af4f3104edd89752/mapbox-sdk-core-5.8.0.jar"
+      jars="/Users/christophesourinthone/.gradle/caches/modules-2/files-2.1/com.mapbox.mapboxsdk/mapbox-sdk-core/5.8.0/d1b3d9a7a3858431ef6b317af4f3104edd89752/mapbox-sdk-core-5.8.0.jar"
       resolved="com.mapbox.mapboxsdk:mapbox-sdk-core:5.8.0"/>
   <library
       name="com.squareup.retrofit2:converter-gson:2.7.2@jar"
-      jars="/home/christophe/.gradle/caches/modules-2/files-2.1/com.squareup.retrofit2/converter-gson/2.7.2/2c17c9e58aa21707099f35ae0fe2e24f72c792c9/converter-gson-2.7.2.jar"
+      jars="/Users/christophesourinthone/.gradle/caches/modules-2/files-2.1/com.squareup.retrofit2/converter-gson/2.7.2/2c17c9e58aa21707099f35ae0fe2e24f72c792c9/converter-gson-2.7.2.jar"
       resolved="com.squareup.retrofit2:converter-gson:2.7.2"/>
   <library
       name="com.squareup.retrofit2:retrofit:2.7.2@jar"
-      jars="/home/christophe/.gradle/caches/modules-2/files-2.1/com.squareup.retrofit2/retrofit/2.7.2/b98baad220c2091db369e5943265f9d083cad1cc/retrofit-2.7.2.jar"
+      jars="/Users/christophesourinthone/.gradle/caches/modules-2/files-2.1/com.squareup.retrofit2/retrofit/2.7.2/b98baad220c2091db369e5943265f9d083cad1cc/retrofit-2.7.2.jar"
       resolved="com.squareup.retrofit2:retrofit:2.7.2"/>
   <library
       name="com.squareup.okhttp3:logging-interceptor:3.12.7@jar"
-      jars="/home/christophe/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp3/logging-interceptor/3.12.7/e561e3f900bbc6ef12db6ff168e62566a9e18d11/logging-interceptor-3.12.7.jar"
+      jars="/Users/christophesourinthone/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp3/logging-interceptor/3.12.7/e561e3f900bbc6ef12db6ff168e62566a9e18d11/logging-interceptor-3.12.7.jar"
       resolved="com.squareup.okhttp3:logging-interceptor:3.12.7"/>
   <library
       name="com.mapbox.mapboxsdk:mapbox-android-gestures:0.7.0@aar"
-      jars="/home/christophe/.gradle/caches/transforms-3/a76967b631328e9d004dcbb3c6881502/transformed/jetified-mapbox-android-gestures-0.7.0/jars/classes.jar"
+      jars="/Users/christophesourinthone/.gradle/caches/transforms-3/a76967b631328e9d004dcbb3c6881502/transformed/jetified-mapbox-android-gestures-0.7.0/jars/classes.jar"
       resolved="com.mapbox.mapboxsdk:mapbox-android-gestures:0.7.0"
-      folder="/home/christophe/.gradle/caches/transforms-3/a76967b631328e9d004dcbb3c6881502/transformed/jetified-mapbox-android-gestures-0.7.0"
+      folder="/Users/christophesourinthone/.gradle/caches/transforms-3/a76967b631328e9d004dcbb3c6881502/transformed/jetified-mapbox-android-gestures-0.7.0"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -906,10 +958,23 @@
       externalAnnotations="annotations.zip"
       proguardRules="proguard.txt"/>
   <library
-      name="com.google.android.gms:play-services-location:19.0.1@aar"
-      jars="/home/christophe/.gradle/caches/transforms-3/4bfba56eb5a465572e7970097abcd174/transformed/jetified-play-services-location-19.0.1/jars/classes.jar"
-      resolved="com.google.android.gms:play-services-location:19.0.1"
-      folder="/home/christophe/.gradle/caches/transforms-3/4bfba56eb5a465572e7970097abcd174/transformed/jetified-play-services-location-19.0.1"
+      name="androidx.core:core-ktx:1.6.0@aar"
+      jars="/Users/christophesourinthone/.gradle/caches/transforms-3/4e26caecc931b2749d91e9805be09381/transformed/jetified-core-ktx-1.6.0/jars/classes.jar"
+      resolved="androidx.core:core-ktx:1.6.0"
+      folder="/Users/christophesourinthone/.gradle/caches/transforms-3/4e26caecc931b2749d91e9805be09381/transformed/jetified-core-ktx-1.6.0"
+      manifest="AndroidManifest.xml"
+      resFolder="res"
+      assetsFolder="assets"
+      lintJar="lint.jar"
+      publicResources="public.txt"
+      symbolFile="R.txt"
+      externalAnnotations="annotations.zip"
+      proguardRules="proguard.txt"/>
+  <library
+      name="com.google.android.gms:play-services-location:20.0.0@aar"
+      jars="/Users/christophesourinthone/.gradle/caches/transforms-3/9bddee63eb6a810ec82d2ea83fce0a2b/transformed/jetified-play-services-location-20.0.0/jars/classes.jar"
+      resolved="com.google.android.gms:play-services-location:20.0.0"
+      folder="/Users/christophesourinthone/.gradle/caches/transforms-3/9bddee63eb6a810ec82d2ea83fce0a2b/transformed/jetified-play-services-location-20.0.0"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -920,9 +985,9 @@
       proguardRules="proguard.txt"/>
   <library
       name="com.google.android.gms:play-services-maps:18.0.2@aar"
-      jars="/home/christophe/.gradle/caches/transforms-3/71fa2ecf6e36be02d67b3a976df6715a/transformed/jetified-play-services-maps-18.0.2/jars/classes.jar"
+      jars="/Users/christophesourinthone/.gradle/caches/transforms-3/71fa2ecf6e36be02d67b3a976df6715a/transformed/jetified-play-services-maps-18.0.2/jars/classes.jar"
       resolved="com.google.android.gms:play-services-maps:18.0.2"
-      folder="/home/christophe/.gradle/caches/transforms-3/71fa2ecf6e36be02d67b3a976df6715a/transformed/jetified-play-services-maps-18.0.2"
+      folder="/Users/christophesourinthone/.gradle/caches/transforms-3/71fa2ecf6e36be02d67b3a976df6715a/transformed/jetified-play-services-maps-18.0.2"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -932,10 +997,10 @@
       externalAnnotations="annotations.zip"
       proguardRules="proguard.txt"/>
   <library
-      name="com.google.android.gms:play-services-base:18.0.1@aar"
-      jars="/home/christophe/.gradle/caches/transforms-3/9cd48e97bdb50419f2d92f401a77063e/transformed/jetified-play-services-base-18.0.1/jars/classes.jar"
-      resolved="com.google.android.gms:play-services-base:18.0.1"
-      folder="/home/christophe/.gradle/caches/transforms-3/9cd48e97bdb50419f2d92f401a77063e/transformed/jetified-play-services-base-18.0.1"
+      name="com.google.android.gms:play-services-base:18.1.0@aar"
+      jars="/Users/christophesourinthone/.gradle/caches/transforms-3/eebb78e782b5cf2db0b43db3af351d54/transformed/jetified-play-services-base-18.1.0/jars/classes.jar"
+      resolved="com.google.android.gms:play-services-base:18.1.0"
+      folder="/Users/christophesourinthone/.gradle/caches/transforms-3/eebb78e782b5cf2db0b43db3af351d54/transformed/jetified-play-services-base-18.1.0"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -945,10 +1010,10 @@
       externalAnnotations="annotations.zip"
       proguardRules="proguard.txt"/>
   <library
-      name="com.google.android.gms:play-services-places-placereport:17.0.0@aar"
-      jars="/home/christophe/.gradle/caches/transforms-3/3a5f8a8a70543fa377ddfe1c99997f28/transformed/jetified-play-services-places-placereport-17.0.0/jars/classes.jar"
-      resolved="com.google.android.gms:play-services-places-placereport:17.0.0"
-      folder="/home/christophe/.gradle/caches/transforms-3/3a5f8a8a70543fa377ddfe1c99997f28/transformed/jetified-play-services-places-placereport-17.0.0"
+      name="com.google.android.gms:play-services-tasks:18.0.2@aar"
+      jars="/Users/christophesourinthone/.gradle/caches/transforms-3/8dffec50db672cd0fb85329fd0883393/transformed/jetified-play-services-tasks-18.0.2/jars/classes.jar"
+      resolved="com.google.android.gms:play-services-tasks:18.0.2"
+      folder="/Users/christophesourinthone/.gradle/caches/transforms-3/8dffec50db672cd0fb85329fd0883393/transformed/jetified-play-services-tasks-18.0.2"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -958,23 +1023,10 @@
       externalAnnotations="annotations.zip"
       proguardRules="proguard.txt"/>
   <library
-      name="com.google.android.gms:play-services-tasks:18.0.1@aar"
-      jars="/home/christophe/.gradle/caches/transforms-3/5d4cac5b4d875f5c966c4a31d2a5fe4c/transformed/jetified-play-services-tasks-18.0.1/jars/classes.jar"
-      resolved="com.google.android.gms:play-services-tasks:18.0.1"
-      folder="/home/christophe/.gradle/caches/transforms-3/5d4cac5b4d875f5c966c4a31d2a5fe4c/transformed/jetified-play-services-tasks-18.0.1"
-      manifest="AndroidManifest.xml"
-      resFolder="res"
-      assetsFolder="assets"
-      lintJar="lint.jar"
-      publicResources="public.txt"
-      symbolFile="R.txt"
-      externalAnnotations="annotations.zip"
-      proguardRules="proguard.txt"/>
-  <library
-      name="com.google.android.gms:play-services-basement:18.0.0@aar"
-      jars="/home/christophe/.gradle/caches/transforms-3/87e9cea2db7b4bf6179fde731457f8e5/transformed/jetified-play-services-basement-18.0.0/jars/classes.jar"
-      resolved="com.google.android.gms:play-services-basement:18.0.0"
-      folder="/home/christophe/.gradle/caches/transforms-3/87e9cea2db7b4bf6179fde731457f8e5/transformed/jetified-play-services-basement-18.0.0"
+      name="com.google.android.gms:play-services-basement:18.1.0@aar"
+      jars="/Users/christophesourinthone/.gradle/caches/transforms-3/ad8882b4a3f0f52efc0bc56b1c1d596d/transformed/jetified-play-services-basement-18.1.0/jars/classes.jar"
+      resolved="com.google.android.gms:play-services-basement:18.1.0"
+      folder="/Users/christophesourinthone/.gradle/caches/transforms-3/ad8882b4a3f0f52efc0bc56b1c1d596d/transformed/jetified-play-services-basement-18.1.0"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -985,9 +1037,9 @@
       proguardRules="proguard.txt"/>
   <library
       name="androidx.viewpager2:viewpager2:1.0.0@aar"
-      jars="/home/christophe/.gradle/caches/transforms-3/d1c9481733ab176e4040bba6ecb1017f/transformed/jetified-viewpager2-1.0.0/jars/classes.jar"
+      jars="/Users/christophesourinthone/.gradle/caches/transforms-3/d1c9481733ab176e4040bba6ecb1017f/transformed/jetified-viewpager2-1.0.0/jars/classes.jar"
       resolved="androidx.viewpager2:viewpager2:1.0.0"
-      folder="/home/christophe/.gradle/caches/transforms-3/d1c9481733ab176e4040bba6ecb1017f/transformed/jetified-viewpager2-1.0.0"
+      folder="/Users/christophesourinthone/.gradle/caches/transforms-3/d1c9481733ab176e4040bba6ecb1017f/transformed/jetified-viewpager2-1.0.0"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -998,22 +1050,9 @@
       proguardRules="proguard.txt"/>
   <library
       name="androidx.coordinatorlayout:coordinatorlayout:1.1.0@aar"
-      jars="/home/christophe/.gradle/caches/transforms-3/f7874d284d432542c4b3167a93803846/transformed/coordinatorlayout-1.1.0/jars/classes.jar"
+      jars="/Users/christophesourinthone/.gradle/caches/transforms-3/f7874d284d432542c4b3167a93803846/transformed/coordinatorlayout-1.1.0/jars/classes.jar"
       resolved="androidx.coordinatorlayout:coordinatorlayout:1.1.0"
-      folder="/home/christophe/.gradle/caches/transforms-3/f7874d284d432542c4b3167a93803846/transformed/coordinatorlayout-1.1.0"
-      manifest="AndroidManifest.xml"
-      resFolder="res"
-      assetsFolder="assets"
-      lintJar="lint.jar"
-      publicResources="public.txt"
-      symbolFile="R.txt"
-      externalAnnotations="annotations.zip"
-      proguardRules="proguard.txt"/>
-  <library
-      name="androidx.core:core-ktx:1.5.0@aar"
-      jars="/home/christophe/.gradle/caches/transforms-3/881e07205b4b6f54911d784312b37434/transformed/jetified-core-ktx-1.5.0/jars/classes.jar"
-      resolved="androidx.core:core-ktx:1.5.0"
-      folder="/home/christophe/.gradle/caches/transforms-3/881e07205b4b6f54911d784312b37434/transformed/jetified-core-ktx-1.5.0"
+      folder="/Users/christophesourinthone/.gradle/caches/transforms-3/f7874d284d432542c4b3167a93803846/transformed/coordinatorlayout-1.1.0"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -1024,9 +1063,9 @@
       proguardRules="proguard.txt"/>
   <library
       name="com.mapbox.mapboxsdk:mapbox-android-accounts:0.7.0@aar"
-      jars="/home/christophe/.gradle/caches/transforms-3/dd8fa8a086e950a8ff89950b761d1921/transformed/jetified-mapbox-android-accounts-0.7.0/jars/classes.jar"
+      jars="/Users/christophesourinthone/.gradle/caches/transforms-3/dd8fa8a086e950a8ff89950b761d1921/transformed/jetified-mapbox-android-accounts-0.7.0/jars/classes.jar"
       resolved="com.mapbox.mapboxsdk:mapbox-android-accounts:0.7.0"
-      folder="/home/christophe/.gradle/caches/transforms-3/dd8fa8a086e950a8ff89950b761d1921/transformed/jetified-mapbox-android-accounts-0.7.0"
+      folder="/Users/christophesourinthone/.gradle/caches/transforms-3/dd8fa8a086e950a8ff89950b761d1921/transformed/jetified-mapbox-android-accounts-0.7.0"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -1037,17 +1076,17 @@
       proguardRules="proguard.txt"/>
   <library
       name="com.mapbox.mapboxsdk:mapbox-sdk-directions-refresh-models:5.8.0@jar"
-      jars="/home/christophe/.gradle/caches/modules-2/files-2.1/com.mapbox.mapboxsdk/mapbox-sdk-directions-refresh-models/5.8.0/89cdeaad250fb821bd80c30cedbd02a30ccc1184/mapbox-sdk-directions-refresh-models-5.8.0.jar"
+      jars="/Users/christophesourinthone/.gradle/caches/modules-2/files-2.1/com.mapbox.mapboxsdk/mapbox-sdk-directions-refresh-models/5.8.0/89cdeaad250fb821bd80c30cedbd02a30ccc1184/mapbox-sdk-directions-refresh-models-5.8.0.jar"
       resolved="com.mapbox.mapboxsdk:mapbox-sdk-directions-refresh-models:5.8.0"/>
   <library
       name="com.mapbox.mapboxsdk:mapbox-sdk-directions-models:5.8.0@jar"
-      jars="/home/christophe/.gradle/caches/modules-2/files-2.1/com.mapbox.mapboxsdk/mapbox-sdk-directions-models/5.8.0/e17b27b9fd300c5b9f13400db8e974bc500b8fcc/mapbox-sdk-directions-models-5.8.0.jar"
+      jars="/Users/christophesourinthone/.gradle/caches/modules-2/files-2.1/com.mapbox.mapboxsdk/mapbox-sdk-directions-models/5.8.0/e17b27b9fd300c5b9f13400db8e974bc500b8fcc/mapbox-sdk-directions-models-5.8.0.jar"
       resolved="com.mapbox.mapboxsdk:mapbox-sdk-directions-models:5.8.0"/>
   <library
       name="androidx.work:work-runtime:2.7.1@aar"
-      jars="/home/christophe/.gradle/caches/transforms-3/710abafbacce6ac38e589e39f4acf97d/transformed/work-runtime-2.7.1/jars/classes.jar"
+      jars="/Users/christophesourinthone/.gradle/caches/transforms-3/710abafbacce6ac38e589e39f4acf97d/transformed/work-runtime-2.7.1/jars/classes.jar"
       resolved="androidx.work:work-runtime:2.7.1"
-      folder="/home/christophe/.gradle/caches/transforms-3/710abafbacce6ac38e589e39f4acf97d/transformed/work-runtime-2.7.1"
+      folder="/Users/christophesourinthone/.gradle/caches/transforms-3/710abafbacce6ac38e589e39f4acf97d/transformed/work-runtime-2.7.1"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -1058,9 +1097,9 @@
       proguardRules="proguard.txt"/>
   <library
       name="androidx.legacy:legacy-support-core-utils:1.0.0@aar"
-      jars="/home/christophe/.gradle/caches/transforms-3/b411624ec02080b07784bd46624fff43/transformed/legacy-support-core-utils-1.0.0/jars/classes.jar"
+      jars="/Users/christophesourinthone/.gradle/caches/transforms-3/b411624ec02080b07784bd46624fff43/transformed/legacy-support-core-utils-1.0.0/jars/classes.jar"
       resolved="androidx.legacy:legacy-support-core-utils:1.0.0"
-      folder="/home/christophe/.gradle/caches/transforms-3/b411624ec02080b07784bd46624fff43/transformed/legacy-support-core-utils-1.0.0"
+      folder="/Users/christophesourinthone/.gradle/caches/transforms-3/b411624ec02080b07784bd46624fff43/transformed/legacy-support-core-utils-1.0.0"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -1071,9 +1110,9 @@
       proguardRules="proguard.txt"/>
   <library
       name="androidx.recyclerview:recyclerview:1.1.0@aar"
-      jars="/home/christophe/.gradle/caches/transforms-3/0d569af8374f5629e475c8f3fad8ea42/transformed/recyclerview-1.1.0/jars/classes.jar"
+      jars="/Users/christophesourinthone/.gradle/caches/transforms-3/0d569af8374f5629e475c8f3fad8ea42/transformed/recyclerview-1.1.0/jars/classes.jar"
       resolved="androidx.recyclerview:recyclerview:1.1.0"
-      folder="/home/christophe/.gradle/caches/transforms-3/0d569af8374f5629e475c8f3fad8ea42/transformed/recyclerview-1.1.0"
+      folder="/Users/christophesourinthone/.gradle/caches/transforms-3/0d569af8374f5629e475c8f3fad8ea42/transformed/recyclerview-1.1.0"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -1084,9 +1123,9 @@
       proguardRules="proguard.txt"/>
   <library
       name="androidx.transition:transition:1.2.0@aar"
-      jars="/home/christophe/.gradle/caches/transforms-3/1363398afdb5e93638f1c07098754aac/transformed/transition-1.2.0/jars/classes.jar"
+      jars="/Users/christophesourinthone/.gradle/caches/transforms-3/1363398afdb5e93638f1c07098754aac/transformed/transition-1.2.0/jars/classes.jar"
       resolved="androidx.transition:transition:1.2.0"
-      folder="/home/christophe/.gradle/caches/transforms-3/1363398afdb5e93638f1c07098754aac/transformed/transition-1.2.0"
+      folder="/Users/christophesourinthone/.gradle/caches/transforms-3/1363398afdb5e93638f1c07098754aac/transformed/transition-1.2.0"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -1097,9 +1136,9 @@
       proguardRules="proguard.txt"/>
   <library
       name="androidx.startup:startup-runtime:1.0.0@aar"
-      jars="/home/christophe/.gradle/caches/transforms-3/03c688b80cf2e53c1a4f7345fca72f76/transformed/jetified-startup-runtime-1.0.0/jars/classes.jar"
+      jars="/Users/christophesourinthone/.gradle/caches/transforms-3/03c688b80cf2e53c1a4f7345fca72f76/transformed/jetified-startup-runtime-1.0.0/jars/classes.jar"
       resolved="androidx.startup:startup-runtime:1.0.0"
-      folder="/home/christophe/.gradle/caches/transforms-3/03c688b80cf2e53c1a4f7345fca72f76/transformed/jetified-startup-runtime-1.0.0"
+      folder="/Users/christophesourinthone/.gradle/caches/transforms-3/03c688b80cf2e53c1a4f7345fca72f76/transformed/jetified-startup-runtime-1.0.0"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -1110,9 +1149,9 @@
       proguardRules="proguard.txt"/>
   <library
       name="androidx.room:room-runtime:2.2.5@aar"
-      jars="/home/christophe/.gradle/caches/transforms-3/f3a109d6957f4b7c964653b4211ffc43/transformed/room-runtime-2.2.5/jars/classes.jar"
+      jars="/Users/christophesourinthone/.gradle/caches/transforms-3/f3a109d6957f4b7c964653b4211ffc43/transformed/room-runtime-2.2.5/jars/classes.jar"
       resolved="androidx.room:room-runtime:2.2.5"
-      folder="/home/christophe/.gradle/caches/transforms-3/f3a109d6957f4b7c964653b4211ffc43/transformed/room-runtime-2.2.5"
+      folder="/Users/christophesourinthone/.gradle/caches/transforms-3/f3a109d6957f4b7c964653b4211ffc43/transformed/room-runtime-2.2.5"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -1123,9 +1162,9 @@
       proguardRules="proguard.txt"/>
   <library
       name="androidx.sqlite:sqlite-framework:2.1.0@aar"
-      jars="/home/christophe/.gradle/caches/transforms-3/91417241689bd1f4ac09bab639b87bb4/transformed/sqlite-framework-2.1.0/jars/classes.jar"
+      jars="/Users/christophesourinthone/.gradle/caches/transforms-3/91417241689bd1f4ac09bab639b87bb4/transformed/sqlite-framework-2.1.0/jars/classes.jar"
       resolved="androidx.sqlite:sqlite-framework:2.1.0"
-      folder="/home/christophe/.gradle/caches/transforms-3/91417241689bd1f4ac09bab639b87bb4/transformed/sqlite-framework-2.1.0"
+      folder="/Users/christophesourinthone/.gradle/caches/transforms-3/91417241689bd1f4ac09bab639b87bb4/transformed/sqlite-framework-2.1.0"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -1136,9 +1175,9 @@
       proguardRules="proguard.txt"/>
   <library
       name="androidx.sqlite:sqlite:2.1.0@aar"
-      jars="/home/christophe/.gradle/caches/transforms-3/36b4812e071f125b65744edd51280d8f/transformed/sqlite-2.1.0/jars/classes.jar"
+      jars="/Users/christophesourinthone/.gradle/caches/transforms-3/36b4812e071f125b65744edd51280d8f/transformed/sqlite-2.1.0/jars/classes.jar"
       resolved="androidx.sqlite:sqlite:2.1.0"
-      folder="/home/christophe/.gradle/caches/transforms-3/36b4812e071f125b65744edd51280d8f/transformed/sqlite-2.1.0"
+      folder="/Users/christophesourinthone/.gradle/caches/transforms-3/36b4812e071f125b65744edd51280d8f/transformed/sqlite-2.1.0"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -1149,9 +1188,9 @@
       proguardRules="proguard.txt"/>
   <library
       name="androidx.cardview:cardview:1.0.0@aar"
-      jars="/home/christophe/.gradle/caches/transforms-3/1325d79b2b6707fca318ca6f4f88e3d6/transformed/cardview-1.0.0/jars/classes.jar"
+      jars="/Users/christophesourinthone/.gradle/caches/transforms-3/1325d79b2b6707fca318ca6f4f88e3d6/transformed/cardview-1.0.0/jars/classes.jar"
       resolved="androidx.cardview:cardview:1.0.0"
-      folder="/home/christophe/.gradle/caches/transforms-3/1325d79b2b6707fca318ca6f4f88e3d6/transformed/cardview-1.0.0"
+      folder="/Users/christophesourinthone/.gradle/caches/transforms-3/1325d79b2b6707fca318ca6f4f88e3d6/transformed/cardview-1.0.0"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -1162,9 +1201,9 @@
       proguardRules="proguard.txt"/>
   <library
       name="androidx.lifecycle:lifecycle-service:2.1.0@aar"
-      jars="/home/christophe/.gradle/caches/transforms-3/0fabdb5f762912337846f515b180775c/transformed/jetified-lifecycle-service-2.1.0/jars/classes.jar"
+      jars="/Users/christophesourinthone/.gradle/caches/transforms-3/0fabdb5f762912337846f515b180775c/transformed/jetified-lifecycle-service-2.1.0/jars/classes.jar"
       resolved="androidx.lifecycle:lifecycle-service:2.1.0"
-      folder="/home/christophe/.gradle/caches/transforms-3/0fabdb5f762912337846f515b180775c/transformed/jetified-lifecycle-service-2.1.0"
+      folder="/Users/christophesourinthone/.gradle/caches/transforms-3/0fabdb5f762912337846f515b180775c/transformed/jetified-lifecycle-service-2.1.0"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -1175,9 +1214,9 @@
       proguardRules="proguard.txt"/>
   <library
       name="androidx.tracing:tracing:1.0.0@aar"
-      jars="/home/christophe/.gradle/caches/transforms-3/028431e7944c26d3c60f6c797fdbe1a8/transformed/jetified-tracing-1.0.0/jars/classes.jar"
+      jars="/Users/christophesourinthone/.gradle/caches/transforms-3/028431e7944c26d3c60f6c797fdbe1a8/transformed/jetified-tracing-1.0.0/jars/classes.jar"
       resolved="androidx.tracing:tracing:1.0.0"
-      folder="/home/christophe/.gradle/caches/transforms-3/028431e7944c26d3c60f6c797fdbe1a8/transformed/jetified-tracing-1.0.0"
+      folder="/Users/christophesourinthone/.gradle/caches/transforms-3/028431e7944c26d3c60f6c797fdbe1a8/transformed/jetified-tracing-1.0.0"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -1188,13 +1227,13 @@
       proguardRules="proguard.txt"/>
   <library
       name="androidx.room:room-common:2.2.5@jar"
-      jars="/home/christophe/.gradle/caches/modules-2/files-2.1/androidx.room/room-common/2.2.5/f5e3b73a0c2ab5e276e26868e4ce3542baede207/room-common-2.2.5.jar"
+      jars="/Users/christophesourinthone/.gradle/caches/modules-2/files-2.1/androidx.room/room-common/2.2.5/f5e3b73a0c2ab5e276e26868e4ce3542baede207/room-common-2.2.5.jar"
       resolved="androidx.room:room-common:2.2.5"/>
   <library
       name="androidx.documentfile:documentfile:1.0.0@aar"
-      jars="/home/christophe/.gradle/caches/transforms-3/a7563c545a5748337ed7cfda493b5809/transformed/documentfile-1.0.0/jars/classes.jar"
+      jars="/Users/christophesourinthone/.gradle/caches/transforms-3/a7563c545a5748337ed7cfda493b5809/transformed/documentfile-1.0.0/jars/classes.jar"
       resolved="androidx.documentfile:documentfile:1.0.0"
-      folder="/home/christophe/.gradle/caches/transforms-3/a7563c545a5748337ed7cfda493b5809/transformed/documentfile-1.0.0"
+      folder="/Users/christophesourinthone/.gradle/caches/transforms-3/a7563c545a5748337ed7cfda493b5809/transformed/documentfile-1.0.0"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -1205,9 +1244,9 @@
       proguardRules="proguard.txt"/>
   <library
       name="androidx.localbroadcastmanager:localbroadcastmanager:1.0.0@aar"
-      jars="/home/christophe/.gradle/caches/transforms-3/04d6be9a17ae7c16f2e067d26bb30721/transformed/localbroadcastmanager-1.0.0/jars/classes.jar"
+      jars="/Users/christophesourinthone/.gradle/caches/transforms-3/04d6be9a17ae7c16f2e067d26bb30721/transformed/localbroadcastmanager-1.0.0/jars/classes.jar"
       resolved="androidx.localbroadcastmanager:localbroadcastmanager:1.0.0"
-      folder="/home/christophe/.gradle/caches/transforms-3/04d6be9a17ae7c16f2e067d26bb30721/transformed/localbroadcastmanager-1.0.0"
+      folder="/Users/christophesourinthone/.gradle/caches/transforms-3/04d6be9a17ae7c16f2e067d26bb30721/transformed/localbroadcastmanager-1.0.0"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -1218,9 +1257,9 @@
       proguardRules="proguard.txt"/>
   <library
       name="androidx.print:print:1.0.0@aar"
-      jars="/home/christophe/.gradle/caches/transforms-3/37d1d8dfd079d5a54976da7b08ce6b23/transformed/print-1.0.0/jars/classes.jar"
+      jars="/Users/christophesourinthone/.gradle/caches/transforms-3/37d1d8dfd079d5a54976da7b08ce6b23/transformed/print-1.0.0/jars/classes.jar"
       resolved="androidx.print:print:1.0.0"
-      folder="/home/christophe/.gradle/caches/transforms-3/37d1d8dfd079d5a54976da7b08ce6b23/transformed/print-1.0.0"
+      folder="/Users/christophesourinthone/.gradle/caches/transforms-3/37d1d8dfd079d5a54976da7b08ce6b23/transformed/print-1.0.0"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -1231,13 +1270,43 @@
       proguardRules="proguard.txt"/>
   <library
       name="com.mapbox.mapboxsdk:mapbox-sdk-turf:5.8.0@jar"
-      jars="/home/christophe/.gradle/caches/modules-2/files-2.1/com.mapbox.mapboxsdk/mapbox-sdk-turf/5.8.0/c2562021537add884887903191d7fe7b061d4fb4/mapbox-sdk-turf-5.8.0.jar"
+      jars="/Users/christophesourinthone/.gradle/caches/modules-2/files-2.1/com.mapbox.mapboxsdk/mapbox-sdk-turf/5.8.0/c2562021537add884887903191d7fe7b061d4fb4/mapbox-sdk-turf-5.8.0.jar"
       resolved="com.mapbox.mapboxsdk:mapbox-sdk-turf:5.8.0"/>
   <library
+      name="com.github.henninghall:numberpickerview:v1.1.5@aar"
+      jars="/Users/christophesourinthone/.gradle/caches/transforms-3/7b46eb361ed4de08f4e1fb5ceddd6f8c/transformed/jetified-numberpickerview-v1.1.5/jars/classes.jar"
+      resolved="com.github.henninghall:numberpickerview:v1.1.5"
+      folder="/Users/christophesourinthone/.gradle/caches/transforms-3/7b46eb361ed4de08f4e1fb5ceddd6f8c/transformed/jetified-numberpickerview-v1.1.5"
+      manifest="AndroidManifest.xml"
+      resFolder="res"
+      assetsFolder="assets"
+      lintJar="lint.jar"
+      publicResources="public.txt"
+      symbolFile="R.txt"
+      externalAnnotations="annotations.zip"
+      proguardRules="proguard.txt"/>
+  <library
+      name="org.apache.commons:commons-lang3:3.8@jar"
+      jars="/Users/christophesourinthone/.gradle/caches/modules-2/files-2.1/org.apache.commons/commons-lang3/3.8/222fc4cf714a63f27cbdafdbd863efd0d30c8a1e/commons-lang3-3.8.jar"
+      resolved="org.apache.commons:commons-lang3:3.8"/>
+  <library
+      name="net.time4j:time4j-android:4.8-2021a@aar"
+      jars="/Users/christophesourinthone/.gradle/caches/transforms-3/6ad592d9f7f643743f10cf4371ebe604/transformed/jetified-time4j-android-4.8-2021a/jars/classes.jar"
+      resolved="net.time4j:time4j-android:4.8-2021a"
+      folder="/Users/christophesourinthone/.gradle/caches/transforms-3/6ad592d9f7f643743f10cf4371ebe604/transformed/jetified-time4j-android-4.8-2021a"
+      manifest="AndroidManifest.xml"
+      resFolder="res"
+      assetsFolder="assets"
+      lintJar="lint.jar"
+      publicResources="public.txt"
+      symbolFile="R.txt"
+      externalAnnotations="annotations.zip"
+      proguardRules="proguard.txt"/>
+  <library
       name="com.google.maps.android:android-maps-utils:0.5@aar"
-      jars="/home/christophe/.gradle/caches/transforms-3/228a17d25d736a40821622e7efac0605/transformed/jetified-android-maps-utils-0.5/jars/classes.jar"
+      jars="/Users/christophesourinthone/.gradle/caches/transforms-3/741f5356fc33fd85fba4369e457dab16/transformed/jetified-android-maps-utils-0.5/jars/classes.jar"
       resolved="com.google.maps.android:android-maps-utils:0.5"
-      folder="/home/christophe/.gradle/caches/transforms-3/228a17d25d736a40821622e7efac0605/transformed/jetified-android-maps-utils-0.5"
+      folder="/Users/christophesourinthone/.gradle/caches/transforms-3/741f5356fc33fd85fba4369e457dab16/transformed/jetified-android-maps-utils-0.5"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -1248,9 +1317,9 @@
       proguardRules="proguard.txt"/>
   <library
       name="com.mapbox.mapboxsdk:mapbox-android-core:5.0.0@aar"
-      jars="/home/christophe/.gradle/caches/transforms-3/eb02576ae9646c2c97be14d8ebbe4518/transformed/jetified-mapbox-android-core-5.0.0/jars/classes.jar"
+      jars="/Users/christophesourinthone/.gradle/caches/transforms-3/eb02576ae9646c2c97be14d8ebbe4518/transformed/jetified-mapbox-android-core-5.0.0/jars/classes.jar"
       resolved="com.mapbox.mapboxsdk:mapbox-android-core:5.0.0"
-      folder="/home/christophe/.gradle/caches/transforms-3/eb02576ae9646c2c97be14d8ebbe4518/transformed/jetified-mapbox-android-core-5.0.0"
+      folder="/Users/christophesourinthone/.gradle/caches/transforms-3/eb02576ae9646c2c97be14d8ebbe4518/transformed/jetified-mapbox-android-core-5.0.0"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -1261,13 +1330,13 @@
       proguardRules="proguard.txt"/>
   <library
       name="com.mapbox.mapboxsdk:mapbox-sdk-geojson:5.8.0@jar"
-      jars="/home/christophe/.gradle/caches/modules-2/files-2.1/com.mapbox.mapboxsdk/mapbox-sdk-geojson/5.8.0/88f8bb44579abb1ce9a461abad9d9c1cc263ec9c/mapbox-sdk-geojson-5.8.0.jar"
+      jars="/Users/christophesourinthone/.gradle/caches/modules-2/files-2.1/com.mapbox.mapboxsdk/mapbox-sdk-geojson/5.8.0/88f8bb44579abb1ce9a461abad9d9c1cc263ec9c/mapbox-sdk-geojson-5.8.0.jar"
       resolved="com.mapbox.mapboxsdk:mapbox-sdk-geojson:5.8.0"/>
   <library
       name="com.mapbox.mapboxsdk:mapbox-android-sdk-gl-core:5.3.1@aar"
-      jars="/home/christophe/.gradle/caches/transforms-3/7e850119e3e76c94be77f900dcedffef/transformed/jetified-mapbox-android-sdk-gl-core-5.3.1/jars/classes.jar"
+      jars="/Users/christophesourinthone/.gradle/caches/transforms-3/7e850119e3e76c94be77f900dcedffef/transformed/jetified-mapbox-android-sdk-gl-core-5.3.1/jars/classes.jar"
       resolved="com.mapbox.mapboxsdk:mapbox-android-sdk-gl-core:5.3.1"
-      folder="/home/christophe/.gradle/caches/transforms-3/7e850119e3e76c94be77f900dcedffef/transformed/jetified-mapbox-android-sdk-gl-core-5.3.1"
+      folder="/Users/christophesourinthone/.gradle/caches/transforms-3/7e850119e3e76c94be77f900dcedffef/transformed/jetified-mapbox-android-sdk-gl-core-5.3.1"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -1278,9 +1347,9 @@
       proguardRules="proguard.txt"/>
   <library
       name="com.jakewharton.timber:timber:4.7.1@aar"
-      jars="/home/christophe/.gradle/caches/transforms-3/b34253d06e43137543b01625983b2246/transformed/jetified-timber-4.7.1/jars/classes.jar"
+      jars="/Users/christophesourinthone/.gradle/caches/transforms-3/b34253d06e43137543b01625983b2246/transformed/jetified-timber-4.7.1/jars/classes.jar"
       resolved="com.jakewharton.timber:timber:4.7.1"
-      folder="/home/christophe/.gradle/caches/transforms-3/b34253d06e43137543b01625983b2246/transformed/jetified-timber-4.7.1"
+      folder="/Users/christophesourinthone/.gradle/caches/transforms-3/b34253d06e43137543b01625983b2246/transformed/jetified-timber-4.7.1"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -1291,18 +1360,18 @@
       proguardRules="proguard.txt"/>
   <library
       name="com.google.guava:listenablefuture:1.0@jar"
-      jars="/home/christophe/.gradle/caches/modules-2/files-2.1/com.google.guava/listenablefuture/1.0/c949a840a6acbc5268d088e47b04177bf90b3cad/listenablefuture-1.0.jar"
+      jars="/Users/christophesourinthone/.gradle/caches/modules-2/files-2.1/com.google.guava/listenablefuture/1.0/c949a840a6acbc5268d088e47b04177bf90b3cad/listenablefuture-1.0.jar"
       resolved="com.google.guava:listenablefuture:1.0"/>
   <library
       name="com.parse.bolts:bolts-tasks:1.4.0@jar"
-      jars="/home/christophe/.gradle/caches/modules-2/files-2.1/com.parse.bolts/bolts-tasks/1.4.0/d85884acf6810a3bbbecb587f239005cbc846dc4/bolts-tasks-1.4.0.jar"
+      jars="/Users/christophesourinthone/.gradle/caches/modules-2/files-2.1/com.parse.bolts/bolts-tasks/1.4.0/d85884acf6810a3bbbecb587f239005cbc846dc4/bolts-tasks-1.4.0.jar"
       resolved="com.parse.bolts:bolts-tasks:1.4.0"/>
   <library
       name="com.google.code.gson:gson:2.8.6@jar"
-      jars="/home/christophe/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.8.6/9180733b7df8542621dc12e21e87557e8c99b8cb/gson-2.8.6.jar"
+      jars="/Users/christophesourinthone/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.8.6/9180733b7df8542621dc12e21e87557e8c99b8cb/gson-2.8.6.jar"
       resolved="com.google.code.gson:gson:2.8.6"/>
   <library
-      name="/home/christophe/eip/mobile-owner/android@@:app::release"
-      jars="/home/christophe/eip/mobile-owner/android/app/build/intermediates/app_classes/release/classes.jar"
+      name="/Users/christophesourinthone/Owner/mobile-owner/android@@:app::release"
+      jars="/Users/christophesourinthone/Owner/mobile-owner/android/app/build/intermediates/app_classes/release/classes.jar"
       resolved="::"/>
 </libraries>

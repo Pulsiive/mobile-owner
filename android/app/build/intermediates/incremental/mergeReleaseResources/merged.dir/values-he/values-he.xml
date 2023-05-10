@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="ampm_description">בחירה ב־AM/PM</string>
+    <string name="date_description">בחירת תאריך</string>
+    <string name="day_description">בחירת יום</string>
+    <string name="hour_description">בחירת שעה</string>
+    <string name="hour_tag">שעה :</string>
     <string name="mapbox_attributionErrorNoBrowser">לא מותקן דפדפן אינטרנט במכשיר, לא ניתן לפתוח את דף האינטרנט.</string>
     <string name="mapbox_attributionTelemetryMessage">אתם מסייעים לשפר את המפות של OpenStreetMap ו Mapbox באמצעות שיתוף אנונימי של נתוני השימוש.</string>
     <string name="mapbox_attributionTelemetryNegative">לא מסכים/מה</string>
@@ -13,4 +18,10 @@
     <string name="mapbox_myLocationViewContentDescription">סמן מיקום. מציג את המיקום הנוכחי שלך על המפה.</string>
     <string name="mapbox_offline_error_region_definition_invalid">בתנאי ש- OfflineRegionDefinition אינו מתאים לגבולות העולם: %s</string>
     <string name="mapbox_telemetrySettings">הגדרות טלמטריות</string>
+    <string name="minutes_description">בחירת דקות</string>
+    <string name="minutes_tag">דקות </string>
+    <string name="month_description">בחירת חודש</string>
+    <string name="overlay">בוחר תאריכים צף</string>
+    <string name="time_tag">השעה היא</string>
+    <string name="year_description">בחירת שנה</string>
 </resources>
