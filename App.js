@@ -41,6 +41,11 @@ import AddSlot from './src/components/homePage/AddStationSlot.js';
 import ContactList from './src/components/Contacts/ContactList.js';
 import AddContact from './src/components/Contacts/AddContact.js';
 import ChangePassword from './src/components/settings/ChangePassword.js';
+import PaymentsUICustomScreen from './src/components/settings/PaymentUICustomScreen.js';
+import Activity from './src/components/activity/Activity.js';
+import ActivityHistory from './src/components/activity/ActivityHistory.js';
+import ActivityDetails from './src/components/activity/ActivityDetails.js';
+import NotificationManagement from './src/components/settings/NotificationManagement.js';
 
 const Stack = createNativeStackNavigator();
 
@@ -59,12 +64,23 @@ const LoginStack = () => {
   );
 };
 
+const ActivityStack = () => {
+  return (
+    <Stack.Navigator initialRouteName="Activity" screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="Activity" component={Activity} />
+      <Stack.Screen name="ActivityHistory" component={ActivityHistory} />
+      <Stack.Screen name="ActivityDetails" component={ActivityDetails} />
+    </Stack.Navigator>
+  );
+};
+
 const SettingsStack = () => {
   return (
     <Stack.Navigator initialRouteName="Settings" screenOptions={{ headerShown: false }}>
       <Stack.Screen name="Settings" component={Settings} />
       <Stack.Screen name="Profile" component={Profile} />
       <Stack.Screen name="Wallet" component={Wallet} />
+      <Stack.Screen name="PaymentUICustomScreen" component={PaymentsUICustomScreen} />
       <Stack.Screen name="Deposit" component={Deposit} />
       <Stack.Screen name="AddCard" component={AddCard} />
       <Stack.Screen name="Withdraw" component={Withdraw} />
@@ -75,6 +91,7 @@ const SettingsStack = () => {
       <Stack.Screen name="ContactList" component={ContactList} />
       <Stack.Screen name="AddContact" component={AddContact} />
       <Stack.Screen name="ChangePassword" component={ChangePassword} />
+      <Stack.Screen name="NotificationManagement" component={NotificationManagement} />
 
       <Stack.Screen name="AccountTransaction" component={AccountTransaction} />
       <Stack.Screen name="LegalMentions" component={LegalMentions} />
@@ -139,6 +156,16 @@ const BottomTab = () => {
           tabBarLabel: 'Home',
           tabBarIcon: ({ color, size }) => (
             <MaterialCommunityIcons name="home" color={color} size={size} />
+          )
+        }}
+      />
+      <Tab.Screen
+        name="Activity"
+        component={ActivityStack}
+        options={{
+          tabBarLabel: 'Activity',
+          tabBarIcon: ({ color, size }) => (
+            <MaterialCommunityIcons name="book" color={color} size={size} />
           )
         }}
       />

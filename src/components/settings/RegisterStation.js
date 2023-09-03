@@ -26,18 +26,12 @@ const RegisterStation = ({ navigation }) => {
     countryCode: 'FR'
   });
   const [userPropertiesInput, setUserPropertiesInput] = useState({
-    plugTypes: [],
+    plugTypes: [1],
     maxPower: '',
     isGreenEnergy: true,
     price: 0,
     nbChargingPoints: 1,
-    slots: [
-      {
-        day: 1,
-        opensAt: '2001-03-02T08:00:00.003Z',
-        closesAt: '2001-03-02T17:00:00.003Z'
-      }
-    ]
+    slots: []
   });
 
   const [priceSelected, setpriceSelected] = useState(0);
@@ -214,9 +208,13 @@ const RegisterStation = ({ navigation }) => {
                 placeholder="Select an option..."
                 dropdownHelperTextStyle={{ color: 'grey' }}
                 options={[
-                  { name: 'BEV', code: 1 },
-                  { name: 'HEV', code: 2 },
-                  { name: 'PHEV', code: 3 }
+                  { name: 'TYPE1', code: 0 },
+                  { name: 'TYPE2', code: 1 },
+                  { name: 'TYPE3', code: 2 },
+                  { name: 'CCS', code: 3 },
+                  { name: 'CHADEMO', code: 4 },
+                  { name: 'GREENUP', code: 5 },
+                  { name: 'EF', code: 6 }
                 ]}
                 optionLabel={'name'}
                 optionValue={'code'}

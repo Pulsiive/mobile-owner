@@ -10,6 +10,7 @@ import { GoogleSignin } from '@react-native-google-signin/google-signin';
 import auth from '@react-native-firebase/auth';
 
 import Backend from '../../globals/query/Backend';
+import serviceAccessToken from '../../globals/query/AccessToken';
 
 const styles = StyleSheet.create({
   Logo2: {
@@ -147,6 +148,7 @@ async function GoogleSignup(navigation) {
   console.log(response);
 
   if (response.status == 200) {
+    serviceAccessToken.set(response.data.accessToken);
     navigation.navigate('Tab');
   }
 }
@@ -167,6 +169,7 @@ async function GoogleLogin(navigation) {
 
   console.log(response.token);
   if (response.status == 200) {
+    serviceAccessToken.set(response.data.accessToken);
     navigation.navigate('Tab');
   }
 }

@@ -64,6 +64,7 @@ const FetchInfo: React.FC<Props> = ({ date }) => {
         });
         console.log('pushed one new object');
       }
+      setItems(items);
       console.log('HERE   ', items.data[date]);
     }
 

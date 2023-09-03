@@ -39,12 +39,17 @@ const ChangePassword = ({ navigation }) => {
       const profile = await api.send('GET', '/api/v1/profile', (auth = true));
       console.log(profile.data);
       const body = {
+        firstName: profile.data.firstName,
+        lastName: profile.data.lastName,
+        dateOfBirth: profile.data.dateOfBirth,
+        isNotificationOn: profile.data.isNotificationOn,
+        isAlertOn: profile.data.isAlertOn,
         email: profile.data.email,
-        password: cardInput.newPassword,
-        password_confirmation: cardInput.newPasswordConfirm
+        new_password: cardInput.newPassword,
+        new_password_confirmation: cardInput.newPasswordConfirm
       };
       console.log(body);
-      const res = await api.send('POST', '/api/v1/auth/modifyPassword', body, (auth = true));
+      const res = await api.send('PATCH', '/api/v1/profile', body, (auth = true));
       console.log(res);
       if (res.status == 200) {
         console.log('Password has been changed.');

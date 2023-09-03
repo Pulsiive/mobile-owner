@@ -34,12 +34,14 @@ const AddContact = ({ navigation }) => {
       }
       setError(false);
       setErrorMessage('');
+      console.log(cardInput.user);
       const resContactName = await api.send(
         'GET',
         '/api/v1/users/find?searchBy=first_name&key=' + cardInput.user,
         (auth = true)
       );
-      if (resContactName.data.status != 200 || resContactName.data.users.length == 0) {
+      console.log(resContactName);
+      if (resContactName.status != 200 || resContactName.data.users.length == 0) {
         setError(true);
         setErrorMessage(
           'The contact name does not exist within the database. Please try with another contact name.'

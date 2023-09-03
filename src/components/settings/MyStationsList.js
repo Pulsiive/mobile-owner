@@ -1,4 +1,4 @@
-import React, { Component, useState } from 'react';
+import React, { Component, useState, useEffect } from 'react';
 import {
   Image,
   View,
@@ -14,6 +14,7 @@ import {
 import Dropdown from 'react-native-input-select';
 import Slider from '@react-native-community/slider';
 import Icon from 'react-native-vector-icons/Entypo';
+import api from '../../globals/query/API';
 
 const ModalInformation = ({ setModal, stationData }) => {
   const [userCoordinatesInput, setUserInput] = useState({
@@ -132,9 +133,13 @@ const ModalInformation = ({ setModal, stationData }) => {
               <Dropdown
                 placeholder="Select an option..."
                 options={[
-                  { name: 'BEV', code: 'AL' },
-                  { name: 'HEV', code: 'AX' },
-                  { name: 'PHEV', code: 'DZ' }
+                  { name: 'TYPE1', code: 0 },
+                  { name: 'TYPE2', code: 1 },
+                  { name: 'TYPE3', code: 2 },
+                  { name: 'CCS', code: 3 },
+                  { name: 'CHADEMO', code: 4 },
+                  { name: 'GREENUP', code: 5 },
+                  { name: 'EF', code: 6 }
                 ]}
                 optionLabel={'name'}
                 optionValue={'code'}
@@ -263,6 +268,52 @@ const MyStations = ({ navigation }) => {
     console.log(event);
     setModalVisible(event);
   };
+
+  useEffect(() => {
+    async function fetchStations() {
+      try {
+        const body = {
+          params: {
+            minPrice: 0,
+            maxPrice: 500,
+            plugTypes: [1],
+            range: 5000,
+            type: 0,
+            userLat: 37.50402136399704,
+            userLong: 126.8912468794199
+          }
+        };
+        console.log('fetching stations');
+        const res = await api.send('POST', '/api/v1/stations', body, true);
+        console.log('data: ', res.data);
+        console.log('length: ', res.data.stations.length);
+
+        if (res.status == 200) {
+          const tmpContactList = [];
+          for (let i = 0; i < res.data.stations.length; i++) {
+            console.log(i);
+            console.log(res.data.stations[i]);
+            tmpContactList.push({
+              valueName: res.data.stations[i].coordinates.id.substring(0, 15),
+              voltage: res.data.stations[i].properties.maxPower,
+              inputType: res.data.stations[i].properties.plugTypes,
+              price: res.data.stations[i].properties.price
+            });
+          }
+          console.log('tmp list: ', tmpContactList);
+          setStationData(tmpContactList);
+          //          setUserData({ firstName: res.data.firstName, lastName: res.data.lastName });
+        } else {
+          throw res;
+        }
+      } catch (e) {
+        const code = e.status;
+        alert('Error: Stations could not be fetched', e.message, code);
+      }
+    }
+    fetchStations();
+  }, []);
+
   return (
     <View style={styles.viewTemplate}>
       <View style={{ width: '100%', height: '2%' }} />

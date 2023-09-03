@@ -63,6 +63,20 @@ class Backend {
     const res = await API.send('GET', '/api/v1/profile', null, true);
     return res;
   };
+
+  async createStripePaymentIntent() {
+    return await API.send('POST', '/api/v1/payment-request', null, true);
+  }
+
+  submitPayment = async (paymentIntentId) => {
+    const res = await API.send(
+      'POST',
+      '/api/v1/payment',
+      { payment_intent_id: paymentIntentId },
+      true
+    );
+    return res;
+  };
 }
 
 const service = new Backend();

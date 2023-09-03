@@ -155,10 +155,10 @@ const BorneMap = () => {
       console.log(data);
       var config = {
         method: 'post',
-        url: 'http://46.101.194.161/api/v1/stations',
+        url: 'http://164.92.193.9:3000/api/v1/stations',
         headers: {
           Authorization:
-            'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXlsb2FkIjp7ImlkIjoiOTc4ZjQ2MmMtMTYxOC00YTcyLTg2NDAtZmRiOTdlMzI4NjI5IiwiZmlyc3ROYW1lIjoiQ2hyaXMiLCJsYXN0TmFtZSI6IlRlc3QiLCJlbWFpbCI6Im93bmVyQG1haWwuY29tIiwicGFzc3dvcmQiOiIkMmEkMTAkWklYMEJ1cTJ0SElrZkMuU0U5TFYvdWZZQ2ZWYnJmRjlwaVk4SkJpVURWYmw0SHhZc29PejYiLCJkYXRlT2ZCaXJ0aCI6IjIwMDEtMDMtMDJUMDA6MDA6MDAuMDAzWiIsImVtYWlsVmVyaWZpZWRBdCI6bnVsbCwiYmFsYW5jZSI6MCwiaXNGcm9tT0F1dGgiOmZhbHNlfSwiaWF0IjoxNjczNzg0ODkwfQ.QrgdN4o3EOPdZekjrFmEBC7PDLjgjwTtr4Zx-YDITqU',
+            'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXlsb2FkIjp7ImlkIjoiNWU0ZGE0MzktZmQ0NC00ZGVmLTlkZTQtYzFlOTdkZTI2YWNlIiwiZmlyc3ROYW1lIjoiU2h5bGsiLCJsYXN0TmFtZSI6IlNvdXJpbnRob25lIiwiZW1haWwiOiJhcnNha2ltaXRzdUBnbWFpbC5jb20iLCJwYXNzd29yZCI6IiQyYSQxMCRsbVNxanN0V05uRW0uZkNuUjUuRzgudzdMQTJMckFaeUQvUXo4YWNwNExmUDUvT1p0UnA2cSIsImRhdGVPZkJpcnRoIjoiMjAyMy0wNS0yMVQwNDowNjo1OC4yNjBaIiwiZW1haWxWZXJpZmllZEF0IjpudWxsLCJpc0FsZXJ0T24iOmZhbHNlLCJpc05vdGlmaWNhdGlvbk9uIjpmYWxzZSwiYmFsYW5jZSI6MCwiaXNGcm9tT0F1dGgiOnRydWV9LCJpYXQiOjE2ODQ2NDMzNzZ9.quM34kn0_Ldkg2d7e_KbYWToF20OfxGqk8c4UTDaTTY',
           'Content-Type': 'application/json'
         },
         data: data

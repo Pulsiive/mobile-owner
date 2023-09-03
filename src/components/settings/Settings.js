@@ -68,6 +68,12 @@ const Settings = ({ navigation }) => {
         <Pressable style={styles.button} onPress={() => navigation.navigate('ContactList')}>
           <Text style={styles.buttonContent}>Contact List</Text>
         </Pressable>
+        <Pressable
+          style={styles.button}
+          onPress={() => navigation.navigate('NotificationManagement')}
+        >
+          <Text style={styles.buttonContent}>Notifications</Text>
+        </Pressable>
 
         <Text style={styles.sectionTitle}>My Station</Text>
         <Pressable style={styles.button} onPress={() => navigation.navigate('RegisterStation')}>

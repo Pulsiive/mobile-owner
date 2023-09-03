@@ -16,6 +16,7 @@ class AccessToken {
 
   set(accessToken) {
     this.accessToken = accessToken;
+    console.log(accessToken);
     AsyncStorage.setItem(storageName, accessToken);
   }
 

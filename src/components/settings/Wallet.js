@@ -64,6 +64,12 @@ const Wallet = ({ navigation }) => {
     <View style={styles.viewTemplate}>
       <WalletHead navigation={navigation} />
       <View style={{ marginTop: '5%', flexDirection: 'row', height: '5%' }}>
+        <Pressable
+          style={styles.button}
+          onPress={() => navigation.navigate('PaymentUICustomScreen')}
+        >
+          <Text style={styles.buttonContent}>Stripes</Text>
+        </Pressable>
         <Pressable style={styles.button} onPress={() => navigation.navigate('Deposit')}>
           <Text style={styles.buttonContent}>Deposit</Text>
         </Pressable>
@@ -89,7 +95,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     height: '100%',
-    width: '40%',
+    width: '25%',
     marginLeft: '5%',
     marginBottom: '2%',
     borderRadius: 10,
