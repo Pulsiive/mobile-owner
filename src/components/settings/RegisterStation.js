@@ -160,7 +160,7 @@ const RegisterStation = ({ navigation }) => {
             }}
             query={{
               // Utilisez le paramètre 'key' avec votre clé API Google Maps
-              key: 'AIzaSyBJnNegGBOxyllMqvL5vg0bdGxXh0q3rTs',
+              key: '',
               language: 'fr' // Définissez la langue de la recherche
             }}
           />
@@ -184,7 +184,7 @@ const RegisterStation = ({ navigation }) => {
               autoComplete="email"
             /> */}
 
-            <Text style={styles.inputText}>Latitude:</Text>
+            {/* <Text style={styles.inputText}>Latitude:</Text>
             <TextInput
               accessibilityLabel="Latitude"
               onChangeText={(text) => handleUserCoordinatesInputChange(text, 'lat')}
@@ -199,7 +199,7 @@ const RegisterStation = ({ navigation }) => {
               style={styles.inputField}
               placeholder="longitude"
               autoComplete="email"
-            />
+            /> */}
             <Text style={styles.inputText}>Address:</Text>
             <TextInput
               accessibilityLabel="address"
