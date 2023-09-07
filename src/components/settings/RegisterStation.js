@@ -16,6 +16,8 @@ import Slider from '@react-native-community/slider';
 import api from '../../globals/query/API';
 import serviceAccessToken from '../../globals/query/AccessToken';
 
+import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
+
 const RegisterStation = ({ navigation }) => {
   const [userCoordinatesInput, setUserInput] = useState({
     lat: 0,
@@ -23,7 +25,8 @@ const RegisterStation = ({ navigation }) => {
     address: '',
     city: '',
     country: '',
-    countryCode: 'FR'
+    countryCode: 'FR',
+    postalCode: ''
   });
   const [userPropertiesInput, setUserPropertiesInput] = useState({
     plugTypes: [1],
@@ -130,7 +133,47 @@ const RegisterStation = ({ navigation }) => {
         </View>
       </View>
       <View style={{ backgroundColor: '#3D3D3D', height: '65%', width: '90%', marginLeft: '5%' }}>
-        <SafeAreaView style={{ flex: 1 }}>
+        <View
+          style={{
+            backgroundColor: '#3D3D3D',
+            height: '30%',
+            width: '75%',
+            marginLeft: '13%',
+            marginTop: '5%'
+          }}
+        >
+          <GooglePlacesAutocomplete
+            GooglePlacesDetailsQuery={{ fields: 'geometry' }}
+            fetchDetails={true}
+            placeholder="Recherchez une adresse"
+            onPress={(data, details = null) => {
+              // 'data' contient les informations sur la suggestion sélectionnée
+              // 'details' contient des informations supplémentaires sur l'emplacement, y compris la latitude et la longitude
+              console.log('data:', data);
+              console.log('details:', details);
+              console.log(JSON.stringify(details?.geometry?.location));
+              const location = details?.geometry?.location;
+
+              handleUserCoordinatesInputChange(location.lat, 'lat');
+              handleUserCoordinatesInputChange(location.lng, 'long');
+              console.log(userCoordinatesInput);
+            }}
+            query={{
+              // Utilisez le paramètre 'key' avec votre clé API Google Maps
+              key: 'AIzaSyBJnNegGBOxyllMqvL5vg0bdGxXh0q3rTs',
+              language: 'fr' // Définissez la langue de la recherche
+            }}
+          />
+        </View>
+
+        <View
+          style={{ marginLeft: '13%', paddingTop: '5%', paddingRight: '13%', marginBottom: '8%' }}
+        >
+          <Text>Latitude : {userCoordinatesInput.lat}</Text>
+          <Text>Longitude : {userCoordinatesInput.long}</Text>
+        </View>
+
+        <SafeAreaView style={{ flex: 1, marginTop: '10%' }}>
           <ScrollView style={{ height: '100%', width: '100%' }}>
             {/* <Text style={styles.inputText}>Station Name:</Text>
             <TextInput
@@ -140,6 +183,7 @@ const RegisterStation = ({ navigation }) => {
               placeholder="Station name"
               autoComplete="email"
             /> */}
+
             <Text style={styles.inputText}>Latitude:</Text>
             <TextInput
               accessibilityLabel="Latitude"
@@ -170,6 +214,14 @@ const RegisterStation = ({ navigation }) => {
               onChangeText={(text) => handleUserCoordinatesInputChange(text, 'city')}
               style={styles.inputField}
               placeholder="City"
+              autoComplete="email"
+            />
+            <Text style={styles.inputText}>Postal Code:</Text>
+            <TextInput
+              accessibilityLabel="postalCode"
+              onChangeText={(text) => handleUserCoordinatesInputChange(text, 'postalCode')}
+              style={styles.inputField}
+              placeholder="postalCode"
               autoComplete="email"
             />
             <Text style={styles.inputText}>Country:</Text>
