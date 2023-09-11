@@ -21,13 +21,15 @@ const ActivityHistory = ({ navigation }) => {
       station: 'Station 2',
       date: '29 May 2023',
       time: '20:41',
-      price: '8.89'
+      price: '8.89',
+      address: '11 rue Beethoven, 94400 Vitry sur seine'
     },
     {
       station: 'Station 1',
       date: '01 June 2023',
       time: '21:30',
-      price: '7.50'
+      price: '7.50',
+      address: '84 Boulevard Massena, 75013 Paris'
     }
   ]);
   const [filterSelected, setFilterSelected] = useState(1);
@@ -38,19 +40,8 @@ const ActivityHistory = ({ navigation }) => {
   useEffect(() => {
     async function fetchStations() {
       try {
-        const body = {
-          params: {
-            minPrice: 0,
-            maxPrice: 500,
-            plugTypes: [1],
-            range: 5000,
-            type: 0,
-            userLat: 37.50402136399704,
-            userLong: 126.8912468794199
-          }
-        };
         console.log('fetching stations');
-        const res = await api.send('POST', '/api/v1/stations', body, true);
+        const res = await api.send('GET', '/api/v1/profile/stations', true);
         console.log('data: ', res.data);
         console.log('length: ', res.data.stations.length);
 
@@ -143,28 +134,41 @@ const ActivityHistory = ({ navigation }) => {
               marginTop: '2%'
             }}
           >
-            {/* ROW1 */}
-            <View style={{ width: '15%', height: '100%', marginTop: '1%' }}>
-              <Icon5
-                style={{ marginLeft: '25%', marginTop: '25%' }}
-                name="charging-station"
-                size={35}
-                color="lightgreen"
-              />
-            </View>
-            {/* ROW2 */}
-            <View style={{ width: '70%', height: '100%', marginTop: '3%' }}>
-              <Text style={{ color: 'white', fontWeight: '300', fontSize: 18 }}>
-                {elem.station}
-              </Text>
-              <Text style={{ color: 'grey', fontSize: 12 }}>
-                {elem.date}, {elem.time}
-              </Text>
-            </View>
-            {/* ROW3 */}
-            <View style={{ height: '100%', marginTop: '3%' }}>
-              <Text style={{ color: 'white', fontWeight: '300', fontSize: 18 }}>{elem.price}€</Text>
-            </View>
+            <Pressable
+              style={{ height: '100%', width: '100%', flexDirection: 'row' }}
+              onPress={() =>
+                navigation.navigate('ActivityDetails', {
+                  date: elem.date,
+                  time: elem.time,
+                  address: elem.address
+                })
+              }
+            >
+              {/* ROW1 */}
+              <View style={{ width: '15%', height: '100%', marginTop: '1%' }}>
+                <Icon5
+                  style={{ marginLeft: '25%', marginTop: '25%' }}
+                  name="charging-station"
+                  size={35}
+                  color="lightgreen"
+                />
+              </View>
+              {/* ROW2 */}
+              <View style={{ width: '70%', height: '100%', marginTop: '3%' }}>
+                <Text style={{ color: 'white', fontWeight: '300', fontSize: 18 }}>
+                  {elem.station}
+                </Text>
+                <Text style={{ color: 'grey', fontSize: 12 }}>
+                  {elem.date}, {elem.time}
+                </Text>
+              </View>
+              {/* ROW3 */}
+              <View style={{ height: '100%', marginTop: '3%' }}>
+                <Text style={{ color: 'white', fontWeight: '300', fontSize: 18 }}>
+                  {elem.price}€
+                </Text>
+              </View>
+            </Pressable>
           </View>
         ))}
       </View>

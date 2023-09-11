@@ -25,8 +25,8 @@ const RegisterStation = ({ navigation }) => {
     address: '',
     city: '',
     country: '',
-    countryCode: 'FR',
-    postalCode: ''
+    countryCode: 'FR'
+    // postalCode: ''
   });
   const [userPropertiesInput, setUserPropertiesInput] = useState({
     plugTypes: [1],
@@ -160,7 +160,7 @@ const RegisterStation = ({ navigation }) => {
             }}
             query={{
               // Utilisez le paramètre 'key' avec votre clé API Google Maps
-              key: '',
+              key: 'AIzaSyBJnNegGBOxyllMqvL5vg0bdGxXh0q3rTs',
               language: 'fr' // Définissez la langue de la recherche
             }}
           />

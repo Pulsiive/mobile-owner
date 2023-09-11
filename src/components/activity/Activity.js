@@ -12,13 +12,15 @@ const Activity = ({ navigation }) => {
       station: 'Station 2',
       date: '29 May 2023',
       time: '20:41',
-      price: '8.89'
+      price: '8.89',
+      address: '11 rue Beethoven, 94400 Vitry sur seine'
     },
     {
       station: 'Station 1',
       date: '01 June 2023',
       time: '21:30',
-      price: '7.50'
+      price: '7.50',
+      address: '84 Boulevard Massena, 75013 Paris'
     }
   ]);
 
@@ -82,7 +84,13 @@ const Activity = ({ navigation }) => {
         {reservationData.map((elem) => (
           <Pressable
             style={{ height: '12%', width: '100%' }}
-            onPress={() => navigation.navigate('ActivityDetails')}
+            onPress={() =>
+              navigation.navigate('ActivityDetails', {
+                date: elem.date,
+                time: elem.time,
+                address: elem.address
+              })
+            }
           >
             <View
               style={{

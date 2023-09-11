@@ -48,6 +48,7 @@ const ModalInformation = ({ setModal, stationData }) => {
     userPropertiesInput[field] = text;
     setUserPropertiesInput(userPropertiesInput);
   };
+
   return (
     <View style={styles.modal}>
       <View style={{ flexDirection: 'row', marginTop: '2%' }}>
@@ -212,9 +213,9 @@ const Stations = ({ stationData, navigation }) => {
     <View
       style={{
         backgroundColor: '#494949',
-        height: '20%',
-        width: '90%',
-        marginLeft: '5%',
+        height: '13%',
+        width: '95%',
+        marginLeft: '2.5%',
         marginTop: '5%',
         borderRadius: 5
       }}
@@ -272,19 +273,8 @@ const MyStations = ({ navigation }) => {
   useEffect(() => {
     async function fetchStations() {
       try {
-        const body = {
-          params: {
-            minPrice: 0,
-            maxPrice: 500,
-            plugTypes: [1],
-            range: 5000,
-            type: 0,
-            userLat: 37.50402136399704,
-            userLong: 126.8912468794199
-          }
-        };
         console.log('fetching stations');
-        const res = await api.send('POST', '/api/v1/stations', body, true);
+        const res = await api.send('GET', '/api/v1/profile/stations', true);
         console.log('data: ', res.data);
         console.log('length: ', res.data.stations.length);
 
@@ -342,9 +332,13 @@ const MyStations = ({ navigation }) => {
           marginLeft: '10%'
         }}
       />
-      {StationData.map((StationData, index) => (
-        <Stations stationData={StationData} navigation={navigation} />
-      ))}
+      <SafeAreaView style={{ flex: 1, marginTop: '10%' }}>
+        <ScrollView style={{ height: '100%', width: '100%' }}>
+          {StationData.map((StationData, index) => (
+            <Stations stationData={StationData} navigation={navigation} />
+          ))}
+        </ScrollView>
+      </SafeAreaView>
     </View>
   );
 };
@@ -414,10 +408,10 @@ const styles = StyleSheet.create({
   modifyButton: {
     alignItems: 'center',
     justifyContent: 'center',
-    marginTop: '10%',
-    marginLeft: '0%',
-    height: '40%',
-    width: '30%',
+    marginTop: '15%',
+    marginLeft: '2.5%',
+    height: '35%',
+    width: '25%',
     borderRadius: 10,
     elevation: 3,
     backgroundColor: '#6EBF34'

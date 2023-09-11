@@ -46,6 +46,7 @@ import Activity from './src/components/activity/Activity.js';
 import ActivityHistory from './src/components/activity/ActivityHistory.js';
 import ActivityDetails from './src/components/activity/ActivityDetails.js';
 import NotificationManagement from './src/components/settings/NotificationManagement.js';
+import Confidentiality from './src/components/Confidentiality/Confidentiality.js';
 
 const Stack = createNativeStackNavigator();
 
@@ -92,6 +93,7 @@ const SettingsStack = () => {
       <Stack.Screen name="AddContact" component={AddContact} />
       <Stack.Screen name="ChangePassword" component={ChangePassword} />
       <Stack.Screen name="NotificationManagement" component={NotificationManagement} />
+      <Stack.Screen name="Confidentiality" component={Confidentiality} />
 
       <Stack.Screen name="AccountTransaction" component={AccountTransaction} />
       <Stack.Screen name="LegalMentions" component={LegalMentions} />

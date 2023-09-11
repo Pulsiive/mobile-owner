@@ -62,9 +62,9 @@ const Settings = ({ navigation }) => {
         <Pressable style={styles.button} onPress={() => navigation.navigate('Wallet')}>
           <Text style={styles.buttonContent}>Wallet</Text>
         </Pressable>
-        <Pressable style={styles.button} onPress={() => navigation.navigate('PastReservations')}>
+        {/* <Pressable style={styles.button} onPress={() => navigation.navigate('PastReservations')}>
           <Text style={styles.buttonContent}>Past Reservations</Text>
-        </Pressable>
+        </Pressable> */}
         <Pressable style={styles.button} onPress={() => navigation.navigate('ContactList')}>
           <Text style={styles.buttonContent}>Contact List</Text>
         </Pressable>
@@ -73,6 +73,9 @@ const Settings = ({ navigation }) => {
           onPress={() => navigation.navigate('NotificationManagement')}
         >
           <Text style={styles.buttonContent}>Notifications</Text>
+        </Pressable>
+        <Pressable style={styles.button} onPress={() => navigation.navigate('Confidentiality')}>
+          <Text style={styles.buttonContent}>Confidentiality</Text>
         </Pressable>
 
         <Text style={styles.sectionTitle}>My Station</Text>

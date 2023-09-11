@@ -15,7 +15,6 @@ import Dropdown from 'react-native-input-select';
 
 import MapboxGL from '@rnmapbox/maps';
 import GetLocation from 'react-native-get-location';
-
 import serviceAccessToken from '../../globals/query/AccessToken';
 import api from '../../globals/query/API';
 
@@ -264,9 +263,10 @@ const ModalRate = ({ setModal }) => {
   );
 };
 
-const ActivityDetails = ({ navigation }) => {
+const ActivityDetails = ({ navigation, route }) => {
   const [rating, setRating] = useState(0);
   const [modalRateVisible, setModalRateVisible] = useState(false);
+  const { date, time, address } = route.params;
 
   const setRateModal = (event) => {
     console.log(event);
@@ -298,7 +298,9 @@ const ActivityDetails = ({ navigation }) => {
               color="white"
             />
           </Pressable>
-          <Text style={styles.title}> date, time</Text>
+          <Text style={styles.title}>
+            {date}, {time}
+          </Text>
 
           <View style={{ width: '100%' }}></View>
         </View>
@@ -315,7 +317,7 @@ const ActivityDetails = ({ navigation }) => {
             color: 'darkgrey'
           }}
         >
-          Booking ID: qwertyuiop
+          Booking ID: 38926182361
         </Text>
       </View>
       {/* END Booking ID */}
@@ -417,8 +419,8 @@ const ActivityDetails = ({ navigation }) => {
           </View>
           <View>
             <View style={{ marginTop: '5%' }}>
-              <Text style={{ color: 'white' }}> 11 rue Beethoven, 94400 vitry sur seine</Text>
-              <Text style={{ color: 'grey' }}> 19:30</Text>
+              <Text style={{ color: 'white' }}> {address} </Text>
+              <Text style={{ color: 'grey' }}> {time} </Text>
             </View>
           </View>
         </View>
@@ -549,7 +551,7 @@ const styles = StyleSheet.create({
   title: {
     textAlign: 'center',
     fontWeight: '600',
-    marginLeft: '25%',
+    marginLeft: '15%',
     fontSize: 25,
     color: 'white'
   },
