@@ -5,7 +5,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Settings from '../settings/Settings';
 import Icon from 'react-native-vector-icons/Entypo';
 import api from '../../globals/query/API';
-import MapboxGL from '@rnmapbox/maps';
+// import MapboxGL from '@rnmapbox/maps';
 import GetLocation from 'react-native-get-location';
 
 import PlanningPNG from './Asset/Planning.png';
@@ -16,10 +16,10 @@ import Wallet from './Asset/Wallet.png';
 import Messages from './Asset/Messages.png';
 import PastReservation from './Asset/PastReservation.png';
 
-MapboxGL.setAccessToken(
-  'pk.eyJ1Ijoic2h5bGsiLCJhIjoiY2w0cmhncHdwMDZydTNjcDhkbTVmZm8xZCJ9.uxYLeAuZdY5VMx4EUBaw_A'
-);
-MapboxGL.setConnected(true);
+// MapboxGL.setAccessToken(
+//   'pk.eyJ1Ijoic2h5bGsiLCJhIjoiY2w0cmhncHdwMDZydTNjcDhkbTVmZm8xZCJ9.uxYLeAuZdY5VMx4EUBaw_A'
+// );
+// MapboxGL.setConnected(true);
 
 const ProfileHeaderComponent = () => {
   const [userData, setUserData] = useState({
@@ -141,7 +141,7 @@ const MapSectionComponent = () => {
   }, []);
   return (
     <View style={styles.mapSection}>
-      <MapboxGL.MapView
+      {/* <MapboxGL.MapView
         style={{ flex: 1 }}
         styleURL={'mapbox://styles/mapbox/dark-v9'}
         zoomLevel={16}
@@ -154,7 +154,7 @@ const MapSectionComponent = () => {
           animationDuration={3}
         ></MapboxGL.Camera>
         <MapboxGL.UserLocation visible={true} />
-      </MapboxGL.MapView>
+      </MapboxGL.MapView> */}
     </View>
   );
 };

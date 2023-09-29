@@ -25,8 +25,8 @@ const RegisterStation = ({ navigation }) => {
     address: '',
     city: '',
     country: '',
-    countryCode: 'FR'
-    // postalCode: ''
+    countryCode: 'FR',
+    postalCode: 12345
   });
   const [userPropertiesInput, setUserPropertiesInput] = useState({
     plugTypes: [1],
@@ -48,6 +48,7 @@ const RegisterStation = ({ navigation }) => {
   };
   const handleUserCoordinatesInputChange = (text, field) => {
     userCoordinatesInput[field] = text;
+    if (field == 'postalCode') userCoordinatesInput[field] = Number(text);
     setUserInput(userCoordinatesInput);
   };
   const handleUserPropertiesInputChange = (text, field) => {

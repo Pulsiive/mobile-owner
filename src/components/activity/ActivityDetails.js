@@ -13,8 +13,8 @@ import Icon from 'react-native-vector-icons/dist/FontAwesome';
 import Icon5 from 'react-native-vector-icons/dist/FontAwesome5';
 import Dropdown from 'react-native-input-select';
 
-import MapboxGL from '@rnmapbox/maps';
-import GetLocation from 'react-native-get-location';
+// import MapboxGL from '@rnmapbox/maps';
+// import GetLocation from 'react-native-get-location';
 import serviceAccessToken from '../../globals/query/AccessToken';
 import api from '../../globals/query/API';
 
@@ -83,7 +83,7 @@ const MapSectionComponent = () => {
   }, []);
   return (
     <View style={{ height: '30%', width: '100%' }}>
-      <MapboxGL.MapView
+      {/* <MapboxGL.MapView
         style={{ flex: 1 }}
         styleURL={'mapbox://styles/mapbox/dark-v9'}
         zoomLevel={16}
@@ -96,7 +96,7 @@ const MapSectionComponent = () => {
           animationDuration={3}
         ></MapboxGL.Camera>
         <MapboxGL.UserLocation visible={true} />
-      </MapboxGL.MapView>
+      </MapboxGL.MapView> */}
     </View>
   );
 };

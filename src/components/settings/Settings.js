@@ -1,8 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { Image, View, Text, Pressable, Button, StyleSheet } from 'react-native';
+import { Image, View, Text, Pressable, Button, StyleSheet, ScrollView } from 'react-native';
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
 import serviceAccessToken from '../../globals/query/AccessToken';
 import api from '../../globals/query/API';
+import ButtonTouchable from '../../globals/components/ButtonTouchable';
+import FloatingCard from '../../globals/components/FloatingCard';
+import TextTitle from '../../globals/components/TextTitle';
+import Logo from '../../Asset/logo.png';
 
 const Settings = ({ navigation }) => {
   const [userData, setUserData] = useState({
@@ -32,79 +36,123 @@ const Settings = ({ navigation }) => {
       {/* HEADER */}
       <View style={styles.headWalletInformation}>
         <View style={{ width: '100%' }}>
-          <Text style={styles.title}>
-            {userData.firstName} {userData.lastName}
-          </Text>
-          <View
-            style={{
-              flexDirection: 'row',
-              alignItems: 'center',
-              width: '22%',
-              borderRadius: 20,
-              marginLeft: '42%',
-              backgroundColor: 'grey'
-            }}
-          >
-            <Icon style={{ marginLeft: '8%' }} name="star" size={15} color="gold" />
-            <Text style={styles.rating}>5.00</Text>
-          </View>
+          <Text style={styles.title}>Profil</Text>
         </View>
       </View>
       {/* CONTENT */}
-      <View style={styles.container}>
-        <Text style={styles.sectionTitle}>My account</Text>
-        <Pressable style={styles.button} onPress={() => navigation.navigate('Profile')}>
-          <Text style={styles.buttonContent}>Profile</Text>
-        </Pressable>
-        <Pressable style={styles.button} onPress={() => navigation.navigate('ChangePassword')}>
-          <Text style={styles.buttonContent}>Change Password</Text>
-        </Pressable>
-        <Pressable style={styles.button} onPress={() => navigation.navigate('Wallet')}>
-          <Text style={styles.buttonContent}>Wallet</Text>
-        </Pressable>
-        {/* <Pressable style={styles.button} onPress={() => navigation.navigate('PastReservations')}>
-          <Text style={styles.buttonContent}>Past Reservations</Text>
-        </Pressable> */}
-        <Pressable style={styles.button} onPress={() => navigation.navigate('ContactList')}>
-          <Text style={styles.buttonContent}>Contact List</Text>
-        </Pressable>
-        <Pressable
-          style={styles.button}
-          onPress={() => navigation.navigate('NotificationManagement')}
-        >
-          <Text style={styles.buttonContent}>Notifications</Text>
-        </Pressable>
-        <Pressable style={styles.button} onPress={() => navigation.navigate('Confidentiality')}>
-          <Text style={styles.buttonContent}>Confidentiality</Text>
-        </Pressable>
+      <View style={{ flex: 1 }}>
+        <ScrollView style={{ flex: 0.8 }}>
+          <View style={{ height: 100, width: '90%', marginLeft: '5%' }}>
+            <ButtonTouchable
+              title={
+                userData && userData.firstName && userData.lastName
+                  ? userData.firstName + ' ' + userData.lastName
+                  : 'Accéder au profil'
+              }
+              subtext="Accéder aux informations du profil"
+              image={[Logo, 50]}
+              onPress={() => navigation.navigate('Profile')}
+            />
+          </View>
+          <Pressable style={{ height: 250 }} onPress={() => navigation.navigate('RegisterStation')}>
+            <FloatingCard>
+              <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                <View style={{ flex: 1 }}>
+                  <TextTitle
+                    title="Louez votre borne"
+                    style={{
+                      marginVertical: 0,
+                      marginHorizontal: 10,
+                      fontSize: 20
+                    }}
+                  />
+                  <Text style={{ color: 'grey', marginHorizontal: 10, marginTop: 10 }}>
+                    Rentabilisez votre borne et contribuez a l'ecologie en louant votre borne dans
+                    le réseau Pulsive !
+                  </Text>
+                </View>
+                <Image
+                  source={Logo}
+                  style={{ width: '40%', height: '100%' }}
+                  resizeMode="contain"
+                />
+              </View>
+            </FloatingCard>
+          </Pressable>
 
-        <Text style={styles.sectionTitle}>My Station</Text>
-        <Pressable style={styles.button} onPress={() => navigation.navigate('RegisterStation')}>
-          <Text style={styles.buttonContent}>Register station</Text>
-        </Pressable>
-        <Pressable style={styles.button} onPress={() => navigation.navigate('StationList')}>
-          <Text style={styles.buttonContent}>My station list</Text>
-        </Pressable>
-        <Pressable style={styles.button} onPress={() => navigation.navigate('Reservations')}>
-          <Text style={styles.buttonContent}>Reservations</Text>
-        </Pressable>
+          {/* <View style={styles.container}> */}
+          <View style={{ width: '90%', marginLeft: '5%' }}>
+            <Text style={styles.sectionTitle}>Mon compte</Text>
+            <ButtonTouchable
+              title="Mot de passe"
+              icon="fingerprint"
+              onPress={() => {
+                navigation.navigate('ChangePassword');
+              }}
+            />
+            <ButtonTouchable
+              title="Portefeuille"
+              icon="wallet"
+              onPress={() => {
+                navigation.navigate('Wallet');
+              }}
+            />
+            <ButtonTouchable
+              title="Anciennes reservations"
+              icon="fingerprint"
+              onPress={() => {
+                navigation.navigate('PastReservations');
+              }}
+            />
+            <ButtonTouchable
+              title="Liste de contact"
+              icon="users"
+              onPress={() => {
+                navigation.navigate('ContactList');
+              }}
+            />
+            <ButtonTouchable
+              title="Notifications"
+              icon="bell"
+              onPress={() => {
+                navigation.navigate('NotificationManagement');
+              }}
+            />
+            <ButtonTouchable
+              title="Confidentialité"
+              icon="lock"
+              onPress={() => {
+                navigation.navigate('Confidentiality');
+              }}
+            />
+            <Text style={styles.sectionTitle}>Mes Stations</Text>
+            <ButtonTouchable
+              title="Liste des stations"
+              icon="battery"
+              onPress={() => {
+                navigation.navigate('StationList');
+              }}
+            />
+            <ButtonTouchable
+              title="Reservations"
+              icon="calendar"
+              onPress={() => {
+                navigation.navigate('Reservations');
+              }}
+            />
+            <Pressable
+              style={styles.disconnectBox}
+              onPress={() => {
+                serviceAccessToken.remove();
+                navigation.navigate('Login');
+              }}
+            >
+              <Text style={{ color: '#DA4450' }}>Disconnect</Text>
+            </Pressable>
+          </View>
 
-        {/* <Text style={styles.sectionTitle}>Other</Text>
-        <Pressable style={styles.button} onPress={() => navigation.navigate('LegalMentions')}>
-          <Text style={styles.buttonContent}>Legal mentions</Text>
-        </Pressable> */}
-        {/* <Pressable style={styles.button} onPress={() => navigation.navigate('Tutorial')}>
-          <Text style={styles.buttonContent}>Tutorial</Text>
-        </Pressable> */}
-        <Pressable
-          style={styles.disconnectBox}
-          onPress={() => {
-            serviceAccessToken.remove();
-            navigation.navigate('Login');
-          }}
-        >
-          <Text style={{ color: '#DA4450' }}>Disconnect</Text>
-        </Pressable>
+          {/* </View> */}
+        </ScrollView>
       </View>
     </View>
   );
@@ -140,7 +188,7 @@ const styles = StyleSheet.create({
     fontWeight: '800'
   },
   title: {
-    textAlign: 'center',
+    marginLeft: '5%',
     fontWeight: '600',
     fontSize: 25,
     color: 'white'
@@ -158,6 +206,7 @@ const styles = StyleSheet.create({
     height: '90%'
   },
   sectionTitle: {
+    height: 30,
     color: 'white',
     fontWeight: '200',
     fontSize: 18,
@@ -167,7 +216,7 @@ const styles = StyleSheet.create({
   button: {
     alignItems: 'center',
     justifyContent: 'center',
-    height: '6%',
+    height: 45,
     width: '90%',
     marginLeft: '5%',
     marginBottom: '2%',
@@ -175,6 +224,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#6EBF34'
   },
   buttonContent: {
+    height: 30,
     color: 'white',
     fontSize: 15,
     fontWeight: '500'
@@ -182,10 +232,8 @@ const styles = StyleSheet.create({
   disconnectBox: {
     alignItems: 'center',
     justifyContent: 'center',
-    height: '6%',
+    height: 45,
     width: '90%',
-    position: 'absolute',
-    bottom: '17%',
     left: '5%',
     borderRadius: 10,
     backgroundColor: '#1B2023'

@@ -1,12 +1,24 @@
 import React, { useState, useEffect } from 'react';
-import { Pressable, View, Text, TextInput, Button, StyleSheet } from 'react-native';
+import {
+  Pressable,
+  View,
+  Text,
+  TextInput,
+  Button,
+  StyleSheet,
+  Image,
+  ScrollView
+} from 'react-native';
+import Icon from 'react-native-vector-icons/Entypo';
 import api from '../../globals/query/API';
+import FloatingCard from '../../globals/components/FloatingCard';
+import TextTitle from '../../globals/components/TextTitle';
 
 const Profile = ({ navigation }) => {
   const [userInput, setUserInput] = useState({
     email: '',
-    firstName: 'default',
-    lastName: 'default',
+    firstName: 'John',
+    lastName: 'Doe',
     dateOfBirth: '2001-07-15'
   });
 
@@ -57,65 +69,90 @@ const Profile = ({ navigation }) => {
         <Pressable style={styles.backButton} onPress={() => navigation.navigate('Settings')}>
           <Text style={styles.backButtonContent}>{'<'}</Text>
         </Pressable>
-        <Text style={styles.title}>Profile</Text>
+        <Text style={styles.title}>Profil</Text>
       </View>
-      <View style={styles.container}>
-        <Text style={styles.label}>First name</Text>
-        <TextInput
-          style={styles.input}
-          onChangeText={(text) => handleChange(text, 'firstName')}
-          placeholder="firstName"
-          autoComplete="username"
-        >
-          {userInput.firstName}
-        </TextInput>
-        <Text style={styles.label}>Last name</Text>
-        <TextInput
-          style={styles.input}
-          onChangeText={(text) => handleChange(text, 'lastName')}
-          placeholder="lastName"
-          autoComplete="username"
-        >
-          {userInput.lastName}
-        </TextInput>
-        <Text style={styles.label}>Email</Text>
-        <TextInput
-          style={styles.input}
-          onChangeText={(text) => handleChange(text, 'email')}
-          placeholder="email"
-          autoComplete="username"
-        >
-          {userInput.email}
-        </TextInput>
-        <Text style={styles.label}>Date of birth</Text>
-        <TextInput
-          style={styles.input}
-          onChangeText={(text) => handleChange(text, 'dateOfBirth')}
-          placeholder="dateOfBirth"
-          autoComplete="birthdate-full"
-        >
-          {userInput.dateOfBirth}
-        </TextInput>
-        <Text style={styles.label}>Adress</Text>
-        <TextInput
-          style={styles.input}
-          onChangeText={(text) => handleChange(text, 'adress')}
-          placeholder="adress"
-          autoComplete="username"
-        >
-          11 baker streets
-        </TextInput>
-        <Text style={styles.label}>Timezone</Text>
-        <TextInput
-          style={styles.input}
-          onChangeText={(text) => handleChange(text, 'timeZone')}
-          placeholder="timezone"
-          autoComplete="username"
-        >
-          UTC+2
-        </TextInput>
-        <Button title="Save" accessibilityLabel="save" onPress={submit} color="#6EBF34" />
-      </View>
+      <ScrollView>
+        <FloatingCard>
+          <View style={styles.profilePicture}>
+            {userInput.firstName && (
+              <Image
+                style={{ width: 100, height: 100, borderRadius: 70 }}
+                source={{
+                  uri: `https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png`
+                }}
+              />
+            )}
+          </View>
+          <TextTitle
+            title={userInput.firstName + ' ' + userInput.lastName}
+            style={{ marginBottom: 0, marginTop: 5 }}
+          />
+          <Text style={{ color: 'grey' }}>Owner</Text>
+        </FloatingCard>
+        <View style={styles.container}>
+          <Text style={styles.label}>Prenom</Text>
+          <View>
+            <Icon name={'user'} size={24} color={'grey'} />
+            <TextInput
+              style={styles.input}
+              onChangeText={(text) => handleChange(text, 'firstName')}
+              placeholder="firstName"
+              autoComplete="username"
+            >
+              {userInput.firstName}
+            </TextInput>
+          </View>
+          <Text style={styles.label}>Nom</Text>
+          <TextInput
+            style={styles.input}
+            onChangeText={(text) => handleChange(text, 'lastName')}
+            placeholder="lastName"
+            autoComplete="username"
+          >
+            {userInput.lastName}
+          </TextInput>
+          <Text style={styles.label}>Email</Text>
+          <TextInput
+            style={styles.input}
+            keyboardType="email-address"
+            onChangeText={(text) => handleChange(text, 'email')}
+            placeholder="email"
+            autoComplete="username"
+          >
+            {userInput.email}
+          </TextInput>
+          <Text style={styles.label}>Date de naissance</Text>
+          <TextInput
+            style={styles.input}
+            onChangeText={(text) => handleChange(text, 'dateOfBirth')}
+            placeholder="dateOfBirth"
+            autoComplete="birthdate-full"
+          >
+            {userInput.dateOfBirth}
+          </TextInput>
+          <Text style={styles.label}>Adresse</Text>
+          <TextInput
+            style={styles.input}
+            onChangeText={(text) => handleChange(text, 'adress')}
+            placeholder="adress"
+            autoComplete="username"
+          >
+            11 baker streets
+          </TextInput>
+          <Text style={styles.label}>Timezone</Text>
+          <TextInput
+            style={styles.input}
+            onChangeText={(text) => handleChange(text, 'timeZone')}
+            placeholder="timezone"
+            autoComplete="username"
+          >
+            UTC+2
+          </TextInput>
+          <Pressable style={styles.saveBox} onPress={submit}>
+            <Text style={{ color: 'white' }}>Enregistrer</Text>
+          </Pressable>
+        </View>
+      </ScrollView>
     </View>
   );
 };
@@ -159,10 +196,11 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     fontSize: 25,
     color: 'white',
-    marginLeft: '30%'
+    marginLeft: '5%'
   },
   label: {
-    color: 'grey'
+    color: 'grey',
+    marginBottom: 10
   },
   input: {
     borderWidth: 0.3,
@@ -171,6 +209,16 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: 'white',
     borderColor: 'grey'
+  },
+  saveBox: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: 45,
+    width: '90%',
+    left: '5%',
+    top: 1,
+    borderRadius: 10,
+    backgroundColor: '#6EBF34'
   }
 });
 
