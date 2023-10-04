@@ -14,6 +14,29 @@ import api from '../../globals/query/API';
 import FloatingCard from '../../globals/components/FloatingCard';
 import TextTitle from '../../globals/components/TextTitle';
 
+const PanelSectionComponent = () => {
+  return (
+    <View
+      style={{
+        flexDirection: 'row',
+        height: 70,
+        width: '90%',
+        backgroundColor: '#1F1F1F',
+        borderRadius: 15,
+        marginTop: '1%',
+        marginBottom: '3%',
+        marginLeft: '5%'
+      }}
+    >
+      <View style={{ width: '80%', height: '100%', marginTop: '5%', marginLeft: '10%' }}>
+        <Text style={{ color: 'grey', fontWeight: '300', fontSize: 13 }}>
+          Modifiez votre profil et parametrez comment les utilisateurs de Pulsive vous voient !
+        </Text>
+      </View>
+    </View>
+  );
+};
+
 const Profile = ({ navigation }) => {
   const [userInput, setUserInput] = useState({
     email: '',
@@ -89,20 +112,24 @@ const Profile = ({ navigation }) => {
           />
           <Text style={{ color: 'grey' }}>Owner</Text>
         </FloatingCard>
+        <PanelSectionComponent />
         <View style={styles.container}>
-          <Text style={styles.label}>Prenom</Text>
-          <View>
+          <View style={{ flexDirection: 'row' }}>
             <Icon name={'user'} size={24} color={'grey'} />
-            <TextInput
-              style={styles.input}
-              onChangeText={(text) => handleChange(text, 'firstName')}
-              placeholder="firstName"
-              autoComplete="username"
-            >
-              {userInput.firstName}
-            </TextInput>
+            <Text style={styles.label}>Prenom</Text>
           </View>
-          <Text style={styles.label}>Nom</Text>
+          <TextInput
+            style={styles.input}
+            onChangeText={(text) => handleChange(text, 'firstName')}
+            placeholder="firstName"
+            autoComplete="username"
+          >
+            {userInput.firstName}
+          </TextInput>
+          <View style={{ flexDirection: 'row' }}>
+            <Icon name={'user'} size={24} color={'grey'} />
+            <Text style={styles.label}>Nom</Text>
+          </View>
           <TextInput
             style={styles.input}
             onChangeText={(text) => handleChange(text, 'lastName')}
@@ -111,7 +138,10 @@ const Profile = ({ navigation }) => {
           >
             {userInput.lastName}
           </TextInput>
-          <Text style={styles.label}>Email</Text>
+          <View style={{ flexDirection: 'row' }}>
+            <Icon name={'mail'} size={24} color={'grey'} />
+            <Text style={styles.label}>Email</Text>
+          </View>
           <TextInput
             style={styles.input}
             keyboardType="email-address"
@@ -121,7 +151,10 @@ const Profile = ({ navigation }) => {
           >
             {userInput.email}
           </TextInput>
-          <Text style={styles.label}>Date de naissance</Text>
+          <View style={{ flexDirection: 'row' }}>
+            <Icon name={'calendar'} size={24} color={'grey'} />
+            <Text style={styles.label}>Date de naissance</Text>
+          </View>
           <TextInput
             style={styles.input}
             onChangeText={(text) => handleChange(text, 'dateOfBirth')}
@@ -130,7 +163,10 @@ const Profile = ({ navigation }) => {
           >
             {userInput.dateOfBirth}
           </TextInput>
-          <Text style={styles.label}>Adresse</Text>
+          <View style={{ flexDirection: 'row' }}>
+            <Icon name={'home'} size={24} color={'grey'} />
+            <Text style={styles.label}>Adresse</Text>
+          </View>
           <TextInput
             style={styles.input}
             onChangeText={(text) => handleChange(text, 'adress')}
@@ -139,7 +175,10 @@ const Profile = ({ navigation }) => {
           >
             11 baker streets
           </TextInput>
-          <Text style={styles.label}>Timezone</Text>
+          <View style={{ flexDirection: 'row' }}>
+            <Icon name={'clock'} size={24} color={'grey'} />
+            <Text style={styles.label}>Timezone</Text>
+          </View>
           <TextInput
             style={styles.input}
             onChangeText={(text) => handleChange(text, 'timeZone')}

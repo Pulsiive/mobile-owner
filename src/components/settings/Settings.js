@@ -36,7 +36,7 @@ const Settings = ({ navigation }) => {
       {/* HEADER */}
       <View style={styles.headWalletInformation}>
         <View style={{ width: '100%' }}>
-          <Text style={styles.title}>Profil</Text>
+          <Text style={styles.title}>Settings</Text>
         </View>
       </View>
       {/* CONTENT */}
@@ -211,7 +211,8 @@ const styles = StyleSheet.create({
     fontWeight: '200',
     fontSize: 18,
     marginBottom: '3%',
-    marginLeft: '3%'
+    marginLeft: '3%',
+    marginTop: 30
   },
   button: {
     alignItems: 'center',

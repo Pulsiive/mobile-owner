@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, StyleSheet, Text, TouchableHighlight } from 'react-native';
+import { View, StyleSheet, Text, Pressable } from 'react-native';
 import { addDays, getDate, startOfWeek, format, isSameDay } from 'date-fns';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { fr } from 'date-fns/locale';
@@ -39,15 +39,15 @@ const DateSlider: React.FC<Props> = ({ date, onChange }) => {
           }
           return (
             <View style={styles.weekDayItem} key={weekDay.formatted}>
-              <TouchableOpacity onPress={() => onChange(weekDay.date)} style={touchable}>
+              <Pressable onPress={() => onChange(weekDay.date)} style={touchable}>
                 <Text style={styles.label}>{weekDay.day}</Text>
-              </TouchableOpacity>
+              </Pressable>
               <Text style={styles.weekDayText}>{weekDay.formatted.slice(0, -1)}</Text>
             </View>
           );
         })}
       </View>
-      <TouchableHighlight onPress={() => setOpen(!open)}>
+      <Pressable onPress={() => setOpen(!open)}>
         <View
           style={{
             position: 'absolute',
@@ -57,8 +57,8 @@ const DateSlider: React.FC<Props> = ({ date, onChange }) => {
             top: 32 + '%',
             left: 5 + '%'
           }}
-        ></View>
-      </TouchableHighlight>
+        />
+      </Pressable>
       {open && (
         <View style={{ marginTop: 10 + '%' }}>
           <MyCalendar
