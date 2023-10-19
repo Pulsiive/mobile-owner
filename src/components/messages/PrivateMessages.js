@@ -105,16 +105,18 @@ const PrivateMessages = ({ route, navigation }) => {
     async function fetchMessages() {
       try {
         const res = await api.send('GET', '/api/v1/profile/messages', null, true);
-        console.log('data: ', res.data);
+        console.log('data messages: ', res.data);
         // console.log('data sent: ', res.data.sentMessages);
-        console.log('length: ', res.data.sentMessages.length);
+        console.log('length message sent: ', res.data.sentMessages.length);
         console.log('-------------------');
         // console.log('data sent: ', res.data.receivedMessages);
-        console.log('length: ', res.data.receivedMessages.length);
+        console.log('length message received: ', res.data.receivedMessages.length);
 
         if (res.status == 200) {
           const tmpMsgList = [];
           // PARSING SENT MESSAGES
+          console.log(res.status);
+
           for (let i = 0; i < res.data.sentMessages.length; i++) {
             if (res.data.sentMessages[i].receiverId == userProps.user.id)
               tmpMsgList.push({
@@ -125,9 +127,13 @@ const PrivateMessages = ({ route, navigation }) => {
                 authorId: res.data.sentMessages[i].authorId
               });
           }
+          console.log('parse 1');
           // PARSING RECEIVED MESSAGES
+          console.log(userProps.user.id, userProps.user.name);
           for (let i = 0; i < res.data.receivedMessages.length; i++) {
-            if (res.data.sentMessages[i].receiverId == userProps.user.id)
+            // if (res.data.sentMessages[i].receiverId == userProps.user.id)
+            console.log(res.data.receivedMessages[i]);
+            if (res.data.receivedMessages[i].authorId == userProps.user.id)
               tmpMsgList.push({
                 mine: false,
                 id: res.data.receivedMessages[i].id,
@@ -136,8 +142,9 @@ const PrivateMessages = ({ route, navigation }) => {
                 authorId: res.data.receivedMessages[i].authorId
               });
           }
+          console.log('parse 2');
 
-          console.log('tmp list: ', tmpMsgList);
+          console.log('Message got from backend : ', tmpMsgList);
           if (tmpMsgList.length > 0) {
             tmpMsgList.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
             console.log(tmpMsgList.map((o) => o.createdAt));

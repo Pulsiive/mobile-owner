@@ -70,7 +70,7 @@ const ContactCard = (props) => {
 
   return (
     <TouchableWithoutFeedback onPress={() => setModalVisible(true)}>
-      <View style={{ flexDirection: 'row', marginTop: '3%', height: '8%' }}>
+      <View style={{ flexDirection: 'row', marginTop: '3%', height: '30%' }}>
         <Icon style={styles.userProfile} name="user" size={20} color="white" />
         <View style={{ marginLeft: '10%', marginTop: '1%' }}>
           <Text style={styles.userTransaction}>{props.name}</Text>

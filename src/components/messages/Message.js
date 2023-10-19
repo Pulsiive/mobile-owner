@@ -74,7 +74,7 @@ const Messages = ({ navigation }) => {
               lastMessage: 'xxxxxxxxxxxxxxxxxxxx'
             });
           }
-          console.log('tmp list: ', tmpContactList);
+          console.log('tmp message contact list: ', tmpContactList);
           setUserDatabase(tmpContactList);
           //          setUserData({ firstName: res.data.firstName, lastName: res.data.lastName });
         } else {
@@ -86,7 +86,7 @@ const Messages = ({ navigation }) => {
       }
     }
     fetchContacts();
-  }, []);
+  }, [searchFilterValue]);
 
   useEffect(() => {
     console.log("Searching for:'", searchFilterValue, "'");
@@ -132,7 +132,7 @@ const Messages = ({ navigation }) => {
             <ScrollView style={styles.scrollView}>
               <View>
                 {filteredList.map((elem, i) => (
-                  <View style={{ height: '13%' }}>
+                  <View style={{ height: 70 }}>
                     <MessageCard
                       name={elem.name}
                       lastName={elem.lastName}

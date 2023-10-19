@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, StyleSheet, Text, Pressable } from 'react-native';
+import { View, StyleSheet, Text, TouchableHighlight, Pressable } from 'react-native';
 import { addDays, getDate, startOfWeek, format, isSameDay } from 'date-fns';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { fr } from 'date-fns/locale';
@@ -51,8 +51,8 @@ const DateSlider: React.FC<Props> = ({ date, onChange }) => {
         <View
           style={{
             position: 'absolute',
-            width: 50,
-            height: 50,
+            width: 25,
+            height: 25,
             backgroundColor: 'white',
             top: 32 + '%',
             left: 5 + '%'

@@ -7,6 +7,7 @@ import Icon from 'react-native-vector-icons/Entypo';
 import api from '../../globals/query/API';
 // import MapboxGL from '@rnmapbox/maps';
 import GetLocation from 'react-native-get-location';
+import Carousel from 'react-native-snap-carousel';
 
 import PlanningPNG from './Asset/Planning.png';
 import Profil from './Asset/Profil.png';
@@ -139,8 +140,34 @@ const MapSectionComponent = () => {
       console.log(e);
     }
   }, []);
+
+  const data = [
+    { title: 'Reservation 1', date: '06 Octobre 2023', hour: '13:50' },
+    { title: 'Reservation 2', date: '07 Octobre 2023', hour: '08:30' },
+    { title: 'Reservation 3', date: '08 Octobre 2023', hour: '20:15' }
+  ];
+  const renderItem = ({ item, index }) => {
+    return (
+      <View style={{ height: '90%', marginTop: '5%', marginLeft: 20 }}>
+        <Text style={{ color: 'white', alignSelf: 'center', fontWeight: '600', fontSize: 18 }}>
+          {item.title}
+        </Text>
+        <View style={{ flexDirection: 'row', marginTop: 20 }}>
+          <Text style={{ color: 'white', position: 'absolute', left: 30 }}>{item.date}</Text>
+          <Text style={{ color: 'white', position: 'absolute', right: 30 }}>{item.hour}</Text>
+        </View>
+      </View>
+    );
+  };
   return (
     <View style={styles.mapSection}>
+      <Carousel
+        data={data}
+        renderItem={renderItem}
+        sliderWidth={380}
+        itemWidth={380}
+        layout="default"
+      />
       {/* <MapboxGL.MapView
         style={{ flex: 1 }}
         styleURL={'mapbox://styles/mapbox/dark-v9'}

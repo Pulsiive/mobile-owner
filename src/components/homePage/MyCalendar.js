@@ -11,7 +11,7 @@ class MyCalendar extends React.Component {
     'Mai',
     'Juin',
     'Juillet',
-    'Août',
+    'AoÃ»t',
     'Septembre',
     'Octobre',
     'Novembre',
@@ -20,7 +20,9 @@ class MyCalendar extends React.Component {
   weekDays = ['Lun', 'Mar', 'Mer', 'Jeu', 'Ven  ', 'Sam', 'Dim'];
   nDays = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 
-  event = [19, 3, 22, 23, 24, 25];
+  event = [19, 3, 22, 23, 24];
+
+  today = new Date();
 
   ////////////////////////////////////////////////////////
   generateMatrix() {
@@ -73,6 +75,12 @@ class MyCalendar extends React.Component {
     });
   };
   changeMonth = (n) => {
+    if (n == 0) {
+      this.setState(() => {
+        this.state.activeDate.setMonth(this.today.getMonth());
+        return this.state;
+      });
+    }
     this.setState(() => {
       this.state.activeDate.setMonth(this.state.activeDate.getMonth() + n);
       return this.state;
@@ -84,25 +92,62 @@ class MyCalendar extends React.Component {
     var rows = [];
     rows = matrix.map((row, rowIndex) => {
       var rowItems = row.map((item, colIndex) => {
+        console.log(this.event.includes(item));
         return (
-          <RN.Text
+          <RN.View
             style={{
               flex: 1,
-              height: 18,
+              height: 50,
               textAlign: 'center',
+              paddingTop: 15,
               backgroundColor:
-                rowIndex == 0
-                  ? '#ddd'
-                  : this.event.includes(item) && this.state.activeDate.getMonth() == 11
-                  ? 'red'
-                  : '#fff',
-              color: item == this.state.activeDate.getDate() ? '#7FCB2B' : 'black',
-              fontWeight: item == this.state.activeDate.getDate() ? 'bold' : '500'
+                item == this.state.activeDate.getDate() &&
+                this.state.activeDate.getMonth() == this.today.getMonth()
+                  ? '#7FCB2B'
+                  : 'black',
+              borderRadius: item == this.state.activeDate.getDate() ? 10 : 0
+              // (this.event.includes(item) ? 'red' : 'blue')
+              // #7FCB2B
             }}
-            onPress={() => this._onPress(item)}
           >
-            {item != -1 ? item : ''}
-          </RN.Text>
+            <RN.Text
+              style={{
+                textAlign: 'center',
+                color: item == this.state.activeDate.getDate() ? 'white' : 'white',
+                fontWeight: item == this.state.activeDate.getDate() ? 'bold' : '500'
+              }}
+              onPress={() => this._onPress(item)}
+            >
+              {item != -1 ? item : ''}
+            </RN.Text>
+            <RN.View
+              style={{
+                display: 'flex',
+                marginTop: 5,
+                justifyContent: 'center',
+                alignContent: 'center',
+                textAlign: 'center',
+                alignItems: 'center'
+              }}
+            >
+              <RN.View
+                style={{
+                  width: 5,
+                  height: 5,
+                  borderRadius: 10,
+                  backgroundColor:
+                    this.state.activeDate.getMonth() == this.today.getMonth() &&
+                    this.event.includes(item)
+                      ? 'white'
+                      : 'black',
+                  display:
+                    item == this.state.activeDate.getDate() && !this.event.includes(item)
+                      ? 'none'
+                      : 'flex'
+                }}
+              ></RN.View>
+            </RN.View>
+          </RN.View>
         );
       });
       return (
@@ -110,7 +155,7 @@ class MyCalendar extends React.Component {
           style={{
             flex: 1,
             flexDirection: 'row',
-            padding: 15,
+            padding: 25,
             justifyContent: 'space-around',
             alignItems: 'center'
           }}
@@ -126,19 +171,31 @@ class MyCalendar extends React.Component {
             fontWeight: 'bold',
             fontSize: 18,
             textAlign: 'center',
-            backgroundColor: 'white'
+            color: 'white',
+            marginBottom: 20
           }}
         >
           {this.months[this.state.activeDate.getMonth()]} &nbsp;
           {this.state.activeDate.getFullYear()}
         </RN.Text>
         {rows}
-        <RN.Button title="<" onPress={() => this.changeMonth(-1)} />
-        <RN.Button title=">" onPress={() => this.changeMonth(+1)} />
+        <RN.View
+          style={{
+            display: 'flex',
+            flexDirection: 'row',
+            justifyContent: 'center',
+            justifyContent: 'space-between',
+            width: 60 + '%',
+            alignSelf: 'center'
+          }}
+        >
+          <RN.Button color="#7FCB2B" title="<" onPress={() => this.changeMonth(-1)} />
+          <RN.Button color="#7FCB2B" title="Today" onPress={() => this.changeMonth(0)} />
+          <RN.Button color="#7FCB2B" title=">" onPress={() => this.changeMonth(+1)} />
+        </RN.View>
       </RN.View>
     );
   }
 }
 
-// Export for now to get rid of error and see preview:
 export default MyCalendar;

@@ -40,7 +40,7 @@ const AddContact = ({ navigation }) => {
         '/api/v1/users/find?searchBy=first_name&key=' + cardInput.user,
         (auth = true)
       );
-      console.log(resContactName);
+      console.log('response: ', resContactName);
       if (resContactName.status != 200 || resContactName.data.users.length == 0) {
         setError(true);
         setErrorMessage(

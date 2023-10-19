@@ -171,7 +171,7 @@ const BottomTab = () => {
           )
         }}
       />
-      <Tab.Screen
+      {/* <Tab.Screen
         name="Map"
         component={BorneMap}
         options={{
@@ -180,7 +180,7 @@ const BottomTab = () => {
             <MaterialCommunityIcons name="map" color={color} size={size} />
           )
         }}
-      />
+      /> */}
       <Tab.Screen
         name="Message"
         component={MessageStack}

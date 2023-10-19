@@ -292,7 +292,10 @@ const RegisterStation = ({ navigation }) => {
           active={active}
           content={content}
           onBack={() => setActive((p) => p - 1)}
-          onFinish={() => alert('Êtes vous sûr que les informations sont correctes ?')}
+          onFinish={() => {
+            submit();
+            navigation.navigate('Settings');
+          }}
           onNext={() => setActive((p) => p + 1)}
           stepStyle={{
             backgroundColor: '#1EAE8D',

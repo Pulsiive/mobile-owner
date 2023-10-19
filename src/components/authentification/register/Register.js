@@ -38,6 +38,7 @@ const Register = ({ navigation }) => {
       if (userInput.email == 'default' || userInput.password == 'default') {
         throw { data: 'Veuillez indiquer un email et un mot de passe', status: '405' };
       }
+      console.log(userInput);
       const res = await api.send('POST', '/api/v1/auth/register', userInput, false);
       console.log(res);
 
