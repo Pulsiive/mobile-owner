@@ -75,6 +75,7 @@ const PrivateMessages = ({ route, navigation }) => {
     { mine: true, message: 'Your first message...' }
   ]);
   const [render, setRender] = useState(true);
+  const [count, setCount] = useState(0);
 
   console.log('userProps: ', userProps);
   const submit = async () => {
@@ -150,6 +151,9 @@ const PrivateMessages = ({ route, navigation }) => {
             console.log(tmpMsgList.map((o) => o.createdAt));
             setMessageList(tmpMsgList);
           }
+          const interval = setInterval(() => {
+            setCount(count + 1);
+          }, 10000);
         } else {
           throw res;
         }
@@ -162,7 +166,7 @@ const PrivateMessages = ({ route, navigation }) => {
     fetchMessages();
 
     console.log(messageList);
-  }, [render]);
+  }, [render, count]);
 
   return (
     <View style={styles.viewTemplate}>

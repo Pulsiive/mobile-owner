@@ -1,6 +1,19 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, Button, Image, Pressable, StyleSheet, PermissionsAndroid } from 'react-native';
+import {
+  View,
+  Text,
+  Button,
+  Image,
+  Pressable,
+  StyleSheet,
+  PermissionsAndroid,
+  TouchableWithoutFeedback
+} from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import TextTitle from '../../globals/components/TextTitle';
+import FloatingCard from '../../globals/components/FloatingCard';
+
+import Logo from '../../Asset/logo.png';
 
 import Settings from '../settings/Settings';
 import Icon from 'react-native-vector-icons/Entypo';
@@ -16,6 +29,8 @@ import AddStation from './Asset/AddStation.png';
 import Wallet from './Asset/Wallet.png';
 import Messages from './Asset/Messages.png';
 import PastReservation from './Asset/PastReservation.png';
+import StationService from '../../globals/service/StationService';
+import serviceStation from '../../globals/service/StationService';
 
 // MapboxGL.setAccessToken(
 //   'pk.eyJ1Ijoic2h5bGsiLCJhIjoiY2w0cmhncHdwMDZydTNjcDhkbTVmZm8xZCJ9.uxYLeAuZdY5VMx4EUBaw_A'
@@ -106,6 +121,7 @@ const PlanningSectionComponent = ({ navigation }) => {
 
 const MapSectionComponent = () => {
   const [userPosition, setUserPosition] = useState([48.856614, 2.3522219]);
+  const [filterSelected, setFilterSelected] = useState(1);
 
   useEffect(() => {
     try {
@@ -142,20 +158,57 @@ const MapSectionComponent = () => {
   }, []);
 
   const data = [
-    { title: 'Reservation 1', date: '06 Octobre 2023', hour: '13:50' },
-    { title: 'Reservation 2', date: '07 Octobre 2023', hour: '08:30' },
-    { title: 'Reservation 3', date: '08 Octobre 2023', hour: '20:15' }
+    { title: 'Reservation 1', date: '12 Novembre 2023', hour: '13:50', station: 'borne Vitry' },
+    { title: 'Reservation 2', date: '13 Novembre 2023', hour: '08:30', station: 'borne Kremlin' },
+    { title: 'Reservation 3', date: '14 Novembre 2023', hour: '20:15', station: 'borne Vitry' }
   ];
-  const renderItem = ({ item, index }) => {
+
+  const renderItem = ({ item, station }) => {
+    const ComponentSummary = ({ item }) => {
+      return (
+        <View style={{ flexDirection: 'row', marginTop: 20 }}>
+          <Text style={{ color: 'white', position: 'absolute', left: 10 }}>{item.station}</Text>
+          <Text style={{ color: 'white', position: 'absolute', left: 140 }}>{item.date}</Text>
+          <Text style={{ color: 'white', position: 'absolute', right: 30 }}>{item.hour}</Text>
+        </View>
+      );
+    };
+
+    const ComponentCarouselSelected = [
+      <ComponentSummary item={item} station={item.station} />,
+      <View />,
+      <View />
+    ];
+
     return (
       <View style={{ height: '90%', marginTop: '5%', marginLeft: 20 }}>
         <Text style={{ color: 'white', alignSelf: 'center', fontWeight: '600', fontSize: 18 }}>
           {item.title}
         </Text>
-        <View style={{ flexDirection: 'row', marginTop: 20 }}>
-          <Text style={{ color: 'white', position: 'absolute', left: 30 }}>{item.date}</Text>
-          <Text style={{ color: 'white', position: 'absolute', right: 30 }}>{item.hour}</Text>
+        <View style={styles.filter}>
+          <TouchableWithoutFeedback onPress={() => setFilterSelected(1)}>
+            <Text style={filterSelected == 1 ? styles.selectedColor : styles.neutralColor}>
+              Summary
+            </Text>
+          </TouchableWithoutFeedback>
+          <TouchableWithoutFeedback onPress={() => setFilterSelected(2)}>
+            <Text style={filterSelected == 2 ? styles.selectedColor : styles.neutralColor}>
+              User profile
+            </Text>
+          </TouchableWithoutFeedback>
+          {/* <TouchableWithoutFeedback onPress={() => setFilterSelected(3)}>
+            <Text style={filterSelected == 3 ? styles.selectedColor : styles.neutralColor}>
+              Other
+            </Text>
+          </TouchableWithoutFeedback> */}
         </View>
+        {ComponentCarouselSelected[filterSelected - 1]}
+        {/* <View style={{ flexDirection: 'row', marginTop: 20 }}>
+          <Text style={{ color: 'white', position: 'absolute', left: 10 }}>{item.station}</Text>
+          <Text style={{ color: 'white', position: 'absolute', left: 140 }}>{item.date}</Text>
+          <Text style={{ color: 'white', position: 'absolute', right: 30 }}>{item.hour}</Text>
+        </View> */}
+        <View style={{ flexDirection: 'row', marginTop: 20 }}></View>
       </View>
     );
   };
@@ -190,11 +243,17 @@ const OtherSectionComponent = ({ navigation }) => {
   return (
     <View style={styles.otherSection}>
       <View style={{ flexDirection: 'row', height: '45%', Width: '100%', marginTop: '2.5%' }}>
-        <View style={styles.AccesRapideOtherSection}>
+        {/* <View style={styles.AccesRapideOtherSection}>
           <Pressable style={{ borderRadius: 10 }} onPress={() => navigation.navigate('Profile')}>
             <Image source={Profil} style={styles.AccesRapideImage} />
           </Pressable>
+        </View> */}
+        <View style={styles.AccesRapideOtherSection}>
+          <Pressable style={{ borderRadius: 10 }} onPress={() => navigation.navigate('Wallet')}>
+            <Image source={Wallet} style={styles.AccesRapideImage} />
+          </Pressable>
         </View>
+
         <View style={styles.AccesRapideOtherSection}>
           <Pressable
             style={{ borderRadius: 10 }}
@@ -212,36 +271,85 @@ const OtherSectionComponent = ({ navigation }) => {
           </Pressable>
         </View>
       </View>
-      <View style={{ flexDirection: 'row', height: '45%', Width: '100%', marginTop: '2.5%' }}>
-        <View style={styles.AccesRapideOtherSection}>
+      {/* <View style={{ flexDirection: 'row', height: '45%', Width: '100%', marginTop: '2.5%' }}> */}
+      {/* <View style={styles.AccesRapideOtherSection}>
           <Pressable style={{ borderRadius: 10 }} onPress={() => navigation.navigate('Wallet')}>
             <Image source={Wallet} style={styles.AccesRapideImage} />
           </Pressable>
-        </View>
-        <View style={styles.AccesRapideOtherSection}>
+        </View> */}
+      {/* <View style={styles.AccesRapideOtherSection}>
           <Pressable style={{ borderRadius: 10 }} onPress={() => navigation.navigate('Messages')}>
             <Image source={Messages} style={styles.AccesRapideImage} />
           </Pressable>
-        </View>
-        <View style={styles.AccesRapideOtherSection}>
+        </View> */}
+      {/* <View style={styles.AccesRapideOtherSection}>
           <Pressable
             style={{ borderRadius: 10 }}
             onPress={() => navigation.navigate('PastReservations')}
           >
             <Image source={PastReservation} style={styles.AccesRapideImage} />
           </Pressable>
-        </View>
-      </View>
+        </View> */}
+      {/* </View> */}
+    </View>
+  );
+};
+
+const CreateStationCard = ({ navigation }) => {
+  return (
+    <View style={styles.mapSection}>
+      <Pressable style={{ height: 250 }} onPress={() => navigation.navigate('RegisterStation')}>
+        <FloatingCard>
+          <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+            <View style={{ flex: 1 }}>
+              <TextTitle
+                title="Louez votre borne"
+                style={{
+                  marginVertical: 0,
+                  marginHorizontal: 10,
+                  fontSize: 20
+                }}
+              />
+              <Text style={{ color: 'grey', marginHorizontal: 10, marginTop: 10 }}>
+                Rentabilisez votre borne et contribuez a l'ecologie en louant votre borne dans le
+                réseau Pulsive !
+              </Text>
+            </View>
+            <Image source={Logo} style={{ width: '40%', height: '100%' }} resizeMode="contain" />
+          </View>
+        </FloatingCard>
+      </Pressable>
     </View>
   );
 };
 
 const HomePage = ({ navigation }) => {
+  const [userStations, setUserStations] = useState([]);
+
+  useEffect(() => {
+    async function fetchStation() {
+      const stations = await serviceStation.getAllStation();
+
+      setUserStations(stations.stations);
+    }
+
+    fetchStation();
+    console.log(userStations);
+    console.log('userLength', userStations.length);
+  }, []);
+
+  console.log(userStations);
+  console.log('UserLength', userStations.length);
+
   return (
     <View style={{ height: '100%', width: '100%', backgroundColor: 'black' }}>
       <ProfileHeaderComponent />
       <PlanningSectionComponent navigation={navigation} />
-      <MapSectionComponent />
+      {userStations && userStations.length == 0 ? (
+        <CreateStationCard navigation={navigation} />
+      ) : (
+        <MapSectionComponent />
+      )}
       <OtherSectionComponent navigation={navigation} />
     </View>
   );
@@ -260,7 +368,26 @@ const styles = StyleSheet.create({
     marginTop: '3.5%',
     marginLeft: '3%'
   },
-
+  filter: {
+    flexDirection: 'row',
+    width: '90%',
+    height: '10%',
+    marginTop: '5%',
+    marginLeft: '5%',
+    justifyContent: 'space-around'
+  },
+  selectedColor: {
+    color: 'green',
+    fontWeight: '900',
+    backgroundColor: 'black',
+    borderRadius: 20,
+    paddingHorizontal: 10,
+    paddingVertical: 2
+  },
+  neutralColor: {
+    color: 'grey',
+    fontWeight: '300'
+  },
   planningSection: {
     height: '20%',
     width: '100%',
@@ -270,7 +397,7 @@ const styles = StyleSheet.create({
   },
 
   mapSection: {
-    height: '30%',
+    height: '40%',
     width: '100%',
     marginTop: '2%',
     backgroundColor: '#1F1F1F',

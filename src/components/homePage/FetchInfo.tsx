@@ -30,6 +30,8 @@ const FetchInfo: React.FC<Props> = ({ date }) => {
   const [items, setItems] = useState<{ [key: string]: Item[] }>({ data });
   const [modalVisible, setModalVisible] = useState(false);
   const [reservationDeletionInfo, setReservationDeletionInfo] = useState({});
+  const [count, setCount] = useState(0);
+
   console.log(date);
   useEffect(() => {
     function fillAgendaWithReservations(slot) {
@@ -96,7 +98,13 @@ const FetchInfo: React.FC<Props> = ({ date }) => {
       }
     }
     fetchSlot();
-  });
+    const interval = setInterval(() => {
+      setCount(count + 1);
+    }, 10000);
+
+    //Clearing the interval
+    return () => clearInterval(interval);
+  }, [count]);
 
   const setModal = (event) => {
     setModalVisible(true);
@@ -170,7 +178,8 @@ const FetchInfo: React.FC<Props> = ({ date }) => {
             >
               <View>
                 <Image style={styles.picture} source={{ uri: plan.picture }}></Image>
-                <Text style={styles.name}>{plan.Name}</Text>
+                {/* <Text style={styles.name}>{plan.Name}</Text>  */}
+                <Text style={styles.name}>Borne {plan.Name.slice(0, 2)}</Text>
                 <View style={styles.firstRow}>
                   <Image style={styles.rendCalendar} source={calendar}></Image>
                   <Text style={styles.Txtduration}>

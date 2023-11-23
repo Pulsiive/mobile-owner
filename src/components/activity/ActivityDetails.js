@@ -369,10 +369,10 @@ const ActivityDetails = ({ navigation, route }) => {
             }}
           >
             <View style={{ height: '100%', width: '90%', backgroundColor: '#1F1F1F' }}>
-              <Text style={{ color: 'blue', marginLeft: '5%' }}>View details</Text>
+              <Text style={{ color: 'lightblue', marginLeft: '5%' }}>View details</Text>
             </View>
             <View style={{ height: '100%', width: '10%', backgroundColor: '#1F1F1F' }}>
-              <Icon name="arrow-right" size={25} color="blue" />
+              <Icon name="arrow-right" size={25} color="lightblue" />
             </View>
           </View>
         </Pressable>
@@ -414,7 +414,7 @@ const ActivityDetails = ({ navigation, route }) => {
               style={{ marginLeft: '25%', marginTop: '20%' }}
               name="arrow-right"
               size={25}
-              color="blue"
+              color="lightgreen"
             />
           </View>
           <View>
@@ -436,7 +436,7 @@ const ActivityDetails = ({ navigation, route }) => {
           }}
         >
           <View style={{ height: '100%', width: '30%', backgroundColor: '#1F1F1F' }}>
-            <Text style={{ color: 'white', marginTop: '25%', marginLeft: '30%' }}>Ride rating</Text>
+            <Text style={{ color: 'white', marginTop: '25%', marginLeft: '30%' }}>Evaluation</Text>
           </View>
           <View>
             <View style={{ marginTop: '5%' }}>

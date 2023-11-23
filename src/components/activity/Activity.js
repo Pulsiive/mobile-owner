@@ -57,7 +57,7 @@ const Activity = ({ navigation }) => {
                 width: '23%',
                 borderRadius: 30,
                 marginLeft: '42%',
-                backgroundColor: 'grey'
+                backgroundColor: 'lightblue'
               }}
               onPress={() => navigation.navigate('ActivityHistory')}
             >
@@ -83,7 +83,7 @@ const Activity = ({ navigation }) => {
       <View style={styles.container}>
         {reservationData.map((elem) => (
           <Pressable
-            style={{ height: '12%', width: '100%' }}
+            style={{ height: '12%', width: '100%', marginTop: '3%' }}
             onPress={() =>
               navigation.navigate('ActivityDetails', {
                 date: elem.date,
@@ -96,9 +96,11 @@ const Activity = ({ navigation }) => {
               style={{
                 flexDirection: 'row',
                 height: '100%',
-                backgroundColor: '#0f0f0f',
-                borderRadius: 15,
-                marginTop: '2%'
+                backgroundColor: '#1F1F1F',
+                borderColor: 'green',
+                borderWidth: 0.5,
+                marginHorizontal: 10,
+                borderRadius: 15
               }}
             >
               {/* ROW1 */}
@@ -111,7 +113,7 @@ const Activity = ({ navigation }) => {
                 />
               </View>
               {/* ROW2 */}
-              <View style={{ width: '70%', height: '100%', marginTop: '3%' }}>
+              <View style={{ width: '68%', height: '100%', marginTop: '3%', marginLeft: '2%' }}>
                 <Text style={{ color: 'white', fontWeight: '300', fontSize: 18 }}>
                   {elem.station}
                 </Text>
@@ -146,8 +148,8 @@ const Activity = ({ navigation }) => {
               style={{
                 textAlign: 'center',
                 fontWeight: '600',
-                fontSize: 14,
-                color: 'blue',
+                fontSize: 16,
+                color: 'lightgrey',
                 marginLeft: '5%'
               }}
             >
@@ -156,7 +158,7 @@ const Activity = ({ navigation }) => {
             <View
               style={{
                 marginLeft: '5%',
-                backgroundColor: 'blue',
+                backgroundColor: 'lightblue',
                 height: 20,
                 width: 20,
                 borderRadius: 30
@@ -165,8 +167,8 @@ const Activity = ({ navigation }) => {
               <Icon
                 style={{ marginLeft: '30%', marginTop: '25%' }}
                 name="arrow-right"
-                size={10}
-                color="white"
+                size={11}
+                color="darkblue"
               />
             </View>
           </Pressable>
@@ -216,7 +218,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontWeight: '600',
     fontSize: 14,
-    color: 'white'
+    color: 'black'
   },
 
   //CONTENT

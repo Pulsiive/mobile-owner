@@ -7,7 +7,8 @@ import {
   TouchableWithoutFeedback,
   StyleSheet,
   SafeAreaView,
-  ScrollView
+  ScrollView,
+  Typography
 } from 'react-native';
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
 import MessagesViewInformation from './MessageInformationVariable';
@@ -16,6 +17,8 @@ import { set } from 'date-fns';
 import SearchComponent from '../../globals/components/header/SearchFilter';
 
 const MessageCard = (props) => {
+  console.log('MessageCard');
+  console.log(props);
   return (
     <TouchableWithoutFeedback
       onPress={() =>
@@ -56,37 +59,80 @@ const Messages = ({ navigation }) => {
   const [filteredList, setFilteredList] = useState([]);
 
   useEffect(() => {
-    async function fetchContacts() {
-      try {
-        const res = await api.send('GET', '/api/v1/profile/contacts', null, true);
-        console.log('data: ', res.data);
-        console.log('length: ', res.data.length);
+    api.send('GET', '/api/v1/profile/contacts', null, true).then((res) => {
+      console.log('data: ', res.data);
+      console.log('length: ', res.data.length);
 
-        if (res.status == 200) {
-          const tmpContactList = [];
-          for (let i = 0; i < res.data.length; i++) {
-            console.log(i);
-            console.log(res.data[i]);
-            tmpContactList.push({
-              id: res.data[i].user.id,
-              name: res.data[i].user.firstName,
-              lastName: res.data[i].user.lastName,
-              lastMessage: 'xxxxxxxxxxxxxxxxxxxx'
-            });
-          }
-          console.log('tmp message contact list: ', tmpContactList);
-          setUserDatabase(tmpContactList);
-          //          setUserData({ firstName: res.data.firstName, lastName: res.data.lastName });
-        } else {
-          throw res;
+      if (res.status == 200) {
+        const tmpContactList = [];
+        for (let i = 0; i < res.data.length; i++) {
+          console.log(i);
+          console.log(res.data[i]);
+          tmpContactList.push({
+            id: res.data[i].user.id,
+            name: res.data[i].user.firstName,
+            lastName: res.data[i].user.lastName,
+            lastMessage: 'xxxxxxxxxxxxxxxxxxxx'
+          });
         }
-      } catch (e) {
-        const code = e.status;
-        alert('Error: Contact could not be fetched');
+        console.log('tmp message contact list: ', tmpContactList);
+        setUserDatabase(tmpContactList);
       }
-    }
-    fetchContacts();
-  }, [searchFilterValue]);
+    });
+  }, []);
+
+  // useEffect(() => {
+  //   // async function fetchContacts() {
+  //   // try {
+  //   console.log('messages fetch contact');
+  //   const res = api.send('GET', '/api/v1/profile/contacts', null, true).then((res) => {
+  //     console.log('data: ', res.data);
+  //     console.log('length: ', res.data.length);
+
+  //     if (res.status == 200) {
+  //       const tmpContactList = [];
+  //       for (let i = 0; i < res.data.length; i++) {
+  //         console.log(i);
+  //         console.log(res.data[i]);
+  //         tmpContactList.push({
+  //           id: res.data[i].user.id,
+  //           name: res.data[i].user.firstName,
+  //           lastName: res.data[i].user.lastName,
+  //           lastMessage: 'xxxxxxxxxxxxxxxxxxxx'
+  //         });
+  //       }
+  //       console.log('tmp message contact list: ', tmpContactList);
+  //       setUserDatabase(tmpContactList);
+  //     }
+  //   });
+  //   //   console.log('data: ', res.data);
+  //   //   console.log('length: ', res.data.length);
+
+  //   //   if (res.status == 200) {
+  //   //     const tmpContactList = [];
+  //   //     for (let i = 0; i < res.data.length; i++) {
+  //   //       console.log(i);
+  //   //       console.log(res.data[i]);
+  //   //       tmpContactList.push({
+  //   //         id: res.data[i].user.id,
+  //   //         name: res.data[i].user.firstName,
+  //   //         lastName: res.data[i].user.lastName,
+  //   //         lastMessage: 'xxxxxxxxxxxxxxxxxxxx'
+  //   //       });
+  //   //     }
+  //   //     console.log('tmp message contact list: ', tmpContactList);
+  //   //     setUserDatabase(tmpContactList);
+  //   //     //          setUserData({ firstName: res.data.firstName, lastName: res.data.lastName });
+  //   //   } else {
+  //   //     throw res;
+  //   //   }
+  //   // } catch (e) {
+  //   //   const code = e.status;
+  //   //   alert('Error: Contact could not be fetched');
+  //   // }
+  //   // }
+  //   // fetchContacts();
+  // }, [filterSelected]);
 
   useEffect(() => {
     console.log("Searching for:'", searchFilterValue, "'");
@@ -131,7 +177,7 @@ const Messages = ({ navigation }) => {
           <SafeAreaView style={styles.container}>
             <ScrollView style={styles.scrollView}>
               <View>
-                {filteredList.map((elem, i) => (
+                {userDatabase.map((elem, i) => (
                   <View style={{ height: 70 }}>
                     <MessageCard
                       name={elem.name}

@@ -1,10 +1,18 @@
 import React, { useEffect, useState } from 'react';
-import { View, StyleSheet, Text, TouchableHighlight, Pressable } from 'react-native';
+import {
+  View,
+  StyleSheet,
+  Text,
+  TouchableHighlight,
+  Pressable,
+  ImageBackground
+} from 'react-native';
 import { addDays, getDate, startOfWeek, format, isSameDay } from 'date-fns';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { fr } from 'date-fns/locale';
 import MyCalendar from './MyCalendar';
 import FetchInfo from './FetchInfo';
+import arrow from './Asset/arrow.png';
 
 type Props = {
   date: Date;
@@ -47,7 +55,28 @@ const DateSlider: React.FC<Props> = ({ date, onChange }) => {
           );
         })}
       </View>
-      <Pressable onPress={() => setOpen(!open)}>
+      <TouchableHighlight
+        style={{
+          position: 'absolute',
+          top: 35 + '%',
+          left: 2 + '%',
+          justifyContent: 'center',
+          alignItems: 'center',
+          width: 50,
+          height: 50
+        }}
+        onPress={() => setOpen(!open)}
+      >
+        <ImageBackground
+          source={arrow}
+          style={{
+            transform: open ? [{ rotate: '-90deg' }] : [{ rotate: '90deg' }],
+            width: 12,
+            height: 21
+          }}
+        ></ImageBackground>
+      </TouchableHighlight>
+      {/* <Pressable onPress={() => setOpen(!open)}>
         <View
           style={{
             position: 'absolute',
@@ -58,7 +87,7 @@ const DateSlider: React.FC<Props> = ({ date, onChange }) => {
             left: 5 + '%'
           }}
         />
-      </Pressable>
+      </Pressable> */}
       {open && (
         <View style={{ marginTop: 10 + '%' }}>
           <MyCalendar

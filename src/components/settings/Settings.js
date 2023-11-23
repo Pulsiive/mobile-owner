@@ -36,7 +36,7 @@ const Settings = ({ navigation }) => {
       {/* HEADER */}
       <View style={styles.headWalletInformation}>
         <View style={{ width: '100%' }}>
-          <Text style={styles.title}>Settings</Text>
+          <Text style={styles.title}>Paramètres</Text>
         </View>
       </View>
       {/* CONTENT */}

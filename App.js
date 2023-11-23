@@ -152,20 +152,30 @@ const BottomTab = () => {
       }}
     >
       <Tab.Screen
-        name="Home"
+        name="Accueil"
         component={AppStack}
         options={{
-          tabBarLabel: 'Home',
+          tabBarLabel: 'Accueil',
           tabBarIcon: ({ color, size }) => (
             <MaterialCommunityIcons name="home" color={color} size={size} />
           )
         }}
       />
       <Tab.Screen
-        name="Activity"
+        name="Planning"
+        component={Planning}
+        options={{
+          tabBarLabel: 'Planning',
+          tabBarIcon: ({ color, size }) => (
+            <MaterialCommunityIcons name="calendar" color={color} size={size} />
+          )
+        }}
+      />
+      <Tab.Screen
+        name="Activité"
         component={ActivityStack}
         options={{
-          tabBarLabel: 'Activity',
+          tabBarLabel: 'Activité',
           tabBarIcon: ({ color, size }) => (
             <MaterialCommunityIcons name="book" color={color} size={size} />
           )
@@ -192,10 +202,10 @@ const BottomTab = () => {
         }}
       />
       <Tab.Screen
-        name="Setting"
+        name="Paramètres"
         component={SettingsStack}
         options={{
-          tabBarLabel: 'Setting',
+          tabBarLabel: 'Paramètres',
           tabBarIcon: ({ color, size }) => (
             <MaterialCommunityIcons name="cog-outline" color={color} size={size} />
           )

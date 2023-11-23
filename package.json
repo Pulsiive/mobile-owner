@@ -42,10 +42,13 @@
     "react-native-linear-gradient": "^2.5.6",
     "react-native-maps": "https://github.com/react-community/react-native-maps.git",
     "react-native-radio-buttons-group": "^2.2.11",
+    "react-native-reanimated-carousel": "^3.5.1",
     "react-native-safe-area-context": "^4.2.4",
     "react-native-screens": "^3.13.1",
     "react-native-select-dropdown": "^3.1.0",
+    "react-native-snap-carousel": "^3.9.1",
     "react-native-sound": "^0.11.2",
+    "react-native-stepper-ui": "^0.0.9",
     "react-native-vector-icons": "^9.2.0"
   },
   "devDependencies": {
