@@ -3,10 +3,10 @@
  * Router
  */
 
-import React, { Component } from 'react';
-import { Image } from 'react-native';
+import React, { Component, useEffect } from 'react';
+import { Image, View } from 'react-native';
 
-import { NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer, useNavigationContainerRef } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -47,6 +47,9 @@ import ActivityHistory from './src/components/activity/ActivityHistory.js';
 import ActivityDetails from './src/components/activity/ActivityDetails.js';
 import NotificationManagement from './src/components/settings/NotificationManagement.js';
 import Confidentiality from './src/components/Confidentiality/Confidentiality.js';
+import FlashMessage, { showMessage } from 'react-native-flash-message';
+import messaging from '@react-native-firebase/messaging';
+import ReservationRequests from './src/components/reservationRequests/ReservationRequests.js';
 
 const Stack = createNativeStackNavigator();
 
@@ -117,6 +120,7 @@ const AppStack = () => {
       <Stack.Screen name="HomePage" component={HomePage} />
       <Stack.Screen name="Planning" component={Planning} />
       <Stack.Screen name="AddSlot" component={AddSlot} />
+      <Stack.Screen name="ReservationRequests" component={ReservationRequests} />
     </Stack.Navigator>
   );
 };
@@ -215,19 +219,53 @@ const BottomTab = () => {
   );
 };
 
-const RootNavigator = () => (
-  <Stack.Navigator initialRouteName="App" screenOptions={{ headerShown: false }}>
-    <Stack.Screen name="LoginScreen" component={LoginStack} />
-    <Stack.Screen name="Tab" component={BottomTab} />
-  </Stack.Navigator>
-);
+const RootNavigator = ({ navigationRef }) => {
+  const displayNotifInApp = (message) => {
+    showMessage({
+      message: message.notification.title,
+      description: message.notification.body,
+      type: 'info',
+      duration: 5000,
+      onPress: () => navigationRef.navigate(message.data.redirect)
+    });
+  };
+  useEffect(() => {
+    const unsubscribe = messaging().onMessage(async (remoteMessage) => {
+      displayNotifInApp(remoteMessage);
+    });
 
+    return unsubscribe;
+  }, []);
+
+  messaging().onNotificationOpenedApp(async (remoteMessage) => {
+    if (remoteMessage.data && remoteMessage.data.redirect) {
+      navigationRef.navigate(remoteMessage.data.redirect);
+    }
+  });
+
+  return (
+    <Stack.Navigator initialRouteName="App" screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="LoginScreen" component={LoginStack} />
+      <Stack.Screen name="Tab" component={BottomTab} />
+    </Stack.Navigator>
+  );
+};
+
+const RooContainer = () => {
+  const navigationRef = useNavigationContainerRef();
+  return (
+    <NavigationContainer ref={navigationRef}>
+      <RootNavigator navigationRef={navigationRef} />
+    </NavigationContainer>
+  );
+};
 class App extends Component {
   render() {
     return (
-      <NavigationContainer>
-        <RootNavigator />
-      </NavigationContainer>
+      <View style={{ flex: 1 }}>
+        <RooContainer />
+        <FlashMessage position="top" />
+      </View>
     );
   }
 }

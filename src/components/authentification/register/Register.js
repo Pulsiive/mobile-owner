@@ -10,6 +10,7 @@ import {
   ActivityIndicator
 } from 'react-native';
 import api from '../../../globals/query/API';
+import messaging from '@react-native-firebase/messaging';
 import serviceAccessToken from '../../../globals/query/AccessToken';
 
 import Logo2 from './../../../Asset/logo-2.png';
@@ -38,8 +39,13 @@ const Register = ({ navigation }) => {
       if (userInput.email == 'default' || userInput.password == 'default') {
         throw { data: 'Veuillez indiquer un email et un mot de passe', status: '405' };
       }
-      console.log(userInput);
-      const res = await api.send('POST', '/api/v1/auth/register', userInput, false);
+      const fcmToken = await messaging().getToken();
+      const res = await api.send(
+        'POST',
+        '/api/v1/auth/register',
+        { ...userInput, fcmToken },
+        false
+      );
       console.log(res);
 
       if (res.status == 200) {

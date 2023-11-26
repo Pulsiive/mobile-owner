@@ -1,51 +1,45 @@
 {
   "project_info": {
-    "project_number": "812570876185",
-    "project_id": "pulsive-1d762",
-    "storage_bucket": "pulsive-1d762.appspot.com"
+    "project_number": "915547065321",
+    "project_id": "pulsive-85ebf",
+    "storage_bucket": "pulsive-85ebf.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:812570876185:android:c89903de78d91715f3cd88",
+        "mobilesdk_app_id": "1:915547065321:android:caaf928ecfdc1ed64c1978",
         "android_client_info": {
-          "package_name": "com.mobileowner"
+          "package_name": "com.mobiledriver"
         }
       },
-      "oauth_client": [
-        {
-          "client_id": "812570876185-q0499tbu0jkof0bu50oas4a3h2c61cnn.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.mobileowner",
-            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
-          }
-        },
-        {
-          "client_id": "812570876185-b6j070v7obu11b3j0dce4dtmuuhfu609.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
+      "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyDRh7uft3hhF1fiEXWrLf7bF86aY9A_r4U"
+          "current_key": "AIzaSyD5nWI1a1H7fgotM8DpKSFTm_pi-u4u6GQ"
         }
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "812570876185-b6j070v7obu11b3j0dce4dtmuuhfu609.apps.googleusercontent.com",
-              "client_type": 3
-            },
-            {
-              "client_id": "812570876185-c1dr04tgo8hon7ciaukbdjtu9srkjlcb.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "com.oauthpulsive.app"
-              }
-            }
-          ]
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:915547065321:android:3ba75d402729ac964c1978",
+        "android_client_info": {
+          "package_name": "com.mobileowner"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD5nWI1a1H7fgotM8DpKSFTm_pi-u4u6GQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
         }
       }
     }

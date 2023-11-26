@@ -151,50 +151,51 @@ const FetchInfo: React.FC<Props> = ({ date }) => {
 
   return (
     <ScrollView style={{ top: -30 }}>
-      {items.data[date].map((plan) => {
-        if (plan.id === 'undefined') {
-          return (
-            <View>
-              <Text style={{ color: 'white' }}>Nothing</Text>
-            </View>
-          );
-        } else if (plan.id < 0) {
-          return <View></View>;
-        }
-        return (
-          <Pressable
-            style={{ width: '100%' }}
-            onPress={() => {
-              setReservationDeletionInfo(plan);
-              plan.isBooked ? setModalVisible(false) : setModalVisible(true);
-            }}
-          >
-            <Animated.View
-              style={[
-                plan.isBooked ? styles.itemBookedContainer : styles.itemContainer,
-                { opacity: firstOpacity, transform: [{ translateY: TranslationUp }] }
-              ]}
-              key={plan.id}
-            >
+      {items.data[date] &&
+        items.data[date].map((plan) => {
+          if (plan.id === 'undefined') {
+            return (
               <View>
-                <Image style={styles.picture} source={{ uri: plan.picture }}></Image>
-                {/* <Text style={styles.name}>{plan.Name}</Text>  */}
-                <Text style={styles.name}>Borne {plan.Name.slice(0, 2)}</Text>
-                <View style={styles.firstRow}>
-                  <Image style={styles.rendCalendar} source={calendar}></Image>
-                  <Text style={styles.Txtduration}>
-                    {plan.date} - {plan.Hour}
-                  </Text>
-                </View>
-                <View style={styles.secondRow}>
-                  <Image style={styles.rendbill} source={bill}></Image>
-                  <Text style={styles.Txtbill}>{plan.content}</Text>
-                </View>
+                <Text style={{ color: 'white' }}>Nothing</Text>
               </View>
-            </Animated.View>
-          </Pressable>
-        );
-      })}
+            );
+          } else if (plan.id < 0) {
+            return <View></View>;
+          }
+          return (
+            <Pressable
+              style={{ width: '100%' }}
+              onPress={() => {
+                setReservationDeletionInfo(plan);
+                plan.isBooked ? setModalVisible(false) : setModalVisible(true);
+              }}
+            >
+              <Animated.View
+                style={[
+                  plan.isBooked ? styles.itemBookedContainer : styles.itemContainer,
+                  { opacity: firstOpacity, transform: [{ translateY: TranslationUp }] }
+                ]}
+                key={plan.id}
+              >
+                <View>
+                  <Image style={styles.picture} source={{ uri: plan.picture }}></Image>
+                  {/* <Text style={styles.name}>{plan.Name}</Text>  */}
+                  <Text style={styles.name}>Borne {plan.Name.slice(0, 2)}</Text>
+                  <View style={styles.firstRow}>
+                    <Image style={styles.rendCalendar} source={calendar}></Image>
+                    <Text style={styles.Txtduration}>
+                      {plan.date} - {plan.Hour}
+                    </Text>
+                  </View>
+                  <View style={styles.secondRow}>
+                    <Image style={styles.rendbill} source={bill}></Image>
+                    <Text style={styles.Txtbill}>{plan.content}</Text>
+                  </View>
+                </View>
+              </Animated.View>
+            </Pressable>
+          );
+        })}
       <Modal
         animationType={'fade'}
         transparent={true}

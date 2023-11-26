@@ -17,6 +17,7 @@ import Logo from '../../Asset/logo.png';
 
 import Settings from '../settings/Settings';
 import Icon from 'react-native-vector-icons/Entypo';
+import { default as FontAwesomeIcon } from 'react-native-vector-icons/FontAwesome5';
 import api from '../../globals/query/API';
 // import MapboxGL from '@rnmapbox/maps';
 import GetLocation from 'react-native-get-location';
@@ -242,55 +243,29 @@ const MapSectionComponent = () => {
 const OtherSectionComponent = ({ navigation }) => {
   return (
     <View style={styles.otherSection}>
-      <View style={{ flexDirection: 'row', height: '45%', Width: '100%', marginTop: '2.5%' }}>
-        {/* <View style={styles.AccesRapideOtherSection}>
-          <Pressable style={{ borderRadius: 10 }} onPress={() => navigation.navigate('Profile')}>
-            <Image source={Profil} style={styles.AccesRapideImage} />
-          </Pressable>
-        </View> */}
-        <View style={styles.AccesRapideOtherSection}>
-          <Pressable style={{ borderRadius: 10 }} onPress={() => navigation.navigate('Wallet')}>
-            <Image source={Wallet} style={styles.AccesRapideImage} />
-          </Pressable>
-        </View>
-
-        <View style={styles.AccesRapideOtherSection}>
-          <Pressable
-            style={{ borderRadius: 10 }}
-            onPress={() => navigation.navigate('StationList')}
-          >
-            <Image source={StationList} style={styles.AccesRapideImage} />
-          </Pressable>
-        </View>
-        <View style={styles.AccesRapideOtherSection}>
-          <Pressable
-            style={{ borderRadius: 10 }}
-            onPress={() => navigation.navigate('RegisterStation')}
-          >
-            <Image source={AddStation} style={styles.AccesRapideImage} />
-          </Pressable>
-        </View>
+      <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
+        <Pressable
+          style={styles.easyAccessButton}
+          onPress={() => navigation.navigate('ReservationRequests')}
+        >
+          <FontAwesomeIcon name="clipboard-list" color="white" size={30} />
+          <Text style={styles.easyAccessButtonText}>Mes demandes</Text>
+        </Pressable>
+        <Pressable
+          style={styles.easyAccessButton}
+          onPress={() => navigation.navigate('StationList')}
+        >
+          <FontAwesomeIcon name="charging-station" color="white" size={30} />
+          <Text style={styles.easyAccessButtonText}>Mes stations</Text>
+        </Pressable>
+        <Pressable
+          style={styles.easyAccessButton}
+          onPress={() => navigation.navigate('RegisterStation')}
+        >
+          <FontAwesomeIcon name="plus" color="white" size={30} />
+          <Text style={styles.easyAccessButtonText}>Nouvelle station</Text>
+        </Pressable>
       </View>
-      {/* <View style={{ flexDirection: 'row', height: '45%', Width: '100%', marginTop: '2.5%' }}> */}
-      {/* <View style={styles.AccesRapideOtherSection}>
-          <Pressable style={{ borderRadius: 10 }} onPress={() => navigation.navigate('Wallet')}>
-            <Image source={Wallet} style={styles.AccesRapideImage} />
-          </Pressable>
-        </View> */}
-      {/* <View style={styles.AccesRapideOtherSection}>
-          <Pressable style={{ borderRadius: 10 }} onPress={() => navigation.navigate('Messages')}>
-            <Image source={Messages} style={styles.AccesRapideImage} />
-          </Pressable>
-        </View> */}
-      {/* <View style={styles.AccesRapideOtherSection}>
-          <Pressable
-            style={{ borderRadius: 10 }}
-            onPress={() => navigation.navigate('PastReservations')}
-          >
-            <Image source={PastReservation} style={styles.AccesRapideImage} />
-          </Pressable>
-        </View> */}
-      {/* </View> */}
     </View>
   );
 };
@@ -356,6 +331,20 @@ const HomePage = ({ navigation }) => {
 };
 
 const styles = StyleSheet.create({
+  easyAccessButton: {
+    width: '30%',
+    borderRadius: 15,
+    backgroundColor: '#47821a',
+    flexDirection: 'column',
+    alignItems: 'center',
+    padding: 10
+  },
+  easyAccessButtonText: {
+    color: 'white',
+    fontSize: 18,
+    textAlign: 'center',
+    marginTop: 3
+  },
   profileHeader: {
     height: '10%',
     width: '90%',
