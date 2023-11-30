@@ -13,8 +13,10 @@ const AddContact = ({ navigation }) => {
   const [error, setError] = useState(false);
 
   const handleChange = (text, field) => {
-    cardInput[field] = text;
-    setCardInput(cardInput);
+    setCardInput({
+      ...cardInput,
+      [field]: text,
+    });
   };
   const submit = async () => {
     try {
@@ -79,133 +81,42 @@ const AddContact = ({ navigation }) => {
   return (
     <View style={styles.viewTemplate}>
       <View style={styles.headWalletInformation}>
-        <Pressable style={styles.backButton} onPress={() => navigation.navigate('ContactList')}>
+        {/* <Pressable style={styles.backButton} onPress={() => navigation.navigate('ContactList')}>
           <Text style={styles.backButtonContent}>{'<'}</Text>
-        </Pressable>
-        <Text
-          style={{
-            color: 'white',
-            width: '90%',
-            fontSize: 35,
-            fontWeight: '700',
-            marginLeft: '3%'
-          }}
-        >
-          Add a new contact
-        </Text>
+        </Pressable> */}
+        <Icon name="chevron-with-circle-left" size={40} style={{padding:10, color:'white'}} onPress={() => navigation.navigate('ContactList')}/>
+        <Text style={styles.title}>Add a new contact</Text>
       </View>
-      {/* NAME  */}
-      <Text
-        style={{
-          color: 'white',
-          width: '30%',
-          fontSize: 15,
-          fontWeight: '400',
-          marginTop: '15%',
-          marginLeft: '5%'
-        }}
-      >
-        Contact name
-      </Text>
-      <View style={{ flexDirection: 'row' }}>
-        <Icon style={{ marginLeft: '5%', marginTop: '3%' }} name="user" size={30} color="grey" />
-        <TextInput
-          style={{
-            color: 'grey',
-            backgroundColor: 'white',
-            borderRadius: 10,
-            height: '74%',
-            width: '82%',
-            marginTop: '1%',
-            marginLeft: '3%'
-          }}
-          onChangeText={(text) => handleChange(text, 'user')}
-          placeholder="0,00"
-          autoComplete="username"
-        >
-          {cardInput.user}
-        </TextInput>
-      </View>
-      {/* CARD NUMBER  */}
-      <View>
-        <Text
-          style={{
-            color: 'white',
-            width: '30%',
-            fontSize: 15,
-            fontWeight: '400',
-            marginTop: '5%',
-            marginLeft: '5%'
-          }}
-        >
-          Phone number
-        </Text>
-        <View style={{ flexDirection: 'row' }}>
-          <Icon style={{ marginLeft: '5%', marginTop: '3%' }} name="phone" size={30} color="grey" />
+      <View style={styles.inputContainer}>
+        <View style={styles.inputRow}>
+          <Icon style={styles.inputIcon} name="user" size={40} color="#04BF7B" />
           <TextInput
-            style={{
-              color: 'grey',
-              backgroundColor: 'white',
-              borderRadius: 10,
-              height: '74%',
-              width: '82%',
-              marginTop: '1%',
-              marginLeft: '3%'
-            }}
+            style={styles.inputField}
+            onChangeText={(text) => handleChange(text, 'user')}
+            placeholder="Contact name"
+            value={cardInput.user}
+          />
+        </View>
+        <View style={styles.inputRow}>
+          <Icon style={styles.inputIcon} name="phone" size={40} color="#04BF7B" />
+          <TextInput
+            style={styles.inputField}
             onChangeText={(text) => handleChange(text, 'number')}
-            placeholder="0,00"
-            autoComplete="username"
-          >
-            {cardInput.number}
-          </TextInput>
+            placeholder="Phone number"
+            value={cardInput.number}
+          />
         </View>
-
-        {/* CARD NAME */}
-        <Text
-          style={{
-            color: 'white',
-            width: '30%',
-            fontSize: 15,
-            fontWeight: '400',
-            marginTop: '5%',
-            marginLeft: '5%'
-          }}
-        >
-          Label
-        </Text>
-        <View style={{ flexDirection: 'row' }}>
-          <Icon style={{ marginLeft: '5%', marginTop: '3%' }} name="tag" size={30} color="grey" />
+        <View style={styles.inputRow}>
+          <Icon style={styles.inputIcon} name="tag" size={40} color="#04BF7B" />
           <TextInput
-            style={{
-              color: 'grey',
-              backgroundColor: 'white',
-              borderRadius: 10,
-              height: '74%',
-              width: '82%',
-              marginTop: '1%',
-              marginLeft: '3%'
-            }}
+            style={styles.inputField}
             onChangeText={(text) => handleChange(text, 'cardName')}
-            placeholder="0,00"
-            autoComplete="username"
-          >
-            {cardInput.cardName}
-          </TextInput>
+            placeholder="Label"
+            value={cardInput.cardName}
+          />
         </View>
-        <Pressable onPress={submit}>
-          <View
-            style={{
-              width: '90%',
-              alignItems: 'center',
-              height: '15%',
-              marginTop: '40%',
-              marginLeft: '5%',
-              borderRadius: 15,
-              backgroundColor: '#6EBF34'
-            }}
-          >
-            <Text style={{ color: 'white', marginTop: '3%' }}>Add Contact</Text>
-          </View>
+        <Pressable style={styles.addButton} onPress={submit}>
+          <Text style={styles.addButtonLabel}>Add Contact</Text>
         </Pressable>
       </View>
     </View>
@@ -214,32 +125,68 @@ const AddContact = ({ navigation }) => {
 
 const styles = StyleSheet.create({
   viewTemplate: {
-    backgroundColor: '#0D0D0D',
-    width: '100%',
-    height: '100%'
-  },
-  //HEADER
-  backButton: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    height: '80%',
-    width: '10%',
-    borderRadius: 10,
-    elevation: 3,
-    backgroundColor: '#6EBF34'
-  },
-  backButtonContent: {
-    color: 'white',
-    fontSize: 20,
-    fontWeight: '800'
+    backgroundColor: '#121212',
+    flex: 1,
   },
   headWalletInformation: {
     flexDirection: 'row',
     padding: 10,
     marginTop: '8%',
-    width: '100%',
-    height: '10%'
-  }
+    alignItems: 'center',
+  },
+  backButton: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    marginLeft: 10,
+    backgroundColor: 'white',
+  },
+  backButtonContent: {
+    color: '#04BF7B',
+    fontSize: 24,
+    fontWeight: 'bold',
+  },
+  title: {
+    color: 'white',
+    fontSize: 24,
+    fontWeight: 'bold',
+    marginLeft: 20,
+  },
+  inputContainer: {
+    paddingHorizontal: 20,
+    marginTop: 20,
+  },
+  inputRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 40,
+  },
+  inputIcon: {
+    marginRight: 10,
+  },
+  inputField: {
+    flex: 1,
+    height: 40,
+    backgroundColor: '#2d2d2d',
+    borderRadius: 5,
+    paddingHorizontal: 10,
+    color: '#737373'
+  },
+  addButton: {
+    backgroundColor: '#232222',
+    borderColor: '#1bae7c',
+    borderWidth: 3,
+    height: 50,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 5,
+  },
+  addButtonLabel: {
+    color: 'white',
+    fontWeight: 'bold',
+  },
 });
 
 export default AddContact;

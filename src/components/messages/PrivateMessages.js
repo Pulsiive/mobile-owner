@@ -5,12 +5,15 @@ import {
   Text,
   Pressable,
   TouchableHighlight,
+  TouchableOpacity,
   StyleSheet,
   SafeAreaView,
-  ScrollView
+  ScrollView,
+  ActivityIndicator, // Import the ActivityIndicator component
 } from 'react-native';
-import Icon from 'react-native-vector-icons/dist/AntDesign';
+import Icon from 'react-native-vector-icons/Entypo';
 import api from '../../globals/query/API';
+import * as Animatable from 'react-native-animatable';
 
 const Corechat = (props) => {
   const [deleteConfirm, setDeleteConfirm] = useState({ value: false, message: {} });
@@ -39,6 +42,7 @@ const Corechat = (props) => {
 
   return (
     <View>
+      <View style={{ marginVertical: 10 }}/> 
       {props.messageList.map((elem) => (
         <View>
           {deleteConfirm.value &&
@@ -47,7 +51,7 @@ const Corechat = (props) => {
             <Pressable onPress={() => deleteMessageRequest()}>
               <Icon
                 style={{ marginTop: '2%', marginLeft: '0%' }}
-                name="delete"
+                name="erase"
                 size={25}
                 color="red"
               />
@@ -56,7 +60,7 @@ const Corechat = (props) => {
           <Pressable
             onPress={() => setDeleteConfirm({ value: !deleteConfirm.value, message: elem })}
           >
-            <Text style={elem.mine ? styles.myMessageCard : styles.otherMessageCard}>
+            <Text style={elem.mine ? styles.userMessageBubble : styles.otherMessageBubble}>
               {elem.message}
             </Text>
           </Pressable>
@@ -75,7 +79,8 @@ const PrivateMessages = ({ route, navigation }) => {
     { mine: true, message: 'Your first message...' }
   ]);
   const [render, setRender] = useState(true);
-  const [count, setCount] = useState(0);
+
+  const [loading, setLoading] = useState(true);
 
   console.log('userProps: ', userProps);
   const submit = async () => {
@@ -151,9 +156,6 @@ const PrivateMessages = ({ route, navigation }) => {
             console.log(tmpMsgList.map((o) => o.createdAt));
             setMessageList(tmpMsgList);
           }
-          const interval = setInterval(() => {
-            setCount(count + 1);
-          }, 10000);
         } else {
           throw res;
         }
@@ -161,30 +163,53 @@ const PrivateMessages = ({ route, navigation }) => {
       } catch (e) {
         const code = e.status;
         alert('Error ', code, ': Messages could not be fetched');
+      } finally {
+        // Simulate a delay of 3 seconds before setting loading to false
+        setTimeout(() => {
+          setLoading(false);
+        }, 3000);
       }
     }
     fetchMessages();
 
     console.log(messageList);
-  }, [render, count]);
+  }, [render]);
 
   return (
     <View style={styles.viewTemplate}>
-      {/* HEADER */}
-      <View style={styles.header}>
-        <Pressable style={styles.backButton} onPress={() => navigation.navigate('Messages')}>
-          <Text style={styles.backButtonContent}>{'<'}</Text>
-        </Pressable>
-        <View style={{ width: '100%' }}>
-          <Text style={styles.title}>
-            {userProps.user.name} {userProps.user.lastName}
-          </Text>
-          <Text style={styles.id}>{userProps.user.id}</Text>
+
+      <View style={{ marginTop: 0, padding: 10, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', }}>
+      <Icon name="chevron-with-circle-left" size={30} style={styles.sendIcon} onPress={() => navigation.navigate('Messages')}/>
+      <Animatable.View animation="pulse" iterationCount="infinite">
+        <TouchableOpacity
+          style={{
+            backgroundColor: '#1a1a1a',
+            paddingHorizontal: 20,
+            paddingVertical: 10,
+            shadowColor: 'white',
+            shadowOffset: { width: 0, height: 4 }, 
+            shadowOpacity: 1, 
+            shadowRadius: 4,
+            borderRadius: 10,
+            marginHorizontal: 10,
+            elevation: 10, 
+          }}
+        >
+          <Text style={{color: 'white', fontWeight: 'bold',}}> {userProps.user.name} {userProps.user.lastName} </Text>
+        </TouchableOpacity>
+      </Animatable.View> 
         </View>
-      </View>
+
+      {/* Loading Indicator */}
+      {loading && (
+        <View style={styles.loadingContainer}>
+          <ActivityIndicator size="large" color="#04BF7B" />
+        </View>
+      )}
+
       {/* CONTENT */}
+      {!loading && (
       <View style={styles.container}>
-        {/* VIEWLIST */}
         <View style={styles.scrollList}>
           <SafeAreaView style={styles.container}>
             <ScrollView style={styles.scrollView}>
@@ -192,36 +217,27 @@ const PrivateMessages = ({ route, navigation }) => {
             </ScrollView>
           </SafeAreaView>
         </View>
-        <View style={{ flexDirection: 'row' }}>
+        <View style={styles.inputView}>
           <TextInput
             style={styles.input}
             onChangeText={(text) => setUserMessage(text)}
-            onSubmitEditing={submit}
-            placeholder="Type your message..."
-          >
-            {userMessage}
-          </TextInput>
-          <TouchableHighlight onPress={submit}>
-            <Icon
-              style={{ marginLeft: '9%', marginTop: '33%' }}
-              name="send"
-              size={30}
-              color="lightblue"
-            />
-          </TouchableHighlight>
+            placeholder="Your message..."
+            value={userMessage}
+          />
+          <Icon name="paper-plane" size={25} style={styles.sendIcon} onPress={submit} />
         </View>
       </View>
+      )}
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   viewTemplate: {
-    backgroundColor: '#0D0D0D',
+    backgroundColor: 'black',
     width: '100%',
     height: '95%'
   },
-
   //HEADER
   header: {
     flexDirection: 'row',
@@ -258,7 +274,6 @@ const styles = StyleSheet.create({
     color: 'grey',
     width: '80%'
   },
-
   //CONTENT
   selectedColor: {
     color: '#04BF7B',
@@ -272,13 +287,12 @@ const styles = StyleSheet.create({
     marginTop: '5%',
     height: '90%'
   },
-
   scrollList: {
     width: '100%',
-    height: '85%'
+    height: '85%',
   },
   container: {
-    flex: 1
+    flex: 1,
   },
   scrollView: {
     marginHorizontal: 20
@@ -307,14 +321,53 @@ const styles = StyleSheet.create({
     fontSize: 15,
     width: '80%'
   },
+  inputView: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#1a1a1a',
+  },
+  sendIcon: {
+    padding: 10,
+    color: 'white'
+  },
   input: {
+    height: 40,
+    borderColor: 'transparent',
+    borderWidth: 1,
+    color: 'black',
+    flex: 1,
     borderRadius: 15,
+    paddingLeft: 15,
     backgroundColor: 'white',
-    width: '85%',
-    marginTop: '3%',
-    marginLeft: '3%',
-    marginBottom: '2%'
-  }
+    shadowColor: 'white',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.5,
+    shadowRadius: 4, 
+    elevation: 10, 
+    marginLeft: 15,
+  },
+  userMessageBubble: {
+    backgroundColor: '#4FC3F7',
+    color: 'white',
+    borderRadius: 15,
+    padding: 10, 
+    maxWidth: '70%',
+    alignSelf: 'flex-end',
+    marginBottom: 10, 
+    fontSize: 16,
+  },
+  otherMessageBubble: {
+    backgroundColor: '#DCF8C6',
+    color: 'black', 
+    borderRadius: 15, 
+    padding: 10, 
+    maxWidth: '70%',
+    alignSelf: 'flex-start', 
+    marginBottom: 10, 
+    fontSize: 16, 
+  },
 });
 
 export default PrivateMessages;

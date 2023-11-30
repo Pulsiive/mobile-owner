@@ -50,6 +50,7 @@ import Confidentiality from './src/components/Confidentiality/Confidentiality.js
 import FlashMessage, { showMessage } from 'react-native-flash-message';
 import messaging from '@react-native-firebase/messaging';
 import ReservationRequests from './src/components/reservationRequests/ReservationRequests.js';
+import Fonctionnement from './src/components/settings/Fonctionnement.js';
 
 const Stack = createNativeStackNavigator();
 
@@ -96,6 +97,7 @@ const SettingsStack = () => {
       <Stack.Screen name="AddContact" component={AddContact} />
       <Stack.Screen name="ChangePassword" component={ChangePassword} />
       <Stack.Screen name="NotificationManagement" component={NotificationManagement} />
+      <Stack.Screen name="Fonctionnement" component={Fonctionnement} />
       <Stack.Screen name="Confidentiality" component={Confidentiality} />
 
       <Stack.Screen name="AccountTransaction" component={AccountTransaction} />

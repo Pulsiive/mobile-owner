@@ -7,6 +7,7 @@ import ButtonTouchable from '../../globals/components/ButtonTouchable';
 import FloatingCard from '../../globals/components/FloatingCard';
 import TextTitle from '../../globals/components/TextTitle';
 import Logo from '../../Asset/logo.png';
+import * as Animatable from 'react-native-animatable';
 
 const Settings = ({ navigation }) => {
   const [userData, setUserData] = useState({
@@ -71,7 +72,7 @@ const Settings = ({ navigation }) => {
                     le réseau Pulsive !
                   </Text>
                 </View>
-                <Image
+                <Animatable.Image animation="pulse" easing="ease-out" iterationCount="infinite"
                   source={Logo}
                   style={{ width: '40%', height: '100%' }}
                   resizeMode="contain"
@@ -119,6 +120,13 @@ const Settings = ({ navigation }) => {
               }}
             />
             <ButtonTouchable
+              title="Fonctionnement"
+              icon="help"
+              onPress={() => {
+                navigation.navigate('Fonctionnement');
+              }}
+            />
+            <ButtonTouchable
               title="Confidentialité"
               icon="lock"
               onPress={() => {
@@ -140,6 +148,7 @@ const Settings = ({ navigation }) => {
                 navigation.navigate('Reservations');
               }}
             />
+            <View style={{ marginVertical: 5 }}></View>
             <Pressable
               style={styles.disconnectBox}
               onPress={() => {
@@ -152,6 +161,7 @@ const Settings = ({ navigation }) => {
           </View>
 
           {/* </View> */}
+          <View style={{ marginVertical: 50 }}></View>
         </ScrollView>
       </View>
     </View>
