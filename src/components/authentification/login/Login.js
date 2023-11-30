@@ -11,7 +11,7 @@ import {
 } from 'react-native';
 import api from '../../../globals/query/API';
 import serviceAccessToken from '../../../globals/query/AccessToken';
-
+import Error from '../../../globals/components/Error';
 import Logo2 from './../../../Asset/logo-2.png';
 
 const Login = ({ navigation }) => {
@@ -47,10 +47,16 @@ const Login = ({ navigation }) => {
       if (e.data) {
         setErrorMessage(e.data.message);
         const code = e.status;
-        if (code === 401) setErrorMessage('Incorrect password');
-        else if (code === 404) setErrorMessage('User not found');
+        if (code === 401) {
+          setErrorMessage('Incorrect password');
+          Error('401: Incorrect password');
+        } else if (code === 404) {
+          setErrorMessage('User not found');
+          Error('404: User not found');
+        }
         setError(true);
       } else {
+        Error(e, ': Internal error');
         setErrorMessage('Internal error: ', e);
         setError(true);
       }
