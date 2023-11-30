@@ -328,7 +328,13 @@ const ActivityDetails = ({ navigation, route }) => {
 
         {/* TOTAL DETAILS */}
         <View
-          style={{ height: '4%', width: '100%', flexDirection: 'row', backgroundColor: '#1F1F1F' }}
+          style={{
+            height: '4%',
+            width: '100%',
+            flexDirection: 'row',
+            backgroundColor: '#1F1F1F',
+            marginTop: '10%'
+          }}
         >
           <View style={{ height: '100%', width: '80%' }}>
             <Text
@@ -379,13 +385,15 @@ const ActivityDetails = ({ navigation, route }) => {
         {/* END TOTAL DETAILS */}
 
         {/* MAPBOX INTEGRATION */}
-        <MapSectionComponent />
+        {/* <MapSectionComponent /> */}
 
         {/* DETAILS SECTION */}
         <View
           style={{
             height: '5%',
             width: '100%',
+            marginTop: '3%',
+            borderRadius: 12,
             backgroundColor: '#1F1F1F',
             flexDirection: 'row'
           }}
@@ -409,16 +417,35 @@ const ActivityDetails = ({ navigation, route }) => {
             flexDirection: 'row'
           }}
         >
+          <View>
+            <View style={{ marginTop: '5%', marginLeft: '18%' }}>
+              <Text style={{ color: 'grey' }}>Merci d'avoir choisi cette borne avec Pulsive. </Text>
+            </View>
+            <View style={{ marginTop: '2%', marginLeft: '5%' }}>
+              <Text style={{ color: 'grey' }}>
+                En cas de problème lié a la reservation, veuillez contacter le support Pulsive.
+              </Text>
+            </View>
+          </View>
+        </View>
+        <View
+          style={{
+            height: '17%',
+            width: '100%',
+            backgroundColor: '#1F1F1F',
+            flexDirection: 'row'
+          }}
+        >
           <View style={{ height: '100%', width: '20%', backgroundColor: '#1F1F1F' }}>
             <Icon
-              style={{ marginLeft: '25%', marginTop: '20%' }}
+              style={{ marginLeft: '25%', marginTop: '60%' }}
               name="arrow-right"
               size={25}
               color="lightgreen"
             />
           </View>
           <View>
-            <View style={{ marginTop: '5%' }}>
+            <View style={{ marginTop: '18%' }}>
               <Text style={{ color: 'white' }}> {address} </Text>
               <Text style={{ color: 'grey' }}> {time} </Text>
             </View>

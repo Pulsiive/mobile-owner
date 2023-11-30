@@ -120,101 +120,122 @@ const PlanningSectionComponent = ({ navigation }) => {
   );
 };
 
-const MapSectionComponent = () => {
-  const [userPosition, setUserPosition] = useState([48.856614, 2.3522219]);
-  const [filterSelected, setFilterSelected] = useState(1);
-
-  useEffect(() => {
-    try {
-      PermissionsAndroid.requestMultiple(
-        [
-          PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
-          PermissionsAndroid.PERMISSIONS.ACCESS_COARSE_LOCATION
-        ],
-        {
-          title: 'Give Location Permission',
-          message: 'App needs location permission to find your position.'
-        }
-      )
-        .then(async (granted) => {
-          console.log(granted);
-          GetLocation.getCurrentPosition({
-            enableHighAccuracy: true,
-            timeout: 15000
-          })
-            .then((location) => {
-              setUserPosition([location.latitude, location.longitude]);
-            })
-            .catch((error) => {
-              const { code, message } = error;
-              console.warn(code, message);
-            });
-        })
-        .catch((err) => {
-          console.warn(err);
-        });
-    } catch (e) {
-      console.log(e);
-    }
-  }, []);
+const DashboardSection = ({ navigation }) => {
+  useEffect(() => {}, []);
 
   const data = [
-    { title: 'Reservation 1', date: '12 Novembre 2023', hour: '13:50', station: 'borne Vitry' },
-    { title: 'Reservation 2', date: '13 Novembre 2023', hour: '08:30', station: 'borne Kremlin' },
-    { title: 'Reservation 3', date: '14 Novembre 2023', hour: '20:15', station: 'borne Vitry' }
+    {
+      title: 'Reservation 1',
+      date: '12 Novembre 2023',
+      hour: '13:50',
+      station: 'borne Vitry',
+      recette: '150$',
+      isUsed: true
+    },
+    {
+      title: 'Reservation 2',
+      date: '13 Novembre 2023',
+      hour: '08:30',
+      station: 'borne Kremlin',
+      recette: '57$',
+      isUsed: false
+    },
+    {
+      title: 'Reservation 3',
+      date: '14 Novembre 2023',
+      hour: '20:15',
+      station: 'borne Ivry',
+      recette: '423,58$',
+      isUsed: true
+    }
   ];
 
   const renderItem = ({ item, station }) => {
-    const ComponentSummary = ({ item }) => {
-      return (
-        <View style={{ flexDirection: 'row', marginTop: 20 }}>
-          <Text style={{ color: 'white', position: 'absolute', left: 10 }}>{item.station}</Text>
-          <Text style={{ color: 'white', position: 'absolute', left: 140 }}>{item.date}</Text>
-          <Text style={{ color: 'white', position: 'absolute', right: 30 }}>{item.hour}</Text>
-        </View>
-      );
-    };
-
-    const ComponentCarouselSelected = [
-      <ComponentSummary item={item} station={item.station} />,
-      <View />,
-      <View />
-    ];
-
+    console.log('', item);
     return (
       <View style={{ height: '90%', marginTop: '5%', marginLeft: 20 }}>
-        <Text style={{ color: 'white', alignSelf: 'center', fontWeight: '600', fontSize: 18 }}>
-          {item.title}
-        </Text>
-        <View style={styles.filter}>
-          <TouchableWithoutFeedback onPress={() => setFilterSelected(1)}>
-            <Text style={filterSelected == 1 ? styles.selectedColor : styles.neutralColor}>
-              Summary
-            </Text>
-          </TouchableWithoutFeedback>
-          <TouchableWithoutFeedback onPress={() => setFilterSelected(2)}>
-            <Text style={filterSelected == 2 ? styles.selectedColor : styles.neutralColor}>
-              User profile
-            </Text>
-          </TouchableWithoutFeedback>
-          {/* <TouchableWithoutFeedback onPress={() => setFilterSelected(3)}>
-            <Text style={filterSelected == 3 ? styles.selectedColor : styles.neutralColor}>
-              Other
-            </Text>
-          </TouchableWithoutFeedback> */}
+        <View style={{ height: '30%', width: '70%', marginLeft: '12%', backgroundColor: 'white' }}>
+          <Image
+            style={{ width: '100%', height: '100%' }}
+            source={{
+              uri: 'https://mobilygreen.fr/wp-content/uploads/2018/10/borne-recharge-electrique.jpg'
+            }}
+          />
         </View>
-        {ComponentCarouselSelected[filterSelected - 1]}
-        {/* <View style={{ flexDirection: 'row', marginTop: 20 }}>
-          <Text style={{ color: 'white', position: 'absolute', left: 10 }}>{item.station}</Text>
-          <Text style={{ color: 'white', position: 'absolute', left: 140 }}>{item.date}</Text>
-          <Text style={{ color: 'white', position: 'absolute', right: 30 }}>{item.hour}</Text>
-        </View> */}
-        <View style={{ flexDirection: 'row', marginTop: 20 }}></View>
+        <Text style={{ color: 'white', marginLeft: '33%', marginTop: '10%', fontSize: 20 }}>
+          {item.station}
+        </Text>
+        <Text style={{ color: 'white', marginLeft: '5%', marginTop: '10%', fontSize: 20 }}>
+          Recettes
+        </Text>
+        <Text style={{ color: 'white', marginLeft: '5%', marginTop: '5%', fontSize: 25 }}>
+          {item.recette}
+        </Text>
+        <View style={{ flexDirection: 'row' }}>
+          <Text style={{ color: 'white', marginLeft: '5%', marginTop: '5%', fontSize: 20 }}>
+            En cours d'utilisation:
+          </Text>
+          <View
+            style={{
+              backgroundColor: item.isUsed ? 'green' : 'red',
+              height: 25,
+              width: 25,
+              marginTop: '5%',
+              marginLeft: '5%',
+              borderRadius: 100
+            }}
+          />
+        </View>
+        <View>
+          <View
+            style={{
+              width: '90%',
+              height: '15%',
+              borderRadius: 12,
+              borderWidth: 1,
+              borderColor: 'grey',
+              marginTop: '5%'
+            }}
+          >
+            <Pressable onPress={() => navigation.navigate('Planning')}>
+              <Text style={{ color: 'white', marginLeft: '15%', marginTop: '0%', fontSize: 20 }}>
+                1 reservations a venir
+              </Text>
+            </Pressable>
+          </View>
+          <View
+            style={{
+              width: '90%',
+              height: '25%',
+              backgroundColor: 'green',
+              borderRadius: 12,
+              marginTop: '5%'
+            }}
+          >
+            <Pressable onPress={() => navigation.navigate('ReservationRequests')}>
+              <Text style={{ color: 'white', marginLeft: '20%', marginTop: '5%', fontSize: 20 }}>
+                reservations en attente
+              </Text>
+            </Pressable>
+          </View>
+        </View>
       </View>
     );
   };
   return (
-    <View style={styles.mapSection}>
+    <View
+      style={{
+        height: '70%',
+        width: '90%',
+        marginLeft: '5%',
+        marginTop: '10%',
+        marginVertical: '2%',
+        backgroundColor: '#1F1F1F',
+        borderRadius: 20,
+        borderWidth: 3,
+        borderColor: 'green'
+      }}
+    >
       <Carousel
         data={data}
         renderItem={renderItem}
@@ -222,20 +243,6 @@ const MapSectionComponent = () => {
         itemWidth={380}
         layout="default"
       />
-      {/* <MapboxGL.MapView
-        style={{ flex: 1 }}
-        styleURL={'mapbox://styles/mapbox/dark-v9'}
-        zoomLevel={16}
-        center={userPosition}
-      >
-        <MapboxGL.Camera
-          zoomLevel={13}
-          centerCoordinate={[userPosition[1], userPosition[0]]}
-          animationMode={'flyTo'}
-          animationDuration={3}
-        ></MapboxGL.Camera>
-        <MapboxGL.UserLocation visible={true} />
-      </MapboxGL.MapView> */}
     </View>
   );
 };
@@ -319,13 +326,13 @@ const HomePage = ({ navigation }) => {
   return (
     <View style={{ height: '100%', width: '100%', backgroundColor: 'black' }}>
       <ProfileHeaderComponent />
-      <PlanningSectionComponent navigation={navigation} />
+      {/* <PlanningSectionComponent navigation={navigation} /> */}
       {userStations && userStations.length == 0 ? (
         <CreateStationCard navigation={navigation} />
       ) : (
-        <MapSectionComponent />
+        <DashboardSection navigation={navigation} />
       )}
-      <OtherSectionComponent navigation={navigation} />
+      {/* <OtherSectionComponent navigation={navigation} /> */}
     </View>
   );
 };
