@@ -1,36 +1,18 @@
 import React, { useState, useEffect } from 'react';
-import {
-  View,
-  Text,
-  Button,
-  Image,
-  Pressable,
-  StyleSheet,
-  PermissionsAndroid,
-  TouchableWithoutFeedback
-} from 'react-native';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { View, Text, Image, Pressable, StyleSheet } from 'react-native';
 import TextTitle from '../../globals/components/TextTitle';
 import FloatingCard from '../../globals/components/FloatingCard';
+import { useFocusEffect } from '@react-navigation/native';
 
 import Logo from '../../Asset/logo.png';
 
-import Settings from '../settings/Settings';
 import Icon from 'react-native-vector-icons/Entypo';
 import { default as FontAwesomeIcon } from 'react-native-vector-icons/FontAwesome5';
 import api from '../../globals/query/API';
 // import MapboxGL from '@rnmapbox/maps';
-import GetLocation from 'react-native-get-location';
 import Carousel from 'react-native-snap-carousel';
 
 import PlanningPNG from './Asset/Planning.png';
-import Profil from './Asset/Profil.png';
-import StationList from './Asset/StationList.png';
-import AddStation from './Asset/AddStation.png';
-import Wallet from './Asset/Wallet.png';
-import Messages from './Asset/Messages.png';
-import PastReservation from './Asset/PastReservation.png';
-import StationService from '../../globals/service/StationService';
 import serviceStation from '../../globals/service/StationService';
 
 // MapboxGL.setAccessToken(
@@ -121,29 +103,47 @@ const PlanningSectionComponent = ({ navigation }) => {
 };
 
 const DashboardSection = ({ navigation }) => {
-  useEffect(() => {}, []);
+  const [reservations, setReservations] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+
+  const showErrorMessage = (message) => {
+    showMessage({
+      message: message,
+      type: 'danger'
+    });
+  };
+
+  useFocusEffect(
+    React.useCallback(() => {
+      api.send('GET', '/api/v1/owner/reservations/requests').then((res) => {
+        if (res.status !== 200) {
+          showErrorMessage('Failed to fetch reservations requests');
+        } else {
+          setReservations(
+            res.data.filter((res) => {
+              const today = new Date();
+              const slotStartsAt = new Date(res.slot.opensAt);
+              return today.getTime() < slotStartsAt.getTime(); // get incoming date only
+            })
+          );
+        }
+        setIsLoading(false);
+      });
+    }, [])
+  );
 
   const data = [
     {
-      title: 'Reservation 1',
-      date: '12 Novembre 2023',
-      hour: '13:50',
       station: 'borne Vitry',
       recette: '150$',
       isUsed: true
     },
     {
-      title: 'Reservation 2',
-      date: '13 Novembre 2023',
-      hour: '08:30',
       station: 'borne Kremlin',
       recette: '57$',
       isUsed: false
     },
     {
-      title: 'Reservation 3',
-      date: '14 Novembre 2023',
-      hour: '20:15',
       station: 'borne Ivry',
       recette: '423,58$',
       isUsed: true
@@ -213,8 +213,8 @@ const DashboardSection = ({ navigation }) => {
             }}
           >
             <Pressable onPress={() => navigation.navigate('ReservationRequests')}>
-              <Text style={{ color: 'white', marginLeft: '20%', marginTop: '5%', fontSize: 20 }}>
-                reservations en attente
+              <Text style={{ color: 'white', marginLeft: '15%', marginTop: '5%', fontSize: 20 }}>
+                {reservations ? reservations.length : 0} reservations en attente
               </Text>
             </Pressable>
           </View>
