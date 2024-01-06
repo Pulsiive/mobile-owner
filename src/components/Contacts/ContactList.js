@@ -1,3 +1,4 @@
+import { color } from '@rneui/base';
 import React, { useState, useEffect } from 'react';
 import {
   TextInput,
@@ -13,6 +14,7 @@ import {
 } from 'react-native';
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
 import api from '../../globals/query/API';
+import * as Animatable from 'react-native-animatable';
 
 const ContactCard = (props) => {
   const [modalVisible, setModalVisible] = useState(false);
@@ -69,11 +71,16 @@ const ContactCard = (props) => {
   };
 
   return (
-    <TouchableWithoutFeedback onPress={() => setModalVisible(true)}>
-      <View style={{ flexDirection: 'row', marginTop: '3%', height: '30%' }}>
-        <Icon style={styles.userProfile} name="user" size={20} color="white" />
-        <View style={{ marginLeft: '10%', marginTop: '1%' }}>
+    // <TouchableWithoutFeedback onPress={() => setModalVisible(true)}>
+      <View style={styles.contactCard}>
+        <View style={styles.cardHeader}>
+          <Icon style={styles.userProfile} name="user" size={40} color="#04BF7B" />
+          <View style={{ flex: 1 }}>
           <Text style={styles.userTransaction}>{props.name}</Text>
+          </View>
+          <Animatable.View animation="pulse" iterationCount="infinite">
+          <Icon name="magic" color="#04BF7B" size={30} onPress={() => setModalVisible(true)}/>
+          </Animatable.View> 
         </View>
         <Modal
           animationType={'fade'}
@@ -83,134 +90,74 @@ const ContactCard = (props) => {
             console.log('Modal has been closed.');
           }}
         >
+          <Animatable.View animation="fadeIn" duration={5000}>
           <View style={styles.modal}>
-            <View style={{ flexDirection: 'row', marginTop: '2%' }}>
-              <Text style={{ color: 'black', fontSize: 20, fontWeight: '800', marginLeft: '3%' }}>
-                Contact information
-              </Text>
-              <Pressable
-                onPress={() => {
-                  setModalVisible(false);
-                }}
-              >
-                <Text style={{ color: 'red', fontSize: 20, marginLeft: '55%' }}>X</Text>
-              </Pressable>
+            {/* Modal Header */}
+            <View style={styles.modalHeader}>
+              <Text style={styles.modalTitle}>Contact Information</Text>
+              {/* <Text style={styles.closeButton} onPress={() => setModalVisible(false)}>X</Text> */}
+              <Icon name="remove" color='#1bae7c'  size={30} onPress={() => setModalVisible(false)}/>
             </View>
 
-            {/* ID */}
-            <Text
-              style={{
-                color: 'black',
-                fontWeight: '600',
-                fontSize: 10,
-                marginLeft: '10%',
-                marginTop: '5%'
-              }}
-            >
-              {props.name} / {props.id}
-            </Text>
+            {/* Current Id/name */}
+            <View style={styles.modalHeader}>
+              <Text style={styles.label}>Current Name: {props.name} </Text>
+            </View>
 
-            {/* NAME */}
-            <Text
-              style={{
-                color: 'black',
-                fontWeight: '600',
-                fontSize: 15,
-                marginLeft: '10%',
-                marginTop: '5%'
-              }}
-            >
-              New Name
-            </Text>
+              {/* New Name Label */}
+            <Text style={styles.label}>New Name</Text>
             <TextInput
-              style={{
-                marginBottom: 20,
-                backgroundColor: 'lightgrey',
-                borderRadius: 10,
-                borderWidth: 1,
-                width: '80%',
-                marginLeft: '10%',
-                borderColor: 'white'
-              }}
+              style={styles.inputField}
               onChangeText={(text) => setNewName(text)}
             >
               {newName}
             </TextInput>
+
             {/* PHONE NUMBER */}
-            <Text
-              style={{
-                color: 'black',
-                fontWeight: '600',
-                fontSize: 15,
-                marginLeft: '10%',
-                marginTop: '2.5%'
-              }}
-            >
-              Phone Number
-            </Text>
+            <Text style={styles.label}>Phone Number</Text>
             <TextInput
-              style={{
-                marginBottom: 20,
-                backgroundColor: 'lightgrey',
-                borderRadius: 10,
-                borderWidth: 1,
-                width: '80%',
-                marginLeft: '10%',
-                borderColor: 'white'
-              }}
+              style={styles.inputField}
             >
               {props.phoneNumber}
             </TextInput>
+
             {/* LABEL */}
-            <Text
-              style={{
-                color: 'black',
-                fontWeight: '600',
-                fontSize: 15,
-                marginLeft: '10%',
-                marginTop: '2.5%'
-              }}
-            >
-              Label
-            </Text>
+            <Text style={styles.label}>Label</Text>
             <TextInput
-              style={{
-                marginBottom: 20,
-                backgroundColor: 'lightgrey',
-                borderRadius: 10,
-                borderWidth: 1,
-                width: '80%',
-                marginLeft: '10%',
-                borderColor: 'white'
-              }}
+              style={styles.inputField}
             >
               {props.label}
             </TextInput>
 
-            <View style={styles.modalDeleteButton}>
+
+            <View style={styles.actionButton}>
               <Pressable
                 onPress={() => {
                   submitDeleteContact();
                   console.log('Deleted.');
                 }}
               >
-                <Text style={{ color: 'black', marginTop: '3%' }}>Delete Contact</Text>
+                <Text style={styles.actionButtonText}>Delete Contact</Text>
               </Pressable>
             </View>
-            <View style={styles.modalModifyButton}>
+            {/* Add some vertical separation between buttons */}
+            <View style={{ marginVertical: 10 }}> 
+            </View>
+            <View style={styles.actionButton}>
               <Pressable
                 onPress={() => {
                   submit();
                   console.log('Modified.');
                 }}
               >
-                <Text style={{ color: 'black', marginTop: '3%' }}>Modify</Text>
+                <Text style={styles.actionButtonText}>Modify</Text>
               </Pressable>
             </View>
           </View>
+          </Animatable.View>
         </Modal>
       </View>
-    </TouchableWithoutFeedback>
+    // </TouchableWithoutFeedback>
   );
 };
 
@@ -265,14 +212,6 @@ const ContactList = ({ navigation }) => {
       {/* HEADER */}
       <View style={styles.headWalletInformation}>
         <Text style={styles.title}>Contact List</Text>
-        <TouchableHighlight
-          style={styles.addContactButton}
-          onPress={() => navigation.navigate('AddContact')}
-        >
-          <Text style={{ color: 'green', fontWeight: '700', fontSize: 32, marginLeft: '30%' }}>
-            +
-          </Text>
-        </TouchableHighlight>
       </View>
       {/* CONTENT */}
       <View style={styles.container}>
@@ -297,44 +236,48 @@ const ContactList = ({ navigation }) => {
           </TouchableWithoutFeedback>
         </View>
         {/* VIEWLIST */}
-        <View style={styles.scrollList}>
-          <SafeAreaView style={styles.container}>
-            <ScrollView style={styles.scrollView}>
-              <View>
-                <View style={styles.divider} />
-
-                {userDatabase.map((elem, i) => (
-                  <ContactCard
-                    id={elem.id}
-                    name={elem.name}
-                    phoneNumber="0602668784"
-                    label="Client Mercredi"
-                    navigation={navigation}
-                  />
-                ))}
-              </View>
-            </ScrollView>
-          </SafeAreaView>
+        <View style={styles.cardList}>
+          {userDatabase.map((elem, i) => (
+            <ContactCard
+              key={elem.id}
+              id={elem.id}
+              name={elem.name}
+              phoneNumber="0602668784"
+              label="Client Mercredi"
+              navigation={navigation}
+            />
+          ))}
         </View>
       </View>
+
+      {/* Add Contact Button */}
+      <Animatable.View style={styles.addContactButton} animation="bounce" iterationCount="infinite">
+        <TouchableHighlight
+        style={styles.addContactButton}
+        onPress={() => navigation.navigate('AddContact')}
+        >
+        <Text style={{ color: 'green', fontWeight: '700', fontSize: 32, marginLeft: '30%' }}>+</Text>
+      </TouchableHighlight>
+      </Animatable.View>
+      
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   viewTemplate: {
-    backgroundColor: '#0D0D0D',
+    backgroundColor: '#121212',
     width: '100%',
-    height: '100%'
+    height: '100%',
   },
-
   //HEADER
   headWalletInformation: {
     flexDirection: 'row',
     padding: 10,
     marginTop: '8%',
     width: '100%',
-    height: '10%'
+    height: '10%',
+    justifyContent: 'space-between', // Add this line
   },
   backButton: {
     alignItems: 'center',
@@ -397,16 +340,6 @@ const styles = StyleSheet.create({
   scrollView: {
     marginHorizontal: 20
   },
-  userProfile: {
-    backgroundColor: 'black',
-    marginTop: '3%',
-    marginBottom: '2%'
-  },
-  userTransaction: {
-    color: 'white',
-    fontWeight: '600',
-    fontSize: 18
-  },
   divider: {
     width: '80%',
     backgroundColor: 'grey',
@@ -416,8 +349,8 @@ const styles = StyleSheet.create({
   },
   addContactButton: {
     position: 'absolute',
-    right: '10%',
-    top: '0%',
+    right: '5%',
+    bottom: '10%',
     backgroundColor: 'lightgrey',
     width: 50,
     height: 50,
@@ -426,32 +359,94 @@ const styles = StyleSheet.create({
     borderColor: '#7FCB2B'
   },
   modal: {
-    backgroundColor: 'white',
-    height: '65%',
-    width: '80%',
+    backgroundColor: '#121212',      // Background color for the modal
+    borderRadius: 10,               // Rounded corners
+    padding: 20,                   // Padding inside the modal
+    width: '80%',                   // Width of the modal
+    alignSelf: 'center',           // Center the modal horizontally
+    shadowColor: 'rgba(0, 0, 0, 0.3)', // Shadow color
+    shadowOffset: {
+      width: 0,
+      height: 4,
+    },
+    shadowOpacity: 0.8,
+    shadowRadius: 6,
+    elevation: 5,
+  },
+  modalHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: 20,
+  },
+  modalTitle: {
+    color: '#1bae7c',
+    fontSize: 20,
+    fontWeight: 'bold',
+  },
+  label: {
+    color: '#fff',
+    fontWeight: '600',
+    fontSize: 15, 
+    marginBottom: 10, 
+  },
+  inputField: {
+    backgroundColor: '#2d2d2d',
+    borderRadius: 10, 
+    padding: 10, 
+    marginBottom: 20,
+    color: '#737373',
+  },
+  actionButton: {
+    backgroundColor: '#232222',
+    borderRadius: 15,
+    borderColor: '#1bae7c',
+    borderWidth: 3,
+    padding: 15,
+    alignItems: 'center',
+  },
+  actionButtonText: {
+    color: 'white',
+    fontWeight: 'bold', 
+    fontSize: 18,
+  },
+  contactCard: {
+    backgroundColor: '#1d1d1d',
     borderRadius: 10,
-    borderWidth: 1,
-    borderColor: '#D4D4D4',
-    marginTop: '50%',
-    marginLeft: '12%'
+    padding: 10,
+    marginBottom: 10,
+    marginHorizontal: 15, // pour ajouter de l'espace de chaque coté d'un contact
+    marginTop: 5, 
+    shadowColor: 'rgba(0, 0, 0, 0.1)',
+    shadowOffset: {
+      width: 0,
+      height: 4,
+    },
+    shadowOpacity: 0.3,
+    shadowRadius: 6,
+    elevation: 5,
   },
-  modalDeleteButton: {
-    width: '90%',
+  
+  cardHeader: {
+    flexDirection: 'row',
     alignItems: 'center',
-    height: '10%',
-    marginLeft: '5%',
-    borderRadius: 15,
-    backgroundColor: '#E71D36'
+    paddingVertical: 5,   // Adjusted vertical padding
+    paddingHorizontal: 5,   // Adjusted horizontal padding
+    borderTopWidth: 5,
+    borderTopColor: '#2d2d2d',
   },
-  modalModifyButton: {
-    width: '90%',
-    alignItems: 'center',
-    height: '10%',
-    marginTop: '5%',
-    marginLeft: '5%',
-    borderRadius: 15,
-    backgroundColor: '#6EBF34'
-  }
+  
+  userProfile: {
+    backgroundColor: 'transparent',
+    borderRadius: 50,
+    padding: 0,
+    marginRight: 15,  // Adjusted margin for better spacing
+  },
+  userTransaction: {
+    color: '#e1e1e1',
+    fontSize: 16,
+    fontWeight: '600',
+  },
 });
 
 export default ContactList;

@@ -9,6 +9,8 @@ import avis from './Asset/avis.png';
 import notif from './Asset/notif.png';
 import api from '../../globals/query/API';
 
+import * as Animatable from 'react-native-animatable';
+
 function Planning({ navigation }) {
   const [date, setDate] = useState(new Date());
 
@@ -25,24 +27,26 @@ function Planning({ navigation }) {
       <View style={styles.welcome}>
         <Text style={styles.first}>Bonjour, User !</Text>
         <Text style={styles.second}>Voyons voir le planning d'aujourd'hui !</Text>
+
         <TouchableHighlight
           style={styles.addSlotButton}
           onPress={() => navigation.navigate('AddSlot')}
         >
-          <Text style={{ color: 'green', fontWeight: '700', fontSize: 32, marginLeft: '30%' }}>
+          <Animatable.Text animation="pulse" iterationCount="infinite" style={{ color: 'green', fontWeight: '700', fontSize: 32, marginLeft: '30%' }}>
             +
-          </Text>
+          </Animatable.Text>
         </TouchableHighlight>
+
         <TouchableHighlight
           style={styles.profilButton}
           onPress={() => navigation.navigate('Home2')}
         >
-          <Image
+          <Animatable.Image animation="pulse" iterationCount="infinite"
             style={styles.profil}
             source={{
               uri: 'https://image.shutterstock.com/image-photo/photo-handsome-nice-guy-getting-260nw-1478654612.jpg'
             }}
-          ></Image>
+          ></Animatable.Image>
         </TouchableHighlight>
       </View>
       <DateSlider date={date} onChange={(newDate) => setDate(newDate)} />

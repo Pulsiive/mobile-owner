@@ -6,19 +6,17 @@ import {
   Pressable,
   TouchableWithoutFeedback,
   StyleSheet,
-  SafeAreaView,
-  ScrollView,
-  Typography
+  FlatList,
+  Dimensions
 } from 'react-native';
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
 import MessagesViewInformation from './MessageInformationVariable';
 import api from '../../globals/query/API';
 import { set } from 'date-fns';
 import SearchComponent from '../../globals/components/header/SearchFilter';
+import * as Animatable from 'react-native-animatable';
 
 const MessageCard = (props) => {
-  console.log('MessageCard');
-  console.log(props);
   return (
     <TouchableWithoutFeedback
       onPress={() =>
@@ -27,13 +25,13 @@ const MessageCard = (props) => {
         })
       }
     >
-      <View style={{ flexDirection: 'row', height: '10000%' }}>
-        <Icon style={styles.userProfile} name="user" size={30} color="white" />
-        <View style={{ marginLeft: '10%', marginTop: '1%' }}>
-          <Text style={styles.userTransaction}>{props.name}</Text>
-          <Text style={{ color: '#686868' }}>{props.lastMessage}</Text>
+      <View style={styles.cardContainer}>
+        <Icon style={styles.userProfile} name="user-circle-o" size={50} color="white" />
+        <View style={styles.cardContent}>
+          <Text style={styles.userName}>{props.name}</Text>
+          <Animatable.Text animation="fadeInRight" duration={7000} style={styles.lastMessage}>... {props.lastMessage}</Animatable.Text>
         </View>
-        <Icon style={{ position: 'absolute', right: '3%' }} name="phone" size={20} color="white" />
+        <Icon style={styles.phoneIcon} name="comment-o" size={30} color="white" />
       </View>
     </TouchableWithoutFeedback>
   );
@@ -59,80 +57,37 @@ const Messages = ({ navigation }) => {
   const [filteredList, setFilteredList] = useState([]);
 
   useEffect(() => {
-    api.send('GET', '/api/v1/profile/contacts', null, true).then((res) => {
-      console.log('data: ', res.data);
-      console.log('length: ', res.data.length);
+    async function fetchContacts() {
+      try {
+        const res = await api.send('GET', '/api/v1/profile/contacts', null, true);
+        console.log('data: ', res.data);
+        console.log('length: ', res.data.length);
 
-      if (res.status == 200) {
-        const tmpContactList = [];
-        for (let i = 0; i < res.data.length; i++) {
-          console.log(i);
-          console.log(res.data[i]);
-          tmpContactList.push({
-            id: res.data[i].user.id,
-            name: res.data[i].user.firstName,
-            lastName: res.data[i].user.lastName,
-            lastMessage: 'xxxxxxxxxxxxxxxxxxxx'
-          });
+        if (res.status == 200) {
+          const tmpContactList = [];
+          for (let i = 0; i < res.data.length; i++) {
+            console.log(i);
+            console.log(res.data[i]);
+            tmpContactList.push({
+              id: res.data[i].user.id,
+              name: res.data[i].user.firstName,
+              lastName: res.data[i].user.lastName,
+              lastMessage: 'have a nice day!'
+            });
+          }
+          console.log('tmp message contact list: ', tmpContactList);
+          setUserDatabase(tmpContactList);
+          //          setUserData({ firstName: res.data.firstName, lastName: res.data.lastName });
+        } else {
+          throw res;
         }
-        console.log('tmp message contact list: ', tmpContactList);
-        setUserDatabase(tmpContactList);
+      } catch (e) {
+        const code = e.status;
+        alert('Error: Contact could not be fetched');
       }
-    });
-  }, []);
-
-  // useEffect(() => {
-  //   // async function fetchContacts() {
-  //   // try {
-  //   console.log('messages fetch contact');
-  //   const res = api.send('GET', '/api/v1/profile/contacts', null, true).then((res) => {
-  //     console.log('data: ', res.data);
-  //     console.log('length: ', res.data.length);
-
-  //     if (res.status == 200) {
-  //       const tmpContactList = [];
-  //       for (let i = 0; i < res.data.length; i++) {
-  //         console.log(i);
-  //         console.log(res.data[i]);
-  //         tmpContactList.push({
-  //           id: res.data[i].user.id,
-  //           name: res.data[i].user.firstName,
-  //           lastName: res.data[i].user.lastName,
-  //           lastMessage: 'xxxxxxxxxxxxxxxxxxxx'
-  //         });
-  //       }
-  //       console.log('tmp message contact list: ', tmpContactList);
-  //       setUserDatabase(tmpContactList);
-  //     }
-  //   });
-  //   //   console.log('data: ', res.data);
-  //   //   console.log('length: ', res.data.length);
-
-  //   //   if (res.status == 200) {
-  //   //     const tmpContactList = [];
-  //   //     for (let i = 0; i < res.data.length; i++) {
-  //   //       console.log(i);
-  //   //       console.log(res.data[i]);
-  //   //       tmpContactList.push({
-  //   //         id: res.data[i].user.id,
-  //   //         name: res.data[i].user.firstName,
-  //   //         lastName: res.data[i].user.lastName,
-  //   //         lastMessage: 'xxxxxxxxxxxxxxxxxxxx'
-  //   //       });
-  //   //     }
-  //   //     console.log('tmp message contact list: ', tmpContactList);
-  //   //     setUserDatabase(tmpContactList);
-  //   //     //          setUserData({ firstName: res.data.firstName, lastName: res.data.lastName });
-  //   //   } else {
-  //   //     throw res;
-  //   //   }
-  //   // } catch (e) {
-  //   //   const code = e.status;
-  //   //   alert('Error: Contact could not be fetched');
-  //   // }
-  //   // }
-  //   // fetchContacts();
-  // }, [filterSelected]);
+    }
+    fetchContacts();
+  }, [searchFilterValue]);
 
   useEffect(() => {
     console.log("Searching for:'", searchFilterValue, "'");
@@ -148,12 +103,15 @@ const Messages = ({ navigation }) => {
       </View>
       {/* CONTENT */}
       <View style={styles.container}>
-        <TextInput
-          style={styles.input}
-          onChangeText={(text) => setSearchFilterValue(text)}
-          placeholder="Research"
-          autoComplete="username"
-        />
+        <View style={styles.searchBarContainer}>
+            <Icon style={styles.searchIcon} name="search" size={20} color="gray" />
+            <TextInput
+              style={styles.searchBarInput}
+              onChangeText={(text) => setSearchFilterValue(text)}
+              placeholder="Search"
+              autoComplete="off"
+            />
+        </View>
         {/* FILTER */}
         <View style={styles.filter}>
           <TouchableWithoutFeedback onPress={() => setFilterSelected(1)}>
@@ -173,25 +131,21 @@ const Messages = ({ navigation }) => {
           </TouchableWithoutFeedback>
         </View>
         {/* VIEWLIST */}
-        <View style={styles.scrollList}>
-          <SafeAreaView style={styles.container}>
-            <ScrollView style={styles.scrollView}>
-              <View>
-                {userDatabase.map((elem, i) => (
-                  <View style={{ height: 70 }}>
-                    <MessageCard
-                      name={elem.name}
-                      lastName={elem.lastName}
-                      id={elem.id}
-                      lastMessage={elem.lastMessage}
-                      navigation={navigation}
-                    />
-                  </View>
-                ))}
-              </View>
-            </ScrollView>
-          </SafeAreaView>
-        </View>
+        <FlatList
+          data={filteredList}
+          keyExtractor={(item, index) => index.toString()}
+          renderItem={({ item }) => (
+            <MessageCard
+              name={item.name}
+              lastName={item.lastName}
+              id={item.id}
+              lastMessage={item.lastMessage}
+              navigation={navigation}
+            />
+          )}
+          contentContainerStyle={styles.cardList}
+          style={{ flexGrow: 1 }} // Add this line
+        />
       </View>
     </View>
   );
@@ -203,7 +157,6 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%'
   },
-
   //HEADER
   headWalletInformation: {
     flexDirection: 'row',
@@ -212,20 +165,6 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '10%'
   },
-  backButton: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    height: '80%',
-    width: '10%',
-    borderRadius: 10,
-    elevation: 3,
-    backgroundColor: '#6EBF34'
-  },
-  backButtonContent: {
-    color: 'white',
-    fontSize: 20,
-    fontWeight: '800'
-  },
   title: {
     textAlign: 'center',
     fontWeight: '600',
@@ -233,15 +172,7 @@ const styles = StyleSheet.create({
     color: 'white',
     width: '100%'
   },
-
   //CONTENT
-  input: {
-    borderRadius: 15,
-    backgroundColor: '#474747',
-    width: '90%',
-    marginLeft: '5%',
-    marginBottom: '2%'
-  },
   filter: {
     flexDirection: 'row',
     width: '90%',
@@ -259,21 +190,10 @@ const styles = StyleSheet.create({
   },
   container: {
     marginTop: '5%',
-    height: '90%'
-  },
-
-  scrollList: {
-    width: '100%',
-    height: '82%'
-  },
-  container: {
-    flex: 1
-  },
-  scrollView: {
-    marginHorizontal: 20
+    paddingHorizontal: 10,
+    flex: 1, // Add this line
   },
   userProfile: {
-    backgroundColor: 'black',
     marginTop: '3%',
     marginBottom: '2%'
   },
@@ -281,7 +201,51 @@ const styles = StyleSheet.create({
     color: 'white',
     fontWeight: '600',
     fontSize: 18
-  }
+  },
+  cardContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginVertical: 5,
+    backgroundColor: '#000000', // Make the space between cards white
+    borderRadius: 10, // Optional: Add rounded corners
+    padding: 10, // Optional: Add padding to the cards
+  },
+  cardContent: {
+    flex: 1,
+    marginLeft: 20,
+  },
+  userName: {
+    fontSize: 20,
+    color: '#e6e6e6',
+    fontWeight: 'bold',
+  },
+  lastMessage: {
+    fontSize: 14,
+    color: '#04BF7B',
+  },
+  phoneIcon: {
+    position: 'absolute',
+    right: 10,
+  },
+  cardList: {
+    paddingBottom: 40,
+  },
+  searchBarContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: 'white',
+    borderWidth: 1,
+    borderRadius: 10,
+    paddingHorizontal: 10,
+    marginBottom: 10,
+  },
+  searchIcon: {
+    marginRight: 10,
+  },
+  searchBarInput: {
+    flex: 1,
+    fontSize: 16,
+  },
 });
 
 export default Messages;
