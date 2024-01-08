@@ -87,7 +87,9 @@ const RenderReservationRequest = ({ item: request, handleStatusUpdate }) => {
           </View>
           <View style={{ flexDirection: 'row', alignItems: 'baseline' }}>
             <Icon name="euro" size={15} color={'black'} />
-            <Text style={{ color: 'black', fontSize: 18, marginLeft: 10 }}>{request.price}</Text>
+            <Text style={{ color: 'black', fontSize: 18, marginLeft: 10 }}>
+              {request.price / 100}
+            </Text>
           </View>
         </View>
       </View>
