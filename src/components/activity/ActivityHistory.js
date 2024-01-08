@@ -11,6 +11,7 @@ import {
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
 import Icon5 from 'react-native-vector-icons/dist/FontAwesome5';
 import Dropdown from 'react-native-input-select';
+const axios = require('axios');
 
 import serviceAccessToken from '../../globals/query/AccessToken';
 import api from '../../globals/query/API';
@@ -79,6 +80,49 @@ const ActivityHistory = ({ navigation }) => {
     fetchStations();
   }, []);
 
+  useEffect(() => {
+    async function fetchReservations() {
+      try {
+        console.log('fetching reservations');
+        api.getAccessToken().then((token) => {
+          axios
+            .request({
+              method: 'get',
+              maxBodyLength: Infinity,
+              url: 'http://ec2-18-191-136-248.us-east-2.compute.amazonaws.com:3000/api/v1/reservation',
+              headers: {
+                Authorization: `Bearer ${token}`
+              }
+            })
+            .then((res) => {
+              console.log('reservations data: ', JSON.stringify(res.data));
+              const tmpReservationList = [];
+              for (let i = 0; i < res.data.length; i++) {
+                console.log('index: ', i);
+                console.log('data index: ', res.data[i]);
+                tmpReservationList.push({
+                  station: `Station ${res.data[i].id.slice(0, 5)}`,
+                  date: res.data[i].opensAt.slice(0, 10),
+                  time: `${res.data[i].opensAt.slice(11, 16)}h`,
+                  price: res.data[i].stationProperties.price,
+                  address: res.data[i].stationProperties.station.coordinates.address
+                });
+              }
+              console.log('Reservation parsed tmp list: ', tmpReservationList);
+              setReservationData(tmpReservationList);
+            })
+            .catch((error) => {
+              console.log(error);
+            });
+        });
+      } catch (e) {
+        const code = e.status;
+        alert('Error: Reservations could not be fetched', e.message, code);
+      }
+    }
+    fetchReservations();
+  }, []);
+
   return (
     <View style={styles.viewTemplate}>
       {/* HEADER */}
@@ -95,7 +139,7 @@ const ActivityHistory = ({ navigation }) => {
               color="white"
             />
           </Pressable>
-          <Text style={styles.title}>Activity History</Text>
+          <Text style={styles.title}>Historique d'activité</Text>
 
           <View style={{ width: '100%' }}></View>
         </View>
@@ -104,7 +148,7 @@ const ActivityHistory = ({ navigation }) => {
       <View style={styles.filter}>
         <TouchableWithoutFeedback onPress={() => setFilterSelected(1)}>
           <Text style={filterSelected == 1 ? styles.selectedColor : styles.neutralColor}>
-            Station filter
+            Filtre station
           </Text>
         </TouchableWithoutFeedback>
         <TouchableWithoutFeedback onPress={() => setFilterSelected(2)}>
@@ -128,10 +172,13 @@ const ActivityHistory = ({ navigation }) => {
           <View
             style={{
               flexDirection: 'row',
-              height: '12%',
-              backgroundColor: '#0f0f0f',
-              borderRadius: 15,
-              marginTop: '2%'
+              height: '10%',
+              marginTop: '3%',
+              backgroundColor: '#1F1F1F',
+              borderColor: 'green',
+              borderWidth: 0.5,
+              marginHorizontal: 10,
+              borderRadius: 15
             }}
           >
             <Pressable

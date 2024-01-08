@@ -5,6 +5,11 @@ import fetch from 'node-fetch';
 class API {
   url = config.API_URL;
 
+  async getAccessToken() {
+    let accessToken = await serviceAccessToken.get();
+    return accessToken;
+  }
+
   async send(method, route, data = null, auth = true, multiform = false) {
     const headers = !multiform
       ? {

@@ -103,6 +103,12 @@ const DateSlider: React.FC<Props> = ({ date, onChange }) => {
             Vos dernières locations
           </Text>
         </View>
+        <View>
+          <Text style={{ color: 'white', fontWeight: '700', left: 4 + '%', marginTop: 0 + '%' }}>
+            {date.toISOString()}
+          </Text>
+        </View>
+
         <View style={styles.safe}>
           <FetchInfo date={date.toISOString().split('T')[0]} />
         </View>

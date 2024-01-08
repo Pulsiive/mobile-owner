@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Image, View, Text, Pressable, Button, StyleSheet } from 'react-native';
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
 import Icon5 from 'react-native-vector-icons/dist/FontAwesome5';
+const axios = require('axios');
 
 import serviceAccessToken from '../../globals/query/AccessToken';
 import api from '../../globals/query/API';
@@ -10,43 +11,69 @@ const Activity = ({ navigation }) => {
   const [reservationData, setReservationData] = useState([
     {
       station: 'Station 2',
-      date: '29 May 2023',
+      date: '29 November 2023',
       time: '20:41',
       price: '8.89',
       address: '11 rue Beethoven, 94400 Vitry sur seine'
     },
     {
       station: 'Station 1',
-      date: '01 June 2023',
+      date: '01 November 2023',
       time: '21:30',
       price: '7.50',
       address: '84 Boulevard Massena, 75013 Paris'
     }
   ]);
 
-  // useEffect(() => {
-  //   async function fetchData() {
-  //     try {
-  //       const res = await api.send('GET', '/api/v1/profile', (auth = true));
-  //       if (res.status == 200) {
-  //         setUserData({ firstName: res.data.firstName, lastName: res.data.lastName });
-  //       } else {
-  //         throw res;
-  //       }
-  //     } catch (e) {
-  //       const code = e.status;
-  //       alert('Error');
-  //     }
-  //   }
-  //   fetchData();
-  // }, []);
+  useEffect(() => {
+    async function fetchReservations() {
+      try {
+        console.log('fetching reservations');
+        api.getAccessToken().then((token) => {
+          axios
+            .request({
+              method: 'get',
+              maxBodyLength: Infinity,
+              url: 'http://ec2-18-191-136-248.us-east-2.compute.amazonaws.com:3000/api/v1/reservation',
+              headers: {
+                Authorization: `Bearer ${token}`
+              }
+            })
+            .then((res) => {
+              console.log('reservations data: ', JSON.stringify(res.data));
+              const tmpReservationList = [];
+              for (let i = 0; i < res.data.length; i++) {
+                console.log('index: ', i);
+                console.log('data index: ', res.data[i]);
+                tmpReservationList.push({
+                  station: `Station ${res.data[i].id.slice(0, 5)}`,
+                  date: res.data[i].opensAt.slice(0, 10),
+                  time: `${res.data[i].opensAt.slice(11, 16)}h`,
+                  price: res.data[i].stationProperties.price,
+                  address: res.data[i].stationProperties.station.coordinates.address
+                });
+              }
+              console.log('Reservation parsed tmp list: ', tmpReservationList);
+              setReservationData(tmpReservationList);
+            })
+            .catch((error) => {
+              console.log(error);
+            });
+        });
+      } catch (e) {
+        const code = e.status;
+        alert('Error: Reservations could not be fetched', e.message, code);
+      }
+    }
+    fetchReservations();
+  }, []);
 
   return (
     <View style={styles.viewTemplate}>
       {/* HEADER */}
       <View style={styles.headWalletInformation}>
         <View style={{ width: '100%', flexDirection: 'row' }}>
-          <Text style={styles.title}>Activity</Text>
+          <Text style={styles.title}>Activité</Text>
 
           <View style={{ width: '100%' }}>
             <Pressable
@@ -54,7 +81,7 @@ const Activity = ({ navigation }) => {
                 flexDirection: 'row',
                 alignItems: 'center',
                 height: '60%',
-                width: '23%',
+                width: '27%',
                 borderRadius: 30,
                 marginLeft: '42%',
                 backgroundColor: 'lightblue'
@@ -62,7 +89,7 @@ const Activity = ({ navigation }) => {
               onPress={() => navigation.navigate('ActivityHistory')}
             >
               <Icon style={{ marginLeft: '8%' }} name="clock-o" size={25} color="black" />
-              <Text style={styles.rating}> History</Text>
+              <Text style={styles.rating}> Historique</Text>
             </Pressable>
           </View>
         </View>
@@ -76,8 +103,7 @@ const Activity = ({ navigation }) => {
           marginLeft: '6%'
         }}
       >
-        {' '}
-        Recent
+        Récent
       </Text>
       {/* CONTENT */}
       <View style={styles.container}>
@@ -153,7 +179,7 @@ const Activity = ({ navigation }) => {
                 marginLeft: '5%'
               }}
             >
-              View History
+              Voir Historique
             </Text>
             <View
               style={{

@@ -104,6 +104,7 @@ const PlanningSectionComponent = ({ navigation }) => {
 
 const DashboardSection = ({ navigation }) => {
   const [reservations, setReservations] = useState(null);
+  const [stationData, setStationData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
   const showErrorMessage = (message) => {
@@ -132,23 +133,49 @@ const DashboardSection = ({ navigation }) => {
     }, [])
   );
 
-  const data = [
-    {
-      station: 'borne Vitry',
-      recette: '150$',
-      isUsed: true
-    },
-    {
-      station: 'borne Kremlin',
-      recette: '57$',
-      isUsed: false
-    },
-    {
-      station: 'borne Ivry',
-      recette: '423,58$',
-      isUsed: true
+  useEffect(() => {
+    async function fetchStations() {
+      try {
+        console.log('fetching stations');
+        const res = await api.send('GET', '/api/v1/profile/stations', true);
+        console.log('data: ', res.data);
+        console.log('length: ', res.data.stations.length);
+
+        if (res.status == 200) {
+          const tmpContactList = [];
+          const tmpOptionList = [{ name: 'All', code: 0 }];
+          for (let i = 0; i < res.data.stations.length; i++) {
+            console.log(i);
+            console.log(res.data.stations[i]);
+            tmpContactList.push({
+              valueName: res.data.stations[i].coordinates.id.substring(0, 15),
+              voltage: res.data.stations[i].properties.maxPower,
+              inputType: res.data.stations[i].properties.plugTypes,
+              price: res.data.stations[i].properties.price,
+              station: res.data.stations[i].coordinates.id.substring(0, 15),
+              recette: i === 0 ? '150$' : '15$',
+              isUsed: i === 0 ? true : false
+            });
+            // tmpOptionList.push({
+            //   name: res.data.stations[i].coordinates.id.substring(0, 15),
+            //   code: i + 1
+            // });
+          }
+          console.log('tmp list: ', tmpContactList);
+          console.log('Option: ', tmpOptionList);
+
+          setStationData(tmpContactList);
+          //   console.log('Option: ', filterStationOptionData);
+        } else {
+          throw res;
+        }
+      } catch (e) {
+        const code = e.status;
+        alert('Error: Stations could not be fetched', e.message, code);
+      }
     }
-  ];
+    fetchStations();
+  }, []);
 
   const renderItem = ({ item, station }) => {
     console.log('', item);
@@ -162,13 +189,13 @@ const DashboardSection = ({ navigation }) => {
             }}
           />
         </View>
-        <Text style={{ color: 'white', marginLeft: '33%', marginTop: '10%', fontSize: 20 }}>
+        <Text style={{ color: 'white', marginLeft: '27%', marginTop: '10%', fontSize: 20 }}>
           {item.station}
         </Text>
         <Text style={{ color: 'white', marginLeft: '5%', marginTop: '10%', fontSize: 20 }}>
-          Recettes
+          Recettes:
         </Text>
-        <Text style={{ color: 'white', marginLeft: '5%', marginTop: '5%', fontSize: 25 }}>
+        <Text style={{ color: 'white', marginLeft: '5%', marginTop: '5%', fontSize: 30 }}>
           {item.recette}
         </Text>
         <View style={{ flexDirection: 'row' }}>
@@ -199,7 +226,7 @@ const DashboardSection = ({ navigation }) => {
           >
             <Pressable onPress={() => navigation.navigate('Planning')}>
               <Text style={{ color: 'white', marginLeft: '15%', marginTop: '0%', fontSize: 20 }}>
-                1 reservations a venir
+                reservations a venir
               </Text>
             </Pressable>
           </View>
@@ -237,7 +264,7 @@ const DashboardSection = ({ navigation }) => {
       }}
     >
       <Carousel
-        data={data}
+        data={stationData}
         renderItem={renderItem}
         sliderWidth={380}
         itemWidth={380}
@@ -326,13 +353,11 @@ const HomePage = ({ navigation }) => {
   return (
     <View style={{ height: '100%', width: '100%', backgroundColor: 'black' }}>
       <ProfileHeaderComponent />
-      {/* <PlanningSectionComponent navigation={navigation} /> */}
       {userStations && userStations.length == 0 ? (
         <CreateStationCard navigation={navigation} />
       ) : (
         <DashboardSection navigation={navigation} />
       )}
-      {/* <OtherSectionComponent navigation={navigation} /> */}
     </View>
   );
 };

@@ -32,11 +32,11 @@ const FetchInfo: React.FC<Props> = ({ date }) => {
   const [reservationDeletionInfo, setReservationDeletionInfo] = useState({});
   const [count, setCount] = useState(0);
 
-  console.log(date);
   useEffect(() => {
     function fillAgendaWithReservations(slot) {
       //   items.data = {};
-      console.log('filling agenda');
+      console.log('date selected: ', date);
+      console.log('filling agenda with', slot.length, 'slots');
       console.log(slot);
       let isAlreadyInAgenda = false;
 
@@ -67,7 +67,7 @@ const FetchInfo: React.FC<Props> = ({ date }) => {
         console.log('pushed one new object');
       }
       setItems(items);
-      console.log('HERE   ', items.data[date]);
+      console.log('HERE: ', date, items.data[date]);
     }
 
     async function fetchSlot() {
@@ -77,6 +77,7 @@ const FetchInfo: React.FC<Props> = ({ date }) => {
         const res = await api.send('GET', '/api/v1/slot', null, true);
 
         if (res.status == 200) {
+          console.log(res.data.length, 'slots fetched');
           for (var index = 0; index < res.data.length; index++) {
             slotParsed.push({
               id: res.data[index].id,

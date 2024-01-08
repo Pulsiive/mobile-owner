@@ -172,7 +172,7 @@ const ModalInformation = ({ setModal, stationData }) => {
                 backgroundColor: '#6EBF34'
               }}
             >
-              <Text style={{ color: 'black', marginTop: '3%' }}>Save</Text>
+              <Text style={{ color: 'black', marginTop: '3%' }}>Sauvegarder</Text>
             </View>
           </Pressable>
         </View>
@@ -193,7 +193,7 @@ const ModalInformation = ({ setModal, stationData }) => {
                 backgroundColor: '#F66565'
               }}
             >
-              <Text style={{ color: 'black', marginTop: '3%' }}>Cancel</Text>
+              <Text style={{ color: 'black', marginTop: '3%' }}>Annuler</Text>
             </View>
           </Pressable>
         </View>
@@ -213,7 +213,7 @@ const Stations = ({ stationData, navigation }) => {
     <View
       style={{
         backgroundColor: '#494949',
-        height: '13%',
+        height: 160,
         width: '95%',
         marginLeft: '2.5%',
         marginTop: '5%',
@@ -226,17 +226,17 @@ const Stations = ({ stationData, navigation }) => {
           source={require('../../images/charging_station.png')}
         />
         <View style={{ marginRight: '-10%' }}>
-          <Text style={styles.informationType}>Name</Text>
+          <Text style={styles.informationType}>Nom</Text>
           <Text style={styles.informationValue}>{stationData.valueName}</Text>
           <Text style={styles.informationType}>Voltage</Text>
           <Text style={styles.informationValue}>{stationData.voltage}</Text>
-          <Text style={styles.informationType}>Input</Text>
+          <Text style={styles.informationType}>Prise</Text>
           <Text style={styles.informationValue}>{stationData.inputType}</Text>
-          <Text style={styles.informationType}>Price</Text>
+          <Text style={styles.informationType}>Prix</Text>
           <Text style={styles.informationValue}>{stationData.price}</Text>
         </View>
         <Pressable style={styles.modifyButton} onPress={() => setModal(true)}>
-          <Text style={{ color: 'white' }}>Modify</Text>
+          <Text style={{ color: 'white' }}>Modifier</Text>
         </Pressable>
       </View>
       <Modal
@@ -320,7 +320,7 @@ const MyStations = ({ navigation }) => {
             marginLeft: '3%'
           }}
         >
-          My stations
+          Mes stations
         </Text>
       </View>
       <View
