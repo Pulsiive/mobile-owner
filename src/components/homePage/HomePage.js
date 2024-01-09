@@ -156,16 +156,11 @@ const DashboardSection = ({ navigation }) => {
               recette: i === 0 ? '150$' : '15$',
               isUsed: i === 0 ? true : false
             });
-            // tmpOptionList.push({
-            //   name: res.data.stations[i].coordinates.id.substring(0, 15),
-            //   code: i + 1
-            // });
           }
           console.log('tmp list: ', tmpContactList);
           console.log('Option: ', tmpOptionList);
 
           setStationData(tmpContactList);
-          //   console.log('Option: ', filterStationOptionData);
         } else {
           throw res;
         }

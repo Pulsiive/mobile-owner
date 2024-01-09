@@ -29,7 +29,9 @@ const MessageCard = (props) => {
         <Icon style={styles.userProfile} name="user-circle-o" size={50} color="white" />
         <View style={styles.cardContent}>
           <Text style={styles.userName}>{props.name}</Text>
-          <Animatable.Text animation="fadeInRight" duration={7000} style={styles.lastMessage}>... {props.lastMessage}</Animatable.Text>
+          <Animatable.Text animation="fadeInRight" duration={7000} style={styles.lastMessage}>
+            ... {props.lastMessage}
+          </Animatable.Text>
         </View>
         <Icon style={styles.phoneIcon} name="comment-o" size={30} color="white" />
       </View>
@@ -87,7 +89,7 @@ const Messages = ({ navigation }) => {
       }
     }
     fetchContacts();
-  }, [searchFilterValue]);
+  }, [searchFilterValue, filteredList]);
 
   useEffect(() => {
     console.log("Searching for:'", searchFilterValue, "'");
@@ -104,29 +106,29 @@ const Messages = ({ navigation }) => {
       {/* CONTENT */}
       <View style={styles.container}>
         <View style={styles.searchBarContainer}>
-            <Icon style={styles.searchIcon} name="search" size={20} color="gray" />
-            <TextInput
-              style={styles.searchBarInput}
-              onChangeText={(text) => setSearchFilterValue(text)}
-              placeholder="Search"
-              autoComplete="off"
-            />
+          <Icon style={styles.searchIcon} name="search" size={20} color="gray" />
+          <TextInput
+            style={styles.searchBarInput}
+            onChangeText={(text) => setSearchFilterValue(text)}
+            placeholder="Recherche"
+            autoComplete="off"
+          />
         </View>
         {/* FILTER */}
         <View style={styles.filter}>
           <TouchableWithoutFeedback onPress={() => setFilterSelected(1)}>
             <Text style={filterSelected == 1 ? styles.selectedColor : styles.neutralColor}>
-              All
+              Tous
             </Text>
           </TouchableWithoutFeedback>
           <TouchableWithoutFeedback onPress={() => setFilterSelected(2)}>
             <Text style={filterSelected == 2 ? styles.selectedColor : styles.neutralColor}>
-              My Tenant
+              Mes locataires
             </Text>
           </TouchableWithoutFeedback>
           <TouchableWithoutFeedback onPress={() => setFilterSelected(3)}>
             <Text style={filterSelected == 3 ? styles.selectedColor : styles.neutralColor}>
-              New tenant
+              Nouveaux
             </Text>
           </TouchableWithoutFeedback>
         </View>
@@ -191,7 +193,7 @@ const styles = StyleSheet.create({
   container: {
     marginTop: '5%',
     paddingHorizontal: 10,
-    flex: 1, // Add this line
+    flex: 1 // Add this line
   },
   userProfile: {
     marginTop: '3%',
@@ -208,27 +210,27 @@ const styles = StyleSheet.create({
     marginVertical: 5,
     backgroundColor: '#000000', // Make the space between cards white
     borderRadius: 10, // Optional: Add rounded corners
-    padding: 10, // Optional: Add padding to the cards
+    padding: 10 // Optional: Add padding to the cards
   },
   cardContent: {
     flex: 1,
-    marginLeft: 20,
+    marginLeft: 20
   },
   userName: {
     fontSize: 20,
     color: '#e6e6e6',
-    fontWeight: 'bold',
+    fontWeight: 'bold'
   },
   lastMessage: {
     fontSize: 14,
-    color: '#04BF7B',
+    color: '#04BF7B'
   },
   phoneIcon: {
     position: 'absolute',
-    right: 10,
+    right: 10
   },
   cardList: {
-    paddingBottom: 40,
+    paddingBottom: 40
   },
   searchBarContainer: {
     flexDirection: 'row',
@@ -237,15 +239,15 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 10,
     paddingHorizontal: 10,
-    marginBottom: 10,
+    marginBottom: 10
   },
   searchIcon: {
-    marginRight: 10,
+    marginRight: 10
   },
   searchBarInput: {
     flex: 1,
-    fontSize: 16,
-  },
+    fontSize: 16
+  }
 });
 
 export default Messages;
