@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import {
   TextInput,
   View,
@@ -14,6 +14,8 @@ import {
 import Icon from 'react-native-vector-icons/Entypo';
 import api from '../../globals/query/API';
 import * as Animatable from 'react-native-animatable';
+import serviceAccessToken from '../../globals/query/AccessToken';
+import config from '../../globals/utils/config';
 
 const Corechat = (props) => {
   const [deleteConfirm, setDeleteConfirm] = useState({ value: false, message: {} });
@@ -31,7 +33,6 @@ const Corechat = (props) => {
       if (res.status == 200) {
         console.log('Message has been deleted.');
         setDeleteConfirm({ value: false, message: {} });
-        props.update(true);
       } else {
         throw res;
       }
@@ -42,7 +43,7 @@ const Corechat = (props) => {
 
   return (
     <View>
-      <View style={{ marginVertical: 10 }}/> 
+      <View style={{ marginVertical: 10 }}/>
       {props.messageList.map((elem) => (
         <View>
           {deleteConfirm.value &&
@@ -71,6 +72,7 @@ const Corechat = (props) => {
 };
 
 const PrivateMessages = ({ route, navigation }) => {
+  let ws = null;
   const userProps = route.params;
   const [userMessage, setUserMessage] = useState('');
   const [messageList, setMessageList] = useState([
@@ -78,9 +80,11 @@ const PrivateMessages = ({ route, navigation }) => {
     { mine: false, message: 'Start a new conversation by sending the first message' },
     { mine: true, message: 'Your first message...' }
   ]);
-  const [render, setRender] = useState(true);
 
   const [loading, setLoading] = useState(true);
+  const stateRef = useRef();
+
+  stateRef.current = messageList;
 
   console.log('userProps: ', userProps);
   const submit = async () => {
@@ -97,7 +101,6 @@ const PrivateMessages = ({ route, navigation }) => {
       if (res.status == 200) {
         console.log('Message has been sent.');
         setUserMessage('');
-        setRender(true);
       } else {
         throw res;
       }
@@ -107,7 +110,6 @@ const PrivateMessages = ({ route, navigation }) => {
   };
 
   useEffect(() => {
-    console.log('re-redering');
     async function fetchMessages() {
       try {
         const res = await api.send('GET', '/api/v1/profile/messages', null, true);
@@ -159,21 +161,49 @@ const PrivateMessages = ({ route, navigation }) => {
         } else {
           throw res;
         }
-        setRender(false);
       } catch (e) {
         const code = e.status;
         alert('Error ', code, ': Messages could not be fetched');
-      } finally {
-        // Simulate a delay of 3 seconds before setting loading to false
-        setTimeout(() => {
-          setLoading(false);
-        }, 3000);
       }
     }
     fetchMessages();
 
-    console.log(messageList);
-  }, [render]);
+    ws = new WebSocket(config.WS_URL);
+
+    ws.onopen = async () => {
+      console.log('La connexion WebSocket est ouverte.');
+      let accessToken = await serviceAccessToken.get();
+      ws.send(accessToken);
+    };
+
+    ws.onmessage = (e) => {
+      console.log('Nouveau message reçu :', e.data);
+
+      try {
+        const newMsg = JSON.parse(e.data);
+        if (newMsg.authorId === userProps.user.id) {
+          setMessageList([{
+            mine: false,
+            id: newMsg.id,
+            authorId: newMsg.authorId,
+            receiverId: newMsg.receiverId,
+            message: newMsg.body,
+            createdAt: newMsg.createdAt
+          }, ...stateRef.current]);
+        }
+      } catch (e) {
+        console.log(e);
+      }
+    };
+
+    ws.onclose = () => {
+      console.log('La connexion WebSocket est fermée.');
+    };
+
+    return () => {
+      ws.close();
+    };
+  }, []);
 
   return (
     <View style={styles.viewTemplate}>
@@ -187,17 +217,17 @@ const PrivateMessages = ({ route, navigation }) => {
             paddingHorizontal: 20,
             paddingVertical: 10,
             shadowColor: 'white',
-            shadowOffset: { width: 0, height: 4 }, 
-            shadowOpacity: 1, 
+            shadowOffset: { width: 0, height: 4 },
+            shadowOpacity: 1,
             shadowRadius: 4,
             borderRadius: 10,
             marginHorizontal: 10,
-            elevation: 10, 
+            elevation: 10,
           }}
         >
           <Text style={{color: 'white', fontWeight: 'bold',}}> {userProps.user.name} {userProps.user.lastName} </Text>
         </TouchableOpacity>
-      </Animatable.View> 
+      </Animatable.View>
         </View>
 
       {/* Loading Indicator */}
@@ -213,7 +243,7 @@ const PrivateMessages = ({ route, navigation }) => {
         <View style={styles.scrollList}>
           <SafeAreaView style={styles.container}>
             <ScrollView style={styles.scrollView}>
-              <Corechat messageList={messageList} update={setRender} />
+              <Corechat messageList={messageList} />
             </ScrollView>
           </SafeAreaView>
         </View>
@@ -344,29 +374,29 @@ const styles = StyleSheet.create({
     shadowColor: 'white',
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.5,
-    shadowRadius: 4, 
-    elevation: 10, 
+    shadowRadius: 4,
+    elevation: 10,
     marginLeft: 15,
   },
   userMessageBubble: {
     backgroundColor: '#4FC3F7',
     color: 'white',
     borderRadius: 15,
-    padding: 10, 
+    padding: 10,
     maxWidth: '70%',
     alignSelf: 'flex-end',
-    marginBottom: 10, 
+    marginBottom: 10,
     fontSize: 16,
   },
   otherMessageBubble: {
     backgroundColor: '#DCF8C6',
-    color: 'black', 
-    borderRadius: 15, 
-    padding: 10, 
+    color: 'black',
+    borderRadius: 15,
+    padding: 10,
     maxWidth: '70%',
-    alignSelf: 'flex-start', 
-    marginBottom: 10, 
-    fontSize: 16, 
+    alignSelf: 'flex-start',
+    marginBottom: 10,
+    fontSize: 16,
   },
 });
 
