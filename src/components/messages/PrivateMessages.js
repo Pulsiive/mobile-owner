@@ -9,7 +9,7 @@ import {
   StyleSheet,
   SafeAreaView,
   ScrollView,
-  ActivityIndicator, // Import the ActivityIndicator component
+  ActivityIndicator // Import the ActivityIndicator component
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Entypo';
 import api from '../../globals/query/API';
@@ -33,6 +33,7 @@ const Corechat = (props) => {
       if (res.status == 200) {
         console.log('Message has been deleted.');
         setDeleteConfirm({ value: false, message: {} });
+        props.handleDeleteState();
       } else {
         throw res;
       }
@@ -43,7 +44,7 @@ const Corechat = (props) => {
 
   return (
     <View>
-      <View style={{ marginVertical: 10 }}/>
+      <View style={{ marginVertical: 10 }} />
       {props.messageList.map((elem) => (
         <View>
           {deleteConfirm.value &&
@@ -74,6 +75,7 @@ const Corechat = (props) => {
 const PrivateMessages = ({ route, navigation }) => {
   let ws = null;
   const userProps = route.params;
+  const [deleteState, setDeleteState] = useState(false);
   const [userMessage, setUserMessage] = useState('');
   const [messageList, setMessageList] = useState([
     { mine: false, message: 'Seems like it is empty !' },
@@ -86,6 +88,10 @@ const PrivateMessages = ({ route, navigation }) => {
 
   stateRef.current = messageList;
 
+  const handleDeleteState = () => {
+    setDeleteState(!deleteState);
+  };
+
   console.log('userProps: ', userProps);
   const submit = async () => {
     // messageList.push({ mine: true, message: userMessage });
@@ -96,9 +102,21 @@ const PrivateMessages = ({ route, navigation }) => {
       };
       console.log(body);
       const res = await api.send('POST', '/api/v1/profile/message', body, (auth = true));
+      const profileResponse = await api.send('GET', '/api/v1/profile', null, (auth = true));
 
       console.log(res);
-      if (res.status == 200) {
+      console.log(profileResponse);
+      if (res.status == 200 && profileResponse.status == 200) {
+        setMessageList([
+          ...stateRef.current,
+          {
+            mine: true,
+            authorId: profileResponse.data.id,
+            receiverId: userProps.user.id,
+            message: userMessage,
+            createdAt: new Date()
+          }
+        ]);
         console.log('Message has been sent.');
         setUserMessage('');
       } else {
@@ -174,6 +192,7 @@ const PrivateMessages = ({ route, navigation }) => {
       console.log('La connexion WebSocket est ouverte.');
       let accessToken = await serviceAccessToken.get();
       ws.send(accessToken);
+      setLoading(false);
     };
 
     ws.onmessage = (e) => {
@@ -181,15 +200,19 @@ const PrivateMessages = ({ route, navigation }) => {
 
       try {
         const newMsg = JSON.parse(e.data);
+
         if (newMsg.authorId === userProps.user.id) {
-          setMessageList([{
-            mine: false,
-            id: newMsg.id,
-            authorId: newMsg.authorId,
-            receiverId: newMsg.receiverId,
-            message: newMsg.body,
-            createdAt: newMsg.createdAt
-          }, ...stateRef.current]);
+          setMessageList([
+            ...stateRef.current,
+            {
+              mine: false,
+              id: newMsg.id,
+              authorId: newMsg.authorId,
+              receiverId: newMsg.receiverId,
+              message: newMsg.body,
+              createdAt: newMsg.createdAt
+            }
+          ]);
         }
       } catch (e) {
         console.log(e);
@@ -203,32 +226,46 @@ const PrivateMessages = ({ route, navigation }) => {
     return () => {
       ws.close();
     };
-  }, []);
+  }, [deleteState]);
 
   return (
     <View style={styles.viewTemplate}>
-
-      <View style={{ marginTop: 0, padding: 10, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', }}>
-      <Icon name="chevron-with-circle-left" size={30} style={styles.sendIcon} onPress={() => navigation.navigate('Messages')}/>
-      <Animatable.View animation="pulse" iterationCount="infinite">
-        <TouchableOpacity
-          style={{
-            backgroundColor: '#1a1a1a',
-            paddingHorizontal: 20,
-            paddingVertical: 10,
-            shadowColor: 'white',
-            shadowOffset: { width: 0, height: 4 },
-            shadowOpacity: 1,
-            shadowRadius: 4,
-            borderRadius: 10,
-            marginHorizontal: 10,
-            elevation: 10,
-          }}
-        >
-          <Text style={{color: 'white', fontWeight: 'bold',}}> {userProps.user.name} {userProps.user.lastName} </Text>
-        </TouchableOpacity>
-      </Animatable.View>
-        </View>
+      <View
+        style={{
+          marginTop: 0,
+          padding: 10,
+          flexDirection: 'row',
+          justifyContent: 'space-between',
+          alignItems: 'center'
+        }}
+      >
+        <Icon
+          name="chevron-with-circle-left"
+          size={30}
+          style={styles.sendIcon}
+          onPress={() => navigation.navigate('Messages')}
+        />
+        <Animatable.View animation="pulse" iterationCount="infinite">
+          <TouchableOpacity
+            style={{
+              backgroundColor: '#1a1a1a',
+              paddingHorizontal: 20,
+              paddingVertical: 10,
+              shadowColor: 'white',
+              shadowOffset: { width: 0, height: 4 },
+              shadowOpacity: 1,
+              shadowRadius: 4,
+              borderRadius: 10,
+              marginHorizontal: 10,
+              elevation: 10
+            }}
+          >
+            <Text style={{ color: 'white', fontWeight: 'bold' }}>
+              {userProps.user.name} {userProps.user.lastName}
+            </Text>
+          </TouchableOpacity>
+        </Animatable.View>
+      </View>
 
       {/* Loading Indicator */}
       {loading && (
@@ -239,24 +276,24 @@ const PrivateMessages = ({ route, navigation }) => {
 
       {/* CONTENT */}
       {!loading && (
-      <View style={styles.container}>
-        <View style={styles.scrollList}>
-          <SafeAreaView style={styles.container}>
-            <ScrollView style={styles.scrollView}>
-              <Corechat messageList={messageList} />
-            </ScrollView>
-          </SafeAreaView>
+        <View style={styles.container}>
+          <View style={styles.scrollList}>
+            <SafeAreaView style={styles.container}>
+              <ScrollView style={styles.scrollView}>
+                <Corechat messageList={messageList} handleDeleteState={handleDeleteState} />
+              </ScrollView>
+            </SafeAreaView>
+          </View>
+          <View style={styles.inputView}>
+            <TextInput
+              style={styles.input}
+              onChangeText={(text) => setUserMessage(text)}
+              placeholder="Your message..."
+              value={userMessage}
+            />
+            <Icon name="paper-plane" size={25} style={styles.sendIcon} onPress={submit} />
+          </View>
         </View>
-        <View style={styles.inputView}>
-          <TextInput
-            style={styles.input}
-            onChangeText={(text) => setUserMessage(text)}
-            placeholder="Your message..."
-            value={userMessage}
-          />
-          <Icon name="paper-plane" size={25} style={styles.sendIcon} onPress={submit} />
-        </View>
-      </View>
       )}
     </View>
   );
@@ -319,10 +356,10 @@ const styles = StyleSheet.create({
   },
   scrollList: {
     width: '100%',
-    height: '85%',
+    height: '85%'
   },
   container: {
-    flex: 1,
+    flex: 1
   },
   scrollView: {
     marginHorizontal: 20
@@ -356,7 +393,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#1a1a1a',
+    backgroundColor: '#1a1a1a'
   },
   sendIcon: {
     padding: 10,
@@ -376,7 +413,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.5,
     shadowRadius: 4,
     elevation: 10,
-    marginLeft: 15,
+    marginLeft: 15
   },
   userMessageBubble: {
     backgroundColor: '#4FC3F7',
@@ -386,7 +423,7 @@ const styles = StyleSheet.create({
     maxWidth: '70%',
     alignSelf: 'flex-end',
     marginBottom: 10,
-    fontSize: 16,
+    fontSize: 16
   },
   otherMessageBubble: {
     backgroundColor: '#DCF8C6',
@@ -396,8 +433,8 @@ const styles = StyleSheet.create({
     maxWidth: '70%',
     alignSelf: 'flex-start',
     marginBottom: 10,
-    fontSize: 16,
-  },
+    fontSize: 16
+  }
 });
 
 export default PrivateMessages;
