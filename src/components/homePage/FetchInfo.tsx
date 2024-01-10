@@ -17,33 +17,22 @@ import api from '../../globals/query/API';
 import { id } from 'date-fns/locale';
 import { useFocusEffect } from '@react-navigation/native';
 
-type Props = {
-  date: Date;
-};
-
-type Item = {
-  name: string;
-};
-
-const FetchInfo: React.FC<Props> = ({ date }) => {
+const FetchInfo = ({ date }) => {
   const firstOpacity = useRef(new Animated.Value(0)).current;
   const TranslationUp = useRef(new Animated.Value(-20)).current;
-  const [items, setItems] = useState<{ [key: string]: Item[] }>({ data });
+  const [items, setItems] = useState({ data });
   const [modalVisible, setModalVisible] = useState(false);
   const [reservationDeletionInfo, setReservationDeletionInfo] = useState({});
   const [count, setCount] = useState(0);
 
   useFocusEffect(() => {
-    function fillAgendaWithReservations(slot) {
-      //   items.data = {};
+    async function fillAgendaWithReservations(slot) {
       console.log('date selected: ', date);
       console.log('filling agenda with', slot.length, 'slots');
       console.log(slot);
       let isAlreadyInAgenda = false;
 
       for (let index = 0; index < slot.length; index++) {
-        ///////////////////////////////////////////////////////////////////////
-        //    Error checking to see if slot is already contained in Agenda    /
         for (const idToCheck in items.data[slot[index].date]) {
           if (parseInt(items.data[slot[index].date][idToCheck].id) === index)
             isAlreadyInAgenda = true;
@@ -52,7 +41,6 @@ const FetchInfo: React.FC<Props> = ({ date }) => {
           isAlreadyInAgenda = false;
           break;
         }
-        ///////////////////////////////////////////////////////////////////////
         if (items.data[slot[index].date] === undefined) items.data[slot[index].date] = [];
         items.data[slot[index].date].push({
           date: slot[index].date,
@@ -100,13 +88,6 @@ const FetchInfo: React.FC<Props> = ({ date }) => {
       }
     }
     fetchSlot();
-    // const interval = setInterval(() => {
-    //   setCount(count + 1);
-    //   setItems({ data });
-    // }, 10000);
-
-    // //Clearing the interval
-    // return () => clearInterval(interval);
   });
 
   const setModal = (event) => {
@@ -182,7 +163,6 @@ const FetchInfo: React.FC<Props> = ({ date }) => {
               >
                 <View>
                   <Image style={styles.picture} source={{ uri: plan.picture }}></Image>
-                  {/* <Text style={styles.name}>{plan.Name}</Text>  */}
                   <Text style={styles.name}>Borne {plan.Name.slice(0, 2)}</Text>
                   <View style={styles.firstRow}>
                     <Image style={styles.rendCalendar} source={calendar}></Image>

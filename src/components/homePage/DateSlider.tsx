@@ -14,19 +14,16 @@ import MyCalendar from './MyCalendar';
 import FetchInfo from './FetchInfo';
 import arrow from './Asset/arrow.png';
 
-type Props = {
-  date: Date;
-  onChange: (value: Date) => void;
-};
-
-const DateSlider: React.FC<Props> = ({ date, onChange }) => {
+const DateSlider = ({ date, onChange }) => {
   const [date1, setDate] = useState(new Date());
-  const [week, setWeek] = useState<WeekDay[]>([]);
+  const [week, setWeek] = useState([]);
   const [open, setOpen] = useState(false);
+
   useEffect(() => {
     var weekDays = getWeekDays(date);
     setWeek(weekDays);
   }, [date]);
+
   useEffect(() => {
     console.log(date1);
     const iso = new Date(date1);
@@ -58,8 +55,8 @@ const DateSlider: React.FC<Props> = ({ date, onChange }) => {
       <TouchableHighlight
         style={{
           position: 'absolute',
-          top: 35 + '%',
-          left: 2 + '%',
+          top: '35%',
+          left: '2%',
           justifyContent: 'center',
           alignItems: 'center',
           width: 50,
@@ -76,35 +73,19 @@ const DateSlider: React.FC<Props> = ({ date, onChange }) => {
           }}
         ></ImageBackground>
       </TouchableHighlight>
-      {/* <Pressable onPress={() => setOpen(!open)}>
-        <View
-          style={{
-            position: 'absolute',
-            width: 25,
-            height: 25,
-            backgroundColor: 'white',
-            top: 32 + '%',
-            left: 5 + '%'
-          }}
-        />
-      </Pressable> */}
       {open && (
-        <View style={{ marginTop: 10 + '%' }}>
-          <MyCalendar
-            date={{ date }}
-            onChange={(date) => setDate(date)}
-            open={(open) => setOpen(open)}
-          />
+        <View style={{ marginTop: '10%' }}>
+          <MyCalendar date={{ date }} onChange={(date) => setDate(date)} open={(open) => setOpen(open)} />
         </View>
       )}
-      <View style={{ top: 7 + '%' }}>
+      <View style={{ top: '7%' }}>
         <View>
-          <Text style={{ color: 'white', fontWeight: '700', left: 4 + '%', marginTop: 0 + '%' }}>
+          <Text style={{ color: 'white', fontWeight: '700', left: '4%', marginTop: '0%' }}>
             Vos dernières locations
           </Text>
         </View>
         <View>
-          <Text style={{ color: 'white', fontWeight: '700', left: 4 + '%', marginTop: 0 + '%' }}>
+          <Text style={{ color: 'white', fontWeight: '700', left: '4%', marginTop: '0%' }}>
             {date.toISOString()}
           </Text>
         </View>
@@ -119,8 +100,8 @@ const DateSlider: React.FC<Props> = ({ date, onChange }) => {
 
 const styles = StyleSheet.create({
   safe: {
-    left: 3 + '%',
-    marginTop: 10 + '%'
+    left: '3%',
+    marginTop: '10%'
   },
   container: {
     transform: [{ scale: 0.95 }],
@@ -157,13 +138,7 @@ const styles = StyleSheet.create({
   }
 });
 
-type WeekDay = {
-  formatted: string;
-  date: Date;
-  day: number;
-};
-
-export const getWeekDays = (date: Date): WeekDay[] => {
+const getWeekDays = (date) => {
   const start = startOfWeek(date, { weekStartsOn: 1 });
   const final = [];
 
