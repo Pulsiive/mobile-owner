@@ -149,10 +149,11 @@ const DashboardSection = ({ navigation }) => {
             console.log(res.data.stations[i]);
             tmpContactList.push({
               valueName: res.data.stations[i].coordinates.id.substring(0, 15),
+              city: res.data.stations[i].coordinates.city,
               voltage: res.data.stations[i].properties.maxPower,
               inputType: res.data.stations[i].properties.plugTypes,
               price: res.data.stations[i].properties.price,
-              station: res.data.stations[i].coordinates.id.substring(0, 15),
+              station: res.data.stations[i].coordinates.id.substring(0, 3),
               recette: i === 0 ? '150$' : '15$',
               isUsed: i === 0 ? true : false
             });
@@ -184,8 +185,8 @@ const DashboardSection = ({ navigation }) => {
             }}
           />
         </View>
-        <Text style={{ color: 'white', marginLeft: '27%', marginTop: '10%', fontSize: 20 }}>
-          {item.station}
+        <Text style={{ color: 'white', marginLeft: '18%', marginTop: '10%', fontSize: 20 }}>
+          Borne {item.city} {item.station}
         </Text>
         <Text style={{ color: 'white', marginLeft: '5%', marginTop: '10%', fontSize: 20 }}>
           Recettes:

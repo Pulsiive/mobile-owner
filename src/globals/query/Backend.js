@@ -20,7 +20,7 @@ class Backend {
     return res;
   };
   reqPhoneNumberOTP = async (phoneNumber) => {
-    const res = await API.send('POST', '/api/v1/phone-number/request', { phoneNumber }, false);
+    const res = await API.send('POST', '/api/v1/phone-number/request', { phoneNumber }, true);
     return res;
   };
 
@@ -34,7 +34,7 @@ class Backend {
       'POST',
       `/api/v1/phone-number/verify?otp=${otp}`,
       { phoneNumber },
-      false
+      true
     );
     return res;
   };

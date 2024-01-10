@@ -187,6 +187,9 @@ function AddSlot({ navigation }) {
         console.log('Slot has been created.');
         navigation.navigate('Planning');
         alert(`Votre creneau de station station a ${time} le ${dateArray} a bien été crée.`);
+        setActive(0);
+        setDate(new Date());
+        setTime('');
       } else {
         throw res;
       }

@@ -15,7 +15,7 @@ const AddContact = ({ navigation }) => {
   const handleChange = (text, field) => {
     setCardInput({
       ...cardInput,
-      [field]: text,
+      [field]: text
     });
   };
   const submit = async () => {
@@ -84,7 +84,12 @@ const AddContact = ({ navigation }) => {
         {/* <Pressable style={styles.backButton} onPress={() => navigation.navigate('ContactList')}>
           <Text style={styles.backButtonContent}>{'<'}</Text>
         </Pressable> */}
-        <Icon name="chevron-with-circle-left" size={40} style={{padding:10, color:'white'}} onPress={() => navigation.navigate('ContactList')}/>
+        <Icon
+          name="chevron-with-circle-left"
+          size={40}
+          style={{ padding: 10, color: 'white' }}
+          onPress={() => navigation.navigate('ContactList')}
+        />
         <Text style={styles.title}>Add a new contact</Text>
       </View>
       <View style={styles.inputContainer}>
@@ -126,13 +131,13 @@ const AddContact = ({ navigation }) => {
 const styles = StyleSheet.create({
   viewTemplate: {
     backgroundColor: '#121212',
-    flex: 1,
+    flex: 1
   },
   headWalletInformation: {
     flexDirection: 'row',
     padding: 10,
     marginTop: '8%',
-    alignItems: 'center',
+    alignItems: 'center'
   },
   backButton: {
     alignItems: 'center',
@@ -141,30 +146,30 @@ const styles = StyleSheet.create({
     height: 40,
     borderRadius: 20,
     marginLeft: 10,
-    backgroundColor: 'white',
+    backgroundColor: 'white'
   },
   backButtonContent: {
     color: '#04BF7B',
     fontSize: 24,
-    fontWeight: 'bold',
+    fontWeight: 'bold'
   },
   title: {
     color: 'white',
     fontSize: 24,
     fontWeight: 'bold',
-    marginLeft: 20,
+    marginLeft: 20
   },
   inputContainer: {
     paddingHorizontal: 20,
-    marginTop: 20,
+    marginTop: 20
   },
   inputRow: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: 40,
+    marginBottom: 40
   },
   inputIcon: {
-    marginRight: 10,
+    marginRight: 10
   },
   inputField: {
     flex: 1,
@@ -181,12 +186,12 @@ const styles = StyleSheet.create({
     height: 50,
     alignItems: 'center',
     justifyContent: 'center',
-    borderRadius: 5,
+    borderRadius: 5
   },
   addButtonLabel: {
     color: 'white',
-    fontWeight: 'bold',
-  },
+    fontWeight: 'bold'
+  }
 });
 
 export default AddContact;

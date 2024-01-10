@@ -15,6 +15,7 @@ import calendar from './Asset/calendar.png';
 import bill from './Asset/bill.png';
 import api from '../../globals/query/API';
 import { id } from 'date-fns/locale';
+import { useFocusEffect } from '@react-navigation/native';
 
 type Props = {
   date: Date;
@@ -32,7 +33,7 @@ const FetchInfo: React.FC<Props> = ({ date }) => {
   const [reservationDeletionInfo, setReservationDeletionInfo] = useState({});
   const [count, setCount] = useState(0);
 
-  useEffect(() => {
+  useFocusEffect(() => {
     function fillAgendaWithReservations(slot) {
       //   items.data = {};
       console.log('date selected: ', date);
@@ -44,7 +45,7 @@ const FetchInfo: React.FC<Props> = ({ date }) => {
         ///////////////////////////////////////////////////////////////////////
         //    Error checking to see if slot is already contained in Agenda    /
         for (const idToCheck in items.data[slot[index].date]) {
-          if (parseInt(items.data[slot[index].date][idToCheck].id) == index)
+          if (parseInt(items.data[slot[index].date][idToCheck].id) === index)
             isAlreadyInAgenda = true;
         }
         if (isAlreadyInAgenda) {
@@ -52,7 +53,7 @@ const FetchInfo: React.FC<Props> = ({ date }) => {
           break;
         }
         ///////////////////////////////////////////////////////////////////////
-        if (items.data[slot[index].date] == undefined) items.data[slot[index].date] = [];
+        if (items.data[slot[index].date] === undefined) items.data[slot[index].date] = [];
         items.data[slot[index].date].push({
           date: slot[index].date,
           id: index,
@@ -95,17 +96,18 @@ const FetchInfo: React.FC<Props> = ({ date }) => {
           throw res;
         }
       } catch (e) {
-        alert(e);
+        alert(`FetchInfo: ${e}`);
       }
     }
     fetchSlot();
-    const interval = setInterval(() => {
-      setCount(count + 1);
-    }, 10000);
+    // const interval = setInterval(() => {
+    //   setCount(count + 1);
+    //   setItems({ data });
+    // }, 10000);
 
-    //Clearing the interval
-    return () => clearInterval(interval);
-  }, [count]);
+    // //Clearing the interval
+    // return () => clearInterval(interval);
+  });
 
   const setModal = (event) => {
     setModalVisible(true);
@@ -129,7 +131,7 @@ const FetchInfo: React.FC<Props> = ({ date }) => {
       }
     } catch (e) {
       console.log(e);
-      alert(e);
+      alert(`Deletion Error: ${e}`);
     }
     setModalVisible(false);
   }

@@ -26,7 +26,7 @@ const Settings = ({ navigation }) => {
         }
       } catch (e) {
         const code = e.status;
-        alert('Error');
+        alert('Error', e);
       }
     }
     fetchData();
@@ -72,7 +72,10 @@ const Settings = ({ navigation }) => {
                     le réseau Pulsive !
                   </Text>
                 </View>
-                <Animatable.Image animation="pulse" easing="ease-out" iterationCount="infinite"
+                <Animatable.Image
+                  animation="pulse"
+                  easing="ease-out"
+                  iterationCount="infinite"
                   source={Logo}
                   style={{ width: '40%', height: '100%' }}
                   resizeMode="contain"
