@@ -39,6 +39,7 @@ build/Release
 
 # Dependency directories
 android/build
+android/app
 node_modules/
 jspm_packages/
 
