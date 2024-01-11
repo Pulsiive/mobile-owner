@@ -209,7 +209,7 @@ function AddSlot({ navigation }) {
       time={time}
       setTime={setTime}
     />,
-    <Recap station={station} time={time} dateArray={dateArray} />
+    <Recap station={selectedStation} time={time} dateArray={dateArray} />
   ];
 
   return (

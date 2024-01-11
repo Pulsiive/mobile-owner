@@ -25,14 +25,13 @@ const FetchInfo = ({ date, data, openDate, setSlot }) => {
   const [loading, setLoading] = useState(true);
   const [count, setCount] = useState(0);
 
-  useEffect(()=> {
+  useEffect(() => {
     try {
-      setLoading(false)
-
+      setLoading(false);
     } catch (e) {
-      alert(e)
+      alert(e);
     }
-  }, [data[date]])
+  }, [data[date]]);
 
   const setModal = (event) => {
     setModalVisible(true);
@@ -50,7 +49,9 @@ const FetchInfo = ({ date, data, openDate, setSlot }) => {
       );
 
       if (res.status === 200) {
-        setSlot((prevSlot) => {console.log(prevSlot)})
+        setSlot((prevSlot) => {
+          console.log(prevSlot);
+        });
         console.log('Slot has been deleted.');
       } else {
         throw res;
@@ -82,10 +83,10 @@ const FetchInfo = ({ date, data, openDate, setSlot }) => {
     <ScrollView style={{ top: 30 }}>
       {data[date] &&
         data[date].map((plan) => {
-          console.log(plan)
+          console.log(plan);
           return (
             <Pressable
-              style={{ width: '100%', marginTop:30, height: '90%'}}
+              style={{ width: '100%', marginTop: 30, height: '28%' }}
               onPress={() => {
                 setReservationDeletionInfo(plan);
                 plan.isBooked ? setModalVisible(false) : setModalVisible(true);
@@ -94,13 +95,15 @@ const FetchInfo = ({ date, data, openDate, setSlot }) => {
             >
               <Animated.View
                 style={[
-                  plan.isBooked ? styles.itemBookedContainer : styles.itemContainer,
+                  plan.isBooked ? styles.itemBookedContainer : styles.itemContainer
                   // { opacity: firstOpacity, transform: [{ translateY: TranslationUp }] }
                 ]}
               >
-                <View style={{marginLeft: 30}}>
+                <View style={{ marginLeft: 30 }}>
                   <Text style={styles.name}>Borne {plan.Name.slice(0, 2)}</Text>
-                  <Text style={{color: 'white', fontWeight: '700'}}>{plan.price} € ({plan.pricePerMin} € / Min)</Text>
+                  <Text style={{ color: 'white', fontWeight: '700' }}>
+                    {plan.price} € ({plan.pricePerMin} € / Min)
+                  </Text>
                   {/*<Image style={styles.picture} source={{ uri: plan.picture }}></Image>*/}
                   <View style={styles.firstRow}>
                     <Image style={styles.rendCalendar} source={calendar}></Image>
@@ -122,8 +125,15 @@ const FetchInfo = ({ date, data, openDate, setSlot }) => {
         }}
       >
         <View style={styles.modal}>
-          <View style={{ display: 'flex', flexDirection: 'row', width: '100%', justifyContent: 'space-between'}}>
-            <Text style={{ color: 'black', fontSize: 20, fontWeight: '800'}}>
+          <View
+            style={{
+              display: 'flex',
+              flexDirection: 'row',
+              width: '100%',
+              justifyContent: 'space-between'
+            }}
+          >
+            <Text style={{ color: 'black', fontSize: 20, fontWeight: '800' }}>
               Souhaitez-vous supprimer cette réservation ?
             </Text>
             <Pressable
@@ -151,10 +161,10 @@ const FetchInfo = ({ date, data, openDate, setSlot }) => {
                 marginLeft: '20%',
                 borderRadius: 15,
                 backgroundColor: '#6EBF34',
-                marginTop: 90,
+                marginTop: 90
               }}
             >
-              <Text style={{ color: 'white', marginTop: '0%', fontSize: 15, padding: 8}}>
+              <Text style={{ color: 'white', marginTop: '0%', fontSize: 15, padding: 8 }}>
                 Confirm Deletion
               </Text>
             </View>
@@ -182,7 +192,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     fontWeight: '700',
     fontSize: 15,
-    top: -20,
+    top: -20
   },
   itemContainer: {
     backgroundColor: '#7FCB2B',
@@ -208,7 +218,7 @@ const styles = StyleSheet.create({
   rendCalendar: {
     width: 14,
     height: 11,
-    top: 4,
+    top: 4
   },
   firstRow: {
     top: 10,
@@ -217,7 +227,7 @@ const styles = StyleSheet.create({
   },
   Txtduration: {
     color: 'white',
-    marginLeft: 10,
+    marginLeft: 10
   },
   modal: {
     top: '30%',
@@ -228,7 +238,7 @@ const styles = StyleSheet.create({
     width: '90%',
     borderRadius: 10,
     borderWidth: 1,
-    borderColor: '#D4D4D4',
+    borderColor: '#D4D4D4'
   }
 });
 

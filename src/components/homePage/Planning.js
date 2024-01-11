@@ -5,7 +5,7 @@ import Logo from './Asset/logo.png';
 import Pulsiive from './Asset/Pulsiive.png';
 import DateSlider from './DateSlider';
 import api from '../../globals/query/API';
-
+import { useFocusEffect } from '@react-navigation/native';
 import * as Animatable from 'react-native-animatable';
 
 function Planning({ navigation }) {
@@ -14,8 +14,6 @@ function Planning({ navigation }) {
   const [data, setData] = useState({});
   const [slot, setSlot] = useState(null);
   const [openDate, setOpenDate] = useState([]);
-
-
 
   useEffect(() => {
     function fillAgendaWithReservations(slot) {
@@ -62,17 +60,17 @@ function Planning({ navigation }) {
     async function fetchSlot() {
       try {
         return await api.send('GET', '/api/v1/slot', null, true);
-      }  catch (error) {
+      } catch (error) {
         console.error('Error fetching slot information:', error);
       }
     }
 
-    fetchSlot().then(res => {
+    fetchSlot().then((res) => {
       if (res.status === 200) {
-        setOpenDate(res.data.map(item => new Date(item.opensAt).toLocaleDateString()));
+        setOpenDate(res.data.map((item) => new Date(item.opensAt).toLocaleDateString()));
         let slotParsed = [];
         for (let index = 0; index < res.data.length; index++) {
-          let element = ({
+          let element = {
             id: res.data[index].id,
             stationId: res.data[index].stationPropertiesId,
             date: new Date(res.data[index].opensAt).toLocaleDateString(),
@@ -81,7 +79,7 @@ function Planning({ navigation }) {
             price_per_minute: res.data[index].price_per_minute,
             closeAt: res.data[index].closesAt.split('T')[1].split('.')[0],
             isBooked: res.data[index].isBooked
-          });
+          };
           addElementSorted(slotParsed, element);
         }
         fillAgendaWithReservations(slotParsed);
@@ -108,7 +106,11 @@ function Planning({ navigation }) {
           style={styles.addSlotButton}
           onPress={() => navigation.navigate('AddSlot')}
         >
-          <Animatable.Text animation="pulse" iterationCount="infinite" style={{ color: 'green', fontWeight: '700', fontSize: 32, marginLeft: '30%' }}>
+          <Animatable.Text
+            animation="pulse"
+            iterationCount="infinite"
+            style={{ color: 'green', fontWeight: '700', fontSize: 32, marginLeft: '30%' }}
+          >
             +
           </Animatable.Text>
         </TouchableHighlight>

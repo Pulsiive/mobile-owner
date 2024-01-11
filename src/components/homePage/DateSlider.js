@@ -5,7 +5,8 @@ import {
   Text,
   TouchableHighlight,
   Pressable,
-  ImageBackground, Platform,
+  ImageBackground,
+  Platform,
   TouchableOpacity
 } from 'react-native';
 import { addDays, getDate, startOfWeek, format, isSameDay } from 'date-fns';
@@ -30,110 +31,125 @@ const DateSlider = ({ date, onChange, data, openDate, setSlot, slot }) => {
   useEffect(() => {
     try {
       if (data[date]) {
-        console.log('still there')
+        console.log('still there');
       }
     } catch (e) {
-      alert(e)
+      alert(e);
     }
-  }, [data[date]])
+  }, [data[date]]);
 
   return (
     <>
       <View style={styles.container}>
         {week.map((weekDay) => {
           const touchable = [styles.touchable];
-          const weekDayText = [styles.weekDayText]
-          const indication = [{backgroundColor: 'black'}]
-          const label = [styles.label]
+          const weekDayText = [styles.weekDayText];
+          const indication = [{ backgroundColor: 'black' }];
+          const label = [styles.label];
           const sameDay = isSameDay(weekDay.date, date);
           const selectedDay = new Date(weekDay.date).toLocaleDateString().split(' ')[0];
           const eventDay = openDate.includes(selectedDay);
           if (sameDay) {
-            touchable.push({backgroundColor: '#7FCB2B'});
-            weekDayText.push({color: 'white'});
-            label.push({color: 'white'});
-            indication.push({backgroundColor: '#7FCB2B'})
-
+            touchable.push({ backgroundColor: '#7FCB2B' });
+            weekDayText.push({ color: 'white' });
+            label.push({ color: 'white' });
+            indication.push({ backgroundColor: '#7FCB2B' });
           }
           if (eventDay) {
-            indication.push({backgroundColor: 'white'})
+            indication.push({ backgroundColor: 'white' });
           }
           return (
             <View style={styles.weekDayItem} key={weekDay.formatted}>
-              <TouchableOpacity activeOpacity={sameDay ? 1 : 0.7} onPress={() => {
-                !sameDay && onChange(weekDay.date)
-              }} style={touchable}>
-                <Text style={[{color: 'white'}, ...label]}>
-                  {weekDay.day}
-                </Text>
+              <TouchableOpacity
+                activeOpacity={sameDay ? 1 : 0.7}
+                onPress={() => {
+                  !sameDay && onChange(weekDay.date);
+                }}
+                style={touchable}
+              >
+                <Text style={[{ color: 'white' }, ...label]}>{weekDay.day}</Text>
               </TouchableOpacity>
-              <Text style={[{color: 'white'}, ...weekDayText]}>
+              <Text style={[{ color: 'white' }, ...weekDayText]}>
                 {weekDay.formatted.slice(0, -1)}
               </Text>
-              <View style={[{
-                position: 'absolute',
-                bottom: 5,
-                height: 5,
-                width: 5,
-                borderRadius: 100,
-              }, ...indication]}></View>
+              <View
+                style={[
+                  {
+                    position: 'absolute',
+                    bottom: 5,
+                    height: 5,
+                    width: 5,
+                    borderRadius: 100
+                  },
+                  ...indication
+                ]}
+              ></View>
             </View>
           );
         })}
       </View>
 
-      <View style={{
-        position: 'absolute',
-        top: Platform.OS === 'android' ? 35 + '%' : 30+'%',
-        left: 2 + '%',
-      }}>
+      <View
+        style={{
+          position: 'absolute',
+          top: Platform.OS === 'android' ? 35 + '%' : 30 + '%',
+          left: 2 + '%'
+        }}
+      >
         <TouchableOpacity
           activeOpacity={1}
           style={{
             justifyContent: 'center',
             alignItems: 'center',
             width: 50,
-            height: 50,
+            height: 50
           }}
           onPress={() => setOpen(!open)}
         >
           <ImageBackground
             source={arrow}
             style={{
-              transform: open ? [{rotate: '-90deg'}] : [{rotate: '90deg'}],
+              transform: open ? [{ rotate: '-90deg' }] : [{ rotate: '90deg' }],
               width: 12,
-              height: 21,
+              height: 21
             }}
           ></ImageBackground>
         </TouchableOpacity>
       </View>
 
       {open && (
-        <View style={{marginTop: 20, top: 50, height: 350}}>
-          <View style={{
-            backgroundColor: 'grey',
-            height: 1,
-            width: '90%',
-            left: '5%',
-            marginBottom: 15
-          }}></View>
-          <MyCalendar onUpdate={changeParentProps} event={openDate} date={{date}} open={() => setOpen(open)} data={data}/>
-          <View style={{
-            backgroundColor: 'grey',
-            height: 1,
-            width: '90%',
-            left: '5%',
-            marginBottom: 15
-          }}></View>
+        <View style={{ marginTop: 20, top: 50, height: 350 }}>
+          <View
+            style={{
+              backgroundColor: 'grey',
+              height: 1,
+              width: '90%',
+              left: '5%',
+              marginBottom: 15
+            }}
+          ></View>
+          <MyCalendar
+            onUpdate={changeParentProps}
+            event={openDate}
+            date={{ date }}
+            open={() => setOpen(open)}
+            data={data}
+          />
+          <View
+            style={{
+              backgroundColor: 'grey',
+              height: 1,
+              width: '90%',
+              left: '5%',
+              marginBottom: 15
+            }}
+          ></View>
         </View>
       )}
 
-
-      <View style={{top: 10 + '%'}}>
+      <View style={{ top: 10 + '%' }}>
         <View>
-          <Text
-            style={{color: 'white', fontWeight: '700', left: 4 + '%'}}
-          >
+          <Text style={{ color: 'white', fontWeight: '700', left: 4 + '%' }}>
             Créneaux disponible:
           </Text>
         </View>
@@ -148,11 +164,22 @@ const DateSlider = ({ date, onChange, data, openDate, setSlot, slot }) => {
           />
         </View>
       ) : (
-        <View style={{ top: 100, height: '40%', width: '93%', left: '5%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-          <Text style={{ color: 'white', fontWeight: '600' }}>Pas de créneaux disponibles aujourd'hui !</Text>
+        <View
+          style={{
+            top: 100,
+            height: '40%',
+            width: '93%',
+            left: '5%',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center'
+          }}
+        >
+          <Text style={{ color: 'white', fontWeight: '600' }}>
+            Pas de créneaux disponibles aujourd'hui !
+          </Text>
         </View>
-      )
-      }
+      )}
     </>
   );
 };

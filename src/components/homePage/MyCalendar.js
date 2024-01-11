@@ -1,18 +1,19 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   View,
   Text,
-  Button, TouchableOpacity,
+  Button,
+  TouchableOpacity,
   Dimensions,
-  ScrollView, StyleSheet
+  ScrollView,
+  StyleSheet
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Entypo';
 
 import data from './agenda.json';
-import {isSameDay, isSameMonth, isSameYear} from 'date-fns';
+import { isSameDay, isSameMonth, isSameYear } from 'date-fns';
 
 const FloatingButton = ({ style, icon, iconColor, onPress }) => {
-
   const styles = StyleSheet.create({
     FloatingButton: {
       position: 'absolute',
@@ -37,10 +38,7 @@ const FloatingButton = ({ style, icon, iconColor, onPress }) => {
   );
 };
 
-
-
 const ButtonText = ({ title, style, onPress }) => {
-
   const handlePress = () => {
     if (onPress) onPress();
   };
@@ -69,24 +67,36 @@ const ButtonText = ({ title, style, onPress }) => {
   );
 };
 
-
 const MyCalendar = (props) => {
-  const months = ["Janvier", "Fevrier", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Decembre"];
+  const months = [
+    'Janvier',
+    'Fevrier',
+    'Mars',
+    'Avril',
+    'Mai',
+    'Juin',
+    'Juillet',
+    'Août',
+    'Septembre',
+    'Octobre',
+    'Novembre',
+    'Decembre'
+  ];
   const nDays = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 
   const today = new Date();
 
   const [navigateDate, setNavigateDate] = useState(props.date.date);
   const [selectedDate, setSelectedDate] = useState(props.date.date);
-  const [date, setDate] = useState(props.date.date.toLocaleDateString().split(' ')[0])
+  const [date, setDate] = useState(props.date.date.toLocaleDateString().split(' ')[0]);
 
   useEffect(() => {
     try {
       if (props.data[date]) {
-        console.log('still there')
+        console.log('still there');
       }
     } catch (e) {
-      alert(e)
+      alert(e);
     }
   }, [props.data[date]]);
   useEffect(() => {
@@ -101,7 +111,8 @@ const MyCalendar = (props) => {
     const firstDay = new Date(year, month, 0).getDay();
     let maxDays = nDays[month];
 
-    if (month === 1) { // February
+    if (month === 1) {
+      // February
       if ((year % 4 === 0 && year % 100 !== 0) || year % 400 === 0) maxDays += 1;
     }
 
@@ -130,7 +141,7 @@ const MyCalendar = (props) => {
   const onPressHandler = (item) => {
     setSelectedDate((prevDate) => {
       if (!isExactlySameDay(prevDate, item)) {
-        props.onUpdate(new Date(item))
+        props.onUpdate(new Date(item));
         return new Date(item);
       }
       return prevDate;
@@ -152,12 +163,16 @@ const MyCalendar = (props) => {
   };
 
   const isExactlySameDay = (date1, date2) => {
-    return date2 !== -1 && isSameYear(date1, date2) && isSameMonth(date1, date2) && isSameDay(date1, date2);
+    return (
+      date2 !== -1 &&
+      isSameYear(date1, date2) &&
+      isSameMonth(date1, date2) &&
+      isSameDay(date1, date2)
+    );
   };
   const matrix = generateMatrix();
 
   const rows = matrix.map((row, rowIndex) => {
-
     const rowItems = row.map((item, colIndex) => {
       function isNegative(num) {
         return num < 0;
@@ -176,7 +191,7 @@ const MyCalendar = (props) => {
             // borderWidth: 1,
             paddingTop: 15,
             backgroundColor: isExactlySameDay(selectedDate, item) ? '#7FCB2B' : 'black',
-            borderRadius: isExactlySameDay(selectedDate, item) ? 10 : 0,
+            borderRadius: isExactlySameDay(selectedDate, item) ? 10 : 0
           }}
         >
           <View key={colIndex}>
@@ -184,7 +199,7 @@ const MyCalendar = (props) => {
               style={{
                 textAlign: 'center',
                 color: isExactlySameDay(selectedDate, item) ? 'white' : 'white',
-                fontWeight: isExactlySameDay(selectedDate, item) ? 'bold' : '500',
+                fontWeight: isExactlySameDay(selectedDate, item) ? 'bold' : '500'
               }}
             >
               {item === -1 ? '' : item.getDate()}
@@ -197,7 +212,7 @@ const MyCalendar = (props) => {
                 justifyContent: 'center',
                 alignContent: 'center',
                 textAlign: 'center',
-                alignItems: 'center',
+                alignItems: 'center'
               }}
             >
               <View
@@ -205,8 +220,16 @@ const MyCalendar = (props) => {
                   width: 5,
                   height: 5,
                   borderRadius: 10,
-                  backgroundColor: !isNegative(item) && props.event.includes(item.toLocaleDateString().split(' ')[0]) ? 'white' : 'black',
-                  display: !isNegative(item) && props.event.includes(item.toLocaleDateString().split(' ')[0]) ? 'flex' : 'none',
+                  backgroundColor:
+                    !isNegative(item) &&
+                    props.event.includes(item.toLocaleDateString().split(' ')[0])
+                      ? 'white'
+                      : 'black',
+                  display:
+                    !isNegative(item) &&
+                    props.event.includes(item.toLocaleDateString().split(' ')[0])
+                      ? 'flex'
+                      : 'none'
                 }}
               />
             </View>
@@ -214,7 +237,6 @@ const MyCalendar = (props) => {
         </TouchableOpacity>
       );
     });
-
 
     return (
       <View
@@ -226,8 +248,9 @@ const MyCalendar = (props) => {
           paddingTop: 0,
           paddingBottom: 0,
           justifyContent: 'space-around',
-          alignItems: 'center',
-        }}>
+          alignItems: 'center'
+        }}
+      >
         {rowItems}
       </View>
     );
@@ -235,8 +258,26 @@ const MyCalendar = (props) => {
 
   return (
     <>
-      <View style={{display: 'flex', justifyContent: 'center', alignItems:'center', width: 100+'%'}}>
-        <View style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center',paddingBottom: 10, width: '90%', borderBottomWidth: 1, borderColor: 'grey'}}>
+      <View
+        style={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          width: 100 + '%'
+        }}
+      >
+        <View
+          style={{
+            display: 'flex',
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            paddingBottom: 10,
+            width: '90%',
+            borderBottomWidth: 1,
+            borderColor: 'grey'
+          }}
+        >
           <FloatingButton
             icon="chevron-left"
             iconColor={'black'}
@@ -248,12 +289,14 @@ const MyCalendar = (props) => {
             }}
             onPress={() => changeMonth(-1)}
           />
-          <Text style={{
-            fontWeight: 'bold',
-            fontSize: 18,
-            textAlign: 'center',
-            color: 'white',
-          }}>
+          <Text
+            style={{
+              fontWeight: 'bold',
+              fontSize: 18,
+              textAlign: 'center',
+              color: 'white'
+            }}
+          >
             {months[navigateDate.getMonth()]} &nbsp;
             {navigateDate.getFullYear()}
           </Text>
@@ -271,25 +314,32 @@ const MyCalendar = (props) => {
         </View>
       </View>
       <ScrollView showsVerticalScrollIndicator={false}>
-        <View style={{paddingBottom: 0}}>
-
+        <View style={{ paddingBottom: 0 }}>
           {rows}
-          <View style={{
-            backgroundColor: 'grey',
-            height: 1,
-            width: 90 + '%',
-            left: 5 + '%',
-            marginBottom: 20
-          }}></View>
-          <View style={{
-            display: 'flex',
-            flexDirection: 'row',
-            justifyContent: 'center',
-            width: 100 + '%',
-            alignItems: 'center',
-            bottom: 10
-          }}>
-            <ButtonText style={{color: 'white'}} title={"Aujourd'hui"} onPress={() => changeMonth(0)}></ButtonText>
+          <View
+            style={{
+              backgroundColor: 'grey',
+              height: 1,
+              width: 90 + '%',
+              left: 5 + '%',
+              marginBottom: 20
+            }}
+          ></View>
+          <View
+            style={{
+              display: 'flex',
+              flexDirection: 'row',
+              justifyContent: 'center',
+              width: 100 + '%',
+              alignItems: 'center',
+              bottom: 10
+            }}
+          >
+            <ButtonText
+              style={{ color: 'white' }}
+              title={"Aujourd'hui"}
+              onPress={() => changeMonth(0)}
+            ></ButtonText>
           </View>
         </View>
       </ScrollView>
