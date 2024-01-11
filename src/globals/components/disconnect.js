@@ -1,12 +1,17 @@
 import React from 'react';
 import { Pressable, Text, StyleSheet } from 'react-native';
+import { GoogleSignin, statusCodes } from '@react-native-google-signin/google-signin';
 
 /**
  *  Reusable Button component to navigate back to login
  */
+
+
 const DisconnectComponent = ({ navigation }) => {
   return (
-    <Pressable style={styles.disconnect} onPress={() => navigation.navigate('Login')}>
+    <Pressable style={styles.disconnect} onPress={() => {
+      navigation.navigate('Login');
+    }}>
       <Text style={styles.disconnectContent}>Disconnect</Text>
     </Pressable>
   );

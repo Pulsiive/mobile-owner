@@ -38,9 +38,18 @@ const Register = ({ navigation }) => {
     });
   }, [])
 
+  const isSignedIn = async () => {
+    const isSignedIn = await GoogleSignin.isSignedIn();
+    if (isSignedIn) {
+      await GoogleSignin.revokeAccess();
+    }
+  };
+
+
 
   async function GoogleRegister(navigation) {
     try {
+      await isSignedIn();
       await GoogleSignin.hasPlayServices({ showPlayServicesUpdateDialog: true });
       // Get the users ID token
       const user = await GoogleSignin.signIn();

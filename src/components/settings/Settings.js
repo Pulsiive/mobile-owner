@@ -9,6 +9,8 @@ import TextTitle from '../../globals/components/TextTitle';
 import Logo from '../../Asset/logo.png';
 import * as Animatable from 'react-native-animatable';
 
+import { GoogleSignin, statusCodes } from '@react-native-google-signin/google-signin';
+
 const Settings = ({ navigation }) => {
   const [userData, setUserData] = useState({
     firstName: 'John',
@@ -31,6 +33,17 @@ const Settings = ({ navigation }) => {
     }
     fetchData();
   }, []);
+
+  const signOut = async (navigation) => {
+    try {
+      await GoogleSignin.revokeAccess();
+      await GoogleSignin.signOut();
+      serviceAccessToken.remove();
+      await navigation.navigate('Login');
+    } catch (error) {
+      console.error(error);
+    }
+  }
 
   return (
     <View style={styles.viewTemplate}>
@@ -154,10 +167,7 @@ const Settings = ({ navigation }) => {
             <View style={{ marginVertical: 5 }}></View>
             <Pressable
               style={styles.disconnectBox}
-              onPress={() => {
-                serviceAccessToken.remove();
-                navigation.navigate('Login');
-              }}
+              onPress={() => signOut(navigation)}
             >
               <Text style={{ color: '#DA4450' }}>Disconnect</Text>
             </Pressable>
