@@ -17,78 +17,22 @@ import api from '../../globals/query/API';
 import { id } from 'date-fns/locale';
 import { useFocusEffect } from '@react-navigation/native';
 
-const FetchInfo = ({ date }) => {
+const FetchInfo = ({ date, data, openDate, setSlot }) => {
   const firstOpacity = useRef(new Animated.Value(0)).current;
   const TranslationUp = useRef(new Animated.Value(-20)).current;
-  const [items, setItems] = useState({ data });
   const [modalVisible, setModalVisible] = useState(false);
   const [reservationDeletionInfo, setReservationDeletionInfo] = useState({});
+  const [loading, setLoading] = useState(true);
   const [count, setCount] = useState(0);
 
-  useFocusEffect(() => {
-    async function fillAgendaWithReservations(slot) {
-      console.log('date selected: ', date);
-      console.log('filling agenda with', slot.length, 'slots');
-      console.log(slot);
-      let isAlreadyInAgenda = false;
+  useEffect(()=> {
+    try {
+      setLoading(false)
 
-      for (let index = 0; index < slot.length; index++) {
-        for (const idToCheck in items.data[slot[index].date]) {
-          if (parseInt(items.data[slot[index].date][idToCheck].id) === index)
-            isAlreadyInAgenda = true;
-        }
-        if (isAlreadyInAgenda) {
-          isAlreadyInAgenda = false;
-          break;
-        }
-        if (items.data[slot[index].date] === undefined) items.data[slot[index].date] = [];
-        items.data[slot[index].date].push({
-          date: slot[index].date,
-          id: index,
-          Hour: slot[index].opensAt + ' -> ' + slot[index].closeAt,
-          Name: slot[index].stationId,
-          picture:
-            'https://thumbs.dreamstime.com/b/jeune-femme-heureuse-de-brunette-avec-le-sourire-%C3%A9tonnant-26038696.jpg',
-          content: 'Content goes here...',
-          isBooked: slot[index].isBooked,
-          slotId: slot[index].id
-        });
-        console.log('pushed one new object');
-      }
-      setItems(items);
-      console.log('HERE: ', date, items.data[date]);
+    } catch (e) {
+      alert(e)
     }
-
-    async function fetchSlot() {
-      try {
-        console.log('Fetching owner slot reservation to display');
-        const slotParsed = [];
-        const res = await api.send('GET', '/api/v1/slot', null, true);
-
-        if (res.status == 200) {
-          console.log(res.data.length, 'slots fetched');
-          for (var index = 0; index < res.data.length; index++) {
-            slotParsed.push({
-              id: res.data[index].id,
-              stationId: res.data[index].stationPropertiesId,
-              date: res.data[index].opensAt.split('T')[0],
-              opensAt: res.data[index].opensAt.split('T')[1].split('.')[0],
-              closeAt: res.data[index].closesAt.split('T')[1].split('.')[0],
-              isBooked: res.data[index].isBooked
-            });
-          }
-          console.log('slotParsed: ', slotParsed);
-          fillAgendaWithReservations(slotParsed);
-          console.log(items);
-        } else {
-          throw res;
-        }
-      } catch (e) {
-        alert(`FetchInfo: ${e}`);
-      }
-    }
-    fetchSlot();
-  });
+  }, [data[date]])
 
   const setModal = (event) => {
     setModalVisible(true);
@@ -105,7 +49,8 @@ const FetchInfo = ({ date }) => {
         (auth = true)
       );
 
-      if (res.status == 200) {
+      if (res.status === 200) {
+        setSlot((prevSlot) => {console.log(prevSlot)})
         console.log('Slot has been deleted.');
       } else {
         throw res;
@@ -134,45 +79,34 @@ const FetchInfo = ({ date }) => {
   ]).start();
 
   return (
-    <ScrollView style={{ top: -30 }}>
-      {items.data[date] &&
-        items.data[date].map((plan) => {
-          if (plan.id === 'undefined') {
-            return (
-              <View>
-                <Text style={{ color: 'white' }}>Nothing</Text>
-              </View>
-            );
-          } else if (plan.id < 0) {
-            return <View></View>;
-          }
+    <ScrollView style={{ top: 30 }}>
+      {data[date] &&
+        data[date].map((plan) => {
+          console.log(plan)
           return (
             <Pressable
-              style={{ width: '100%' }}
+              style={{ width: '100%', marginTop:30, height: '90%'}}
               onPress={() => {
                 setReservationDeletionInfo(plan);
                 plan.isBooked ? setModalVisible(false) : setModalVisible(true);
               }}
+              key={plan.id}
             >
               <Animated.View
                 style={[
                   plan.isBooked ? styles.itemBookedContainer : styles.itemContainer,
-                  { opacity: firstOpacity, transform: [{ translateY: TranslationUp }] }
+                  // { opacity: firstOpacity, transform: [{ translateY: TranslationUp }] }
                 ]}
-                key={plan.id}
               >
-                <View>
-                  <Image style={styles.picture} source={{ uri: plan.picture }}></Image>
+                <View style={{marginLeft: 30}}>
                   <Text style={styles.name}>Borne {plan.Name.slice(0, 2)}</Text>
+                  <Text style={{color: 'white', fontWeight: '700'}}>{plan.price} € ({plan.pricePerMin} € / Min)</Text>
+                  {/*<Image style={styles.picture} source={{ uri: plan.picture }}></Image>*/}
                   <View style={styles.firstRow}>
                     <Image style={styles.rendCalendar} source={calendar}></Image>
                     <Text style={styles.Txtduration}>
                       {plan.date} - {plan.Hour}
                     </Text>
-                  </View>
-                  <View style={styles.secondRow}>
-                    <Image style={styles.rendbill} source={bill}></Image>
-                    <Text style={styles.Txtbill}>{plan.content}</Text>
                   </View>
                 </View>
               </Animated.View>
@@ -188,25 +122,25 @@ const FetchInfo = ({ date }) => {
         }}
       >
         <View style={styles.modal}>
-          <View style={{ flexDirection: 'row', marginTop: '2%' }}>
-            <Text style={{ color: 'black', fontSize: 20, fontWeight: '800', marginLeft: '3%' }}>
-              Delete reservation.
+          <View style={{ display: 'flex', flexDirection: 'row', width: '100%', justifyContent: 'space-between'}}>
+            <Text style={{ color: 'black', fontSize: 20, fontWeight: '800'}}>
+              Souhaitez-vous supprimer cette réservation ?
             </Text>
             <Pressable
               onPress={() => {
                 setModalVisible(false);
               }}
             >
-              <Text style={{ color: 'red', fontSize: 20, marginLeft: '58%' }}>X</Text>
+              <Text style={{ color: 'red', fontSize: 20 }}>X</Text>
             </Pressable>
           </View>
-          <Text style={{ color: 'grey', fontSize: 20, marginLeft: '3%', marginTop: '5%' }}>
+          <Text style={{ color: 'grey', fontSize: 12, marginTop: '5%' }}>
             Slot Id: {reservationDeletionInfo.slotId}
           </Text>
-          <Text style={{ color: 'grey', fontSize: 20, marginLeft: '3%', marginTop: '5%' }}>
+          <Text style={{ color: 'grey', fontSize: 12, marginTop: '5%' }}>
             Station Id: {reservationDeletionInfo.Name}
           </Text>
-          <Text style={{ color: 'grey', fontSize: 20, marginLeft: '3%', marginTop: '5%' }}>
+          <Text style={{ color: 'grey', fontSize: 12, marginTop: '5%' }}>
             Date: {reservationDeletionInfo.date} - {reservationDeletionInfo.Hour}
           </Text>
           <Pressable onPress={submitDeletion}>
@@ -214,13 +148,13 @@ const FetchInfo = ({ date }) => {
               style={{
                 width: '60%',
                 alignItems: 'center',
-                marginTop: '10%',
                 marginLeft: '20%',
                 borderRadius: 15,
-                backgroundColor: '#6EBF34'
+                backgroundColor: '#6EBF34',
+                marginTop: 90,
               }}
             >
-              <Text style={{ color: 'white', marginTop: '0%', fontSize: 20 }}>
+              <Text style={{ color: 'white', marginTop: '0%', fontSize: 15, padding: 8}}>
                 Confirm Deletion
               </Text>
             </View>
@@ -249,13 +183,12 @@ const styles = StyleSheet.create({
     fontWeight: '700',
     fontSize: 15,
     top: -20,
-    marginLeft: 20
   },
   itemContainer: {
     backgroundColor: '#7FCB2B',
     margin: 5,
     marginTop: 20,
-    width: 92 + '%',
+    width: '92%',
     height: 98,
     borderRadius: 15,
     justifyContent: 'center',
@@ -264,9 +197,8 @@ const styles = StyleSheet.create({
   },
   itemBookedContainer: {
     backgroundColor: 'grey',
-    margin: 5,
     marginTop: 20,
-    width: 92 + '%',
+    width: '92%',
     height: 98,
     borderRadius: 15,
     justifyContent: 'center',
@@ -276,42 +208,27 @@ const styles = StyleSheet.create({
   rendCalendar: {
     width: 14,
     height: 11,
-    top: 4
+    top: 4,
   },
   firstRow: {
     top: 10,
-    left: 20,
     display: 'flex',
     flexDirection: 'row'
   },
   Txtduration: {
+    color: 'white',
     marginLeft: 10,
-    color: 'white'
-  },
-  secondRow: {
-    top: 20,
-    left: 20,
-    display: 'flex',
-    flexDirection: 'row'
-  },
-  rendbill: {
-    width: 14,
-    height: 11,
-    top: 4
-  },
-  Txtbill: {
-    marginLeft: 10,
-    color: 'white'
   },
   modal: {
+    top: '30%',
+    padding: 20,
+    left: '5%',
     backgroundColor: 'white',
     height: '40%',
     width: '90%',
     borderRadius: 10,
     borderWidth: 1,
     borderColor: '#D4D4D4',
-    marginTop: '65%',
-    marginLeft: '5%'
   }
 });
 

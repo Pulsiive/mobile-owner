@@ -4,9 +4,6 @@ import { View, Image, StyleSheet, TouchableHighlight, Text, SafeAreaView } from 
 import Logo from './Asset/logo.png';
 import Pulsiive from './Asset/Pulsiive.png';
 import DateSlider from './DateSlider';
-import FetchInfo from './FetchInfo';
-import avis from './Asset/avis.png';
-import notif from './Asset/notif.png';
 import api from '../../globals/query/API';
 
 import * as Animatable from 'react-native-animatable';
@@ -14,15 +11,94 @@ import * as Animatable from 'react-native-animatable';
 function Planning({ navigation }) {
   const [date, setDate] = useState(new Date());
 
+  const [data, setData] = useState({});
+  const [slot, setSlot] = useState(null);
+  const [openDate, setOpenDate] = useState([]);
+
+
+
+  useEffect(() => {
+    function fillAgendaWithReservations(slot) {
+      // console.log('filling agenda');
+      // console.log(slot);
+      let isAlreadyInAgenda = false;
+
+      for (let index = 0; index < slot.length; index++) {
+        ///////////////////////////////////////////////////////////////////////
+        //    Error checking to see if slot is already contained in Agenda    /
+        for (const idToCheck in data[slot[index].date]) {
+          if (parseInt(data[slot[index].date][idToCheck].id) === index) isAlreadyInAgenda = true;
+        }
+        if (isAlreadyInAgenda) {
+          isAlreadyInAgenda = false;
+          break;
+        }
+        ///////////////////////////////////////////////////////////////////////
+        if (data[slot[index].date] === undefined) data[slot[index].date] = [];
+        data[slot[index].date].push({
+          date: slot[index].date,
+          id: index,
+          price: slot[index].price,
+          pricePerMin: slot[index].price_per_minute,
+          Hour: slot[index].opensAt + ' -> ' + slot[index].closeAt,
+          Name: slot[index].stationId,
+          isBooked: slot[index].isBooked,
+          slotId: slot[index].id
+        });
+        // console.log('pushed one new object');
+      }
+      // console.log('HERE   ', data[date]);
+    }
+
+    const addElementSorted = (array, element) => {
+      const opensAtElement = new Date(element.opensAt).getTime();
+
+      let index = 0;
+      while (index < array.length && opensAtElement > new Date(array[index].opensAt).getTime()) {
+        index++;
+      }
+      return array.splice(index, 0, element);
+    };
+    async function fetchSlot() {
+      try {
+        return await api.send('GET', '/api/v1/slot', null, true);
+      }  catch (error) {
+        console.error('Error fetching slot information:', error);
+      }
+    }
+
+    fetchSlot().then(res => {
+      if (res.status === 200) {
+        setOpenDate(res.data.map(item => new Date(item.opensAt).toLocaleDateString()));
+        let slotParsed = [];
+        for (let index = 0; index < res.data.length; index++) {
+          let element = ({
+            id: res.data[index].id,
+            stationId: res.data[index].stationPropertiesId,
+            date: new Date(res.data[index].opensAt).toLocaleDateString(),
+            opensAt: res.data[index].opensAt.split('T')[1].split('.')[0],
+            price: res.data[index].price,
+            price_per_minute: res.data[index].price_per_minute,
+            closeAt: res.data[index].closesAt.split('T')[1].split('.')[0],
+            isBooked: res.data[index].isBooked
+          });
+          addElementSorted(slotParsed, element);
+        }
+        fillAgendaWithReservations(slotParsed);
+      }
+    });
+    console.log('something changed');
+  }, [slot]);
+
   return (
     <View style={{ flex: 1, backgroundColor: 'black' }}>
       <View style={styles.group}>
         <Image source={Logo} style={styles.logo} />
         <Image source={Pulsiive} style={styles.Pulsiive} />
-        <TouchableHighlight style={styles.avisButton} onPress={() => navigation.navigate('Avis')}>
-          <Image style={styles.avis} source={avis}></Image>
-        </TouchableHighlight>
-        <Image style={styles.notif} source={notif}></Image>
+        {/*<TouchableHighlight style={styles.avisButton} onPress={() => navigation.navigate('Avis')}>*/}
+        {/*  <Image style={styles.avis} source={avis}></Image>*/}
+        {/*</TouchableHighlight>*/}
+        {/*<Image style={styles.notif} source={notif}></Image>*/}
       </View>
       <View style={styles.welcome}>
         <Text style={styles.first}>Bonjour, User !</Text>
@@ -36,20 +112,15 @@ function Planning({ navigation }) {
             +
           </Animatable.Text>
         </TouchableHighlight>
-
-        <TouchableHighlight
-          style={styles.profilButton}
-          onPress={() => navigation.navigate('Home2')}
-        >
-          <Animatable.Image animation="pulse" iterationCount="infinite"
-            style={styles.profil}
-            source={{
-              uri: 'https://image.shutterstock.com/image-photo/photo-handsome-nice-guy-getting-260nw-1478654612.jpg'
-            }}
-          ></Animatable.Image>
-        </TouchableHighlight>
       </View>
-      <DateSlider date={date} onChange={(newDate) => setDate(newDate)} />
+      <DateSlider
+        date={date}
+        onChange={(newDate) => setDate(newDate)}
+        openDate={openDate}
+        data={data}
+        slot={slot}
+        setSlot={setSlot}
+      />
     </View>
   );
 }
@@ -115,7 +186,7 @@ const styles = StyleSheet.create({
   },
   addSlotButton: {
     position: 'absolute',
-    right: 18 + '%',
+    right: 0 + '%',
     backgroundColor: 'lightgrey',
     width: 50,
     height: 50,
