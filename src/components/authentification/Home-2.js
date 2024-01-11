@@ -6,11 +6,12 @@ import twitter from './../../Asset/twitter.png';
 import linkedin from './../../Asset/link.png';
 import google from './../../Asset/google.png';
 
-import { GoogleSignin } from '@react-native-google-signin/google-signin';
-import auth from '@react-native-firebase/auth';
+import { GoogleSignin, statusCodes } from '@react-native-google-signin/google-signin';
+// import auth from '@react-native-firebase/auth';
 
 import Backend from '../../globals/query/Backend';
 import serviceAccessToken from '../../globals/query/AccessToken';
+import { useEffect, useState } from 'react';
 
 const styles = StyleSheet.create({
   Logo2: {
@@ -127,52 +128,7 @@ const styles = StyleSheet.create({
 
 /* $FlowFixMe[missing-local-annot] The type annotation(s) required by Flow's
  * LTI update could not be added via codemod */
-GoogleSignin.configure({
-  webClientId: '812570876185-b6j070v7obu11b3j0dce4dtmuuhfu609.apps.googleusercontent.com'
-});
 
-async function GoogleSignup(navigation) {
-  // Check if your device supports Google Play
-  await GoogleSignin.hasPlayServices({ showPlayServicesUpdateDialog: true });
-  // Get the users ID token
-  const { idToken } = await GoogleSignin.signIn();
-
-  // Create a Google credential with the token
-  const googleCredential = auth.GoogleAuthProvider.credential(idToken);
-
-  // Sign-in the user with the credential
-  // const user_sign_in = auth().signInWithCredential(googleCredential);
-  // console.log(googleCredential)
-
-  const response = await Backend.register(googleCredential.token);
-  console.log(response);
-
-  if (response.status == 200) {
-    serviceAccessToken.set(response.data.accessToken);
-    navigation.navigate('Tab');
-  }
-}
-
-async function GoogleLogin(navigation) {
-  // Check if your device supports Google Play
-  await GoogleSignin.hasPlayServices({ showPlayServicesUpdateDialog: true });
-  // Get the users ID token
-  const { idToken } = await GoogleSignin.signIn();
-
-  // Create a Google credential with the token
-  const googleCredential = auth.GoogleAuthProvider.credential(idToken);
-
-  // Sign-in the user with the credential
-  // const user_sign_in = auth().signInWithCredential(googleCredential);
-
-  const response = await Backend.login(googleCredential.token);
-
-  console.log(response.token);
-  if (response.status == 200) {
-    serviceAccessToken.set(response.data.accessToken);
-    navigation.navigate('Tab');
-  }
-}
 
 function padding(a, b, c, d) {
   return {
@@ -184,6 +140,7 @@ function padding(a, b, c, d) {
 }
 
 function HomeScreen2({ navigation }) {
+
   return (
     <View
       style={{ flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: 'black' }}
@@ -193,12 +150,6 @@ function HomeScreen2({ navigation }) {
       <Text style={styles.Welcome}>
         Bienvenue sur Pulsiive !{'\n'}Commençons sans plus attendre !
       </Text>
-      <TouchableHighlight style={styles.border} onPress={GoogleSignup}>
-        <View>
-          {/* <Image source={FB} style={styles. .logoFB} /> */}
-          <Text style={styles.TextFB}>Se connecter avec Google</Text>
-        </View>
-      </TouchableHighlight>
       <View style={styles.groupBtn}>
         <TouchableHighlight onPress={() => navigation.navigate('Register')} style={styles.Btn}>
           <View style={styles.content}>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   TextInput,
   View,
@@ -7,13 +7,16 @@ import {
   Text,
   Button,
   TouchableOpacity,
-  ActivityIndicator
+  ActivityIndicator, TouchableHighlight
 } from 'react-native';
 import api from '../../../globals/query/API';
 import messaging from '@react-native-firebase/messaging';
 import serviceAccessToken from '../../../globals/query/AccessToken';
 
 import Logo2 from './../../../Asset/logo-2.png';
+import { GoogleSignin, statusCodes } from '@react-native-google-signin/google-signin';
+import Backend from '../../../globals/query/Backend';
+import API from '../../../globals/query/API';
 
 const Register = ({ navigation }) => {
   const [isActive, setActive] = useState(false);
@@ -26,6 +29,47 @@ const Register = ({ navigation }) => {
   });
   const [errorMessage, setErrorMessage] = useState('');
   const [error, setError] = useState(false);
+
+  useEffect(() => {
+    GoogleSignin.configure({
+      iosClientId: '812570876185-c1dr04tgo8hon7ciaukbdjtu9srkjlcb.apps.googleusercontent.com', // only for iOS
+      webClientId: '812570876185-b6j070v7obu11b3j0dce4dtmuuhfu609.apps.googleusercontent.com',
+      offlineAccess: true
+    });
+  }, [])
+
+
+  async function GoogleRegister(navigation) {
+    try {
+      await GoogleSignin.hasPlayServices({ showPlayServicesUpdateDialog: true });
+      // Get the users ID token
+      const user = await GoogleSignin.signIn();
+      const fcmToken = await messaging().getToken();
+
+      const response = await API.send('POST', '/api/v1/oauth/google/register', {credential:user.idToken, fcmToken},  false);
+
+      if (response.status === 200) {
+        serviceAccessToken.set(response.data.accessToken);
+        navigation.navigate('Tab');
+      }
+    } catch (error) {
+      if (error.code === statusCodes.SIGN_IN_CANCELLED) {
+        console.log('cancel')
+
+        // user cancelled the login flow
+      } else if (error.code === statusCodes.IN_PROGRESS) {
+        console.log('progress')
+        // operation (e.g. sign in) is in progress already
+      } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
+        console.log('not available')
+        // play services not available or outdated
+      } else {
+        console.log('what ??')
+        // some other error happened
+      }
+    }
+  }
+
 
   const handleChange = (text, field) => {
     if (error) setError(false);
@@ -136,6 +180,14 @@ const Register = ({ navigation }) => {
         >
           <Text style={styles.registerButton}>S'inscrire</Text>
         </TouchableOpacity>
+        <View style={{display: 'flex', alignItems: 'center', width: '100%', marginVertical: 20}}>
+          <Text style={{color:'white'}}>Ou</Text>
+        </View>
+        <TouchableHighlight style={styles.border} onPress={() => GoogleRegister(navigation)}>
+          <View>
+            <Text style={styles.TextFB}>S'inscrire avec Google</Text>
+          </View>
+        </TouchableHighlight>
         <TouchableOpacity
           style={styles.accountButtonBoxWithoutBackground}
           onPress={() => navigation.navigate('Login')}
@@ -223,7 +275,42 @@ const styles = StyleSheet.create({
   errorText: {
     textAlign: 'center',
     color: 'white'
-  }
+  },
+  border: {
+    minWidth: 300,
+    height: 44,
+    borderRadius: 9,
+    borderWidth: 1,
+    borderStyle: 'solid',
+    borderColor: 'white',
+    left: 0,
+    // position: 'absolute',
+    // top: 55.34 + '%',
+    // display: 'flex',
+    // alignItems: 'flex-start',
+    backgroundColor: '#ffffff1a',
+    paddingBottom: 36.7,
+    ...padding(9.9, 36.7)
+  },
+  logoFB: {
+    width: 24,
+    height: 24,
+    resizeMode: 'cover'
+  },
+  TextFB: {
+    textAlign: 'center',
+    color: 'white',
+    fontWeight: 'bold'
+  },
 });
+
+function padding(a, b, c, d) {
+  return {
+    paddingTop: a,
+    paddingRight: b ? b : a,
+    paddingBottom: c ? c : a,
+    paddingLeft: d ? d : b ? b : a
+  };
+}
 
 export default Register;
