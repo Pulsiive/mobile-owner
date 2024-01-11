@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Image,
   View,
@@ -7,12 +7,14 @@ import {
   Button,
   StyleSheet,
   TouchableOpacity,
-  ActivityIndicator
+  ActivityIndicator, TouchableHighlight
 } from 'react-native';
 import api from '../../../globals/query/API';
 import serviceAccessToken from '../../../globals/query/AccessToken';
 import Error from '../../../globals/components/Error';
 import Logo2 from './../../../Asset/logo-2.png';
+import { GoogleSignin, statusCodes } from '@react-native-google-signin/google-signin';
+import Backend from '../../../globals/query/Backend';
 
 const Login = ({ navigation }) => {
   const [userInput, setUserInput] = useState({
@@ -22,11 +24,51 @@ const Login = ({ navigation }) => {
   const [errorMessage, setErrorMessage] = useState('');
   const [error, setError] = useState(false);
 
+  useEffect(() => {
+    GoogleSignin.configure({
+      iosClientId: '812570876185-c1dr04tgo8hon7ciaukbdjtu9srkjlcb.apps.googleusercontent.com', // only for iOS
+      webClientId: '812570876185-b6j070v7obu11b3j0dce4dtmuuhfu609.apps.googleusercontent.com',
+      offlineAccess: true
+    });
+  }, [])
+
   const handleChange = (text, field) => {
     if (error) setError(false);
     userInput[field] = text;
     setUserInput(userInput);
   };
+
+  async function GoogleLogin(navigation) {
+    try {
+      await GoogleSignin.hasPlayServices({ showPlayServicesUpdateDialog: true });
+      // Get the users ID token
+      const user = await GoogleSignin.signIn();
+
+      const response = await Backend.login(user.idToken);
+      console.log(response)
+      // console.log(response);
+
+      if (response.status === 200) {
+        serviceAccessToken.set(response.data.accessToken);
+        navigation.navigate('Tab');
+      }
+    } catch (error) {
+      if (error.code === statusCodes.SIGN_IN_CANCELLED) {
+        console.log('cancel')
+
+        // user cancelled the login flow
+      } else if (error.code === statusCodes.IN_PROGRESS) {
+        console.log('progress')
+        // operation (e.g. sign in) is in progress already
+      } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
+        console.log('not available')
+        // play services not available or outdated
+      } else {
+        console.log('what ??')
+        // some other error happened
+      }
+    }
+  }
 
   const submit = async () => {
     try {
@@ -34,8 +76,8 @@ const Login = ({ navigation }) => {
       if (userInput.email == '' || userInput.password == '')
         throw { data: 'email or password has not been defined', status: '404' };
       const res = await api.send('POST', '/api/v1/auth/login', userInput, (auth = false));
-      console.log(res);
-      if (res.status == 200) {
+      // console.log(res);
+      if (res.status === 200) {
         serviceAccessToken.set(res.data.accessToken);
         setErrorMessage('');
         <ActivityIndicator />;
@@ -111,6 +153,14 @@ const Login = ({ navigation }) => {
         >
           <Text style={styles.forgetPasswordButton}>Mot de passe oublié</Text>
         </TouchableOpacity>
+        <View style={{display: 'flex', alignItems: 'center', width: '100%', marginVertical: 20}}>
+          <Text style={{color:'white'}}>Ou</Text>
+        </View>
+        <TouchableHighlight style={styles.border} onPress={() => GoogleLogin(navigation)}>
+          <View>
+            <Text style={styles.TextFB}>Se connecter avec Google</Text>
+          </View>
+        </TouchableHighlight>
 
         <TouchableOpacity
           style={styles.registerButtonBoxWithoutBackground}
@@ -118,6 +168,7 @@ const Login = ({ navigation }) => {
         >
           <Text style={styles.loginButton}>S'inscrire</Text>
         </TouchableOpacity>
+
       </View>
     </View>
   );
@@ -213,7 +264,42 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginTop: '15%',
     color: 'white'
-  }
+  },
+  border: {
+    minWidth: 300,
+    height: 44,
+    borderRadius: 9,
+    borderWidth: 1,
+    borderStyle: 'solid',
+    borderColor: 'white',
+    left: 0,
+    // position: 'absolute',
+    // top: 55.34 + '%',
+    // display: 'flex',
+    // alignItems: 'flex-start',
+    backgroundColor: '#ffffff1a',
+    paddingBottom: 36.7,
+    ...padding(9.9, 36.7)
+  },
+  logoFB: {
+    width: 24,
+    height: 24,
+    resizeMode: 'cover'
+  },
+  TextFB: {
+    textAlign: 'center',
+    color: 'white',
+    fontWeight: 'bold'
+  },
 });
+
+function padding(a, b, c, d) {
+  return {
+    paddingTop: a,
+    paddingRight: b ? b : a,
+    paddingBottom: c ? c : a,
+    paddingLeft: d ? d : b ? b : a
+  };
+}
 
 export default Login;
