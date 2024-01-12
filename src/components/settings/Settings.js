@@ -36,14 +36,18 @@ const Settings = ({ navigation }) => {
 
   const signOut = async (navigation) => {
     try {
-      await GoogleSignin.revokeAccess();
-      await GoogleSignin.signOut();
+      try {
+        await GoogleSignin.revokeAccess();
+        await GoogleSignin.signOut();
+      } catch (e) {
+        console.log(e);
+      }
       serviceAccessToken.remove();
       await navigation.navigate('Login');
     } catch (error) {
       console.error(error);
     }
-  }
+  };
 
   return (
     <View style={styles.viewTemplate}>
@@ -165,10 +169,7 @@ const Settings = ({ navigation }) => {
               }}
             />
             <View style={{ marginVertical: 5 }}></View>
-            <Pressable
-              style={styles.disconnectBox}
-              onPress={() => signOut(navigation)}
-            >
+            <Pressable style={styles.disconnectBox} onPress={() => signOut(navigation)}>
               <Text style={{ color: '#DA4450' }}>Disconnect</Text>
             </Pressable>
           </View>

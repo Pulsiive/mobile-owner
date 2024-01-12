@@ -31,7 +31,11 @@ const ProfileHeaderComponent = () => {
       try {
         const res = await api.send('GET', '/api/v1/profile', (auth = true));
         if (res.status == 200) {
-          setUserData({ firstName: res.data.firstName, lastName: res.data.lastName });
+          setUserData({
+            firstName: res.data.firstName,
+            lastName: res.data.lastName,
+            balance: res.data.balance
+          });
         } else {
           throw res;
         }
@@ -51,7 +55,9 @@ const ProfileHeaderComponent = () => {
           <Text style={{ color: 'lightgrey' }}>
             {userData.firstName} {userData.lastName}
           </Text>
-          <Text style={{ color: 'white', fontSize: 16, fontWeight: '700' }}>120$</Text>
+          <Text style={{ color: 'white', fontSize: 16, fontWeight: '700' }}>
+            {userData.balance / 100} €
+          </Text>
         </View>
         <View style={{ flexDirection: 'row', position: 'absolute', right: '5%', top: '30%' }}>
           <Icon name="star" size={30} color="yellow" />

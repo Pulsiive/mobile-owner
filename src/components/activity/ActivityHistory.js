@@ -89,7 +89,7 @@ const ActivityHistory = ({ navigation }) => {
             .request({
               method: 'get',
               maxBodyLength: Infinity,
-              url: ' http://ec2-18-223-248-231.us-east-2.compute.amazonaws.com:3000/api/v1/reservation',
+              url: ' http://ec2-52-15-202-92.us-east-2.compute.amazonaws.com:3000/api/v1/reservation',
               headers: {
                 Authorization: `Bearer ${token}`
               }
